@@ -1,0 +1,114 @@
+# fonts
+font pango:Inconsolata Awesome 12
+
+# borders
+new_window pixel 2
+hide_edge_borders both
+
+set $mod Mod2
+set $gray1 #444444
+set $gray2 #111111
+set $gray3 #DDDDDD
+set $black #000000
+set $white #FFFFFF
+
+# colors <what border background text indicator>
+client.focused $gray1 $gray1 $white $black
+client.unfocused $gray1 $gray1 $gray2 $black
+client.focused_inactive $gray1 $gray1 $gray2 $black
+client.background $gray1 $gray1
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec gnome-terminal --hide-menubar
+
+# kill focused window
+bindsym $mod+x kill
+
+# start dmenu (program launcher)
+bindsym $mod+o exec dmenu_run -nb \$gray1 -nf white -sb \$gray3 -sf \$gray2
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal/vertical orientation
+# mod+a is mnemonic for aside
+# mod+b is mnemonic for below
+bindsym $mod+a split h
+bindsym $mod+b split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout default
+bindsym $mod+m layout toggle split
+
+# focus the child/parent container
+bindsym $mod+c focus child
+bindsym $mod+p focus parent
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Shift+u reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q exit
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym h resize shrink width 2 px or 2 ppt
+    bindsym j resize grow height 2 px or 2 ppt
+    bindsym k resize shrink height 2 px or 2 ppt
+    bindsym l resize grow width 2 px or 2 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bar {
+  status_command ~/.bin/i3-chunkly-status
+  font pango:Inconsolata Awesome 15
+  colors {
+    background $gray1
+    statusline $gray3
+    active_workspace $gray3 $gray1 $gray3
+    focused_workspace $gray3 $gray1 $gray3
+    inactive_workspace $gray1 $gray1 $gray3
+  }
+}

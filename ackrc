@@ -1,0 +1,6 @@
+--ignore-dir=.work
+--ignore-dir=.tmp
+--ignore-dir=node_modules
+--type-set=haml=.haml
+--type-set=sass=.sass
+--type-set=coffee=.coffee

@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+source ~/.fonts/Inconsolata+Awesome.sh
+source ~/.dotfiles/zsh/plugins/time/time.plugin.zsh
+source ~/.dotfiles/zsh/plugins/chunkly/chunkly.plugin.zsh
+
+chunkly_bar() {
+  local current=""
+  local ss=$(chunkly_seconds_since_last_started)
+  local sq=$(chunkly_seconds_since_last_squashed)
+  if $(chunkly_is_ticking $ss); then
+    local sc=$(chunkly_seconds_to_complete $ss)
+    current="$CHUNKLY_POMODORO_TICKING $(format_seconds_as_clock $sc)"
+  elif $(chunkly_on_break $ss); then
+    local sb=$(chunkly_seconds_on_break $ss)
+    current="$CHUNKLY_BREAK_SYMBOL $(format_seconds_as_clock $sb)"
+  elif $(chunkly_is_squashed $ss $sq); then
+    current="$CHUNKLY_SQUASHED_SYMBOL $(format_seconds_as_clock $sq)"
+  else
+    local sb=$(($(chunkly_seconds_on_break $ss) - $CHUNKLY_CHUNK_DURATION))
+    current="$CHUNKLY_VACATION_SYMBOL $(format_seconds_as_human_readable $sb)"
+  fi
+  local today_log="$HOME/.chunkly/$(date +%Y-%m-%d).log"
+  local how_many_pomodori_today=0
+  if [[ -f $today_log ]]; then
+    how_many_pomodori_today="$(cat $today_log | ack '\tstart\t' | wc -l)"
+  fi
+  local total="$CHUNKLY_POMODORO_DONE $how_many_pomodori_today"
+  print "$current \u00b7 $total"
+}
+
+while true; do
+  echo " `chunkly_bar` \u00b7 \u${CODEPOINT_OF_AWESOME_TIME} `date +'%H:%M:%S'` `date +'%Y-%m-%d'`"
+  sleep 1
+done

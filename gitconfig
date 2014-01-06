@@ -1,0 +1,29 @@
+[user]
+  name = gabriele.lana
+  email = gabriele.lana@cleancode.it
+[core]
+  filemode = true
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = auto
+[alias]
+  co = checkout
+  ci = commit
+  aa = add --all
+  nuke = "!f() { git reset --hard; git clean -fxd; }; f"
+  see-all = log --graph --pretty=oneline --decorate=full --all
+  see = "!f() { git log --graph --pretty=oneline --decorate=full ${1:-`git rev-parse --abbrev-ref HEAD`}; }; f"
+  next = "!f() { CURRENT=`git rev-parse HEAD`; NEXT=`git log --pretty=format:'%H %P' --all | grep $CURRENT | tail -2 | head -1 | cut -d ' ' -f 1`; git checkout $NEXT; }; f"
+  prev = checkout HEAD~
+[merge]
+  tool = vimdiff
+[diff]
+  tool = vimdiff
+[rerere]
+  enabled = true
+[branch]
+  autosetupmerge = true
+[push]
+  default = tracking
