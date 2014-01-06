@@ -46,10 +46,10 @@ if exists("+undofile")
   " undofile - This allows you to use undos after exiting and restarting
   " This, like swap and backups, uses .vim-undo first, then ~/.vim/tmp/undo
   " :help undo-persistence
-  if isdirectory($HOME . '/.vim/tmp/undo') == 0
-    :silent !mkdir -p ~/.vim/tmp/undo > /dev/null 2>&1
+  if isdirectory($HOME . '/.vim/.tmp/undo') == 0
+    :silent !mkdir -p ~/.vim/.tmp/undo > /dev/null 2>&1
   endif
-  set undodir=./.vim-undo//,~/.vim/tmp/undo//
+  set undodir=./.vim-undo//,~/.vim/.tmp/undo//
   set undofile
 endif
 
