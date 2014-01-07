@@ -2,7 +2,21 @@
 
 cd "$(dirname "$0")"
 
+echo "update dotfiles..."
 git pull
+
+echo "update dependencies..."
+mkdir -p $PWD/.dependencies
+for project in dotfiles-secrets awesome-terminal-fonts; do
+  echo "update ${project}..."
+  if [ ! -d $PWD/.dependencies/$project ]; then
+    git clone https://github.com/gabrielelana/$project $PWD/.dependencies/$project
+  else
+    cd $PWD/.dependencies/$project
+    git pull
+    cd $OLDPWD
+  fi
+done
 
 ln -sfT $PWD/ackrc ~/.ackrc
 ln -sfT $PWD/gitconfig ~/.gitconfig
