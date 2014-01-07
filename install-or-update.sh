@@ -20,17 +20,17 @@ done
 
 echo "setup fonts..."
 mkdir -p ~/.fonts
-cp $PWD/.dependencies/awesome-terminal-fonts/fonts/*.ttf ~/.fonts
-cp $PWD/.dependencies/awesome-terminal-fonts/maps/*.sh ~/.fonts
-cp $PWD/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
+cp -f $PWD/.dependencies/awesome-terminal-fonts/fonts/*.ttf ~/.fonts
+cp -f $PWD/.dependencies/awesome-terminal-fonts/maps/*.sh ~/.fonts
+cp -f $PWD/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
 mkdir -p ~/.config/fontconfig/conf.d
-cp $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
+cp -f $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
 fc-cache -fv ~/.fonts
 
 echo "setup ssh..."
 mkdir -p ~/.ssh
-cp $PWD/.dependencies/dotfiles-secrets/ssh ~/.ssh
-cp $PWD/.dependencies/dotfiles-secrets/netrc ~/.netrc
+cp -f $PWD/.dependencies/dotfiles-secrets/ssh ~/.ssh
+cp -f $PWD/.dependencies/dotfiles-secrets/netrc ~/.netrc
 
 
 
