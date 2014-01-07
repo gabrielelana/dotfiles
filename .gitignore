@@ -1,5 +1,4 @@
 vim/.*
-vim/tmp
 vim/bundle
 ssh/known_hosts
 i3/log
