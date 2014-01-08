@@ -1,5 +1,5 @@
 [global]
-    font = Monospace-10
+    font = Monospace-12
     format = "%s %b"
     sort = yes
     indicate_hidden = yes
@@ -18,9 +18,9 @@
     separator_color = auto
 
 [shortcuts]
-    close = mod1+z
-    close_all = mod1+ctrl+z
-    history = mod1+plus
+    close = mod2+z
+    close_all = mod2+ctrl+z
+    history = mod2+plus
 
 [urgency_low]
     background = "#404040"

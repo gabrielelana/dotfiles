@@ -1,5 +1,5 @@
 # fonts
-font pango:Inconsolata Awesome 12
+font pango:pragmatapro 10
 
 # borders
 new_window pixel 2
@@ -28,7 +28,7 @@ bindsym $mod+Return exec gnome-terminal --hide-menubar
 bindsym $mod+x kill
 
 # start dmenu (program launcher)
-bindsym $mod+o exec dmenu_run -nb \$gray1 -nf white -sb \$gray3 -sf \$gray2
+bindsym $mod+o exec dmenu_run -nb \$gray1 -nf "#ffff00" -sb "#ffff00" -sf \$gray1
 
 # change focus
 bindsym $mod+h focus left
@@ -103,7 +103,7 @@ mode "resize" {
 
 bar {
   status_command ~/.bin/i3-chunkly-status
-  font pango:Inconsolata Awesome 15
+  font pango:pragmatapro ultra-condensed 15
   colors {
     background $gray1
     statusline $gray3
