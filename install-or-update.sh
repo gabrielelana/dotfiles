@@ -32,8 +32,7 @@ done
 
 echo "setup fonts..."
 mkdir -p ~/.fonts
-cp -f $PWD/.dependencies/awesome-terminal-fonts/fonts/*.ttf ~/.fonts
-cp -f $PWD/.dependencies/awesome-terminal-fonts/maps/*.sh ~/.fonts
+cp -f $PWD/.dependencies/awesome-terminal-fonts/build/* ~/.fonts
 cp -f $PWD/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
 mkdir -p ~/.config/fontconfig/conf.d
 cp -f $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
