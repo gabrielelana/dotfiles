@@ -57,7 +57,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 export ZSH=~/.oh-my-zsh
-cp -rfu $PWD/zsh ~/.oh-my-zsh/custom
+cp -rfu $PWD/zsh/* ~/.oh-my-zsh/custom
 cp -f $PWD/zshrc ~/.zshrc
 if which zsh > /dev/null; then
   zsh ~/.zshrc
