@@ -63,3 +63,7 @@ if which zsh > /dev/null; then
   zsh ~/.zshrc
   zsh $ZSH/tools/upgrade.sh
 fi
+
+echo "configure gnome terminal..."
+dconf reset -f "/org/gnome/terminal"
+cat $PWD/gnome-terminal.ini | dconf load "/org/gnome/terminal/"
