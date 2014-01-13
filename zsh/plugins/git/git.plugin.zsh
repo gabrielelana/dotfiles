@@ -8,7 +8,7 @@ GIT_CHANGES_SYMBOL="\u${CODEPOINT_OF_AWESOME_STAR}"
 GIT_STASHED_SYMBOL="\u${CODEPOINT_OF_AWESOME_BEAKER}"
 GIT_TOCOMMIT_SYMBOL="\u${CODEPOINT_OF_AWESOME_SHOPPING_CART}"
 GIT_CONFLICT_SYMBOL="\u${CODEPOINT_OF_OCTICONS_DIFF}"
-GIT_GITHUB_SYMBOL="\u${CODEPOINT_OF_OCTICONS_MARK_GITHUB}"
+GIT_GITHUB_SYMBOL="\u${CODEPOINT_OF_OCTICONS_OCTOFACE}"
 GIT_GIT_SYMBOL="\u${CODEPOINT_OF_OCTICONS_BRANCH}"
 
 
@@ -71,23 +71,23 @@ git_remote_status() {
 
     if [ $ahead -eq 0 ] && [ $behind -gt 0 ]
     then
-      print " $GIT_BEHIND_SYMBOL($behind)"
+      print " $GIT_BEHIND_SYMBOL ($behind)"
     elif [ $ahead -gt 0 ] && [ $behind -eq 0 ]
     then
-      print " $GIT_AHEAD_SYMBOL($ahead)"
+      print " $GIT_AHEAD_SYMBOL ($ahead)"
     elif [ $ahead -gt 0 ] && [ $behind -gt 0 ]
     then
-      print " $GIT_DIVERGED_SYMBOL"
+      print " $GIT_DIVERGED_SYMBOL "
     fi
-  else 
-    print " $GIT_UNTRACKED_SYMBOL"
+  else
+    print " $GIT_UNTRACKED_SYMBOL "
   fi
 }
 
 git_stash_status() {
   STASH_COUNT=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
   if [ $STASH_COUNT -gt 0 ]; then
-    print " $GIT_STASHED_SYMBOL($STASH_COUNT)"
+    print " $GIT_STASHED_SYMBOL ($STASH_COUNT)"
   else
     print ''
   fi
@@ -103,7 +103,7 @@ git_time_status() {
     print $(format_seconds_as_human_readable $seconds_since_last_commit)
   else
     print ""
-  fi 
+  fi
 }
 
 git_prompt() {
@@ -126,15 +126,15 @@ git_prompt() {
 
     # something to merge?
     if git_some_files_are_unmerged; then
-      merge_status=" $GIT_CONFLICT_SYMBOL $(git_number_of_files_to_merge)"
+      merge_status="$GIT_CONFLICT_SYMBOL $(git_number_of_files_to_merge)"
     fi
 
     # something changed?
     if git_some_files_to_be_committed; then
-      change_status+=" $GIT_TOCOMMIT_SYMBOL "
+      change_status+="$GIT_TOCOMMIT_SYMBOL "
     fi
     if git_some_files_are_modified || git_some_files_are_untracked; then
-      change_status+=" $GIT_CHANGES_SYMBOL "
+      change_status+="$GIT_CHANGES_SYMBOL "
     fi
     if [ -z $change_status ] && [ -n "$time_status" ]; then
       change_status="$GIT_UNCHANGED_SYMBOL"
@@ -153,6 +153,6 @@ git_prompt() {
     ref=${ref#refs/heads/}
 
     # finally here is the prompt
-    print "$color$separator $ref$change_status$time_status$remote_status$merge_status$stash_status" | sed 's/\s\+/ /g'
+    print "$color$separator  $ref$change_status$time_status$remote_status$merge_status$stash_status"
   fi
 }
