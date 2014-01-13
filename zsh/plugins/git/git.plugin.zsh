@@ -139,8 +139,6 @@ git_prompt() {
     fi
     if [ -z "${change_status//[[:space:]]/}" ] && [ -n "${time_status//[[:space]]/}" ]; then
       change_status="$GIT_UNCHANGED_SYMBOL"
-    else
-      change_status+=" "
     fi
 
     # something stashed?
