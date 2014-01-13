@@ -89,7 +89,7 @@ git_stash_status() {
   if [ $STASH_COUNT -gt 0 ]; then
     print " $GIT_STASHED_SYMBOL ($STASH_COUNT)"
   else
-    print ''
+    print ""
   fi
 }
 
