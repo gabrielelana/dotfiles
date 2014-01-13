@@ -138,7 +138,7 @@ git_prompt() {
       change_status+=" $GIT_CHANGES_SYMBOL "
     fi
     if [ -z "${change_status//[[:space:]]/}" ] && [ -n "${time_status//[[:space]]/}" ]; then
-      change_status=" $GIT_UNCHANGED_SYMBOL "
+      change_status="$GIT_UNCHANGED_SYMBOL"
     else
       change_status+=" "
     fi
