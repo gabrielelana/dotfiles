@@ -9,7 +9,7 @@ GIT_STASHED_SYMBOL="\u${CODEPOINT_OF_AWESOME_BEAKER}"
 GIT_TOCOMMIT_SYMBOL="\u${CODEPOINT_OF_AWESOME_SHOPPING_CART}"
 GIT_CONFLICT_SYMBOL="\u${CODEPOINT_OF_OCTICONS_DIFF}"
 GIT_GITHUB_SYMBOL="\u${CODEPOINT_OF_OCTICONS_OCTOFACE}"
-GIT_GIT_SYMBOL="\u${CODEPOINT_OF_OCTICONS_BRANCH}"
+GIT_GIT_SYMBOL="\u${CODEPOINT_OF_OCTICONS_GIT_BRANCH}"
 
 
 git_is_repository() {
@@ -108,6 +108,7 @@ git_time_status() {
 
 git_prompt() {
   if git_is_repository; then
+    local change_status=""
     local seconds_since_last_commit=$(git_seconds_since_last_commit)
     local time_status="$(git_time_status $seconds_since_last_commit)"
     local remote_status="$(git_remote_status)"
@@ -115,7 +116,7 @@ git_prompt() {
     # maybe add github logo
     local separator=$GIT_GIT_SYMBOL
     if $(git_remote_origin_is_github); then
-      separator=$GIT_GITHUB_SYMBOL
+      separator="$GIT_GITHUB_SYMBOL "
     fi
 
     # fresh or stinks?
@@ -126,18 +127,20 @@ git_prompt() {
 
     # something to merge?
     if git_some_files_are_unmerged; then
-      merge_status="$GIT_CONFLICT_SYMBOL $(git_number_of_files_to_merge)"
+      merge_status=" $GIT_CONFLICT_SYMBOL $(git_number_of_files_to_merge)"
     fi
 
     # something changed?
     if git_some_files_to_be_committed; then
-      change_status+="$GIT_TOCOMMIT_SYMBOL "
+      change_status+=" $GIT_TOCOMMIT_SYMBOL "
     fi
     if git_some_files_are_modified || git_some_files_are_untracked; then
-      change_status+="$GIT_CHANGES_SYMBOL "
+      change_status+=" $GIT_CHANGES_SYMBOL "
     fi
-    if [ -z $change_status ] && [ -n "$time_status" ]; then
-      change_status="$GIT_UNCHANGED_SYMBOL"
+    if [ -z "${change_status//[[:space:]]/}" ] && [ -n "${time_status//[[:space]]/}" ]; then
+      change_status=" $GIT_UNCHANGED_SYMBOL "
+    else
+      change_status+=" "
     fi
 
     # something stashed?
@@ -153,6 +156,6 @@ git_prompt() {
     ref=${ref#refs/heads/}
 
     # finally here is the prompt
-    print "$color$separator  $ref$change_status$time_status$remote_status$merge_status$stash_status"
+    print "$color$separator $ref$change_status$time_status$remote_status$merge_status$stash_status"
   fi
 }
