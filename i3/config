@@ -11,6 +11,7 @@ set $gray2 #111111
 set $gray3 #DDDDDD
 set $black #000000
 set $white #FFFFFF
+set $yellow #FFFF00
 
 # colors <what border background text indicator>
 client.focused $gray1 $gray1 $white $black
@@ -28,7 +29,7 @@ bindsym $mod+Return exec gnome-terminal --hide-menubar
 bindsym $mod+x kill
 
 # start dmenu (program launcher)
-bindsym $mod+o exec dmenu_run -nb \$gray1 -nf "#ffff00" -sb "#ffff00" -sf \$gray1 -fn "PragmataPro-12"
+bindsym $mod+o exec dmenu_run -nb \$gray1 -nf \$yellow -sb \$yellow -sf \$gray1 -fn "PragmataPro-12"
 
 # change focus
 bindsym $mod+h focus left
