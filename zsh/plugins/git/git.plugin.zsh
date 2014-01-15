@@ -108,15 +108,14 @@ git_time_status() {
 
 git_prompt() {
   if git_is_repository; then
-    local change_status=""
     local seconds_since_last_commit=$(git_seconds_since_last_commit)
     local time_status="$(git_time_status $seconds_since_last_commit)"
     local remote_status="$(git_remote_status)"
 
     # maybe add github logo
-    local separator=$GIT_GIT_SYMBOL
+    local separator="$GIT_GIT_SYMBOL "
     if $(git_remote_origin_is_github); then
-      separator="$GIT_GITHUB_SYMBOL "
+      separator="$GIT_GITHUB_SYMBOL  "
     fi
 
     # fresh or stinks?
@@ -131,13 +130,18 @@ git_prompt() {
     fi
 
     # something changed?
+    local change_status=""
     if git_some_files_to_be_committed; then
-      change_status+=" $GIT_TOCOMMIT_SYMBOL "
+      change_status=" $GIT_TOCOMMIT_SYMBOL "
     fi
     if git_some_files_are_modified || git_some_files_are_untracked; then
-      change_status+=" $GIT_CHANGES_SYMBOL "
+      if [ -n "$change_status" ]; then
+        change_status+="$GIT_CHANGES_SYMBOL "
+      else
+        change_status+=" $GIT_CHANGES_SYMBOL "
+      fi
     fi
-    if [ -z "${change_status//[[:space:]]/}" ] && [ -n "${time_status//[[:space]]/}" ]; then
+    if [ -z "$change_status" ] && [ -n "$time_status" ]; then
       change_status="$GIT_UNCHANGED_SYMBOL"
     fi
 
@@ -148,12 +152,12 @@ git_prompt() {
     ref=$(git symbolic-ref HEAD 2> /dev/null)
     if [ -z $ref ]; then
       color=$GIT_LOCKED_COLOR
-      remote_status=" $GIT_DETACHED_SYMBOL"
+      remote_status=" $GIT_DETACHED_SYMBOL "
       ref=$(git rev-parse --short HEAD 2> /dev/null)
     fi
     ref=${ref#refs/heads/}
 
     # finally here is the prompt
-    print "$color$separator $ref$change_status$time_status$remote_status$merge_status$stash_status"
+    print "$color$separator$ref$change_status$time_status$remote_status$merge_status$stash_status"
   fi
 }
