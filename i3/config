@@ -28,7 +28,7 @@ bindsym $mod+Return exec gnome-terminal --hide-menubar
 bindsym $mod+x kill
 
 # start dmenu (program launcher)
-bindsym $mod+o exec dmenu_run -nb \$gray1 -nf "#ffff00" -sb "#ffff00" -sf \$gray1
+bindsym $mod+o exec dmenu_run -nb \$gray1 -nf "#ffff00" -sb "#ffff00" -sf \$gray1 -fn "PragmataPro-12"
 
 # change focus
 bindsym $mod+h focus left
