@@ -27,7 +27,17 @@ chunkly_bar() {
     how_many_pomodori_today="$(cat $today_log | ack '\tstart\t' | wc -l)"
   fi
   local total="$CHUNKLY_POMODORO_DONE$how_many_pomodori_today"
-  print "$current \u00b7 $total"
+
+  local working_on=""
+  if [ -f ~/.chunkly/working_on ]; then
+    working_on="$CHUNKLY_LABEL_SYMBOL $(cat ~/.chunkly/working_on)"
+  fi
+
+  if [ -n "$working_on" ]; then
+    print "$working_on \u00b7 $current \u00b7 $total"
+  else
+    print "$current \u00b7 $total"
+  fi
 }
 
 while true; do
