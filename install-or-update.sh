@@ -38,10 +38,13 @@ mkdir -p ~/.config/fontconfig/conf.d
 cp -f $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
 fc-cache -fv ~/.fonts
 
-echo "setup ssh..."
+echo "setup idenity..."
 mkdir -p ~/.ssh
 cp -f $PWD/.dependencies/dotfiles-secrets/ssh/* ~/.ssh
 cp -f $PWD/.dependencies/dotfiles-secrets/netrc ~/.netrc
+if [ ! -f ~/.npmrc ]; then
+  cp -f $PWD/.dependencies/dotfiles-secrets/npmrc ~/.npmrc
+fi
 
 echo "setup vim..."
 rm -rf ~/.vim && cp -rf $PWD/vim ~/.vim
