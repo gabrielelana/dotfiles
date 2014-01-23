@@ -12,6 +12,7 @@
   co = checkout
   ci = commit
   aa = add --all
+  oops = commit --amend --reuse-message=HEAD
   nuke = "!f() { git reset --hard; git clean -fxd; }; f"
   fresh = "!f() { git reset --hard; git clean -fd; }; f"
   see-all = log --graph --pretty=oneline --decorate=full --all
