@@ -34,6 +34,8 @@ set smarttab
 set laststatus=2
 " default encoding
 set encoding=utf-8
+" insert only one space when joining lines that contain sentence-terminating
+set nojoinspaces
 
 " map leader
 let mapleader="\\"
