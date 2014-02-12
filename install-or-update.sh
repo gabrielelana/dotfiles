@@ -8,6 +8,7 @@ git pull
 echo "install configuration files..."
 rm -rf ~/.i3 && cp -rf $PWD/i3 ~/.i3
 rm -rf ~/.bin && cp -rf $PWD/bin ~/.bin
+chmod +x ~/.bin
 cp -f $PWD/ackrc ~/.ackrc
 cp -f $PWD/gitconfig ~/.gitconfig
 cp -f $PWD/dunstrc ~/.dunstrc
