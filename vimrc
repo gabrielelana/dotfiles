@@ -74,6 +74,10 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+augroup FixBeforeWrite
+  au!
+  au BufWritePre * call RemoveTrailingWhitespaces()
+augroup END
 
 " abbreviations
 "
@@ -152,4 +156,10 @@ function! DisableCursorLineWhenInQuickfix()
   if &buftype=="quickfix"
     setlocal nocursorline
   endif
+endfunction
+
+function! RemoveTrailingWhitespaces()
+    let l:save_cursor = getpos(".")
+    silent! execute ':%s/\s\+$//'
+    call setpos('.', l:save_cursor)
 endfunction
