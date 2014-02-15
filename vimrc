@@ -134,6 +134,7 @@ source ~/.vim/region.vim
 
 source ~/.vim/markdown.vim
 source ~/.vim/ruby.vim
+source ~/.vim/json.vim
 source ~/.vim/javascript.vim
 source ~/.vim/haml.vim
 source ~/.vim/php.vim
@@ -144,7 +145,6 @@ colorscheme mustang
 " colorscheme digerati
 " colorscheme github
 " colorscheme railscasts
-" silent! colorscheme molokai
 
 " enable syntax
 syntax on
