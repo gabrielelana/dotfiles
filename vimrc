@@ -38,13 +38,13 @@ set encoding=utf-8
 set nojoinspaces
 
 " map leader
-let mapleader="\\"
+let mapleader='\\'
 
 " disable backup and swap files
 set nobackup noswapfile nowritebackup
 
 " persistent undo
-if exists("+undofile")
+if exists('+undofile')
   " undofile - This allows you to use undos after exiting and restarting
   " This, like swap and backups, uses .vim-undo first, then ~/.vim/.undo
   " :help undo-persistence
@@ -56,7 +56,7 @@ if exists("+undofile")
 endif
 
 " autocommands
-if has("autocmd")
+if has('autocmd')
   autocmd Filetype html setlocal ts=4 sts=4 sw=4
   autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
   autocmd Filetype haml setlocal ts=2 sts=2 sw=2
@@ -101,7 +101,7 @@ ounmap <esc>[Z
 
 
 " fix terminal problems
-if !has("gui_running")
+if !has('gui_running')
   set t_RV=
   " explicitly tell vim that the terminal supports 256 colors
   set t_Co=256
@@ -153,13 +153,13 @@ filetype plugin indent on
 
 " functions
 function! DisableCursorLineWhenInQuickfix()
-  if &buftype=="quickfix"
+  if &buftype=='quickfix'
     setlocal nocursorline
   endif
 endfunction
 
 function! RemoveTrailingWhitespaces()
-    let l:save_cursor = getpos(".")
+    let l:save_cursor = getpos('.')
     silent! execute ':%s/\s\+$//'
     call setpos('.', l:save_cursor)
 endfunction
