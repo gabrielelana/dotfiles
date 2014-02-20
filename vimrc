@@ -136,6 +136,7 @@ source ~/.vim/markdown.vim
 source ~/.vim/ruby.vim
 source ~/.vim/json.vim
 source ~/.vim/javascript.vim
+source ~/.vim/rust.vim
 source ~/.vim/haml.vim
 source ~/.vim/php.vim
 
