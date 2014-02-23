@@ -152,6 +152,9 @@ syntax on
 " enable indentation
 filetype plugin indent on
 
+" enable matchit
+runtime macros/matchit.vim
+
 " functions
 function! DisableCursorLineWhenInQuickfix()
   if &buftype=='quickfix'
