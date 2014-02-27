@@ -66,6 +66,10 @@ if has('autocmd')
   autocmd Filetype scheme setlocal ts=2 sts=2 sw=2
   autocmd Filetype sh setlocal ts=2 sts=2 sw=2
   autocmd BufEnter,BufWinEnter * call DisableCursorLineWhenInQuickfix()
+
+  " TODO: move the following line to vim-markdown
+  autocmd Filetype markdown setlocal spell complete+=kspell
+  autocmd Filetype gitcommit setlocal spell complete+=kspell
 endif
 
 augroup CursorLine
@@ -120,7 +124,6 @@ source ~/.vim/ack.vim
 source ~/.vim/ctrlp.vim
 source ~/.vim/syntastic.vim
 source ~/.vim/airline.vim
-source ~/.vim/cucumber.vim
 source ~/.vim/local.vim
 source ~/.vim/surround.vim
 source ~/.vim/unimpaired.vim
@@ -132,10 +135,11 @@ source ~/.vim/colors.vim
 source ~/.vim/tabular.vim
 source ~/.vim/region.vim
 
-source ~/.vim/markdown.vim
-source ~/.vim/ruby.vim
 source ~/.vim/json.vim
 source ~/.vim/javascript.vim
+source ~/.vim/markdown.vim
+source ~/.vim/cucumber.vim
+source ~/.vim/ruby.vim
 source ~/.vim/rust.vim
 source ~/.vim/haml.vim
 source ~/.vim/php.vim
@@ -152,8 +156,12 @@ syntax on
 " enable indentation
 filetype plugin indent on
 
-" enable matchit
+" " enable matchit
 runtime macros/matchit.vim
+
+" spelling
+set spelllang=en,it
+set spellfile=~/.vim/spell/en.utf-8.add
 
 " functions
 function! DisableCursorLineWhenInQuickfix()

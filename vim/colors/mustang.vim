@@ -51,6 +51,13 @@ hi Special		guifg=#ff9800 gui=none ctermfg=208
 hi PreProc 		guifg=#faf4c6 gui=none ctermfg=230
 hi Todo         guifg=#000000 guibg=#e6ea50 gui=italic
 
+" Spell
+hi! link SpellBad Error
+hi! link SpellCap Folded
+hi! link SpellRare Error
+hi! link SpellLocal Error
+hi SpellBad ctermfg=231 cterm=bold
+
 " Code-specific colors
 hi pythonOperator guifg=#7e8aa2 gui=none ctermfg=103
 
