@@ -65,11 +65,8 @@ if has('autocmd')
   autocmd Filetype json setlocal ts=2 sts=2 sw=2
   autocmd Filetype scheme setlocal ts=2 sts=2 sw=2
   autocmd Filetype sh setlocal ts=2 sts=2 sw=2
-  autocmd BufEnter,BufWinEnter * call DisableCursorLineWhenInQuickfix()
-
-  " TODO: move the following line to vim-markdown
-  autocmd Filetype markdown setlocal spell complete+=kspell
   autocmd Filetype gitcommit setlocal spell complete+=kspell
+  autocmd BufEnter,BufWinEnter * call DisableCursorLineWhenInQuickfix()
 endif
 
 augroup CursorLine
