@@ -38,7 +38,7 @@ set encoding=utf-8
 set nojoinspaces
 
 " map leader
-let mapleader='\\'
+let mapleader='\'
 
 " disable backup and swap files
 set nobackup noswapfile nowritebackup
