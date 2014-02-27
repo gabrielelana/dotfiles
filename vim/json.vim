@@ -1,2 +1,2 @@
-Bundle 'tpope/jdaddy'
+Bundle 'tpope/vim-jdaddy'
 Bundle 'leshill/vim-json'
