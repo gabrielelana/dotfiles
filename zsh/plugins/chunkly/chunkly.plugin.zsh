@@ -22,9 +22,14 @@ chunkly_pull() {
 chunkly_edit() {
   local at_day=`date --date="${*:-today}" +"%Y-%m-%d" 2> /dev/null`
   local log_of_the_day="$HOME/.chunkly/$at_day.log"
+  local local_vimrc="$HOME/.chunkly/.vimrc"
 
   if [ -f $log_of_the_day ]; then
-    $EDITOR $log_of_the_day
+    if [ -f $local_vimrc ]; then
+      $EDITOR -c ":source $local_vimrc" $log_of_the_day
+    else
+      $EDITOR $log_of_the_day
+    fi
   else
     echo "You did nothing ${*}, you should be proud of yourself..."
   fi
