@@ -3,6 +3,7 @@
   email = gabriele.lana@cleancode.it
 [core]
   filemode = true
+	excludesfile = ~/.gitignore
 [color]
   diff = auto
   status = auto

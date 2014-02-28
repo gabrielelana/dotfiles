@@ -11,6 +11,7 @@ rm -rf ~/.bin && cp -rf $PWD/bin ~/.bin
 chmod +x ~/.bin
 cp -f $PWD/ackrc ~/.ackrc
 cp -f $PWD/gitconfig ~/.gitconfig
+cp -f $PWD/gitignore ~/.gitignore
 cp -f $PWD/dunstrc ~/.dunstrc
 cp -f $PWD/gtkrc-2.0 ~/.gtkrc-2.0
 cp -f $PWD/xinitrc ~/.xinitrc
