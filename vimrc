@@ -58,8 +58,6 @@ endif
 " autocommands
 if has('autocmd')
   autocmd Filetype html setlocal ts=4 sts=4 sw=4
-  autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-  autocmd Filetype haml setlocal ts=2 sts=2 sw=2
   autocmd Filetype php setlocal ts=4 sts=4 sw=4
   autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
   autocmd Filetype json setlocal ts=2 sts=2 sw=2
@@ -90,7 +88,12 @@ iab dunno ¯\_(ツ)_/¯
 " esc removes highlight
 nnoremap <silent> <esc> :nohlsearch<cr>
 
-" easely move and resize windows
+" for some reason it doesn't work with engelbart keyboard
+nnoremap g] <C-]>
+nnoremap g[ <C-T>
+nnoremap <C-]> :echo("It doesn't work, sorry...")
+
+" easily move and resize windows
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
