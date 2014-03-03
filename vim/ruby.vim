@@ -1,4 +1,5 @@
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'thoughtbot/vim-rspec'
 
 augroup RubyLanguage
   au!
