@@ -23,4 +23,9 @@ augroup RubyLanguage
     \ :<C-U>execute "ptjump <C-R>=RubyCursorIdentifier()<CR>"<CR>
 
   au FileType ruby :nnoremap <silent> <buffer> g[ <C-T>
+
+  au FileType ruby :nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+  au FileType ruby :nnoremap <Leader>s :call RunNearestSpec()<CR>
+  au FileType ruby :nnoremap <Leader>l :call RunLastSpec()<CR>
+  au FileType ruby :nnoremap <Leader>a :call RunAllSpecs()<CR>
 augroup END
