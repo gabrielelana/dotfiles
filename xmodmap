@@ -8,8 +8,8 @@ keycode 88 = Hyper_R
 keycode 89 = Super_L
 keycode 83 = Super_R
 
-keycode 84 = multiply
-keycode 85 = multiply
+keycode 84 = nobreakspace
+keycode 85 = nobreakspace
 
 ! keycode 108 = Alt_R
 keycode 104 = Insert

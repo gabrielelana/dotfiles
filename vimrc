@@ -37,8 +37,8 @@ set encoding=utf-8
 " insert only one space when joining lines that contain sentence-terminating
 set nojoinspaces
 
-" map leader to 0x00D7 MULTIPLY
-let mapleader='×'
+" map leader to 0x00A0 (NO_BREAK_SPACE)
+let mapleader=' '
 inoremap <Leader> <Nop>
 
 " disable backup and swap files
