@@ -56,6 +56,11 @@ if exists('+undofile')
   set undofile
 endif
 
+" folding
+set foldopen=all
+set foldclose=all
+set nofoldenable
+
 " autocommands
 if has('autocmd')
   autocmd Filetype html setlocal ts=4 sts=4 sw=4
