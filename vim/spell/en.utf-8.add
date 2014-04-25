@@ -79,3 +79,5 @@ EventStore
 levelWHEN
 Onebip
 jsonPATH
+jq
+APIs
