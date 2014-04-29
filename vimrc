@@ -124,7 +124,9 @@ if !has('gui_running')
 endif
 
 
-source ~/.vim/vundle.vim
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 source ~/.vim/ack.vim
 source ~/.vim/ctrlp.vim
@@ -141,6 +143,7 @@ source ~/.vim/colors.vim
 source ~/.vim/tabular.vim
 source ~/.vim/region.vim
 
+source ~/.vim/scala.vim
 source ~/.vim/json.vim
 source ~/.vim/javascript.vim
 source ~/.vim/markdown.vim
@@ -149,7 +152,9 @@ source ~/.vim/ruby.vim
 source ~/.vim/rust.vim
 source ~/.vim/haml.vim
 source ~/.vim/php.vim
-source ~/.vim/scala.vim
+
+call vundle#end()
+filetype plugin indent on
 
 
 " color schemes
