@@ -149,6 +149,7 @@ source ~/.vim/ruby.vim
 source ~/.vim/rust.vim
 source ~/.vim/haml.vim
 source ~/.vim/php.vim
+source ~/.vim/scala.vim
 
 
 " color schemes

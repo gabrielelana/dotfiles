@@ -1,0 +1,1 @@
+Bundle 'derekwyatt/vim-scala'
