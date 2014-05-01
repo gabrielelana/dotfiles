@@ -81,3 +81,7 @@ Onebip
 jsonPATH
 jq
 APIs
+STDERR
+STDOUT
+timestamp
+namespace
