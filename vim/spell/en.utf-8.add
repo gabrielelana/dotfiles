@@ -85,3 +85,10 @@ STDERR
 STDOUT
 timestamp
 namespace
+codepoint
+unicode
+codepoints
+retriable
+Monolog
+PHPUnit
+GracefulDeath
