@@ -92,3 +92,4 @@ retriable
 Monolog
 PHPUnit
 GracefulDeath
+respawn
