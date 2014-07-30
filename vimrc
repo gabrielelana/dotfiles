@@ -125,7 +125,7 @@ endif
 
 
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
 source ~/.vim/ack.vim
