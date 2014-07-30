@@ -1,1 +1,1 @@
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'

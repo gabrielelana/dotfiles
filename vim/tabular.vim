@@ -1,1 +1,1 @@
-Bundle 'Tabular'
+Plugin 'Tabular'

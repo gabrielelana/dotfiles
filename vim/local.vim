@@ -1,1 +1,1 @@
-Bundle 'MarcWeber/vim-addon-local-vimrc'
+Plugin 'MarcWeber/vim-addon-local-vimrc'

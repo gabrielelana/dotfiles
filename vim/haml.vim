@@ -1,1 +1,1 @@
-Bundle 'tpope/vim-haml'
+Plugin 'tpope/vim-haml'

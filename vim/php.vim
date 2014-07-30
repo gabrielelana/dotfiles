@@ -1,2 +1,2 @@
-Bundle 'php.vim'
-Bundle 'phpcomplete.vim'
+Plugin 'php.vim'
+Plugin 'phpcomplete.vim'

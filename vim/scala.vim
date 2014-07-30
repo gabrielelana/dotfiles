@@ -1,1 +1,1 @@
-Bundle 'derekwyatt/vim-scala'
+Plugin 'derekwyatt/vim-scala'

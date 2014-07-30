@@ -1,4 +1,4 @@
-Bundle 'tpope/vim-cucumber'
+Plugin 'tpope/vim-cucumber'
 
 hi def link cucumberGiven Conditional
 hi def link cucumberWhen  Conditional

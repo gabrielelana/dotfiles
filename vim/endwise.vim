@@ -1,1 +1,1 @@
-Bundle 'tpope/vim-endwise'
+Plugin 'tpope/vim-endwise'

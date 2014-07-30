@@ -128,6 +128,8 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
+Plugin 'gmarik/Vundle.vim'
+
 source ~/.vim/ack.vim
 source ~/.vim/ctrlp.vim
 source ~/.vim/syntastic.vim

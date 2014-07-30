@@ -1,1 +1,1 @@
-Bundle 'tpope/vim-commentary'
+Plugin 'tpope/vim-commentary'

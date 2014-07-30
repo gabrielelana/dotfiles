@@ -1,4 +1,4 @@
-Bundle 'godlygeek/csapprox'
+Plugin 'godlygeek/csapprox'
 
 " color schemes
-Bundle 'tomasr/molokai'
+Plugin 'tomasr/molokai'

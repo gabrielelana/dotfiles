@@ -1,1 +1,1 @@
-Bundle 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'

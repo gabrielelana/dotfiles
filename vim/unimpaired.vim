@@ -1,1 +1,1 @@
-Bundle 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-unimpaired'

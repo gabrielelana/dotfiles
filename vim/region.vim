@@ -1,1 +1,1 @@
-Bundle 'terryma/vim-expand-region'
+Plugin 'terryma/vim-expand-region'
