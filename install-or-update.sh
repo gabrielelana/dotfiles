@@ -69,7 +69,7 @@ if which zsh > /dev/null; then
 fi
 
 echo "setup chunkly..."
-mkdir ~/.chunkly
+mkdir -p ~/.chunkly
 cp -f $PWD/chunkly.vimrc ~/.chunkly/.vimrc
 
 echo "configure gnome terminal..."
