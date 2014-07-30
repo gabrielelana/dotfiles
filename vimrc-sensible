@@ -4,7 +4,7 @@
 " This is intended to be used when you want a modern vim configuration without
 " your current (maybe pollute) environment
 "
-" `$ vim -u ~/.dotfiles/vimrc.sensible --noplugin`
+" `$ vim -u ~/.dotfiles/sensible-vimrc --noplugin`
 
 set nocompatible
 set autoindent
