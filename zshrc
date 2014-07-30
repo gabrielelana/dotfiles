@@ -49,4 +49,6 @@ export PYTHON="python2.7"
 
 alias npme='npm --registry http://registry.npmjs.eu'
 
+alias vim-pure='vim -u ~/.dotfiles/vimrc-sensible --noplugin'
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
