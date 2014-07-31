@@ -2,22 +2,32 @@
 
 cd "$(dirname "$0")"
 
+declare -A options
+options['without-x']=0          # do not configure things related to x
+options['without-identity']=0   # do not configure things related to identity
+
+for option in $@; do
+  options[${option/--/}]=1
+done
+
 echo "update dotfiles..."
 git pull
 
 echo "install configuration files..."
-rm -rf ~/.i3 && cp -rf $PWD/i3 ~/.i3
 rm -rf ~/.bin && cp -rf $PWD/bin ~/.bin
 chmod +x ~/.bin
 cp -f $PWD/ackrc ~/.ackrc
 cp -f $PWD/gitconfig ~/.gitconfig
 cp -f $PWD/gitignore ~/.gitignore
-cp -f $PWD/dunstrc ~/.dunstrc
-cp -f $PWD/gtkrc-2.0 ~/.gtkrc-2.0
-cp -f $PWD/xinitrc ~/.xinitrc
-cp -f $PWD/xinitrc ~/.xsession
-cp -f $PWD/xinitrc ~/.xprofile
-cp -f $PWD/xmodmap ~/.xmodmap
+if [[ ${options['without-x']} -eq 0 ]]; then
+  rm -rf ~/.i3 && cp -rf $PWD/i3 ~/.i3
+  cp -f $PWD/dunstrc ~/.dunstrc
+  cp -f $PWD/gtkrc-2.0 ~/.gtkrc-2.0
+  cp -f $PWD/xinitrc ~/.xinitrc
+  cp -f $PWD/xinitrc ~/.xsession
+  cp -f $PWD/xinitrc ~/.xprofile
+  cp -f $PWD/xmodmap ~/.xmodmap
+fi
 
 echo "update dependencies..."
 mkdir -p $PWD/.dependencies
@@ -32,20 +42,24 @@ for project in dotfiles-secrets awesome-terminal-fonts; do
   fi
 done
 
-echo "setup fonts..."
-mkdir -p ~/.fonts
-cp -f $PWD/.dependencies/awesome-terminal-fonts/build/* ~/.fonts
-cp -f $PWD/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
-mkdir -p ~/.config/fontconfig/conf.d
-cp -f $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
-fc-cache -fv ~/.fonts
+if [[ ${options['without-x']} -eq 0 ]]; then
+  echo "setup fonts..."
+  mkdir -p ~/.fonts
+  cp -f $PWD/.dependencies/awesome-terminal-fonts/build/* ~/.fonts
+  cp -f $PWD/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
+  mkdir -p ~/.config/fontconfig/conf.d
+  cp -f $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
+  fc-cache -fv ~/.fonts
+fi
 
-echo "setup idenity..."
-mkdir -p ~/.ssh
-cp -f $PWD/.dependencies/dotfiles-secrets/ssh/* ~/.ssh
-cp -f $PWD/.dependencies/dotfiles-secrets/netrc ~/.netrc
-if [ ! -f ~/.npmrc ]; then
-  cp -f $PWD/.dependencies/dotfiles-secrets/npmrc ~/.npmrc
+if [[ ${options['without-identity']} -eq 0 ]]; then
+  echo "setup idenity..."
+  mkdir -p ~/.ssh
+  cp -f $PWD/.dependencies/dotfiles-secrets/ssh/* ~/.ssh
+  cp -f $PWD/.dependencies/dotfiles-secrets/netrc ~/.netrc
+  if [ ! -f ~/.npmrc ]; then
+    cp -f $PWD/.dependencies/dotfiles-secrets/npmrc ~/.npmrc
+  fi
 fi
 
 echo "setup vim..."
@@ -68,10 +82,14 @@ if which zsh > /dev/null; then
   zsh $ZSH/tools/upgrade.sh
 fi
 
-echo "setup chunkly..."
-mkdir -p ~/.chunkly
-cp -f $PWD/chunkly.vimrc ~/.chunkly/.vimrc
+if [[ ${options['without-x']} -eq 0 ]]; then
+  echo "setup chunkly..."
+  mkdir -p ~/.chunkly
+  cp -f $PWD/chunkly.vimrc ~/.chunkly/.vimrc
+fi
 
-echo "configure gnome terminal..."
-dconf reset -f "/org/gnome/terminal"
-cat $PWD/gnome-terminal.ini | dconf load "/org/gnome/terminal/"
+if [[ ${options['without-x']} -eq 0 ]]; then
+  echo "configure gnome terminal..."
+  dconf reset -f "/org/gnome/terminal"
+  cat $PWD/gnome-terminal.ini | dconf load "/org/gnome/terminal/"
+fi
