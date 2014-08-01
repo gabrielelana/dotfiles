@@ -174,7 +174,9 @@ Plugin 'tomasr/molokai'
 Plugin 'Tabular'
 " }}}
 
-source ~/.vim/region.vim
+" {{{ regions and text objects
+Plugin 'terryma/vim-expand-region'
+" }}}
 
 source ~/.vim/scala.vim
 source ~/.vim/json.vim
