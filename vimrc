@@ -168,7 +168,10 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-repeat'
 " }}}
 
-source ~/.vim/endwise.vim
+" {{{ endwise
+Plugin 'tpope/vim-endwise'
+" }}}
+
 source ~/.vim/commentary.vim
 source ~/.vim/fugitive.vim
 source ~/.vim/colors.vim
