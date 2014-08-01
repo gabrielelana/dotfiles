@@ -130,7 +130,11 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-source ~/.vim/ack.vim
+" {{{ ack
+Plugin 'mileszs/ack.vim'
+let g:ackprg = 'ack -H --nocolor --nogroup --column'
+" }}}
+
 source ~/.vim/ctrlp.vim
 source ~/.vim/syntastic.vim
 source ~/.vim/airline.vim
