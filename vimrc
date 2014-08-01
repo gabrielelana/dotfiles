@@ -152,8 +152,14 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 " }}}
 
-source ~/.vim/local.vim
-source ~/.vim/surround.vim
+" {{{ local
+Plugin 'MarcWeber/vim-addon-local-vimrc'
+" }}}
+
+" {{{ surround
+Plugin 'tpope/vim-surround'
+" }}}
+
 source ~/.vim/unimpaired.vim
 source ~/.vim/repeat.vim
 source ~/.vim/endwise.vim
