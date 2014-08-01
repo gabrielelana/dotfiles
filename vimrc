@@ -164,7 +164,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 " }}}
 
-source ~/.vim/repeat.vim
+" {{{ repeat
+Plugin 'tpope/vim-repeat'
+" }}}
+
 source ~/.vim/endwise.vim
 source ~/.vim/commentary.vim
 source ~/.vim/fugitive.vim
