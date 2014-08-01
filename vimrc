@@ -178,7 +178,10 @@ Plugin 'Tabular'
 Plugin 'terryma/vim-expand-region'
 " }}}
 
-source ~/.vim/scala.vim
+" {{{ scala language
+Plugin 'derekwyatt/vim-scala'
+" }}}
+
 source ~/.vim/json.vim
 source ~/.vim/javascript.vim
 source ~/.vim/markdown.vim
