@@ -165,7 +165,11 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-repeat'
 " }}}
 
-source ~/.vim/colors.vim
+" {{{ colors
+Plugin 'godlygeek/csapprox'
+Plugin 'tomasr/molokai'
+" }}}
+
 source ~/.vim/tabular.vim
 source ~/.vim/region.vim
 
