@@ -182,7 +182,11 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'derekwyatt/vim-scala'
 " }}}
 
-source ~/.vim/json.vim
+" {{{ json
+Plugin 'tpope/vim-jdaddy'
+Plugin 'leshill/vim-json'
+" }}}
+
 source ~/.vim/javascript.vim
 source ~/.vim/markdown.vim
 source ~/.vim/cucumber.vim
