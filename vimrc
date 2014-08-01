@@ -160,11 +160,11 @@ Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-repeat'
 " }}}
 
-source ~/.vim/fugitive.vim
 source ~/.vim/colors.vim
 source ~/.vim/tabular.vim
 source ~/.vim/region.vim
