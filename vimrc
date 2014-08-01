@@ -170,7 +170,10 @@ Plugin 'godlygeek/csapprox'
 Plugin 'tomasr/molokai'
 " }}}
 
-source ~/.vim/tabular.vim
+" {{{ tabular
+Plugin 'Tabular'
+" }}}
+
 source ~/.vim/region.vim
 
 source ~/.vim/scala.vim
