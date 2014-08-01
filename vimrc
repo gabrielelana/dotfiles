@@ -141,7 +141,11 @@ let g:ctrlp_custom_ignore = '\.git$\|\.tmp$\|\.hg$\|\.svn$\|.work$\|.keep$'
 let g:ctrlp_root_markers = ['.root', '.ctrlp']
 " }}}
 
-source ~/.vim/syntastic.vim
+" {{{ syntastic
+Plugin 'scrooloose/syntastic'
+let g:syntastic_mode_map = { 'mode': 'passive' }
+" }}}
+
 source ~/.vim/airline.vim
 source ~/.vim/local.vim
 source ~/.vim/surround.vim
