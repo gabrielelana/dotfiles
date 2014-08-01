@@ -160,7 +160,10 @@ Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'tpope/vim-surround'
 " }}}
 
-source ~/.vim/unimpaired.vim
+" {{{ unimpaired
+Plugin 'tpope/vim-unimpaired'
+" }}}
+
 source ~/.vim/repeat.vim
 source ~/.vim/endwise.vim
 source ~/.vim/commentary.vim
