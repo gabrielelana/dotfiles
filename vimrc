@@ -156,23 +156,14 @@ let g:airline_theme = 'powerlineish'
 Plugin 'MarcWeber/vim-addon-local-vimrc'
 " }}}
 
-" {{{ surround
+" {{{ pope barrage
 Plugin 'tpope/vim-surround'
-" }}}
-
-" {{{ unimpaired
 Plugin 'tpope/vim-unimpaired'
-" }}}
-
-" {{{ repeat
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-repeat'
 " }}}
 
-" {{{ endwise
-Plugin 'tpope/vim-endwise'
-" }}}
-
-source ~/.vim/commentary.vim
 source ~/.vim/fugitive.vim
 source ~/.vim/colors.vim
 source ~/.vim/tabular.vim
