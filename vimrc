@@ -239,7 +239,6 @@ augroup RubyLanguage
 augroup END
 " }}}
 
-source ~/.vim/rust.vim
 source ~/.vim/haml.vim
 source ~/.vim/php.vim
 
