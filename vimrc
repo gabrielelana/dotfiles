@@ -239,7 +239,11 @@ augroup RubyLanguage
 augroup END
 " }}}
 
-source ~/.vim/haml.vim
+" {{{ haml
+Plugin 'tpope/vim-haml'
+" }}}
+
+
 source ~/.vim/php.vim
 
 call vundle#end()
