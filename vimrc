@@ -243,8 +243,10 @@ augroup END
 Plugin 'tpope/vim-haml'
 " }}}
 
-
-source ~/.vim/php.vim
+" {{{ php
+Plugin 'php.vim'
+Plugin 'phpcomplete.vim'
+" }}}
 
 call vundle#end()
 filetype plugin indent on
