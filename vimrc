@@ -37,6 +37,15 @@ set encoding=utf-8
 " insert only one space when joining lines that contain sentence-terminating
 set nojoinspaces
 
+" taken from https://github.com/dduponchel/dotfiles/blob/master/vim/vimrc
+" Indicates a fast terminal connection. More characters will be sent to the
+" screen for redrawing, instead of using insert/delete line commands. Improves
+" smoothness of redrawing when there are multiple windows and the terminal
+" does not support a scrolling region. Also enables the extra writing of
+" characters at the end of each screen line for lines that wrap. This helps
+" when using copy/paste with the mouse in an xterm and other terminals.
+set ttyfast
+
 " map leader to 0x00A0 (NO_BREAK_SPACE)
 let mapleader=' '
 inoremap <Leader> <Nop>
