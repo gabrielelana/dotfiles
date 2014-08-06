@@ -190,8 +190,8 @@ Plugin 'Tabular'
 Plugin 'terryma/vim-expand-region'
 " }}}
 
-" {{{ scala language
-Plugin 'derekwyatt/vim-scala'
+" {{{ go
+Plugin 'fatih/vim-go'
 " }}}
 
 " {{{ json
