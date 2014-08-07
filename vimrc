@@ -109,7 +109,8 @@ nnoremap <silent> <esc> :nohlsearch<cr>
 " for some reason it doesn't work with engelbart keyboard
 nnoremap g] <C-]>
 nnoremap g[ <C-T>
-nnoremap <C-]> :echo("It doesn't work, sorry...")
+nnoremap <C-]> :echo("It doesn't work sorry, use g] instead")
+nnoremap <C-T> :echo("It doesn't work sorry, use g[ instead")
 
 " easily move and resize windows
 nnoremap <C-h> <C-w>h
