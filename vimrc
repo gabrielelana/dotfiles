@@ -122,6 +122,15 @@ nnoremap <C-l> <C-w>l
 map <esc>[Z <s-tab>
 ounmap <esc>[Z
 
+" keeps cursor in the middle of the window after jump
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap g; g;zz
+nnoremap g, g,zz
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
+
+
 
 " fix terminal problems
 if !has('gui_running')
