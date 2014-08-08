@@ -130,6 +130,11 @@ nnoremap g, g,zz
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 
+" zt is okay for putting something at the top of the screen, but when I'm
+" writing prose I often want to put something at not-quite-the-top of the
+" screen.  zh is 'zoom to head level'
+nnoremap zh mzzt10<c-u>`z
+
 
 
 " fix terminal problems
