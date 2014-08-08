@@ -135,6 +135,9 @@ nnoremap <C-i> <C-i>zz
 " screen.  zh is 'zoom to head level'
 nnoremap zh mzzt10<c-u>`z
 
+" redraw all the screen
+nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+
 
 
 " fix terminal problems
