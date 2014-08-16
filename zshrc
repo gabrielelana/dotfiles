@@ -40,7 +40,11 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 unsetopt correct_all
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# RVM configuration
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && {
+  source "$HOME/.rvm/scripts/rvm"
+  export PATH=$PATH:$HOME/.rvm/bin
+}
 
 export EDITOR="vim"
 export TERM="xterm-256color"
@@ -50,5 +54,3 @@ export PYTHON="python2.7"
 alias npme='npm --registry http://registry.npmjs.eu'
 
 alias vim-pure='vim -u ~/.dotfiles/vimrc-sensible --noplugin'
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
