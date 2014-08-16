@@ -46,11 +46,15 @@ unsetopt correct_all
   export PATH=$PATH:$HOME/.rvm/bin
 }
 
+# OPAM configuration
+[[ -s "$HOME/.opam/opam-init/init.zsh" ]] && {
+  soure /home/coder/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
+}
+
 export EDITOR="vim"
 export TERM="xterm-256color"
 export PATH=$HOME/.bin:$HOME/Work/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export PYTHON="python2.7"
 
 alias npme='npm --registry http://registry.npmjs.eu'
-
 alias vim-pure='vim -u ~/.dotfiles/vimrc-sensible --noplugin'
