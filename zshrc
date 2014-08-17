@@ -46,9 +46,9 @@ unsetopt correct_all
   export PATH=$PATH:$HOME/.rvm/bin
 }
 
-# OPAM configuration
+# OCaml configuration
 [[ -s "$HOME/.opam/opam-init/init.zsh" ]] && {
-  soure /home/coder/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
+  source /home/coder/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
 }
 
 export EDITOR="vim"
