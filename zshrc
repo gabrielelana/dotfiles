@@ -51,6 +51,11 @@ unsetopt correct_all
   source /home/coder/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
 }
 
+# Elixir configuration
+[[ -d "$HOME/opt/elixir/bin" ]] && {
+  export PATH=$PATH:$HOME/opt/elixir-0.15.1/bin
+}
+
 export EDITOR="vim"
 export TERM="xterm-256color"
 export PATH=$HOME/.bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
