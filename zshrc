@@ -56,6 +56,13 @@ unsetopt correct_all
   export PATH=$PATH:$HOME/opt/elixir-0.15.1/bin
 }
 
+# Go configuration
+[[ -d "$HOME/opt/go/bin" ]] && {
+  export GOROOT=$HOME/opt/go
+  export GOPATH=$HOME/code/go
+  export PATH=$PATH:$GOROOT/bin
+}
+
 export EDITOR="vim"
 export TERM="xterm-256color"
 export PATH=$HOME/.bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
