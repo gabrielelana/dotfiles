@@ -293,12 +293,14 @@ syntax on
 " enable indentation
 filetype plugin indent on
 
-" " enable matchit
+" enable matchit
 runtime macros/matchit.vim
 
 " spelling
 set spelllang=en,it
 set spellfile=~/.vim/spell/en.utf-8.add
+" fix the previous mispelled world and jump back
+inoremap <Leader>z <esc>[s1z=A
 
 " functions
 function! DisableCursorLineWhenInQuickfix()
