@@ -3,6 +3,13 @@
 --ignore-dir=.tmp
 --ignore-dir=node_modules
 --ignore-dir=vendor
+
 --type-set=haml=.haml
 --type-set=sass=.sass
 --type-set=coffee=.coffee
+--type-set=cucumber=.feature
+--type-set=markdown=.markdown,.md
+
+--group
+--follow
+--sort-files
