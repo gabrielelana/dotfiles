@@ -51,6 +51,9 @@ set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
 
+" make Y behave consistently
+nnoremap Y y$
+
 " map leader to 0x00A0 (NO_BREAK_SPACE)
 let mapleader=' '
 inoremap <Leader> <Nop>
