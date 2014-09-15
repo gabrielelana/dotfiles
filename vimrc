@@ -46,8 +46,10 @@ set nojoinspaces
 " when using copy/paste with the mouse in an xterm and other terminals.
 set ttyfast
 
-" keep more context when scrolling off the end of a buffer
+" keep more context when scrolling
 set scrolloff=5
+set sidescrolloff=15
+set sidescroll=1
 
 " map leader to 0x00A0 (NO_BREAK_SPACE)
 let mapleader=' '
