@@ -218,6 +218,7 @@ Plugin 'Tabular'
 " {{{ regions and text objects
 Plugin 'terryma/vim-expand-region'
 Plugin 'kana/vim-textobj-user'
+Plugin 'julian/vim-textobj-variable-segment'
 " }}}
 
 " {{{ go
