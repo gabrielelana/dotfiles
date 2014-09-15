@@ -50,8 +50,8 @@ set ttyfast
 
 " keep more context when scrolling
 set scrolloff=5
-set sidEscrolloff=15
-set sidEscroll=1
+set sidescrolloff=15
+set sidescroll=1
 
 " make Y behave consistently with D and C
 nnoremap Y y$
