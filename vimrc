@@ -36,6 +36,8 @@ set laststatus=2
 set encoding=utf-8
 " insert only one space when joining lines that contain sentence-terminating
 set nojoinspaces
+" don't redraw the screen while executing a macro
+set lazyredraw
 
 " taken from https://github.com/dduponchel/dotfiles/blob/master/vim/vimrc
 " Indicates a fast terminal connection. More characters will be sent to the
