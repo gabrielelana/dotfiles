@@ -51,7 +51,7 @@ set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
 
-" make Y behave consistently
+" make Y behave consistently with D and C
 nnoremap Y y$
 
 " map leader to 0x00A0 (NO_BREAK_SPACE)
@@ -108,8 +108,8 @@ iab dunno ¯\_(ツ)_/¯
 
 " mappings
 "
-" esc removes highlight
-nnoremap <silent> <esc> :nohlsearch<cr>
+" clear search highlighting
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
 " for some reason it doesn't work with engelbart keyboard
 nnoremap g] <C-]>
