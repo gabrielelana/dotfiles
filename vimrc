@@ -21,7 +21,7 @@ set number
 set wrap
 " wildmode
 set wildmode=list:longest,full
-" faster esc in visual/insert mode
+" faster Esc in visual/insert mode
 set ttimeout
 set ttimeoutlen=10
 " text settings
@@ -48,8 +48,8 @@ set ttyfast
 
 " keep more context when scrolling
 set scrolloff=5
-set sidescrolloff=15
-set sidescroll=1
+set sidEscrolloff=15
+set sidEscroll=1
 
 " make Y behave consistently with D and C
 nnoremap Y y$
@@ -118,30 +118,30 @@ nnoremap <C-]> :echo("It doesn't work sorry, use g] instead")
 nnoremap <C-T> :echo("It doesn't work sorry, use g[ instead")
 
 " easily move and resize windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
 
 " make Shift-Tab works
-map <esc>[Z <s-tab>
-ounmap <esc>[Z
+map <Esc>[Z <S-Tab>
+ounmap <Esc>[Z
 
 " keeps cursor in the middle of the window after jump
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap g; g;zz
 nnoremap g, g,zz
-nnoremap <C-o> <C-o>zz
-nnoremap <C-i> <C-i>zz
+nnoremap <C-O> <C-O>zz
+nnoremap <C-I> <C-I>zz
 
 " zt is okay for putting something at the top of the screen, but when I'm
 " writing prose I often want to put something at not-quite-the-top of the
 " screen.  zh is 'zoom to head level'
-nnoremap zh mzzt10<c-u>`z
+nnoremap zh mzzt10<C-U>`z
 
 " redraw all the screen
-nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+nnoremap U :syntax sync fromstart<CR>:redraw!<CR>
 
 
 
@@ -306,7 +306,7 @@ runtime macros/matchit.vim
 set spelllang=en,it
 set spellfile=~/.vim/spell/en.utf-8.add
 " fix the previous mispelled world and jump back
-inoremap <Leader>z <esc>[s1z=A
+inoremap <Leader>z <Esc>[s1z=A
 
 " functions
 function! DisableCursorLineWhenInQuickfix()
