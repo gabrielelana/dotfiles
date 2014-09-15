@@ -135,6 +135,10 @@ nnoremap g, g,zz
 nnoremap <C-O> <C-O>zz
 nnoremap <C-I> <C-I>zz
 
+" visual shifting does not exit visual mode
+vnoremap < <gv
+vnoremap > >gv
+
 " zt is okay for putting something at the top of the screen, but when I'm
 " writing prose I often want to put something at not-quite-the-top of the
 " screen.  zh is 'zoom to head level'
