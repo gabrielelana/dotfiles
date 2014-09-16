@@ -111,7 +111,7 @@ iab dunno ¯\_(ツ)_/¯
 " mappings
 "
 " clear search highlighting
-nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+nnoremap <silent> == :nohlsearch<CR><C-L>
 
 " for some reason it doesn't work with engelbart keyboard
 nnoremap g] <C-]>
