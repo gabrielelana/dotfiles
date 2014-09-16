@@ -216,9 +216,25 @@ Plugin 'Tabular'
 " }}}
 
 " {{{ regions and text objects
-Plugin 'terryma/vim-expand-region'
 Plugin 'kana/vim-textobj-user'
 Plugin 'julian/vim-textobj-variable-segment'
+
+" ]v jump to the next variable segment
+" [v jump to the previous variable segment
+function! s:next_variable_segment()
+  call s:search_variable_segment('es')
+endfunction
+function! s:previous_variable_segment()
+  call s:search_variable_segment('bes')
+endfunction
+function! s:search_variable_segment(options)
+  let boundaries = ['_\+\i', '-\+\i', '\<\i', '\l\u', '\u\u\ze\l', '\a\d', '\d\a']
+  call search(join(boundaries, '\|'), a:options)
+endfunction
+nnoremap <silent> ]v :call <SID>next_variable_segment()<CR>
+nnoremap <silent> [v :call <SID>previous_variable_segment()<CR>
+
+Plugin 'terryma/vim-expand-region'
 " }}}
 
 " {{{ go
