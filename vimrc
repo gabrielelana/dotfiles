@@ -125,6 +125,12 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
+" yank the current file path in default registry
+nnoremap <silent><Leader>cp :let @" = expand('%:p')<CR>
+" yank the current file name without extension in default registry
+" (useful when the file name without extension is name of the class/module)
+nnoremap <silent><Leader>cn :let @" = expand('%:t:r')<CR>
+
 " make Shift-Tab works
 map <Esc>[Z <S-Tab>
 ounmap <Esc>[Z
