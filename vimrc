@@ -56,9 +56,11 @@ set sidescroll=1
 " make Y behave consistently with D and C
 nnoremap Y y$
 
-" map leader to 0x00A0 (NO_BREAK_SPACE)
+" map Leader and LocalLeader to 0x00A0 (NO_BREAK_SPACE)
 let mapleader=' '
+let maplocalleader=' '
 inoremap <Leader> <Nop>
+inoremap <LocalLeader> <Nop>
 
 " disable backup and swap files
 set nobackup noswapfile nowritebackup
