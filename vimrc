@@ -229,18 +229,18 @@ Plugin 'julian/vim-textobj-variable-segment'
 
 " ]v jump to the next variable segment
 " [v jump to the previous variable segment
-function! s:next_variable_segment()
-  call s:search_variable_segment('es')
+function! s:GoToVariableSegment(backward, visual)
+  if a:visual
+    normal! gv
+  endif
+  let direction = a:backward ? '?' : '/'
+  let pattern = join(['[-_.]\+\i', '\<\i', '\<\k', '\l\u', '\u\u\ze\l', '\a\d', '\d\a'], '\|')
+  execute 'silent normal! ' . l:direction . l:pattern . l:direction . "e\<CR>"
 endfunction
-function! s:previous_variable_segment()
-  call s:search_variable_segment('bes')
-endfunction
-function! s:search_variable_segment(options)
-  let boundaries = ['_\+\i', '-\+\i', '\<\i', '\l\u', '\u\u\ze\l', '\a\d', '\d\a']
-  call search(join(boundaries, '\|'), a:options)
-endfunction
-nnoremap <silent> ]v :call <SID>next_variable_segment()<CR>
-nnoremap <silent> [v :call <SID>previous_variable_segment()<CR>
+noremap <silent> ]v :call <SID>GoToVariableSegment(0, 0)<CR>
+noremap <silent> [v :call <SID>GoToVariableSegment(1, 0)<CR>
+vnoremap <silent> ]v :<C-U>call <SID>GoToVariableSegment(0, 1)<CR>
+vnoremap <silent> [v :<C-U>call <SID>GoToVariableSegment(1, 1)<CR>
 
 Plugin 'terryma/vim-expand-region'
 " }}}
