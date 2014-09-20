@@ -157,6 +157,9 @@ nnoremap zh mzzt10<C-U>`z
 " redraw all the screen
 nnoremap U :syntax sync fromstart<CR>:redraw!<CR>
 
+" replace EX mode with repeat the last recorded macro
+map Q @@
+
 
 
 " fix terminal problems
