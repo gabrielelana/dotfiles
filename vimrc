@@ -252,6 +252,10 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'fatih/vim-go'
 " }}}
 
+" {{{ elixir
+Plugin 'elixir-lang/vim-elixir'
+" }}}
+
 " {{{ json
 Plugin 'tpope/vim-jdaddy'
 Plugin 'leshill/vim-json'
