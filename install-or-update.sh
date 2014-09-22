@@ -27,6 +27,7 @@ if [[ ${options['without-x']} -eq 0 ]]; then
   cp -f $PWD/xinitrc ~/.xsession
   cp -f $PWD/xinitrc ~/.xprofile
   cp -f $PWD/xmodmap ~/.xmodmap
+  cp -f $PWD/vimperatorrc ~/.vimperatorrc
 fi
 
 echo "update dependencies..."
