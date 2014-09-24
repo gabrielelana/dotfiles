@@ -111,9 +111,6 @@ iab shrug ¯\_(ツ)_/¯
 iab dunno ¯\_(ツ)_/¯
 
 " mappings
-"
-" clear search highlighting
-nnoremap <silent> == :nohlsearch<CR><C-L>
 
 " for some reason it doesn't work with engelbart keyboard
 nnoremap g] <C-]>
@@ -155,7 +152,7 @@ vnoremap > >gv
 nnoremap zh mzzt10<C-U>`z
 
 " redraw all the screen
-nnoremap U :syntax sync fromstart<CR>:redraw!<CR>
+nnoremap U :syntax sync fromstart<CR>:redraw!<CR>:nohl<CR>
 
 " replace EX mode with repeat the last recorded macro
 map Q @@
