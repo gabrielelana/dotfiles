@@ -17,8 +17,15 @@ echo "install configuration files..."
 rm -rf ~/.bin && cp -rf $PWD/bin ~/.bin
 chmod +x ~/.bin
 cp -f $PWD/ackrc ~/.ackrc
-cp -f $PWD/gitconfig ~/.gitconfig
 cp -f $PWD/gitignore ~/.gitignore
+if [[ ${options['without-identity']} -eq 1 ]]; then
+  if [ -f ~/.gitconfig ]; then
+    sed -n -i -e '/\[user\]/,+2 p' ~/.gitconfig
+  fi
+  cat $PWD/gitconfig | sed -e '/\[user\]/,+2 d' >> ~/.gitconfig
+else
+  cp -f $PWD/gitconfig ~/.gitconfig
+fi
 if [[ ${options['without-x']} -eq 0 ]]; then
   rm -rf ~/.i3 && cp -rf $PWD/i3 ~/.i3
   cp -f $PWD/dunstrc ~/.dunstrc
