@@ -21,6 +21,8 @@ set number
 set wrap
 " wildmode
 set wildmode=list:longest,full
+" complete options (disable preview scratch window)
+set completeopt=menu,menuone,longest
 " faster Esc in visual/insert mode
 set ttimeout
 set ttimeoutlen=10
