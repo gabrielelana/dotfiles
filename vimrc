@@ -55,6 +55,18 @@ set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
 
+" when break a line then continue visually indentent as the beginning of that
+" line, do not break with less than 20 characters to the end of the line, show
+" ↳ at the beginning of the line to indicate that is not a new line but the
+" continuation of the previous (visual) line, show that synbol in the column
+" used for the line numbers (cpoptions+=n)
+if has('linebreak')
+  set showbreak=↳
+  set breakindent
+  set breakindentopt=min:20,shift:0,sbr
+  set cpoptions+=n
+endif
+
 " make Y behave consistently with D and C
 nnoremap Y y$
 
