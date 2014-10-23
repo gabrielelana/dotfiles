@@ -337,19 +337,18 @@ Plugin 'phpcomplete.vim'
 " }}}
 
 call vundle#end()
-filetype plugin indent on
 
+" enable syntax
+syntax on
+
+" enable indentation, this is important to do *after* `vundle#end()`
+filetype plugin indent on
 
 " color schemes
 colorscheme mustang
 " colorscheme digerati
 " colorscheme github
 " colorscheme railscasts
-
-" enable syntax
-syntax on
-" enable indentation
-filetype plugin indent on
 
 " enable matchit
 runtime macros/matchit.vim
