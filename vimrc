@@ -205,6 +205,7 @@ let g:ackprg = 'ack -H --nocolor --nogroup --column'
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_custom_ignore = '\.git$\|\.tmp$\|\.hg$\|\.svn$\|.work$\|.keep$'
 let g:ctrlp_root_markers = ['.root', '.ctrlp']
+let g:ctrlp_open_new_file = 'r' " <c-y> open new file in the current window
 " }}}
 
 " {{{ syntastic
