@@ -271,6 +271,10 @@ Plugin 'fatih/vim-go'
 Plugin 'elixir-lang/vim-elixir'
 " }}}
 
+" {{{ rust
+Plugin 'wting/rust.vim'
+" }}}
+
 " {{{ json
 Plugin 'tpope/vim-jdaddy'
 Plugin 'leshill/vim-json'
