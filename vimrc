@@ -359,7 +359,7 @@ colorscheme mustang
 runtime macros/matchit.vim
 
 " spelling
-set spelllang=en,it
+set spelllang=en
 set spellfile=~/.vim/spell/en.utf-8.add
 " fix the previous mispelled world and jump back
 inoremap <Leader>z <Esc>[s1z=A
