@@ -3,4 +3,6 @@
 set gui=none
 set focuscontent=true
 
+highlight Hint font-size:14px; font-weight: bold; font-family:"PragmataPro"; color:white; background-color:black; padding:2px;
+
 " vim: set ft=vimperator:
