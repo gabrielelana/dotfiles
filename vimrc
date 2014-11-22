@@ -346,6 +346,12 @@ call vundle#end()
 " enable syntax
 syntax on
 
+" This is the place to fix syntax issues from plugins
+" {{{ vim-javascript
+highlight   def   link      jsGlobalObjects          Text
+highlight   def   link      jsFutureKeys             Text
+" }}}
+
 " enable indentation, this is important to do *after* `vundle#end()`
 filetype plugin indent on
 
