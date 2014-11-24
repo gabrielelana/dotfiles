@@ -63,6 +63,11 @@ unsetopt correct_all
   export PATH=$PATH:$GOROOT/bin
 }
 
+# Heroku configuration
+[[ -d "/usr/local/heroku/bin" ]] && {
+  export PATH=$PATH:/usr/local/heroku/bin
+}
+
 export EDITOR="vim"
 export TERM="xterm-256color"
 export PATH=$HOME/.bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
