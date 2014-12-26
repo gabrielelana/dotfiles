@@ -53,7 +53,7 @@ unsetopt correct_all
 
 # Elixir configuration
 [[ -d "$HOME/opt/elixir/bin" ]] && {
-  export PATH=$PATH:$HOME/opt/elixir-0.15.1/bin
+  export PATH=$PATH:$HOME/opt/elixir/bin
 }
 
 # Go configuration
