@@ -53,7 +53,7 @@ unsetopt correct_all
 
 # OCaml configuration
 [[ -s "$HOME/.opam/opam-init/init.zsh" ]] && {
-  source /home/coder/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
+  source $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
 }
 
 # Elixir configuration
