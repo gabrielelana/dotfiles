@@ -40,6 +40,11 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 unsetopt correct_all
 
+# Load local configuration, aka configuration that is specific for the current machine
+[[ -s "$HOME/.zshrc_local" ]] && {
+  source $HOME/.zshrc_local
+}
+
 # RVM configuration
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && {
   source "$HOME/.rvm/scripts/rvm"
