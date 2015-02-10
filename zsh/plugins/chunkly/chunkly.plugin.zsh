@@ -183,11 +183,11 @@ EOC
 }
 
 chunkly_mark_as_started() {
-  date --utc +%s > ~/.chunkly/last_chunk_started_at
+  date --utc +%s >| ~/.chunkly/last_chunk_started_at
 }
 
 chunkly_mark_as_squashed() {
-  date --utc +%s > ~/.chunkly/last_chunk_squashed_at
+  date --utc +%s >| ~/.chunkly/last_chunk_squashed_at
 }
 
 chunkly_start() {
