@@ -23,6 +23,11 @@
   next = "!f() { CURRENT=`git rev-parse HEAD`; NEXT=`git log --pretty=format:'%H %P' --all | grep $CURRENT | tail -2 | head -1 | cut -d ' ' -f 1`; git checkout $NEXT; }; f"
   top = "!f() { git log --since='last month' --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10; }; f"
   prev = checkout HEAD~
+  delete-old-branches = !"\
+    set -e; \
+    branches=$((git branch --merged | egrep -v '^\\*' | egrep -v 'master') || :); \
+    [[ -z "$branches" ]] || git branch -d $branches \
+    "
 [merge]
   tool = vimdiff
 [diff]
