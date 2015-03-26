@@ -61,7 +61,7 @@ if [ ${flags[without-x]} -eq 0 ]; then
 fi
 
 if [ ${flags[without-identity]} -eq 0 ]; then
-  echo "setup idenity..."
+  echo "setup identity..."
   mkdir -p ~/.ssh
   cp -f $PWD/.dependencies/dotfiles-secrets/ssh/* ~/.ssh
   cp -f $PWD/.dependencies/dotfiles-secrets/netrc ~/.netrc
