@@ -3,8 +3,8 @@
 cd "$(dirname "$0")"
 
 declare -A flags
-flags['without-x']=0          # do not configure things related to x
-flags['without-identity']=0   # do not configure things related to identity
+flags[without-x]=0          # do not configure things related to x
+flags[without-identity]=0   # do not configure things related to identity
 
 for option in $@; do
   flags[${option/--/}]=1
@@ -18,7 +18,7 @@ rm -rf ~/.bin && cp -rf $PWD/bin ~/.bin
 chmod +x ~/.bin
 cp -f $PWD/ackrc ~/.ackrc
 cp -f $PWD/gitignore ~/.gitignore
-if [ ${flags['without-identity']} -eq 1 ]; then
+if [ ${flags[without-identity]} -eq 1 ]; then
   if [ -f ~/.gitconfig ]; then
     sed -n -i -e '/\[user\]/,+2 p' ~/.gitconfig
   fi
@@ -26,7 +26,7 @@ if [ ${flags['without-identity']} -eq 1 ]; then
 else
   cp -f $PWD/gitconfig ~/.gitconfig
 fi
-if [ ${flags['without-x']} -eq 0 ]; then
+if [ ${flags[without-x]} -eq 0 ]; then
   rm -rf ~/.i3 && cp -rf $PWD/i3 ~/.i3
   cp -f $PWD/dunstrc ~/.dunstrc
   cp -f $PWD/gtkrc-2.0 ~/.gtkrc-2.0
@@ -50,7 +50,7 @@ for project in dotfiles-secrets awesome-terminal-fonts; do
   fi
 done
 
-if [ ${flags['without-x']} -eq 0 ]; then
+if [ ${flags[without-x]} -eq 0 ]; then
   echo "setup fonts..."
   mkdir -p ~/.fonts
   cp -f $PWD/.dependencies/awesome-terminal-fonts/build/* ~/.fonts
@@ -60,7 +60,7 @@ if [ ${flags['without-x']} -eq 0 ]; then
   fc-cache -fv ~/.fonts
 fi
 
-if [ ${flags['without-identity']} -eq 0 ]; then
+if [ ${flags[without-identity]} -eq 0 ]; then
   echo "setup idenity..."
   mkdir -p ~/.ssh
   cp -f $PWD/.dependencies/dotfiles-secrets/ssh/* ~/.ssh
@@ -90,13 +90,13 @@ if which zsh > /dev/null; then
   zsh $ZSH/tools/upgrade.sh
 fi
 
-if [ ${flags['without-x']} -eq 0 ]; then
+if [ ${flags[without-x]} -eq 0 ]; then
   echo "setup chunkly..."
   mkdir -p ~/.chunkly
   cp -f $PWD/chunkly.vimrc ~/.chunkly/.vimrc
 fi
 
-if [ ${flags['without-x']} -eq 0 ] && [ -n "$DISPLAY" ]; then
+if [ ${flags[without-x]} -eq 0 ] && [ -n "$DISPLAY" ]; then
   echo "configure gnome terminal..."
   dconf reset -f "/org/gnome/terminal"
   cat $PWD/gnome-terminal.ini | dconf load "/org/gnome/terminal/"
