@@ -50,13 +50,13 @@ for project in dotfiles-secrets awesome-terminal-fonts; do
   fi
 done
 
+echo "setup fonts..."
+mkdir -p ~/.fonts
+cp -f $PWD/.dependencies/awesome-terminal-fonts/build/* ~/.fonts
+cp -f $PWD/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
+mkdir -p ~/.config/fontconfig/conf.d
+cp -f $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
 if [ ${flags[without-x]} -eq 0 ]; then
-  echo "setup fonts..."
-  mkdir -p ~/.fonts
-  cp -f $PWD/.dependencies/awesome-terminal-fonts/build/* ~/.fonts
-  cp -f $PWD/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
-  mkdir -p ~/.config/fontconfig/conf.d
-  cp -f $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
   fc-cache -fv ~/.fonts
 fi
 
