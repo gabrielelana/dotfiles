@@ -73,6 +73,11 @@ unsetopt correct_all
   export PATH=$PATH:/usr/local/heroku/bin
 }
 
+# Machine specific executables
+[[ -d "$HOME/opt/bin" ]] && {
+  export PATH=$PATH:$HOME/opt/bin
+}
+
 export EDITOR="vim"
 export TERM="xterm-256color"
 export PATH=$HOME/.bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
