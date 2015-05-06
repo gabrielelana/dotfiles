@@ -73,6 +73,11 @@ unsetopt correct_all
   export PATH=$PATH:/usr/local/heroku/bin
 }
 
+# Direnv configuration
+command -v direnv >/dev/null && {
+  eval "$(direnv hook zsh)"
+}
+
 # Machine specific executables
 [[ -d "$HOME/opt/bin" ]] && {
   export PATH=$PATH:$HOME/opt/bin
