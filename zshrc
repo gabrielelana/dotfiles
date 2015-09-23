@@ -57,8 +57,8 @@ unsetopt correct_all
 }
 
 # Elixir configuration
-[[ -d "$HOME/opt/elixir/bin" ]] && {
-  export PATH=$PATH:$HOME/opt/elixir/bin
+[[ -f "$HOME/.kiex/scripts/kiex" ]] && {
+  source "$HOME/.kiex/scripts/kiex"
 }
 
 # Go configuration
