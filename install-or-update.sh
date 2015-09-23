@@ -42,7 +42,7 @@ mkdir -p $PWD/.dependencies
 for project in dotfiles-secrets awesome-terminal-fonts; do
   echo "update ${project}..."
   if [ ! -d $PWD/.dependencies/$project ]; then
-    git clone https://github.com/gabrielelana/$project $PWD/.dependencies/$project
+    git clone git@github.com:gabrielelana/$project.git $PWD/.dependencies/$project
   else
     cd $PWD/.dependencies/$project
     git pull
