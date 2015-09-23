@@ -78,6 +78,9 @@ if [ ! -d ~/.vim/bundle/vundle ]; then
 fi
 vim +PluginInstall! +qall &>/dev/null
 
+echo "setup emacs..."
+rm -rf ~/.emacs.d && cp -rf $PWD/emacs.d ~/.emacs.d
+
 echo "setup zsh..."
 if [ ! -d ~/.oh-my-zsh ]; then
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
