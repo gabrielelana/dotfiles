@@ -56,6 +56,12 @@ unsetopt correct_all
   source $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
 }
 
+# NVM configuration
+[[ -d "$HOME/.nvm" ]] && {
+  export NVM_DIR="$HOME/.nvm"
+  source $NVM_DIR/nvm.sh
+}
+
 # Elixir configuration
 [[ -f "$HOME/.kiex/scripts/kiex" ]] && {
   source "$HOME/.kiex/scripts/kiex"
