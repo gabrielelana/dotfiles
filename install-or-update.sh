@@ -76,7 +76,7 @@ cp -f $PWD/vimrc ~/.vimrc
 if [ ! -d ~/.vim/bundle/vundle ]; then
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 fi
-vim +PluginInstall! +qall
+vim +PluginInstall! +qall &>/dev/null
 
 echo "setup zsh..."
 if [ ! -d ~/.oh-my-zsh ]; then
