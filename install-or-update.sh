@@ -98,6 +98,6 @@ fi
 
 if [ ${flags[without-x]} -eq 0 ] && [ -n "$DISPLAY" ]; then
   echo "configure gnome terminal..."
-  dconf reset -f "/org/gnome/terminal"
+  dconf reset -f "/org/gnome/terminal/"
   cat $PWD/gnome-terminal.ini | dconf load "/org/gnome/terminal/"
 fi
