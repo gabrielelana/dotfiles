@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+if [ $# -eq 0 ]; then
+  echo "Usage: `basename $0` HOST"
+  exit 1
+fi
+
+ssh -XY $1 emacs > /dev/null 2>&1
