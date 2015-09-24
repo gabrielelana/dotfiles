@@ -17,6 +17,7 @@ echo "install configuration files..."
 rm -rf ~/.bin && cp -rf $PWD/bin ~/.bin
 chmod +x ~/.bin
 cp -f $PWD/ackrc ~/.ackrc
+cp -f $PWD/rvmrc ~/.rvmrc
 cp -f $PWD/gitignore ~/.gitignore
 if [ ${flags[without-identity]} -eq 1 ]; then
   if [ -f ~/.gitconfig ]; then
