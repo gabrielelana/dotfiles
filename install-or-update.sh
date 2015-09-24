@@ -97,6 +97,7 @@ if [ ${flags[without-x]} -eq 0 ]; then
   echo "setup chunkly..."
   mkdir -p ~/.chunkly
   cp -f $PWD/chunkly.vimrc ~/.chunkly/.vimrc
+  rsync -r $PWD/.dependencies/dotfiles-secrets/chunkly/ ~/.chunkly
 fi
 
 if [ ${flags[without-x]} -eq 0 ] && [ -n "$DISPLAY" ]; then
