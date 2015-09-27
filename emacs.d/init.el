@@ -18,6 +18,7 @@
     php-mode))
 
 (package-initialize)
+(package-refresh-contents)
 (dolist (p default-packages)
   (when (not (package-installed-p p))
     (package-install p)))
