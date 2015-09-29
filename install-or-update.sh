@@ -58,6 +58,7 @@ cp -f $PWD/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
 mkdir -p ~/.config/fontconfig/conf.d
 cp -f $PWD/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
 if [ ${flags[without-x]} -eq 0 ]; then
+  cp -f $PWD/fonts.conf ~/.config/fontconfig/fonts.conf
   fc-cache -fv ~/.fonts
 fi
 
