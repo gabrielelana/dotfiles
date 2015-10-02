@@ -22,7 +22,7 @@
 
 (deftheme dark "A dark color theme for Emacs")
 
-(let ((*background*         "#161A1F")
+(let ((*background*         "#323232")
       (*comments*           "#615953")
       (*constant*           "#F38630")
       (*current-line*       "#151515")
