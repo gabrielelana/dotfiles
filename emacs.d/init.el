@@ -17,8 +17,14 @@
     flymake
     php-mode))
 
+;; Make sure to have downloaded archive description.
+(or (file-exists-p package-user-dir)
+    (package-refresh-contents))
+
+;; Activate installed packages
 (package-initialize)
-(package-refresh-contents)
+
+;; Ensure default-packages are all installed
 (dolist (p default-packages)
   (when (not (package-installed-p p))
     (package-install p)))
