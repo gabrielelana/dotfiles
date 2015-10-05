@@ -106,6 +106,7 @@ mode "resize" {
 bar {
   status_command ~/.bin/i3-chunkly-status
   font pango:pragmatapro ultra-condensed 15
+  tray_output none
   colors {
     background $gray1
     statusline $gray3
