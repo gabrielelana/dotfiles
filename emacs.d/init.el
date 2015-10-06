@@ -66,7 +66,6 @@
 (require 'helm-config)
 (helm-mode 1)
 
-
 ;; Themes
 (setq visible-bell nil)
 (set-frame-font "PragmataPro 14")
@@ -81,3 +80,7 @@
 (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
 (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
 (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")
+
+;; Custom
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
