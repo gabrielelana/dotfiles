@@ -12,6 +12,7 @@
     alchemist
     smartparens
     sublime-themes
+    mustang-theme
     helm
     helm-ag
     flymake
