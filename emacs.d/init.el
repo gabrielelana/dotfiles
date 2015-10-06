@@ -13,6 +13,7 @@
     smartparens
     sublime-themes
     mustang-theme
+    rainbow-mode
     helm
     helm-ag
     flymake
