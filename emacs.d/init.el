@@ -68,7 +68,16 @@
 
 
 ;; Themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'dark t)
 (setq visible-bell nil)
 (set-frame-font "PragmataPro 14")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'mustang t)
+;; helm customization for mustang
+(set-face-attribute 'helm-selection nil :background "#3c414c" :foreground "#faf4c6")
+(set-face-attribute 'helm-source-header nil :background "#202020" :foreground "#e2e2e5")
+(set-face-attribute 'helm-candidate-number nil :background "#ff9800" :foreground "#202020")
+(set-face-attribute 'helm-header nil :background "#202020" :foreground "#808080")
+;; mode-line customization for mustang
+(set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
+(set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
+(set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")
