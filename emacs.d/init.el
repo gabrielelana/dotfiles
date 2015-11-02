@@ -14,23 +14,26 @@
     sublime-themes
     mustang-theme
     rainbow-mode
+    exec-path-from-shell
     helm
     helm-ag
+    helm-ls-git
     flymake
     php-mode))
 
-;; Make sure to have downloaded archive description.
+;; make sure to have downloaded archive description.
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-;; Activate installed packages
+;; activate installed packages
 (package-initialize)
 
-;; Ensure default-packages are all installed
+;; ensure default-packages are all installed
 (dolist (p default-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
+;; general configuration
 (setq inhibit-startup-message t)
 (delete-selection-mode 1)
 
@@ -60,13 +63,77 @@
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'hippie-expand)
 
+;; smartparens
 (require 'smartparens-config)
 (smartparens-mode 1)
+(setq sp-highlight-pair-overlay nil)
 
+;; helm
 (require 'helm-config)
+; (helm-autoresize-mode 1) don't know why it doesn't work
+(setq helm-autoresize-max-height 30)
+(setq helm-split-window-in-side-p t)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-c C-p") 'helm-ls-git-ls)
+(global-set-key (kbd "C-c C-a") 'helm-ag-project-root)
 (helm-mode 1)
+(ido-mode -1)
 
-;; Themes
+;; alchemist
+;; find a better way of doing this, also based on this point to the appropriate elixir sources
+(setenv "MIX_ARCHIVES" "/home/coder/.kiex/mix/archives/elixir-1.1.1")
+(setq alchemist-test-status-modeline nil)
+
+(defun cc/elixir-do-end-close-action (id action context)
+  (when (eq action 'insert)
+    (newline-and-indent)
+    (forward-line -1)
+    (indent-according-to-mode)))
+
+(sp-with-modes '(elixir-mode)
+  (sp-local-pair "->" "end"
+                 :when '(("SPC" "RET"))
+                 :post-handlers '(:add cc/elixir-do-end-close-action)
+                 :actions '(insert)))
+
+(sp-with-modes '(elixir-mode)
+  (sp-local-pair "do" "end"
+                 :when '(("SPC" "RET"))
+                 :post-handlers '(:add cc/elixir-do-end-close-action)
+                 :actions '(insert)))
+
+;; Display alchemist buffers always at the bottom
+;; Source: http://www.lunaryorn.com/2015/04/29/the-power-of-display-buffer-alist.html
+;; (add-to-list 'display-buffer-alist
+;;              `(,(rx bos (or "*alchemist test report*"
+;;                             "*alchemist mix*"
+;;                             "*alchemist help*"
+;;                             "*alchemist elixir*"
+;;                             "*alchemist elixirc*"))
+;;                (display-buffer-reuse-window display-buffer-in-side-window)
+;;                (reusable-frames . visible)
+;;                (side            . right)
+;;                (window-width    . 0.5)))
+
+(defun cc/alchemist-mode-hook ()
+  ;; TODO: yas/minor-mode
+  (alchemist-mode)
+  (smartparens-mode))
+
+(add-hook 'elixir-mode-hook 'cc/alchemist-mode-hook)
+
+
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;; initialize exec-path taking values from $PATH
+(exec-path-from-shell-initialize)
+
+;; themes
 (setq visible-bell nil)
 (set-frame-font "PragmataPro 14")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
@@ -81,6 +148,7 @@
 (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
 (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")
 
-;; Custom
+;; custom
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
