@@ -62,8 +62,10 @@ set sidescroll=1
 " used for the line numbers (cpoptions+=n)
 if has('linebreak')
   set showbreak=↳
-  set breakindent
-  set breakindentopt=min:20,shift:0,sbr
+  if exists('&breakindent')
+    set breakindent
+    set breakindentopt=min:20,shift:0,sbr
+  endif
   set cpoptions+=n
 endif
 
