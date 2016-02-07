@@ -9,6 +9,7 @@ GIT_STASHED_SYMBOL="\u${CODEPOINT_OF_AWESOME_BEAKER}"
 GIT_TOCOMMIT_SYMBOL="\u${CODEPOINT_OF_AWESOME_SHOPPING_CART}"
 GIT_CONFLICT_SYMBOL="\u${CODEPOINT_OF_OCTICONS_DIFF}"
 GIT_GITHUB_SYMBOL="\u${CODEPOINT_OF_OCTICONS_OCTOFACE}"
+GIT_BITBUCKET_SYMBOL="\u${CODEPOINT_OF_AWESOME_BITBUCKET}"
 GIT_GIT_SYMBOL="\u${CODEPOINT_OF_OCTICONS_GIT_BRANCH}"
 
 
@@ -97,6 +98,10 @@ git_remote_origin_is_github() {
   git remote --verbose | grep 'origin.\+github.com' > /dev/null
 }
 
+git_remote_origin_is_bitbucket() {
+  git remote --verbose | grep 'origin.\+bitbucket.org' > /dev/null
+}
+
 git_time_status() {
   local seconds_since_last_commit=${1:-$(git_seconds_since_last_commit)}
   if [ $seconds_since_last_commit -gt 60 ]; then
@@ -116,6 +121,9 @@ git_prompt() {
     local separator="$GIT_GIT_SYMBOL "
     if $(git_remote_origin_is_github); then
       separator="$GIT_GITHUB_SYMBOL  "
+    fi
+    if $(git_remote_origin_is_bitbucket); then
+      separator="$GIT_BITBUCKET_SYMBOL "
     fi
 
     # fresh or stinks?
