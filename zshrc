@@ -79,11 +79,6 @@ unsetopt correct_all
   export PATH=$PATH:/usr/local/heroku/bin
 }
 
-# Direnv configuration
-command -v direnv >/dev/null && {
-  eval "$(direnv hook zsh)"
-}
-
 # Machine specific executables
 [[ -d "$HOME/opt/bin" ]] && {
   export PATH=$PATH:$HOME/opt/bin
@@ -94,6 +89,11 @@ export TERM="xterm-256color"
 export PATH=$HOME/.bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export PYTHON="python2.7"
+
+# Direnv configuration
+command -v direnv >/dev/null && {
+  eval "$(direnv hook zsh)"
+}
 
 alias npme='npm --registry http://registry.npmjs.eu'
 alias vim-pure='vim -u ~/.dotfiles/vimrc-sensible --noplugin'
