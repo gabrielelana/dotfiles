@@ -43,6 +43,9 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+# mouse and focus
+focus_follows_mouse no
+
 # split in horizontal/vertical orientation
 # mod+a is mnemonic for aside
 # mod+b is mnemonic for below
