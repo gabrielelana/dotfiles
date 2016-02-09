@@ -28,8 +28,8 @@ bindsym $mod+Return exec gnome-terminal --hide-menubar
 # kill focused window
 bindsym $mod+x kill
 
-# start dmenu (program launcher)
-bindsym $mod+o exec dmenu_run -nb \$gray1 -nf \$yellow -sb \$yellow -sf \$gray1 -fn "PragmataPro-12"
+# start program launcher
+bindsym $mod+o exec ~/.bin/i3-launcher -nb \$gray1 -nf \$yellow -sb \$yellow -sf \$gray1 -fn "PragmataPro-12"
 
 # change focus
 bindsym $mod+h focus left

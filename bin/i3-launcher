@@ -1,0 +1,16 @@
+#!/bin/sh
+
+cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
+if [ -d "$cachedir" ]; then
+	cache=$cachedir/i3-launcher
+else
+	cache=$HOME/.i3-launcher
+fi
+(
+	IFS=:
+	if stest -dqr -n "$cache" $PATH; then
+		stest -flx $PATH | sort -u | tee "$cache" | dmenu.xft "$@"
+	else
+		dmenu.xft "$@" < "$cache"
+	fi
+) | ${SHELL:-"/bin/sh"} &
