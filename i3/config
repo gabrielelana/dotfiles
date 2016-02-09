@@ -5,7 +5,7 @@ font pango:pragmatapro 10
 new_window pixel 2
 hide_edge_borders both
 
-set $mod Mod3
+set $mod Mod2
 set $gray1 #444444
 set $gray2 #111111
 set $gray3 #DDDDDD
