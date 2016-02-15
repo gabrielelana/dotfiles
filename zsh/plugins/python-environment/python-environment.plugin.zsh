@@ -22,6 +22,6 @@ _python_version_prompt_info() {
 
 python_prompt() {
   if _in_python_virtual_environment; then
-    echo "($(python_virtual_environment_prompt_info)\u${CODEPOINT_OF_DEVICONS_PYTHON} $(python_version_prompt_info)) "
+    echo "($(_python_virtual_environment_prompt_info)\u${CODEPOINT_OF_DEVICONS_PYTHON} $(_python_version_prompt_info)) "
   fi
 }
