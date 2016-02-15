@@ -107,6 +107,7 @@ if has('autocmd')
   autocmd Filetype scheme setlocal ts=2 sts=2 sw=2
   autocmd Filetype sh setlocal ts=2 sts=2 sw=2
   autocmd Filetype gitcommit setlocal spell complete+=kspell
+  autocmd BufRead,BufWinEnter .envrc setlocal filetype=zsh
   autocmd BufEnter,BufWinEnter * call DisableCursorLineWhenInQuickfix()
 endif
 
