@@ -79,6 +79,11 @@ unsetopt correct_all
   export PATH=$PATH:/usr/local/heroku/bin
 }
 
+# Direnv configuration
+command -v direnv >/dev/null && {
+  eval "$(direnv hook zsh)"
+}
+
 # Machine specific executables
 [[ -d "$HOME/opt/bin" ]] && {
   export PATH=$PATH:$HOME/opt/bin
@@ -90,9 +95,16 @@ export PATH=$HOME/.bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export PYTHON="python2.7"
 
-# Direnv configuration
-command -v direnv >/dev/null && {
-  eval "$(direnv hook zsh)"
+
+alias "."="cd ."
+alias ".."="cd .."
+{ local alias_from=".."
+  local alias_to="cd .."
+  for _ in {1..42}; do
+    alias_from="$alias_from."
+    alias_to="$alias_to/.."
+    eval "alias ${alias_from}=\"${alias_to}\""
+  done
 }
 
 alias npme='npm --registry http://registry.npmjs.eu'
