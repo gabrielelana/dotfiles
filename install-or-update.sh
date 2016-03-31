@@ -19,14 +19,7 @@ chmod +x ~/.bin
 cp -f $PWD/ackrc ~/.ackrc
 cp -f $PWD/rvmrc ~/.rvmrc
 cp -f $PWD/gitignore ~/.gitignore
-if [ ${flags[without-identity]} -eq 1 ]; then
-  if [ -f ~/.gitconfig ]; then
-    sed -n -i -e '/\[user\]/,+2 p' ~/.gitconfig
-  fi
-  cat $PWD/gitconfig | sed -e '/\[user\]/,+2 d' >> ~/.gitconfig
-else
-  cp -f $PWD/gitconfig ~/.gitconfig
-fi
+cp -f $PWD/gitconfig ~/.gitconfig
 if [ ${flags[without-x]} -eq 0 ]; then
   rm -rf ~/.i3 && cp -rf $PWD/i3 ~/.i3
   cp -f $PWD/dunstrc ~/.dunstrc
@@ -67,7 +60,7 @@ if [ ${flags[without-identity]} -eq 0 ]; then
   mkdir -p ~/.ssh
   cp -f $PWD/.dependencies/dotfiles-secrets/ssh/* ~/.ssh
   cp -f $PWD/.dependencies/dotfiles-secrets/netrc ~/.netrc
-  chmod 0400 ~/.ssh/id_rsa.*
+  chmod 0400 ~/.ssh/*
   if [ ! -f ~/.npmrc ]; then
     cp -f $PWD/.dependencies/dotfiles-secrets/npmrc ~/.npmrc
   fi
