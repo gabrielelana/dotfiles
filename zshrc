@@ -100,7 +100,7 @@ alias "."="cd ."
 alias ".."="cd .."
 { local alias_from=".."
   local alias_to="cd .."
-  for _ in {1..42}; do
+  for _pit in {1..42}; do
     alias_from="$alias_from."
     alias_to="$alias_to/.."
     eval "alias ${alias_from}=\"${alias_to}\""
