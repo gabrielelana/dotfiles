@@ -34,14 +34,14 @@ CC_CURRENT_PATH="%1~"
 CC_TIME_AND_DATE="%D{%H:%M:%S} $CC_SYMBOL_CALENDAR %D{%Y-%m-%d}"
 
 CC_HOSTNAME=`hostname`
-case $CC_HOSTNAME in
-  conio)
-    CC_HOSTNAME=$CC_SYMBOL_BITCOINS
-    ;;
-  apollo)
-    CC_HOSTNAME=$CC_SYMBOL_HOME
-    ;;
-esac
+
+if hostname -f | grep conio.com > /dev/null 2>&1; then
+  CC_HOSTNAME=$CC_SYMBOL_BITCOINS
+fi
+
+if [ "$CC_HOSTNAME" = 'apollo' ]; then
+  CC_HOSTNAME=$CC_SYMBOL_HOME
+fi
 
 PROMPT="$CC_WRITE_ON_WHITE_BOLD $CC_HOSTNAME $CC_WRITE_ON_WHITE$CC_SYMBOL_RIGHT_LIGHT_ARROW $CC_CURRENT_PATH "'$(git_prompt)'" $CC_DRAW_IN_WHITE$CC_SYMBOL_RIGHT_ARROW%f "
 
