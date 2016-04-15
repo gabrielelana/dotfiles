@@ -69,6 +69,15 @@ unsetopt correct_all
   export PATH=$PATH:$GOROOT/bin
 }
 
+# Haskell configuration
+[[ -d "/opt/ghc" ]] && {
+  HASKELL_LATEST_VERSION=`ls /opt/ghc | sort -r | head -n1`
+  HASKELL_ROOT="/opt/ghc/$HASKELL_LATEST_VERSION"
+  CABAL_LATEST_VERSION=`ls /opt/cabal | sort -r | head -n1`
+  CABAL_ROOT="/opt/cabal/$CABAL_LATEST_VERSION"
+  export PATH=$HOME/.cabal/bin:$CABAL_ROOT/bin:$HASKELL_ROOT/bin:$PATH
+}
+
 # Heroku configuration
 [[ -d "/usr/local/heroku/bin" ]] && {
   export PATH=$PATH:/usr/local/heroku/bin
