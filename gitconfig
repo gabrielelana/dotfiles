@@ -39,6 +39,7 @@
   tool = vimdiff
 [diff]
   tool = vimdiff
+  compactionHeuristic = true
 [rerere]
   enabled = true
 [branch]
