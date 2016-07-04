@@ -69,6 +69,11 @@ unsetopt correct_all
   export PATH=$PATH:$GOROOT/bin
 }
 
+# Rust configuration
+[[ -d "$HOME/.cargo/bin" ]] && {
+  export PATH=$PATH:$HOME/.cargo/bin
+}
+
 # Haskell configuration
 [[ -d "/opt/ghc" ]] && {
   HASKELL_LATEST_VERSION=`ls /opt/ghc | sort -r | head -n1`

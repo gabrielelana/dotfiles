@@ -276,7 +276,7 @@ Plugin 'elixir-lang/vim-elixir'
 " }}}
 
 " {{{ rust
-Plugin 'wting/rust.vim'
+Plugin 'rust-lang/rust.vim'
 " }}}
 
 " {{{ json
