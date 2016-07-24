@@ -44,6 +44,6 @@ chunkly_bar() {
 }
 
 while true; do
-  echo " `chunkly_bar` \u00b7 \u${CODEPOINT_OF_AWESOME_TIME} `date +'%H:%M:%S'` `date +'%Y-%m-%d'`"
+  echo " `chunkly_bar` \u00b7 `date --rfc-3339=seconds`"
   sleep 1
 done
