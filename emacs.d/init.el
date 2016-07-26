@@ -57,13 +57,23 @@
     (setq drag-stuff-except-modes '(org-mode))
     (drag-stuff-global-mode 1)))
 
+(use-package popwin
+  :ensure t
+  :diminish popwin
+  :config
+  (popwin-mode 1))
+
 (use-package elixir-mode
   :ensure t)
 
 (use-package alchemist
   :ensure t
   :init
-  (exec-path-from-shell-copy-env "MIX_ARCHIVES"))
+  (progn
+    (setq alchemist-test-status-modeline nil)
+    (push '("*alchemist test report*" :position right :width 80 :noselect t) popwin:special-display-config)
+    (push '("*alchemist mix*" :position bottom :width 30 :noselect t) popwin:special-display-config)
+    (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
 
 ;; functions
 (defun cc/join-with-next-line ()
