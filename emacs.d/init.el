@@ -69,42 +69,34 @@
    ("M-x" . helm-M-x)))
 
 (use-package mustang-theme
+  :ensure t
   :config
   (load-theme 'mustang t)
-  ;; helm customization
-  (set-face-attribute 'helm-selection nil :background "#3c414c" :foreground "#faf4c6")
-  (set-face-attribute 'helm-source-header nil :background "#202020" :foreground "#e2e2e5")
-  (set-face-attribute 'helm-candidate-number nil :background "#ff9800" :foreground "#202020")
-  (set-face-attribute 'helm-header nil :background "#202020" :foreground "#808080")
   ;; mode-line customization
   (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
   (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
   (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800"))
 
-(use-package drag-stuff
-  :ensure t
-  :diminish drag " ⇅"
-  :init
-  (progn
-    (setq drag-stuff-except-modes '(org-mode))
-    (drag-stuff-global-mode 1)))
-
-(use-package popwin
-  :ensure t
-  :diminish popwin
-  :config
-  (popwin-mode 1))
+(use-package yaml-mode
+  :ensure t)
 
 (use-package elixir-mode
   :ensure t)
 
 (use-package alchemist
   :ensure t
-  :init
+  :config
   (progn
     (setq alchemist-test-status-modeline nil)
-    (push '("*alchemist test report*" :position right :width 80 :noselect t) popwin:special-display-config)
-    (push '("*alchemist mix*" :position bottom :width 30 :noselect t) popwin:special-display-config)
+    (push '("*alchemist test report*" :position right :width 60 :noselect t) popwin:special-display-config)
+    (push '("*alchemist help*" :position right :width 60 :noselect t) popwin:special-display-config)
+    (push '("*alchemist macroexpand*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+    (push '("*alchemist elixirc*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+    (push '("*alchemist elixir*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+    (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+    (add-hook 'alchemist-test-report-mode-hook (lambda ()
+                                                 (toggle-truncate-lines)
+                                                 (text-scale-set -1)))
     (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
 
 ;; functions
