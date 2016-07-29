@@ -42,13 +42,26 @@
 (use-package helm
   :ensure t
   :diminish helm-mode
-  :init
-  (setq helm-candidate-number-limit 100
-        helm-idle-delay 0.0
-        helm-input-idle-delay 0.01
-        helm-quick-update t
-        helm-ff-skip-boring-files t)
-  (helm-mode)
+  :config
+  (progn
+    (setq helm-candidate-number-limit 100
+          helm-idle-delay 0.0
+          helm-input-idle-delay 0.01
+          helm-quick-update t
+          helm-ff-skip-boring-files t)
+
+    (when (custom-theme-enabled-p 'mustang)
+      ;; helm customization
+      (set-face-attribute 'helm-selection nil :background "#3c414c" :foreground "#faf4c6")
+      (set-face-attribute 'helm-source-header nil :background "#202020" :foreground "#e2e2e5")
+      (set-face-attribute 'helm-candidate-number nil :background "#ff9800" :foreground "#202020")
+      (set-face-attribute 'helm-header nil :background "#202020" :foreground "#808080"))
+
+    ;; makes helm and popwin play nice together
+    (setq helm-split-window-preferred-function 'ignore)
+    (setq display-buffer-function 'popwin:display-buffer)
+    (push '("^\*helm.+\*$" :regexp t :position bottom :height .3 :noselect t) popwin:special-display-config)
+    (helm-mode))
   :bind
   (("C-x C-f" . helm-find-files)
    ("C-x C-b" . helm-buffers-list)
