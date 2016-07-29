@@ -13,6 +13,12 @@
 
 (use-package better-defaults)
 
+(use-package popwin
+  :ensure t
+  :diminish popwin
+  :config
+  (popwin-mode 1))
+
 (use-package exec-path-from-shell
   :ensure t
   :init
