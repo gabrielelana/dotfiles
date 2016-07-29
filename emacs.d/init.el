@@ -19,6 +19,14 @@
   :config
   (popwin-mode 1))
 
+(use-package drag-stuff
+  :ensure t
+  :diminish drag " ⇅"
+  :config
+  (progn
+    (setq drag-stuff-except-modes '(org-mode))
+    (drag-stuff-global-mode 1)))
+
 (use-package exec-path-from-shell
   :ensure t
   :init
