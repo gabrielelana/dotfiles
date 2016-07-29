@@ -34,7 +34,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
-  :init
+  :config
   (progn
     (exec-path-from-shell-initialize)
     (setq exec-path-from-shell-check-startup-files nil)))
@@ -104,7 +104,7 @@
   "Join this line with the next and fix up whitespace at join."
   (interactive)
   (delete-indentation 1))
-  
+
 ;; keybindings
 (global-set-key (kbd "C-c C-c") 'comment-line) ; bind to comment-line-or-region
 (global-set-key (kbd "C-c l") 'org-store-link) ; capture link at point
