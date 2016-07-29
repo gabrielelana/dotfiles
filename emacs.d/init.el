@@ -27,6 +27,11 @@
     (setq drag-stuff-except-modes '(org-mode))
     (drag-stuff-global-mode 1)))
 
+(use-package expand-region
+  :ensure t
+  :bind (("C-." . er/expand-region)
+         ("C-," . er/contract-region)))
+
 (use-package exec-path-from-shell
   :ensure t
   :init
