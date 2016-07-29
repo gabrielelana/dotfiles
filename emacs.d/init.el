@@ -108,6 +108,9 @@
 ;; global configurations
 (global-hl-line-mode +1)
 
+;; global hooks
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; appearance
 (setq visible-bell nil)
 (setq inhibit-splash-screen t)
