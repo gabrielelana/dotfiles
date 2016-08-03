@@ -98,6 +98,18 @@
    ("M-y" . helm-show-kill-ring)
    ("M-x" . helm-M-x)))
 
+(use-package projectile
+  :ensure t
+  :init
+  (progn
+    (use-package helm-ag :ensure t)
+    (use-package helm-projectile :ensure t))
+  :config
+  (progn
+    (setq projectile-completion-system 'helm)
+    (projectile-global-mode)
+    (helm-projectile-on)))
+
 (use-package mustang-theme
   :ensure t
   :config
