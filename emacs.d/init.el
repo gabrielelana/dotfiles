@@ -29,8 +29,8 @@
 
 (use-package expand-region
   :ensure t
-  :bind (("C-." . er/expand-region)
-         ("C-," . er/contract-region)))
+  :bind (("M-]" . er/expand-region)
+         ("M-[" . er/contract-region)))
 
 (use-package exec-path-from-shell
   :ensure t
