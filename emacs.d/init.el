@@ -112,12 +112,29 @@
 
 (use-package mustang-theme
   :ensure t
+  :defer t
   :config
-  (load-theme 'mustang t)
-  ;; mode-line customization
-  (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
-  (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
-  (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800"))
+  (progn
+    ;; mode-line customization
+    (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
+    (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
+    (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")))
+
+(use-package subatomic-theme
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (setq subatomic-high-contrast t)
+    (setq subatomic-more-visible-comment-delimiters t)))
+
+(use-package monokai-theme :ensure t :defer t)
+
+(use-package darkokai-theme :ensure t :defer t)
+
+(load-theme 'darkokai t)
+
+
 
 (use-package yaml-mode
   :ensure t)
