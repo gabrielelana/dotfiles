@@ -39,6 +39,35 @@
     (exec-path-from-shell-initialize)
     (setq exec-path-from-shell-check-startup-files nil)))
 
+(use-package git-gutter
+  :ensure t
+  :diminish git-gutter
+  :bind (("C-c h n" . git-gutter:next-hunk)
+         ("C-c h p" . git-gutter:previous-hunk))
+  :config
+  (progn
+    (custom-set-variables
+     '(git-gutter:window-width 2)
+     '(git-gutter:modified-sign "\uf0ad")
+     '(git-gutter:added-sign "\uf005")
+     '(git-gutter:deleted-sign "\uf004"))
+    (when (custom-theme-enabled-p 'darkokai)
+      (let ((git-gutter-font "Pragmata Pro 10")
+            (darkokai-green "#63DE5D")
+            (darkokai-yellow-l "#FFF7A8")
+            (darkokai-red-d "#F70057")
+            (darkokai-bg "#242728"))
+        (set-face-font 'git-gutter:added git-gutter-font)
+        (set-face-background 'git-gutter:added darkokai-bg)
+        (set-face-foreground 'git-gutter:added darkokai-green)
+        (set-face-font 'git-gutter:modified git-gutter-font)
+        (set-face-background 'git-gutter:modified darkokai-bg)
+        (set-face-foreground 'git-gutter:modified darkokai-yellow-l)
+        (set-face-font 'git-gutter:deleted git-gutter-font)
+        (set-face-background 'git-gutter:deleted darkokai-bg)
+      (set-face-foreground 'git-gutter:deleted darkokai-red-d)))
+    (global-git-gutter-mode t)))
+
 (use-package helm
   :ensure t
   :diminish helm-mode
