@@ -166,15 +166,15 @@
   (delete-indentation 1))
 
 ;; keybindings
-(global-set-key (kbd "C-c C-c") 'comment-line) ; bind to comment-line-or-region
 (global-set-key (kbd "C-c l") 'org-store-link) ; capture link at point
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
 
-;; global configurations
-(global-hl-line-mode +1)
-
 ;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; place all backcup files in one directory to avoid clutter current project
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ;; appearance
 (setq visible-bell nil)
@@ -185,3 +185,4 @@
 ;; put custom configurations aside
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+(put 'set-goal-column 'disabled nil)
