@@ -94,6 +94,7 @@
   :bind
   (("C-x C-f" . helm-find-files)
    ("C-x C-b" . helm-buffers-list)
+   ("C-x b" . helm-buffers-list)
    ("M-y" . helm-show-kill-ring)
    ("M-x" . helm-M-x)))
 
