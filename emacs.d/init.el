@@ -144,6 +144,7 @@
 
 (use-package alchemist
   :ensure t
+  :diminish alchemist "Alchemist"
   :config
   (progn
     (setq alchemist-test-status-modeline nil)
