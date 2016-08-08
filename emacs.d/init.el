@@ -11,7 +11,22 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package better-defaults)
+(use-package better-defaults :ensure t)
+
+(use-package monokai-theme :ensure t :defer t)
+(use-package darkokai-theme :ensure t :defer t)
+(use-package solarized-theme :ensure t :defer t)
+(use-package mustang-theme
+  :ensure t
+  :defer t
+  :config
+  (progn
+    ;; mode-line customization
+    (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
+    (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
+    (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")))
+;; must load the theme before specific package customization will take place
+(load-theme 'mustang t)
 
 (use-package popwin
   :ensure t
@@ -109,32 +124,6 @@
     (setq projectile-completion-system 'helm)
     (projectile-global-mode)
     (helm-projectile-on)))
-
-(use-package mustang-theme
-  :ensure t
-  :defer t
-  :config
-  (progn
-    ;; mode-line customization
-    (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
-    (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
-    (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")))
-
-(use-package subatomic-theme
-  :ensure t
-  :defer t
-  :config
-  (progn
-    (setq subatomic-high-contrast t)
-    (setq subatomic-more-visible-comment-delimiters t)))
-
-(use-package monokai-theme :ensure t :defer t)
-
-(use-package darkokai-theme :ensure t :defer t)
-
-(load-theme 'darkokai t)
-
-
 
 (use-package yaml-mode
   :ensure t)
