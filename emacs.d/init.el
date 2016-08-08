@@ -47,6 +47,10 @@
   :bind (("M-]" . er/expand-region)
          ("M-[" . er/contract-region)))
 
+(use-package rainbow-mode
+  :ensure t
+  :diminish rainbow-mode)
+
 (use-package exec-path-from-shell
   :ensure t
   :config
