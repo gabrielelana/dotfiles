@@ -151,6 +151,7 @@
 ;; keybindings
 (global-set-key (kbd "C-c l") 'org-store-link) ; capture link at point
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
+(global-set-key (kbd "M-o") 'other-window)
 
 ;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
