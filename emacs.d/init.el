@@ -156,6 +156,14 @@
 ;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; global configuration
+;; indent after yank
+(dolist (command '(yank yank-pop))
+  (eval `(defadvice ,command (after indent-region activate)
+           (and (not current-prefix-arg)
+                (not (member major-mode '()))
+                (let ((mark-even-if-inactive transient-mark-mode))
+                  (indent-region (region-beginning) (region-end) nil))))))
 ;; place all backcup files in one directory to avoid clutter current project
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
