@@ -88,14 +88,12 @@
           helm-input-idle-delay 0.01
           helm-quick-update t
           helm-ff-skip-boring-files t)
-
     (when (custom-theme-enabled-p 'mustang)
-      ;; helm customization
+      ;; helm customization for mustang theme
       (set-face-attribute 'helm-selection nil :background "#3c414c" :foreground "#faf4c6")
       (set-face-attribute 'helm-source-header nil :background "#202020" :foreground "#e2e2e5")
       (set-face-attribute 'helm-candidate-number nil :background "#ff9800" :foreground "#202020")
       (set-face-attribute 'helm-header nil :background "#202020" :foreground "#808080"))
-
     ;; makes helm and popwin play nice together
     (setq helm-split-window-preferred-function 'ignore)
     (setq display-buffer-function 'popwin:display-buffer)
@@ -117,6 +115,7 @@
   :config
   (progn
     (setq projectile-completion-system 'helm)
+    (setq projectile-switch-project-action 'helm-projectile-find-file)
     (projectile-global-mode)
     (helm-projectile-on)))
 
