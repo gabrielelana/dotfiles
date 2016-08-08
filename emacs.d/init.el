@@ -167,6 +167,13 @@
 ;; place all backcup files in one directory to avoid clutter current project
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+;; highlight current line
+(global-hl-line-mode +1)
+;; replace region when you type something and a region is active
+(delete-selection-mode)
+;; diplay line and column number in modeline
+(line-number-mode t)
+(column-number-mode t)
 
 ;; appearance
 (setq visible-bell nil)
