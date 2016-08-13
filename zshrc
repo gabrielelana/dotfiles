@@ -98,8 +98,8 @@ command -v direnv >/dev/null && {
   export PATH=$PATH:$HOME/opt/bin
 }
 
-export EDITOR="vim"
 export TERM="xterm-256color"
+export EDITOR="emacsclient -t"
 export PATH=$HOME/.bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export PYTHON="python2.7"
