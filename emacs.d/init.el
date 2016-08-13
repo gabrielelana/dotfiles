@@ -11,6 +11,10 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; put custom configurations aside
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 (use-package better-defaults :ensure t)
 
 (use-package monokai-theme :ensure t :defer t)
@@ -25,8 +29,16 @@
     (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
     (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
     (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")))
+(use-package atom-one-dark-theme :ensure t :defer t)
+(use-package sublime-themes :ensure t :defer t)
+(use-package tango-plus-theme :ensure t :defer t)
+(use-package material-theme :ensure t :defer t)
+(use-package dracula-theme :ensure t :defer t)
+(use-package soft-stone-theme :ensure t :defer t)
 ;; must load the theme before specific package customization will take place
 (load-theme 'mustang t)
+;; (load-theme 'tango-plus t) ;; ****
+;; (load-theme 'material-light t) ;; ***
 
 (use-package popwin
   :ensure t
@@ -182,9 +194,3 @@
 (setq visible-bell nil)
 (setq inhibit-splash-screen t)
 (set-frame-font "PragmataPro 14")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-
-;; put custom configurations aside
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
-(put 'set-goal-column 'disabled nil)
