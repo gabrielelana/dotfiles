@@ -1,8 +1,87 @@
-"3.8.2 (created: 2014/02/13 23:52:43)
-
+" Appearance
 set gui=none
 set focuscontent=true
 
+" Style follow link highlight
 highlight Hint font-size:14px; font-weight: bold; font-family:"PragmataPro"; color:white; background-color:black; padding:2px;
+
+
+" M-x enters command mode
+noremap <A-x> :
+map : <Nop>
+
+" Emacs navigation in command line and insert mode
+cmap <C-n> <Tab>
+cmap <C-p> <S-Tab>
+cmap <C-f> <Right>
+cmap <C-b> <Left>
+cmap <C-j> <CR>
+noremap <C-j> <CR>
+inoremap <C-j> <CR>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+
+" Use C-p and C-n for up/down
+noremap <C-p> 2k
+noremap <C-n> 2j
+map h <Nop>
+map j <Nop>
+map k <Nop>
+map l <Nop>
+
+" Use C-v and M-v for jump scrolling
+noremap <C-v> <C-d>
+noremap <A-v> <C-u>
+map <C-d> <Nop>
+map <C-u> <Nop>
+
+" Use C-f and C-b for tab browsing
+noremap <A-n> <C-n>
+noremap <A-p> <C-p>
+
+" C-g as cancel (C-q is stop)
+cnoremap <C-g> <Esc>
+inoremap <C-g> <Esc>
+noremap <C-g> <Esc>
+map <C-g> <Esc>
+
+" Buffer lists with C-x b and C-x C-b
+noremap <C-x>b b
+noremap <C-x><C-b> b
+
+" Follow links
+noremap <C-c>f f
+noremap <C-c>F F
+
+" Open a new URL
+map <C-x><C-f> o
+
+" Go to home page with C-c h
+map <C-c>h gh
+
+" Goto the top of the document with M-<
+noremap <A-<> gg
+
+" Goto the end of the document with M->
+noremap <A->> G
+
+" Use C-s and C-r for searching (n/N for next/prev as in less)
+noremap <C-s> /
+noremap <C-r> ?
+
+" Copy the current URL to the clipboard with M-w
+noremap <A-w> y
+"
+" Copy selected text to the clipboard with C-w
+noremap <C-w> Y
+
+" Paste the current clipboard selection to a new buffer with C-y
+noremap <C-y> P
+
+" Undo close tab with C-_ (also with C-Shift-t, as C-t is new tab)
+noremap <C-/> u
+
 
 " vim: set ft=vimperator:
