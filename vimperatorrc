@@ -5,6 +5,8 @@ set focuscontent=true
 " Style follow link highlight
 highlight Hint font-size:14px; font-weight: bold; font-family:"PragmataPro"; color:white; background-color:black; padding:2px;
 
+" Settings
+set! browser.startup.homepage=about:blank
 
 " M-x enters command mode
 noremap <A-x> :
