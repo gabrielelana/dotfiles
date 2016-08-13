@@ -5,6 +5,7 @@
   filemode = true
   excludesfile = ~/.gitignore
   pager = less -FMRX
+  editor = emacsclient -t
 [color]
   diff = auto
   status = auto
