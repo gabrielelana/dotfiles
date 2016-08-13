@@ -70,12 +70,16 @@
     (exec-path-from-shell-initialize)
     (setq exec-path-from-shell-check-startup-files nil)))
 
+(use-package magit
+  :bind ("C-c g s" . magit-status)
+  :ensure t)
+
 (use-package git-gutter
   :ensure t
   :diminish git-gutter-mode
-  :bind (("C-c h n" . git-gutter:next-hunk)
-         ("C-c h p" . git-gutter:previous-hunk)
-         ("C-c h u" . git-gutter:update-all-windows))
+  :bind (("C-c g n" . git-gutter:next-hunk)
+         ("C-c g p" . git-gutter:previous-hunk)
+         ("C-c g u" . git-gutter:update-all-windows))
   :config
   (progn
     (custom-set-variables
