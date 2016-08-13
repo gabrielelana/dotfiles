@@ -70,12 +70,15 @@
      '(git-gutter:window-width 2)
      '(git-gutter:added-sign "\uf067")
      '(git-gutter:deleted-sign "\uf068")
-     '(git-gutter:modified-sign "\uf069")
+     '(git-gutter:modified-sign "\uf054")
      '(git-gutter:hide-gutter t))
     (let ((git-gutter-default-fg "LightGray"))
       (set-face-foreground 'git-gutter:added git-gutter-default-fg)
+      (set-face-attribute 'git-gutter:added nil :height 80)
       (set-face-foreground 'git-gutter:deleted git-gutter-default-fg)
-      (set-face-foreground 'git-gutter:modified git-gutter-default-fg))
+      (set-face-attribute 'git-gutter:deleted nil :height 80)
+      (set-face-foreground 'git-gutter:modified git-gutter-default-fg)
+      (set-face-attribute 'git-gutter:modified nil :height 80))
     (global-git-gutter-mode t)))
 
 (use-package helm
