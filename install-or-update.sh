@@ -66,13 +66,13 @@ if [ ${flags[without-identity]} -eq 0 ]; then
   fi
 fi
 
-echo "setup vim..."
-rm -rf ~/.vim && cp -rf $PWD/vim ~/.vim
-cp -f $PWD/vimrc ~/.vimrc
-if [ ! -d ~/.vim/bundle/vundle ]; then
-  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-fi
-vim +PluginInstall! +qall &>/dev/null
+# echo "setup vim..."
+# rm -rf ~/.vim && cp -rf $PWD/vim ~/.vim
+# cp -f $PWD/vimrc ~/.vimrc
+# if [ ! -d ~/.vim/bundle/vundle ]; then
+#   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+# fi
+# vim +PluginInstall! +qall &>/dev/null
 
 echo "setup emacs..."
 rm -rf ~/.emacs.d && cp -rf $PWD/emacs.d ~/.emacs.d
