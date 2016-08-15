@@ -194,6 +194,29 @@
                                                  (text-scale-set -1)))
     (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
 
+;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if not eslint
+(use-package js2-mode
+  :ensure t
+  :mode ("\\.js$" . js2-mode)
+  :config
+  (progn
+    (add-hook 'js-mode-hook (lambda () (setq mode-name "JS")))
+    (add-hook 'js2-mode-hook (lambda()
+                               (flycheck-mode t)
+                               (when (executable-find "eslint")
+                                 (flycheck-select-checker 'javascript-eslint))))
+    (setq js-indent-level 2
+          js2-basic-offset 2
+          js2-strict-trailing-comma-warning nil
+          js2-mode-show-parse-errors nil
+          js2-mode-show-strict-warnings nil
+          js2-strict-missing-semi-warning nil
+          js2-use-font-lock-faces t)))
+
+(use-package json-mode
+  :ensure t
+  :mode "\\.json$")
+
 ;; functions
 (defun cc/join-with-next-line ()
   "Join this line with the next and fix up whitespace at join."
