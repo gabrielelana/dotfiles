@@ -272,6 +272,8 @@
 ;; place all backcup files in one directory to avoid clutter current project
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+;; invoke commands that use minibuffers even while the minibuffer window is active
+(setq enable-recursive-minibuffers t)
 ;; highlight current line
 (global-hl-line-mode +1)
 ;; replace region when you type something and a region is active
