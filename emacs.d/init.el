@@ -72,6 +72,36 @@
     (exec-path-from-shell-initialize)
     (setq exec-path-from-shell-check-startup-files nil)))
 
+(use-package flycheck
+  :ensure t
+  :commands flycheck-mode
+  :config
+  (progn
+    (setq flycheck-highlighting-mode 'symbols)
+    (setq flycheck-indication-mode nil)
+    (set-face-attribute 'flycheck-error nil :underline nil :box '(:line-width 2))
+    (set-face-attribute 'flycheck-warning nil :underline nil :box '(:line-width 2))
+    (set-face-attribute 'flycheck-info nil :underline nil :box '(:line-width 2))
+    (setq flycheck-mode-line
+          '(:eval
+            (pcase flycheck-last-status-change
+              (`not-checked " \uf00c")
+              (`no-checker " \uf00c[-]")
+              (`errored (propertize " \uf00c[!]" 'face '(:foreground "red")))
+              (`interrupted " \uf00c[?]")
+              (`suspicious " \uf00c[?]")
+              (`running " \uf00c[?]")
+              (`finished
+               (let* ((error-counts (flycheck-count-errors flycheck-current-errors))
+                      (n-errors (cdr (assq 'error error-counts)))
+                      (n-warnings (cdr (assq 'warning error-counts))))
+                 (if (or n-errors n-warnings)
+                     (propertize (format " \uf00c[%s/%s]" (or n-errors 0) (or n-warnings 0))
+                               'face '(:foreground "Tomato"))
+                   (propertize " \uf00c" 'face '(:foreground "LimeGreen"))))))))
+
+    (push '("*Flycheck errors*" :position bottom :height .4 :noselect t) popwin:special-display-config)))
+
 (use-package magit
   :bind ("C-c g s" . magit-status)
   :ensure t)
