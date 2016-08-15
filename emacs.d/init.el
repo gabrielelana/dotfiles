@@ -44,7 +44,9 @@
   :ensure t
   :diminish popwin
   :config
-  (popwin-mode 1))
+  (progn
+    (push '("*Occur*" :position bottom :height .3) popwin:special-display-config)
+    (popwin-mode 1)))
 
 (use-package drag-stuff
   :ensure t
