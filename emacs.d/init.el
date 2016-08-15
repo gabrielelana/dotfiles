@@ -217,6 +217,36 @@
   :ensure t
   :mode "\\.json$")
 
+;; rust --- TODO: racer, clippy
+(use-package rust-mode
+  :ensure t
+  :mode ("\\.rs$" . rust-mode)
+  :bind (("C-c <tab>" . rust-format-buffer))
+  :config
+  (progn
+    (setq rust-format-on-save t)))
+
+(use-package cargo
+  :ensure t
+  :diminish cargo-minor-mode
+  :commands cargo-minor-mode
+  :init
+  (progn
+    (add-hook 'rust-mode-hook #'cargo-minor-mode)))
+
+(use-package flycheck-rust
+  :ensure t
+  :init
+  (progn
+    (add-hook 'rust-mode-hook #'flycheck-mode)
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+    ;; (add-hook 'rust-mode-hook #'yas-minor-mode)
+    ;; (add-hook 'rust-mode-hook #'flyspell-prog-mode)))
+
+(use-package toml-mode
+  :ensure t
+  :mode ("\\.toml$" . toml-mode))
+
 ;; functions
 (defun cc/join-with-next-line ()
   "Join this line with the next and fix up whitespace at join."
