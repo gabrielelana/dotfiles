@@ -253,9 +253,17 @@
   (interactive)
   (delete-indentation 1))
 
-;; keybindings
+(defun cc/toggle-comment-on-line ()
+  "Comment or uncomment current line."
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+;; custom keybindings
+(global-set-key (kbd "H-p") 'previous-buffer)
+(global-set-key (kbd "H-n") 'next-buffer)
 (global-set-key (kbd "C-c l") 'org-store-link) ; capture link at point
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
+(global-set-key (kbd "C-;") 'cc/toggle-comment-on-line)
 (global-set-key (kbd "M-o") 'other-window)
 
 ;; global hooks
