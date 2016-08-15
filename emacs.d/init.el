@@ -103,7 +103,8 @@
     (push '("*Flycheck errors*" :position bottom :height .4 :noselect t) popwin:special-display-config)))
 
 (use-package magit
-  :bind ("C-c g s" . magit-status)
+  :bind (("C-c g s" . magit-status)
+         ("H-s" . magit-status))
   :ensure t)
 
 (use-package git-gutter
