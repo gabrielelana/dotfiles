@@ -15,6 +15,10 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+;; start the server if not already started
+(load "server")
+(unless (server-running-p) (server-start))
+
 (use-package better-defaults :ensure t)
 
 (use-package monokai-theme :ensure t :defer t)
