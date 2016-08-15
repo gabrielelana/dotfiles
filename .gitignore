@@ -1,4 +1,7 @@
 .*
 vim/.*
 vim/bundle
+emacs.d/backups
+emacs.d/elpa/
+emacs.d/projectile-bookmarks.eld
 i3/log
