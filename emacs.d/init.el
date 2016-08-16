@@ -29,6 +29,10 @@
   :defer t
   :config
   (progn
+    ;; flycheck custimization
+    (set-face-attribute 'flycheck-error nil :box t :underline nil)
+    (set-face-attribute 'flycheck-warning nil :box t :underline nil)
+    (set-face-attribute 'flycheck-info nil :box t :underline nil)
     ;; mode-line customization
     (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
     (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
@@ -83,9 +87,6 @@
   (progn
     (setq flycheck-highlighting-mode 'symbols)
     (setq flycheck-indication-mode nil)
-    (set-face-attribute 'flycheck-error nil :underline nil :box '(:line-width 2))
-    (set-face-attribute 'flycheck-warning nil :underline nil :box '(:line-width 2))
-    (set-face-attribute 'flycheck-info nil :underline nil :box '(:line-width 2))
     (setq flycheck-mode-line
           '(:eval
             (pcase flycheck-last-status-change
