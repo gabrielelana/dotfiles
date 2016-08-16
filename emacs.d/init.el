@@ -105,7 +105,7 @@
                                'face '(:foreground "Tomato"))
                    (propertize " \uf00c" 'face '(:foreground "LimeGreen"))))))))
 
-    (push '("*Flycheck errors*" :position bottom :height .4 :noselect t) popwin:special-display-config)))
+    (push '("*Flycheck errors*" :position bottom :height .4 :stick t) popwin:special-display-config)))
 
 (use-package magit
   :bind (("C-c g s" . magit-status)
