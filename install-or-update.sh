@@ -75,7 +75,7 @@ fi
 # vim +PluginInstall! +qall &>/dev/null
 
 echo "setup emacs..."
-rm -rf ~/.emacs.d && cp -rf $PWD/emacs.d ~/.emacs.d
+ln -sf $PWD/emacs.d ~/.emacs.d
 
 echo "setup zsh..."
 if [ ! -d ~/.oh-my-zsh ]; then
