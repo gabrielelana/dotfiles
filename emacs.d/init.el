@@ -228,7 +228,7 @@
   :ensure t
   :mode "\\.json$")
 
-;; rust --- TODO: racer, clippy
+;; rust --- TODO: racer, clippy, flycheck-rust: navigation between errors doesn't work
 (use-package rust-mode
   :ensure t
   :mode ("\\.rs$" . rust-mode)
@@ -243,6 +243,12 @@
   :commands cargo-minor-mode
   :init
   (progn
+    (push '("^\*Cargo.+\*$" :regexp t :position right :width 80 :noselect t) popwin:special-display-config)
+    (add-hook 'cargo-process-mode-hook
+              (lambda ()
+                (with-current-buffer (get-buffer "*Cargo Process*")
+                  (setq-local truncate-lines nil)
+                  (text-scale-set -1))))
     (add-hook 'rust-mode-hook #'cargo-minor-mode)))
 
 (use-package flycheck-rust
