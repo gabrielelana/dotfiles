@@ -205,7 +205,7 @@
     (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
     (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
 
-;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if not eslint
+;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if eslint executable not found
 (use-package js2-mode
   :ensure t
   :mode ("\\.js$" . js2-mode)
