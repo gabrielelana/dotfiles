@@ -264,6 +264,15 @@
   :ensure t
   :mode ("\\.toml$" . toml-mode))
 
+;; markdown
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "pandoc --from markdown_github -t html5 -s"))
+
 ;; functions
 (defun cc/join-with-next-line ()
   "Join this line with the next and fix up whitespace at join."
