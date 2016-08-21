@@ -182,12 +182,21 @@
 (use-package yaml-mode
   :ensure t)
 
+;; language: Elixir
+(defun cc/alchemist-do-not-truncate-lines ()
+  (interactive)
+  (dolist (buffer (buffer-list))
+    (when (string-match-p "^*alchemist" (buffer-name buffer))
+      (with-current-buffer buffer
+        (setq-local truncate-lines nil)))))
+
 (use-package elixir-mode
   :ensure t)
 
 (use-package alchemist
   :ensure t
   :diminish alchemist "Alchemist"
+  :bind (("C-c a a" . cc/alchemist-do-not-truncate-lines))
   :config
   (progn
     (setq alchemist-test-status-modeline nil)
@@ -197,9 +206,6 @@
     (push '("*alchemist elixirc*" :position bottom :width .4 :noselect t) popwin:special-display-config)
     (push '("*alchemist elixir*" :position bottom :width .4 :noselect t) popwin:special-display-config)
     (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-    (add-hook 'alchemist-test-report-mode-hook (lambda ()
-                                                 (toggle-truncate-lines)
-                                                 (text-scale-set -1)))
     (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
 
 ;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if not eslint
