@@ -110,10 +110,7 @@
 (use-package magit
   :bind (("C-c g s" . magit-status)
          ("H-s" . magit-status))
-  :ensure t
-  :config
-  (progn
-    (push '("^\*magit.+\*$" :regexp t :position right :width .4) popwin:special-display-config)))
+  :ensure t)
 
 (use-package git-gutter
   :ensure t
