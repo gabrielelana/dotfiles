@@ -194,9 +194,10 @@
   :ensure t
   :diminish alchemist "Alchemist"
   :bind (("C-c a a" . cc/alchemist-do-not-truncate-lines))
+  :init
+  (add-hook 'elixir-mode-hook #'alchemist-mode)
   :config
   (progn
-    (add-hook 'elixir-mode-hook #'alchemist-mode)
     (setq alchemist-test-status-modeline nil)
     (push '("*alchemist test report*" :position right :width 60 :noselect t) popwin:special-display-config)
     (push '("*alchemist help*" :position right :width 60 :noselect t) popwin:special-display-config)
