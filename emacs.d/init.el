@@ -275,6 +275,11 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "pandoc --from markdown_github -t html5 -s"))
 
+;; php
+(use-package php-mode
+  :ensure t
+  :mode ("\\.php\\'" . php-mode))
+
 ;; functions
 (defun cc/join-with-next-line ()
   "Join this line with the next and fix up whitespace at join."
