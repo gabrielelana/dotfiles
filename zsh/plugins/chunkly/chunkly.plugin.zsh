@@ -129,8 +129,8 @@ chunkly_show() {
 }
 
 chunkly_command() {
-  local id="$(mongo --nodb --quiet --eval 'print(new ObjectId().valueOf());')"
-  local at="$(date +%Y-%m-%dT%H:%M:%S%:z)"
+  local id="$(uuidgen)"
+  local at="$(date +%Y-%m-%dT%H:%M:%S%z)"
   local command=${1:-'?'}
   local message=${2:-''}
   echo -e "$id\tL\t$at\t$command\t$message" >> ~/.chunkly/$(date +%Y-%m-%d).log
