@@ -280,6 +280,13 @@
   :ensure t
   :mode ("\\.php\\'" . php-mode))
 
+;; chunkly
+(use-package chunkly-mode
+  :ensure nil
+  :commands (chunkly-mode)
+  :load-path "local-packages/"
+  :mode ("\\.chunkly/[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\.log\\'" . chunkly-mode))
+
 ;; functions
 (defun cc/join-with-next-line ()
   "Join this line with the next and fix up whitespace at join."
