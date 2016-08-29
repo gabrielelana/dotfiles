@@ -1,4 +1,4 @@
-(message "Loading chunkly-mode...")
+;; TODO: shell command chunkly_backup -> compress ~/.chunkly directory, cp into dotfiles-secrets, comming and push
 
 ;; TODO: M-left reduce current start time of 5 minutes
 ;; TODO: M-right increase current start time of 5 minutes
@@ -20,12 +20,19 @@
 (defun chunkly-insert-entry ()
   "Insert an entry in the chunkly log"
   (interactive)
-  ;; TODO: if current line is empty then look for the previous line
-  ;; TODO: if previous line is empty then insert the current time and ask for a description
-  (let* ((previous-line (thing-at-point 'line t))
-         (next-line (chunkly--next-entry-given previous-line)))
+  (let (previous-line next-line)
+    (setq previous-line (chunkly--chomp (thing-at-point 'line t)))
+    (when (string-empty-p previous-line)
+      (save-excursion
+        (forward-line -1)
+        (setq previous-line (chunkly--chomp (thing-at-point 'line t)))))
+    (setq next-line (if (or (null previous-line) (string-empty-p previous-line))
+                        (message "XXX") ; chunkly--first-entry with questions
+                      (chunkly--next-entry-given previous-line)))
     (end-of-line)
-    (insert "\n" next-line)))
+    (when (> (current-column) 1)
+      (insert "\n"))
+    (insert next-line)))
 
 (defun chunkly--next-entry-given (previous-line)
   "Generate next entry in log given the previous line"
@@ -57,6 +64,13 @@
   (let* ((from-time (date-to-time from))
          (next-time (time-add from-time (seconds-to-time (+ duration break)))))
     (format-time-string "%Y-%m-%dT%H:%M:%S%z" next-time "Europe/Rome")))
+
+(defun chunkly--chomp (str)
+  "Chomp leading and tailing whitespace from STR."
+  (replace-regexp-in-string (rx (or (: bos (* (any " \t\n")))
+                                    (: (* (any " \t\n")) eos)))
+                            ""
+                            str))
 
 (define-derived-mode chunkly-mode fundamental-mode "Chunkly"
   "Display and modify chunkly dump files"
