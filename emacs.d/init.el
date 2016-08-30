@@ -19,8 +19,13 @@
 (load "server")
 (unless (server-running-p) (server-start))
 
+;; libraries
+(use-package s :ensure t)
+
+;; default configuration
 (use-package better-defaults :ensure t)
 
+;; themes
 (use-package monokai-theme :ensure t :defer t)
 (use-package darkokai-theme :ensure t :defer t)
 (use-package solarized-theme :ensure t :defer t)
