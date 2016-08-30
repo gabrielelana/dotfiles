@@ -25,11 +25,7 @@ chunkly_edit() {
   local local_vimrc="$HOME/.chunkly/.vimrc"
 
   if [ -f $log_of_the_day ]; then
-    if [ -f $local_vimrc ]; then
-      $EDITOR -c ":source $local_vimrc" $log_of_the_day
-    else
-      $EDITOR $log_of_the_day
-    fi
+    $EDITOR $log_of_the_day
   else
     echo "You did nothing ${*}, you should be proud of yourself..."
   fi
