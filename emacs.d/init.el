@@ -184,6 +184,10 @@
 (use-package yaml-mode
   :ensure t)
 
+(use-package feature-mode
+  :ensure t
+  :mode "\\.feature\\'")
+
 ;; language: Elixir
 (defun cc/alchemist-do-not-truncate-lines ()
   (interactive)
