@@ -343,16 +343,41 @@ position."
       (if (< 0 arg)
           (next-line number-of-lines)))))
 
+(defun cc/smarter-move-beginning-of-line (arg)
+  "Move point back to indentation of beginning of line.
+
+Move point to the first non-whitespace character on this line.
+If point is already there, move to the beginning of the line.
+Effectively toggle between the first non-whitespace character and
+the beginning of the line.
+
+If ARG is not nil or 1, move forward ARG - 1 lines first.  If
+point reaches the beginning or end of the buffer, stop there."
+  (interactive "^p")
+  (setq arg (or arg 1))
+
+  ;; Move lines first
+  (when (/= arg 1)
+    (let ((line-move-visual nil))
+      (forward-line (1- arg))))
+
+  (let ((orig-point (point)))
+    (back-to-indentation)
+    (when (= orig-point (point))
+      (move-beginning-of-line 1))))
+
+(global-set-key (kbd "C-a") 'cc/smarter-move-beginning-of-line)
 (global-set-key (kbd "H-p") 'previous-buffer)
 (global-set-key (kbd "H-n") 'next-buffer)
 (global-set-key (kbd "M-SPC") 'rectangle-mark-mode)
-(global-set-key (kbd "C-c l") 'org-store-link) ; capture link at point
+(global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
 (global-set-key (kbd "C-;") 'cc/toggle-comment-on-line)
 (global-set-key (kbd "C-x e") 'cc/eval-and-replace)
 (global-set-key (kbd "M-n") 'cc/duplicate-current-line-or-region)
 (global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-current-line-or-region (- arg))))
 (global-set-key (kbd "M-o") 'other-window)
+
 
 ;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
