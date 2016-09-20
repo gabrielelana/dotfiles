@@ -345,9 +345,11 @@ position."
 
 (global-set-key (kbd "H-p") 'previous-buffer)
 (global-set-key (kbd "H-n") 'next-buffer)
+(global-set-key (kbd "M-SPC") 'rectangle-mark-mode)
 (global-set-key (kbd "C-c l") 'org-store-link) ; capture link at point
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
 (global-set-key (kbd "C-;") 'cc/toggle-comment-on-line)
+(global-set-key (kbd "C-x e") 'cc/eval-and-replace)
 (global-set-key (kbd "M-n") 'cc/duplicate-current-line-or-region)
 (global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-current-line-or-region (- arg))))
 (global-set-key (kbd "M-o") 'other-window)
@@ -356,16 +358,24 @@ position."
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; global configuration
-;; indent after yank
+;; always indent after yank
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
            (and (not current-prefix-arg)
                 (not (member major-mode '()))
                 (let ((mark-even-if-inactive transient-mark-mode))
                   (indent-region (region-beginning) (region-end) nil))))))
-;; place all backcup files in one directory to avoid clutter current project
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+;; use UTF-8 everywhere
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+;; ask `y or n' rather than `yes or no'
+(defalias 'yes-or-no-p 'y-or-n-p)
+;; don't backup files
+(customize-set-variable 'auto-save-default nil)
+(customize-set-variable 'make-backup-files nil)
+;; don't blink the cursor
+(customize-set-variable 'blink-cursor-mode nil)
 ;; invoke commands that use minibuffers even while the minibuffer window is active
 (setq enable-recursive-minibuffers t)
 ;; highlight current line
