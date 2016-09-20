@@ -307,12 +307,49 @@
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
-;; custom keybindings
+(defun cc/eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+
+(require 's)
+(defun cc/duplicate-current-line-or-region (arg)
+  "Duplicates the current line or region ARG times.
+If there's no region, the current line will be duplicated. However, if
+there's a region, all lines that region covers will be duplicated. If the
+argument is negative the line/region will be duplicated above the current
+position."
+  (interactive "p")
+  (let (beg end (origin (point)))
+    (if (and mark-active (> (point) (mark)))
+        (exchange-point-and-mark))
+    (setq beg (line-beginning-position))
+    (if mark-active
+        (exchange-point-and-mark))
+    (setq end (line-end-position))
+    (let* ((region (buffer-substring-no-properties beg end))
+           (number-of-copies (abs arg))
+           (content (s-repeat number-of-copies (s-concat region "\n")))
+           (number-of-lines (- (* arg (length (s-lines content))) 1))
+           (op (if (< 0 arg) '+ '-)))
+      (goto-char beg)
+      (insert content)
+      (goto-char origin)
+      (if (< 0 arg)
+          (next-line number-of-lines)))))
+
 (global-set-key (kbd "H-p") 'previous-buffer)
 (global-set-key (kbd "H-n") 'next-buffer)
 (global-set-key (kbd "C-c l") 'org-store-link) ; capture link at point
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
 (global-set-key (kbd "C-;") 'cc/toggle-comment-on-line)
+(global-set-key (kbd "M-n") 'cc/duplicate-current-line-or-region)
+(global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-current-line-or-region (- arg))))
 (global-set-key (kbd "M-o") 'other-window)
 
 ;; global hooks
