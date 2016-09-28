@@ -366,13 +366,38 @@ point reaches the beginning or end of the buffer, stop there."
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
 
-(global-set-key (kbd "C-a") 'cc/smarter-move-beginning-of-line)
-(global-set-key (kbd "H-p") 'previous-buffer)
-(global-set-key (kbd "H-n") 'next-buffer)
+(defun cc/open-line-below ()
+  "Open a new line below the cursor"
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun cc/open-line-above ()
+  "Open a new line above the cursor"
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+(defun cc/open-line-here ()
+  "Splits the current line where the cursor is"
+  (interactive)
+  (newline)
+  (save-excursion
+    (newline)
+    (indent-for-tab-command))
+  (indent-for-tab-command))
+
+(global-set-key (kbd "H-p") 'cc/open-line-above)
+(global-set-key (kbd "H-n") 'cc/open-line-below)
+(global-set-key (kbd "H-<return>") 'cc/open-line-here)
 (global-set-key (kbd "M-SPC") 'rectangle-mark-mode)
+(global-set-key (kbd "C-a") 'cc/smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
-(global-set-key (kbd "C-;") 'cc/toggle-comment-on-line)
+(global-set-key (kbd "C-;") 'cc/toggle-comment-on-line) ; TODO: make it work also for regions
 (global-set-key (kbd "C-x e") 'cc/eval-and-replace)
 (global-set-key (kbd "M-n") 'cc/duplicate-current-line-or-region)
 (global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-current-line-or-region (- arg))))
