@@ -287,7 +287,13 @@
 ;; php
 (use-package php-mode
   :ensure t
-  :mode ("\\.php\\'" . php-mode))
+  :mode ("\\.php\\'" . php-mode)
+  :init
+  (use-package phpunit :ensure t)
+  (add-hook 'php-mode-hook
+            (lambda ()
+              (flycheck-mode)
+              (setq flycheck-check-syntax-automatically '(mode-enabled save)))))
 
 ;; chunkly
 (use-package chunkly-mode
@@ -390,6 +396,18 @@ point reaches the beginning or end of the buffer, stop there."
     (indent-for-tab-command))
   (indent-for-tab-command))
 
+(defun cc/delete-file-and-buffer ()
+  "Kill the current buffer and deletes the file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (when filename
+      (if (vc-backend filename)
+          (vc-delete-file filename)
+        (progn
+          (delete-file filename)
+          (message "Deleted file %s" filename)
+          (kill-buffer))))))
+
 (global-set-key (kbd "H-p") 'cc/open-line-above)
 (global-set-key (kbd "H-n") 'cc/open-line-below)
 (global-set-key (kbd "H-<return>") 'cc/open-line-here)
@@ -402,6 +420,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-n") 'cc/duplicate-current-line-or-region)
 (global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-current-line-or-region (- arg))))
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-c D") 'cc/delete-file-and-buffer)
 
 
 ;; global hooks
