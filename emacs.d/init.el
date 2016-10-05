@@ -44,13 +44,21 @@
     (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")))
 (use-package atom-one-dark-theme :ensure t :defer t)
 (use-package sublime-themes :ensure t :defer t)
-(use-package tango-plus-theme :ensure t :defer t)
+(use-package tango-plus-theme
+  :ensure t
+  :defer t
+  :config
+  (progn
+    ;; flycheck custimization
+    (set-face-attribute 'flycheck-error nil :box t :underline nil)
+    (set-face-attribute 'flycheck-warning nil :box t :underline nil)
+    (set-face-attribute 'flycheck-info nil :box t :underline nil)))
 (use-package material-theme :ensure t :defer t)
 (use-package dracula-theme :ensure t :defer t)
 (use-package soft-stone-theme :ensure t :defer t)
 ;; must load the theme before specific package customization will take place
-(load-theme 'mustang t)
-;; (load-theme 'tango-plus t) ;; ****
+;; (load-theme 'mustang t)
+(load-theme 'tango-plus t) ;; ****
 ;; (load-theme 'material-light t) ;; ***
 
 (use-package popwin
@@ -190,6 +198,7 @@
 
 ;; language: Elixir
 (defun cc/alchemist-do-not-truncate-lines ()
+  "Avoid truncate lines in alchemist buffers."
   (interactive)
   (dolist (buffer (buffer-list))
     (when (string-match-p "^*alchemist" (buffer-name buffer))
@@ -197,6 +206,9 @@
         (setq-local truncate-lines nil)))))
 
 (use-package elixir-mode
+  :ensure t)
+
+(use-package flycheck-mix
   :ensure t)
 
 (use-package alchemist
@@ -211,10 +223,16 @@
     (push '("*alchemist test report*" :position right :width 60 :noselect t) popwin:special-display-config)
     (push '("*alchemist help*" :position right :width 60 :noselect t) popwin:special-display-config)
     (push '("*alchemist macroexpand*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+    (push '("*alchemist info mode*" :position bottom :width .4 :noselect t) popwin:special-display-config)
     (push '("*alchemist elixirc*" :position bottom :width .4 :noselect t) popwin:special-display-config)
     (push '("*alchemist elixir*" :position bottom :width .4 :noselect t) popwin:special-display-config)
     (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+    (flycheck-mode +1)
+    (flycheck-mix-setup)
     (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
+
+;; experimental
+(add-to-list 'flycheck-checkers 'elixir-mix)
 
 ;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if eslint executable not found
 (use-package js2-mode
@@ -224,7 +242,7 @@
   (progn
     (add-hook 'js-mode-hook (lambda () (setq mode-name "JS")))
     (add-hook 'js2-mode-hook (lambda()
-                               (flycheck-mode t)
+                               (flycheck-mode +1)
                                (when (executable-find "eslint")
                                  (flycheck-select-checker 'javascript-eslint))))
     (setq js-indent-level 2
