@@ -14,7 +14,6 @@ ZSH_THEME="cc"
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
 
-
 # Comment this out to disable weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
 
@@ -40,10 +39,10 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 unsetopt correct_all
 
-# RVM configuration
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && {
-  source "$HOME/.rvm/scripts/rvm"
-  export PATH=$PATH:$HOME/.rvm/bin
+# Ruby configuration
+[[ -d /usr/local/share/chruby/ ]] && {
+  source /usr/local/share/chruby/chruby.sh
+  source /usr/local/share/chruby/auto.sh
 }
 
 # OCaml configuration
