@@ -52,8 +52,8 @@ unsetopt correct_all
 }
 
 # NVM configuration
-[[ -d "$HOME/.nvm" ]] && {
-  export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/.nvm"
+[[ -d $NVM_DIR ]] && {
   source $NVM_DIR/nvm.sh
 }
 
