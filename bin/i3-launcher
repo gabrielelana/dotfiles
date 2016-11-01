@@ -11,7 +11,7 @@ fi
 
 if [ ! -f $cache_from ] || [ $PATH != `cat $cache_from` ]; then
     echo $PATH > $cache_from
-    stest -flx `echo ${PATH//:/$'\n'}` | sort -u | tee "$cache" | dmenu "$@"
+    stest -flx `echo ${PATH//:/$'\n'}` | sort -u | tee "$cache" | dmenu_run "$@"
 else
-    dmenu "$@" < "$cache"
+    dmenu_run "$@" < "$cache"
 fi
