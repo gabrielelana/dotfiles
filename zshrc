@@ -61,13 +61,6 @@ export NVM_DIR="$HOME/.nvm"
   source "$HOME/.kiex/scripts/kiex"
 }
 
-# Go configuration
-[[ -d "$HOME/opt/go/bin" ]] && {
-  export GOROOT=$HOME/opt/go
-  export GOPATH=$HOME/code/go
-  export PATH=$PATH:$GOROOT/bin
-}
-
 # Rust configuration
 [[ -d "$HOME/.cargo/bin" ]] && {
   export PATH=$PATH:$HOME/.cargo/bin
