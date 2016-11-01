@@ -1,16 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
 cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
 if [ -d "$cachedir" ]; then
-	cache=$cachedir/i3-launcher
+    cache=$cachedir/i3-launcher
+    cache_from=$cachedir/i3-launcher-path
 else
-	cache=$HOME/.i3-launcher
+    cache=$HOME/.i3-launcher
+    cache_from=$HOME/.i3-launcher-path
 fi
-(
-	IFS=:
-	if stest -dqr -n "$cache" $PATH; then
-		stest -flx $PATH | sort -u | tee "$cache" | dmenu.xft "$@"
-	else
-		dmenu.xft "$@" < "$cache"
-	fi
-) | ${SHELL:-"/bin/sh"} &
+
+if [ ! -f $cache_from ] || [ $PATH != `cat $cache_from` ]; then
+    echo $PATH > $cache_from
+    stest -flx `echo ${PATH//:/$'\n'}` | sort -u | tee "$cache" | dmenu "$@"
+else
+    dmenu "$@" < "$cache"
+fi
