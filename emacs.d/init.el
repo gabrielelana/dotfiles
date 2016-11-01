@@ -57,8 +57,8 @@
 (use-package dracula-theme :ensure t :defer t)
 (use-package soft-stone-theme :ensure t :defer t)
 ;; must load the theme before specific package customization will take place
-;; (load-theme 'mustang t)
-(load-theme 'tango-plus t) ;; ****
+(load-theme 'mustang t)
+;; (load-theme 'tango-plus t) ;; ****
 ;; (load-theme 'material-light t) ;; ***
 
 (use-package popwin
