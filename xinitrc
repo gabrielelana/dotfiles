@@ -18,8 +18,11 @@ xsetroot -solid "#1c1c1c"
 
 # Start VirtualBox client to enable clipboard exchange with host and screen autoresize
 if ! pidof VBoxClient; then
-  exec VBoxClient &
+exec sudo VBoxClient --clipboard &
 fi
+
+# Adjust DPIs
+xrandr --dpi 180
 
 # Start window manager
 exec i3 > ~/.i3/log 2>&1
