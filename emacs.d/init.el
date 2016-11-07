@@ -324,7 +324,7 @@
       (phpunit-run args)))
   (add-hook 'php-mode-hook
             (lambda ()
-              (flycheck-mode)
+              (flycheck-mode +1)
               (setq flycheck-check-syntax-automatically '(mode-enabled save)))))
 
 ;; chunkly
