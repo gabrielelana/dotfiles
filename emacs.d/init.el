@@ -308,6 +308,20 @@
   :mode ("\\.php\\'" . php-mode)
   :init
   (use-package phpunit :ensure t)
+  (defun phpunit-get-relative-file-path ()
+    "Current test file path relative to project root directory."
+    (s-chop-prefix (phpunit-get-root-directory) buffer-file-name))
+  (defun phpunit-current-function ()
+    "Launch PHPUnit on current function."
+    (interactive)
+    (let ((args (s-concat " --filter '"
+                          (phpunit-get-current-class)
+                          "::"
+                          (phpunit-get-current-test)
+                          "'"
+                          " "
+                          (phpunit-get-relative-file-path))))
+      (phpunit-run args)))
   (add-hook 'php-mode-hook
             (lambda ()
               (flycheck-mode)
