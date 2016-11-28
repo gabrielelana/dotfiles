@@ -21,6 +21,7 @@
 
 ;; libraries
 (use-package s :ensure t)
+(use-package f :ensure t)
 
 ;; default configuration
 (use-package better-defaults :ensure t)
@@ -287,8 +288,26 @@
     (add-hook 'rust-mode-hook #'flycheck-mode)
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
     ;; (add-hook 'rust-mode-hook #'yas-minor-mode)
-    ;; (add-hook 'rust-mode-hook #'flyspell-prog-mode)))
+;; (add-hook 'rust-mode-hook #'flyspell-prog-mode)))
 
+;; elm
+(use-package elm-mode
+  :ensure t
+  :mode ("\\.elm'" . elm-mode)
+  :config
+  (progn
+    (push '("*elm-make*" :position right :width 80 :noselect t) popwin:special-display-config)
+    (setq elm-indent-offset 4)
+    (setq elm-format-on-save t)))
+
+(use-package flycheck-elm
+  :ensure t
+  :init
+  (add-hook 'elm-mode-hook (lambda ()
+                             (flycheck-mode)
+                             (flycheck-elm-setup))))
+
+;; toml
 (use-package toml-mode
   :ensure t
   :mode ("\\.toml$" . toml-mode))
