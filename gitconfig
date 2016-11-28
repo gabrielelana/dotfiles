@@ -46,4 +46,4 @@
 [branch]
   autosetupmerge = true
 [push]
-  default = tracking
+  default = current
