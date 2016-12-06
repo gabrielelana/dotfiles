@@ -365,6 +365,7 @@
 (require 's)
 (defun cc/duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
+
 If there's no region, the current line will be duplicated. However, if
 there's a region, all lines that region covers will be duplicated. If the
 argument is negative the line/region will be duplicated above the current
@@ -498,3 +499,4 @@ point reaches the beginning or end of the buffer, stop there."
 (setq visible-bell nil)
 (setq inhibit-splash-screen t)
 (set-frame-font "PragmataPro 14")
+(put 'narrow-to-region 'disabled nil)
