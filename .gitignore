@@ -5,6 +5,8 @@ emacs.d/backups
 emacs.d/elpa/
 emacs.d/projectile-bookmarks.eld
 emacs.d/projectile.cache
+emacs.d/custom.el
+emacs.d/eshell/
 emacs.d/tramp
 i3/log
 emacs.d/url

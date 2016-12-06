@@ -13,7 +13,7 @@
  '(git-gutter:window-width 2)
  '(package-selected-packages
    (quote
-    (flycheck-elm elm-mode flycheck-mix phpunit-mode phpunit phpunit\.el feature-mode php-mode markdown-mode json-mode js2-mode flycheck-rust flycheck toml-modenm toml-mode rustfmt cargo rust-mode magit alchemist elixir-mode yaml-mode helm-projectile helm-ag projectile helm git-gutter exec-path-from-shell rainbow-mode expand-region drag-stuff popwin soft-stone-theme dracula-theme material-theme tango-plus-theme sublime-themes atom-one-dark-theme mustang-theme solarized-theme darkokai-theme monokai-theme better-defaults use-package))))
+    (php-functions flycheck-elm elm-mode flycheck-mix phpunit-mode phpunit phpunit\.el feature-mode php-mode markdown-mode json-mode js2-mode flycheck-rust flycheck toml-modenm toml-mode rustfmt cargo rust-mode magit alchemist elixir-mode yaml-mode helm-projectile helm-ag projectile helm git-gutter exec-path-from-shell rainbow-mode expand-region drag-stuff popwin soft-stone-theme dracula-theme material-theme tango-plus-theme sublime-themes atom-one-dark-theme mustang-theme solarized-theme darkokai-theme monokai-theme better-defaults use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
