@@ -347,10 +347,12 @@
   (interactive)
   (delete-indentation 1))
 
-(defun cc/toggle-comment-on-line ()
+(defun cc/comment-or-uncomment-line-or-region ()
   "Comment or uncomment current line."
   (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+  (if (use-region-p)
+      (comment-or-uncomment-region (region-beginning) (region-end))
+    (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
 
 (defun cc/eval-and-replace ()
   "Replace the preceding sexp with its value."
@@ -451,7 +453,7 @@ the beginning of the line."
 (global-set-key (kbd "C-a") 'cc/smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
-(global-set-key (kbd "C-;") 'cc/toggle-comment-on-line) ; TODO: toggle-comment-line-or-region
+(global-set-key (kbd "C-;") 'cc/comment-or-uncomment-line-or-region)
 (global-set-key (kbd "C-x e") 'cc/eval-and-replace)
 (global-set-key (kbd "M-n") 'cc/duplicate-line-or-region)
 (global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-line-or-region (- arg))))
