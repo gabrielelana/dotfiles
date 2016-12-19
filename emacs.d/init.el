@@ -327,7 +327,7 @@
   :mode ("\\.php\\'" . php-mode)
   :init
   (use-package phpunit :ensure t)
-  (use-package php-functions :ensure t)
+  (use-package php-functions :ensure nil :load-path "local-packages/")
   (local-set-key (kbd "C-c i") 'php-use-at-point)
   (add-hook 'php-mode-hook
             (lambda ()

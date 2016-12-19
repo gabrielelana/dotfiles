@@ -159,3 +159,5 @@
 ;; TODO php-join-classnames (namespace classnames)
 (defun php-join-classname (namespace classname)
   (s-join "\\" (list namespace (s-chop-prefix "\\" classname))))
+
+(provide 'php-functions)
