@@ -455,7 +455,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-a") 'cc/smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
-(global-set-key (kbd "C-;") 'cc/toggle-comment-on-line) ; TODO: make it work also for regions
+(global-set-key (kbd "C-;") 'cc/toggle-comment-on-line) ; TODO: toggle-comment-line-or-region
 (global-set-key (kbd "C-x e") 'cc/eval-and-replace)
 (global-set-key (kbd "M-n") 'cc/duplicate-current-line-or-region)
 (global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-current-line-or-region (- arg))))
