@@ -362,51 +362,47 @@
     (error (message "Invalid expression")
            (insert (current-kill 0)))))
 
-(require 's)
-(defun cc/duplicate-current-line-or-region (arg)
-  "Duplicates the current line or region ARG times.
+(defun cc/duplicate-line-or-region (arg)
+  "Duplicates the current line or region.
 
-If there's no region, the current line will be duplicated. However, if
-there's a region, all lines that region covers will be duplicated. If the
-argument is negative the line/region will be duplicated above the current
-position."
+When ARG is less then 0 then the duplicated content will be put
+ above the current position, otherwise below.
+
+With \\[universal-argument] prefix the original content will be
+ commented.
+
+The point will be left in the original position inside the
+ duplicated content."
   (interactive "p")
-  (let (beg end (origin (point)))
-    (if (and mark-active (> (point) (mark)))
-        (exchange-point-and-mark))
-    (setq beg (line-beginning-position))
-    (if mark-active
-        (exchange-point-and-mark))
-    (setq end (line-end-position))
-    (let* ((region (buffer-substring-no-properties beg end))
-           (number-of-copies (abs arg))
-           (content (s-repeat number-of-copies (s-concat region "\n")))
-           (number-of-lines (- (* arg (length (s-lines content))) 1))
-           (op (if (< 0 arg) '+ '-)))
-      (goto-char beg)
-      (insert content)
-      (goto-char origin)
-      (if (< 0 arg)
-          (next-line number-of-lines)))))
+  ;; TODO extract cc/bounds-of-line-or-region
+  (let (start end content (ending-at (point)))
+      (if (use-region-p)
+          (setq start (save-excursion (goto-char (region-beginning))
+                                      (beginning-of-line)
+                                      (point))
+                end (save-excursion (goto-char (region-end))
+                                    (end-of-line)
+                                    (point)))
+        (setq start (line-beginning-position) end (line-end-position)))
+      (setq content (buffer-substring-no-properties start end))
+      (delete-region start end)
+      (insert (concat content "\n" content))
+      (goto-char ending-at)
+      (let ((below? (> arg 0)) (comment? (eq (% arg 4) 0)))
+        (when comment?
+          (if below?
+              (comment-region start end)
+            (comment-region (+ start (- end start)) (+ end (- end start) 1))))
+        (when below? (next-line (count-lines start end))))))
 
-(defun cc/smarter-move-beginning-of-line (arg)
+(defun cc/smarter-move-beginning-of-line ()
   "Move point back to indentation of beginning of line.
 
 Move point to the first non-whitespace character on this line.
 If point is already there, move to the beginning of the line.
 Effectively toggle between the first non-whitespace character and
-the beginning of the line.
-
-If ARG is not nil or 1, move forward ARG - 1 lines first.  If
-point reaches the beginning or end of the buffer, stop there."
-  (interactive "^p")
-  (setq arg (or arg 1))
-
-  ;; Move lines first
-  (when (/= arg 1)
-    (let ((line-move-visual nil))
-      (forward-line (1- arg))))
-
+the beginning of the line."
+  (interactive)
   (let ((orig-point (point)))
     (back-to-indentation)
     (when (= orig-point (point))
@@ -457,11 +453,10 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
 (global-set-key (kbd "C-;") 'cc/toggle-comment-on-line) ; TODO: toggle-comment-line-or-region
 (global-set-key (kbd "C-x e") 'cc/eval-and-replace)
-(global-set-key (kbd "M-n") 'cc/duplicate-current-line-or-region)
-(global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-current-line-or-region (- arg))))
+(global-set-key (kbd "M-n") 'cc/duplicate-line-or-region)
+(global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-line-or-region (- arg))))
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-c D") 'cc/delete-file-and-buffer)
-
 
 ;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
