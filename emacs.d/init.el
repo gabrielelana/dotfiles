@@ -185,6 +185,13 @@
     (use-package helm-projectile :ensure t))
   :config
   (progn
+    ;; TODO: find a better way to configure this
+    ;; maybe use `(push directory projectile-globally-ignored-directories)` with a loop?
+    (add-to-list 'projectile-globally-ignored-directories "node_modules")
+    (add-to-list 'projectile-globally-ignored-directories "**/elm-stuff")
+    (add-to-list 'projectile-globally-ignored-directories "vendor")
+    (add-to-list 'projectile-globally-ignored-directories ".tmp")
+    (add-to-list 'projectile-globally-ignored-directories ".work")
     (setq projectile-completion-system 'helm)
     (setq projectile-switch-project-action 'helm-projectile-find-file)
     (projectile-global-mode)

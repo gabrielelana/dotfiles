@@ -2,6 +2,7 @@
 --ignore-dir=.work
 --ignore-dir=.tmp
 --ignore-dir=node_modules
+--ignore-dir=elm-stuff
 --ignore-dir=vendor
 
 --type-set=haml=.haml
