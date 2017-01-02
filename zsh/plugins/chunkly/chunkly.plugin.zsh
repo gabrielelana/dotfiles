@@ -11,11 +11,24 @@ CHUNKLY_LABEL_SYMBOL="\u${CODEPOINT_OF_AWESOME_TAG}"
 CHUNKLY_PAIR_SYMBOL="\u${CODEPOINT_OF_POMICONS_PAIR_PROGRAMMING}"
 
 chunkly_push() {
-  rsync -avz -e ssh ~/.chunkly cleancode.it:/root/home/gabrielelana
+    __ensure_dotfiles_setup
+    rsync -ua ~/.chunkly/* ~/.dotfiles/.dependencies/dotfiles-secrets/chunkly/
+    cd ~/.dotfiles/.dependencies/dotfiles-secrets
+    git add --all
+    git commit -m "Update chunkly logs"
+    cd -
 }
 
 chunkly_pull() {
-  rsync -avz -e ssh cleancode.it:/root/home/gabrielelana/.chunkly ~
+    __ensure_dotfiles_setup
+    rsync -ua ~/.dotfiles/.dependencies/dotfiles-secrets/chunkly/* ~/.chunkly/
+}
+
+__ensure_dotfiles_setup() {
+    if [ ! -d ~/.dotfiles/.dependencies/dotfiles-secrets/ ]; then
+        echo "You need to clone and install dotfiles first :-/"
+        exit 1
+    fi
 }
 
 
