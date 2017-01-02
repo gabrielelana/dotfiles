@@ -312,6 +312,7 @@
   :init
   (add-hook 'elm-mode-hook (lambda ()
                              (flycheck-mode)
+                             (setq flycheck-check-syntax-automatically '(mode-enabled save))
                              (flycheck-elm-setup))))
 
 ;; toml
