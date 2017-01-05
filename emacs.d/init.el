@@ -327,6 +327,10 @@
   :ensure t
   :mode ("\\.toml$" . toml-mode))
 
+;; dockerfile
+(use-package dockerfile-mode
+  :ensure t)
+
 ;; markdown
 (use-package markdown-mode
   :ensure t
