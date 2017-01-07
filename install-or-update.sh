@@ -14,8 +14,8 @@ echo "update dotfiles..."
 git pull
 
 echo "install configuration files..."
-rm -rf ~/.bin && cp -rf $PWD/bin ~/.bin
-chmod +x ~/.bin
+rm -rf ~/bin && cp -rf $PWD/bin ~/bin
+chmod +x ~/bin
 cp -f $PWD/ackrc ~/.ackrc
 cp -f $PWD/rvmrc ~/.rvmrc
 cp -f $PWD/gitignore ~/.gitignore
