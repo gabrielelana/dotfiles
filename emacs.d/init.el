@@ -361,6 +361,17 @@
   :mode ("\\.chunkly/[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\.log\\'" . chunkly-mode))
 
 ;; functions
+(defun cc/load-local-machine-configuration (&optional machine)
+  "Load configuration of the current machine or for MACHINE.
+
+The name of the loaded file is `<MACHINE-NAME>-configuration.el` and must be placed
+and can be found under `~/.emacs.d/local-packages` directory"
+  (interactive)
+  (let* ((machine-name (or machine (system-name)))
+         (local-configuration-file (concat "~/.emacs.d/local-packages/" machine-name "-configuration.el")))
+    (when (file-exists-p local-configuration-file)
+      (load-file local-configuration-file))))
+
 (defun cc/join-with-next-line ()
   "Join this line with the next and fix up whitespace at join."
   (interactive)
@@ -510,6 +521,9 @@ the beginning of the line."
 ;; diplay line and column number in modeline
 (line-number-mode t)
 (column-number-mode t)
+
+;; local configuration
+(cc/load-local-machine-configuration)
 
 ;; appearance
 (setq visible-bell nil)
