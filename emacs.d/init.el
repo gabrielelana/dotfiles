@@ -13,6 +13,8 @@
 
 ;; put custom configurations aside
 (setq custom-file "~/.emacs.d/custom.el")
+(when (not (file-exists-p custom-file))
+  (write-region "" nil custom-file))
 (load custom-file)
 
 ;; start the server if not already started
