@@ -76,6 +76,7 @@
   :config
   (progn
     (setq drag-stuff-except-modes '(org-mode))
+    (drag-stuff-define-keys)
     (drag-stuff-global-mode 1)))
 
 (use-package expand-region
