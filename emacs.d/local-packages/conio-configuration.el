@@ -68,3 +68,13 @@
   :ensure nil
   :init
   (add-hook 'python-mode-hook 'conio-python-configuration))
+
+
+
+
+
+;; Example of <project-root>/.pylint content
+
+;; #!/bin/bash
+;; docker run -t -v /opt/projects/Conio/bitquote/:/app -e PYTHON_TEST=1 -e CONIO_ENV=development --network conio_conio_net --link conio_conio_logstash_1:conio_logstash conio_bitquote:latest /usr/local/bin/pylint $@ | sed 's/^bitquote\///'
+;; exit $?
