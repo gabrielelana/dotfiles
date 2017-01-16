@@ -32,12 +32,15 @@
 (use-package monokai-theme :ensure t :defer t)
 (use-package darkokai-theme :ensure t :defer t)
 (use-package solarized-theme :ensure t :defer t)
+(use-package material-theme :ensure t :defer t)
+(use-package apropospriate-theme :ensure t :defer t)
+(use-package github-theme :ensure t :defer t)
 (use-package mustang-theme
   :ensure t
   :defer t
   :config
   (progn
-    ;; flycheck custimization
+    ;; flycheck customization
     (set-face-attribute 'flycheck-error nil :box t :underline nil)
     (set-face-attribute 'flycheck-warning nil :box t :underline nil)
     (set-face-attribute 'flycheck-info nil :box t :underline nil)
@@ -45,24 +48,21 @@
     (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
     (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
     (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")))
-(use-package atom-one-dark-theme :ensure t :defer t)
-(use-package sublime-themes :ensure t :defer t)
 (use-package tango-plus-theme
   :ensure t
   :defer t
   :config
   (progn
-    ;; flycheck custimization
+    ;; flycheck customization
     (set-face-attribute 'flycheck-error nil :box t :underline nil)
     (set-face-attribute 'flycheck-warning nil :box t :underline nil)
     (set-face-attribute 'flycheck-info nil :box t :underline nil)))
-(use-package material-theme :ensure t :defer t)
-(use-package dracula-theme :ensure t :defer t)
-(use-package soft-stone-theme :ensure t :defer t)
 ;; must load the theme before specific package customization will take place
-(load-theme 'mustang t)
-;; (load-theme 'tango-plus t) ;; ****
-;; (load-theme 'material-light t) ;; ***
+(load-theme 'mustang t) ;; dark default theme *****
+;; (load-theme 'github t) ;; light theme *****
+;; (load-theme 'apropospriate-light t) ;; light theme ***
+;; (load-theme 'material-light t) ;; light theme ***
+;; (load-theme 'tango-plus t) ;; dark theme ****
 
 (use-package popwin
   :ensure t
@@ -91,7 +91,6 @@
   :bind (("C-c m n" . mc/mark-next-like-this)
          ("C-c m p" . mc/mark-previous-like-this)
 	 ("C-c m a" . mc/mark-all-like-this-dwim)))
-
 
 (use-package rainbow-mode
   :ensure t
