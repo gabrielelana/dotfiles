@@ -89,8 +89,12 @@
 (use-package multiple-cursors
   :ensure t
   :bind (("C-c m n" . mc/mark-next-like-this)
+         ("M-\\" . mc/mark-next-like-this)
          ("C-c m p" . mc/mark-previous-like-this)
-	 ("C-c m a" . mc/mark-all-like-this-dwim)))
+         ("C-c m a" . mc/mark-all-like-this-dwim)
+	 ("C-c m l" . mc/edit-lines))
+  :config
+  (setq mc/always-run-for-all t))
 
 (use-package visual-regexp
   :ensure t
