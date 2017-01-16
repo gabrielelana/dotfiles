@@ -92,6 +92,12 @@
          ("C-c m p" . mc/mark-previous-like-this)
 	 ("C-c m a" . mc/mark-all-like-this-dwim)))
 
+(use-package visual-regexp
+  :ensure t
+  :bind (("C-c v r" . vr/replace)
+         ("C-c v q" . vr/query-replace)
+         ("C-c v m" . vr/mc-mark)))
+
 (use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode)
