@@ -33,10 +33,14 @@ CC_SYMBOL_BITCOINS=`echo "\u${CODEPOINT_OF_AWESOME_BTC}"`
 CC_CURRENT_PATH="%1~"
 CC_TIME_AND_DATE="%D{%H:%M:%S} $CC_SYMBOL_CALENDAR %D{%Y-%m-%d}"
 
-CC_HOSTNAME=`hostname`
+CC_HOSTNAME=`hostname -f`
 
-if hostname -f | grep conio.com > /dev/null 2>&1; then
+if echo $CC_HOSTNAME | grep conio.com > /dev/null 2>&1; then
   CC_HOSTNAME=$CC_SYMBOL_BITCOINS
+fi
+
+if echo $CC_HOSTNAME | grep onebip.com > /dev/null 2>&1 ; then
+  CC_HOSTNAME='ONEBIP'
 fi
 
 if [ "$CC_HOSTNAME" = 'apollo' ]; then
