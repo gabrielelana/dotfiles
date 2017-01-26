@@ -534,6 +534,10 @@ the beginning of the line."
 (line-number-mode t)
 (column-number-mode t)
 
+;; shell-script-mode default configurations
+(setq sh-basic-offset 2
+      sh-indentation 2)
+
 ;; local configuration
 (cc/load-local-machine-configuration)
 
