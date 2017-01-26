@@ -115,6 +115,9 @@ if `which ack-grep > /dev/null 2>&1`; then
 fi
 
 # Load local configuration, aka configuration that is specific for the current machine
-[[ -s "$HOME/.zshrc_local" ]] && {
-  source $HOME/.zshrc_local
+[[ -s "$HOME/.zshrc.localhost" ]] && {
+  source $HOME/.zshrc.localhost
+}
+[[ -s "$HOME/.zshrc.`hostname -s`" ]] && {
+  source $HOME/.zshrc.`hostname -s`
 }
