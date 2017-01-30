@@ -82,7 +82,11 @@ if [ ! -d ~/.oh-my-zsh ]; then
 fi
 export ZSH=~/.oh-my-zsh
 cp -rfu $PWD/zsh/* ~/.oh-my-zsh/custom
-cp -f $PWD/zshrc ~/.zshrc
+for file in $PWD/zshrc*; do
+  ln -sf $file "~/.`basename $file`"
+  if [[ $file =~ "localhost" ]]; then
+    cp -f $file "~/.`basename $file`"
+done
 if which zsh > /dev/null; then
   zsh ~/.zshrc
   zsh $ZSH/tools/upgrade.sh
