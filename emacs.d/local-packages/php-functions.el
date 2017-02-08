@@ -3,10 +3,27 @@
 
 ;; TODO support use of functions
 ;; TODO regular expressions as private constants
-;; TODO php-replace-array-with-square-brakets
 ;; TODO php-remove-namespace-block
 ;; TODO php-rename-variable-in-scope
 ;; TODO php-use-at-point choosing namespace when TAGS are available
+
+;; TODO I guess it can be done more cleanly... but it works
+(defun php-replace-array-with-square-brakets ()
+  "Replace ~array()~ with ~[]~ in whole buffer or region"
+  (interactive)
+  (save-excursion
+    (beginning-of-buffer)
+    (while (search-forward "array(" nil t)
+      (backward-char)
+      (let ((beginning-of-array (point)))
+        (forward-sexp)
+        (delete-char -1)
+        (insert "]")
+        (goto-char beginning-of-array)
+        (delete-char 1)
+        (insert "[")
+        (backward-word)
+        (kill-word 1)))))
 
 ;; TODO fail if phpunit is not loaded?
 (defun phpunit-current-file-relative-path ()
@@ -17,6 +34,7 @@
 (defun phpunit-current-function ()
   "Launch PHPUnit on current function."
   (interactive)
+  (exec-path-from-shell-copy-env "APPLICATION_ENV")
   (let ((args (format " --filter '%s::%s' %s"
                       (phpunit-get-current-class)
                       (phpunit-get-current-test)
