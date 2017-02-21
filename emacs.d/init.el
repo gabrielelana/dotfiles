@@ -359,9 +359,10 @@
   :init
   (use-package phpunit :ensure t)
   (use-package php-functions :ensure nil :load-path "local-packages/")
-  (local-set-key (kbd "C-c i") 'php-use-at-point)
   (add-hook 'php-mode-hook
             (lambda ()
+              (modify-syntax-entry ?$ "w" php-mode-syntax-table)
+              (local-set-key (kbd "C-c i") 'php-use-at-point)
               (flycheck-mode +1)
               (setq flycheck-check-syntax-automatically '(mode-enabled save)))))
 
