@@ -145,6 +145,11 @@
          ("H-s" . magit-status))
   :ensure t)
 
+(use-package git-timemachine
+  :bind (("C-c g t" . git-timemachine)
+         ("H-t" . git-timemachine))
+  :ensure t)
+
 (use-package git-gutter
   :ensure t
   :diminish git-gutter-mode
