@@ -14,7 +14,7 @@
   (save-excursion
     (beginning-of-buffer)
     (let ((case-fold-search nil))
-      (while (search-forward "array(" nil t)
+      (while (search-forward-regexp "\\_<array(" nil t)
         (backward-char)
         (let ((beginning-of-array (point)))
           (forward-sexp)
