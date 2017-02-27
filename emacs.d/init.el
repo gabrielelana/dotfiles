@@ -70,6 +70,7 @@
   :config
   (progn
     (push '("*Occur*" :position bottom :height .3) popwin:special-display-config)
+    (push '("*compilation*" :position right :width 80 :noselect t) popwin:special-display-config)
     (popwin-mode 1)))
 
 (use-package drag-stuff
