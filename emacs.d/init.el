@@ -494,6 +494,13 @@ the beginning of the line."
           (message "Deleted file %s" filename)
           (kill-buffer))))))
 
+(require 'ansi-color)
+(defun cc/colorize-compilation ()
+  "Colorize from `compilation-filter-start' to `point'."
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region
+     compilation-filter-start (point))))
+
 (global-set-key (kbd "H-p") 'cc/open-line-above)
 (global-set-key (kbd "H-n") 'cc/open-line-below)
 (global-set-key (kbd "H-<return>") 'cc/open-line-here)
@@ -510,6 +517,7 @@ the beginning of the line."
 
 ;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'compilation-filter-hook 'cc/colorize-compilation)
 
 ;; global configuration
 ;; always indent after yank
