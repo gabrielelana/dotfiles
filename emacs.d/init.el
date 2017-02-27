@@ -27,6 +27,7 @@
 
 ;; default configuration
 (use-package better-defaults :ensure t)
+(use-package scratch :ensure t)
 
 ;; themes
 (use-package monokai-theme :ensure t :defer t)
