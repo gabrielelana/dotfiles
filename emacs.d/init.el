@@ -159,6 +159,7 @@
   :diminish git-gutter-mode
   :bind (("C-c g n" . git-gutter:next-hunk)
          ("C-c g p" . git-gutter:previous-hunk)
+         ("C-c g r" . git-gutter:revert-hunk)
          ("C-c g u" . git-gutter:update-all-windows))
   :init
   (progn
