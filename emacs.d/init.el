@@ -82,6 +82,9 @@
     (drag-stuff-define-keys)
     (drag-stuff-global-mode 1)))
 
+(use-package org
+  :bind (("C-M-<return>" . org-insert-todo-subheading)))
+
 (use-package expand-region
   :ensure t
   :bind (("M-]" . er/expand-region)
