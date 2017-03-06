@@ -372,6 +372,7 @@
   (use-package php-functions :ensure nil :load-path "local-packages/")
   (add-hook 'php-mode-hook
             (lambda ()
+              (c-set-offset 'case-label '+)
               (modify-syntax-entry ?$ "w" php-mode-syntax-table)
               (local-set-key (kbd "C-c i") 'php-use-at-point)
               (flycheck-mode +1)
