@@ -61,7 +61,7 @@
 
 (defun php-used-namespaces ()
   "Returns a list of used namespaces through use statements."
-  (-let (((start-at end-at) (php-locate-use-region))
+  (-let (((start-at end-at) (php--locate-use-region))
          (use-statement-re "^use[[:blank:]]*\\([_a-zA-Z0-9\\\\]\+\\)[[:blank:]]*;"))
     (->> (s-lines (buffer-substring-no-properties start-at end-at))
          (-filter (lambda (s) (s-matches? use-statement-re s)))
@@ -77,7 +77,7 @@
 
 (defun php-use-classname (to-use)
   (save-excursion
-    (-let (((start-at end-at) (php-locate-use-region)))
+    (-let (((start-at end-at) (php--locate-use-region)))
       (goto-char end-at)
       (newline)
       (insert (format "use %s;" to-use))
@@ -90,15 +90,15 @@
   (php--remove-empty-lines-in-use-region))
 
 (defun php--sort-lines-in-use-region ()
-  (-let (((start-at end-at) (php-locate-use-region)))
+  (-let (((start-at end-at) (php--locate-use-region)))
     (sort-lines nil start-at end-at)))
 
 (defun php--remove-duplicated-lines-in-use-region ()
-  (-let (((start-at end-at) (php-locate-use-region)))
+  (-let (((start-at end-at) (php--locate-use-region)))
     (delete-duplicate-lines start-at end-at)))
 
 (defun php--remove-empty-lines-in-use-region ()
-  (-let (((start-at end-at) (php-locate-use-region)))
+  (-let (((start-at end-at) (php--locate-use-region)))
     (delete-matching-lines "^\\s-*$" start-at end-at)))
 
 (defun php-current-namespace ()
