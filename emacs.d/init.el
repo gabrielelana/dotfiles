@@ -234,6 +234,13 @@
   :ensure t
   :mode "\\.feature\\'")
 
+;; language: Ruby
+(use-package rspec-mode
+  :ensure t
+  :init
+  (setq rspec-spec-command "rspec")
+  (setq rspec-key-command-prefix (kbd "C-c t")))
+
 ;; language: Elixir
 (defun cc/alchemist-do-not-truncate-lines ()
   "Avoid truncate lines in alchemist buffers."
