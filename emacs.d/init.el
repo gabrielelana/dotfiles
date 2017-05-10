@@ -382,6 +382,7 @@
               (c-set-offset 'case-label '+)
               (modify-syntax-entry ?$ "w" php-mode-syntax-table)
               (local-set-key (kbd "C-c i") 'php-use-at-point)
+              (local-set-key (kbd "C-c s") 'php-normalize-use-region)
               (flycheck-mode +1)
               (setq flycheck-check-syntax-automatically '(mode-enabled save)))))
 

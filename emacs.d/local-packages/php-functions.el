@@ -74,7 +74,6 @@
       (php-join-classname namespace (php-classname-of classname))
     (php-join-classname (php-current-namespace) classname)))
 
-
 (defun php-use-classname (to-use)
   (save-excursion
     (-let (((start-at end-at) (php--locate-use-region)))
@@ -85,6 +84,8 @@
       (php-normalize-use-region))))
 
 (defun php-normalize-use-region ()
+  "Normalize the block of code where ~use~ statements are."
+  (interactive)
   (php--sort-lines-in-use-region)
   (php--remove-duplicated-lines-in-use-region)
   (php--remove-empty-lines-in-use-region))
@@ -124,7 +125,7 @@
     (beginning-of-buffer)
     (search-forward-regexp "^namespace\\s-\+.\+[;{]\\s-*$" nil t)
     (let ((start-at (match-beginning 0))
-          (end-at (match-ending 0)))
+          (end-at (match-end 0)))
       (if (> end-at start-at 0)
           (list start-at end-at)
         (php--locate-open-tag)))))
@@ -134,7 +135,7 @@
     (beginning-of-buffer)
     (search-forward-buffer "^<\?php.*$" nil t)
     (let ((start-at (match-beginning 0))
-          (end-at (match-ending 0)))
+          (end-at (match-end 0)))
       (list start-at end-at))))
 
 ;; TODO: check that the output is a valid fully qualified class name
