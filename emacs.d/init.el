@@ -272,12 +272,10 @@
     (push '("*alchemist elixirc*" :position bottom :width .4 :noselect t) popwin:special-display-config)
     (push '("*alchemist elixir*" :position bottom :width .4 :noselect t) popwin:special-display-config)
     (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-    (flycheck-mode +1)
-    (flycheck-mix-setup)
+    (add-hook 'alchemist-mode-hook (lambda()
+                                     (flycheck-mode)
+                                     (flycheck-mix-setup)))
     (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
-
-;; experimental
-(add-to-list 'flycheck-checkers 'elixir-mix)
 
 ;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if eslint executable not found
 (use-package js2-mode
