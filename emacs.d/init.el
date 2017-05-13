@@ -397,8 +397,9 @@
 (defun cc/load-local-machine-configuration (&optional machine)
   "Load configuration of the current machine or for MACHINE.
 
-The name of the loaded file is `<MACHINE-NAME>-configuration.el` and must be placed
-and can be found under `~/.emacs.d/local-packages` directory"
+The name of the loaded file is `<MACHINE-NAME>-configuration.el`
+and must be placed and can be found under
+`~/.emacs.d/local-packages` directory"
   (interactive)
   (let* ((machine-name (or machine (system-name)))
          (local-configuration-file (concat "~/.emacs.d/local-packages/" machine-name "-configuration.el")))
