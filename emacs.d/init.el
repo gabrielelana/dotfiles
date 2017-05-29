@@ -350,6 +350,9 @@
                              (setq flycheck-check-syntax-automatically '(mode-enabled save))
                              (flycheck-elm-setup))))
 
+;; clojure
+(use-package cider)
+
 ;; toml
 (use-package toml-mode
   :ensure t
