@@ -518,6 +518,24 @@ the beginning of the line."
     (ansi-color-apply-on-region
      compilation-filter-start (point))))
 
+(global-set-key (kbd "C-c s") (lambda ()
+                                (interactive)
+                                (shell-command (format "rspec --tty --color %s" (buffer-file-name)))
+                                (with-current-buffer (get-buffer " *Echo Area 0*")
+                                  (ansi-color-apply-on-region (point-min) (point-max)))))
+
+(defun cc/shell-command-with-color (command)
+  "Run COMMAND in shell and apply ansi escapes for colors."
+  (interactive)
+  (shell-command command)
+  (with-current-buffer (get-buffer " *Echo Area 0*")
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(defun cc/shell-command-on-current-file (command)
+  "Run COMMAND in shell appending the current buffer file name to the COMMAND."
+  (interactive)
+  (cc/shell-command-with-color (concat command (buffer-file-name))))
+
 (global-set-key (kbd "H-p") 'cc/open-line-above)
 (global-set-key (kbd "H-n") 'cc/open-line-below)
 (global-set-key (kbd "H-<return>") 'cc/open-line-here)
