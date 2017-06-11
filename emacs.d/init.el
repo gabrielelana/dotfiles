@@ -499,6 +499,7 @@ the beginning of the line."
     (indent-for-tab-command))
   (indent-for-tab-command))
 
+;; TODO: cc/rename-file-and-buffer
 (defun cc/delete-file-and-buffer ()
   "Kill the current buffer and deletes the file it is visiting."
   (interactive)
@@ -518,12 +519,6 @@ the beginning of the line."
     (ansi-color-apply-on-region
      compilation-filter-start (point))))
 
-(global-set-key (kbd "C-c s") (lambda ()
-                                (interactive)
-                                (shell-command (format "rspec --tty --color %s" (buffer-file-name)))
-                                (with-current-buffer (get-buffer " *Echo Area 0*")
-                                  (ansi-color-apply-on-region (point-min) (point-max)))))
-
 (defun cc/shell-command-with-color (command)
   "Run COMMAND in shell and apply ansi escapes for colors."
   (interactive)
@@ -532,14 +527,41 @@ the beginning of the line."
     (ansi-color-apply-on-region (point-min) (point-max))))
 
 (defun cc/shell-command-on-current-file (command)
-  "Run COMMAND in shell appending the current buffer file name to the COMMAND."
+  "Run COMMAND in shell appending the current buffer file name to the COMMAND.
+Like for example if you want to run `rspec` command with some
+options you can do it calling `(cc/shell-command-on-current-file
+\"rspec --tty --color\")`."
   (interactive)
   (cc/shell-command-with-color (concat command (buffer-file-name))))
+
+(defun cc/copy-character-from-around (direction)
+  "Copy one character from previous or below line starting at point."
+  (let (character-to-copy
+        (origin (point))
+        (column-where-to-copy (current-column)))
+    (save-excursion
+      (forward-line direction)
+      (move-to-column column-where-to-copy)
+      (setq character-to-copy (buffer-substring-no-properties (point) (1+ (point)))))
+    (insert character-to-copy)))
+
+(defun cc/copy-character-from-above ()
+  "Copy one character from previous non blank line starting above point."
+  (interactive)
+  (cc/copy-character-from-around -1))
+
+(defun cc/copy-character-from-below ()
+  "Copy one character from previous non blank line starting above point."
+  (interactive)
+  (cc/copy-character-from-around 1))
+
 
 (global-set-key (kbd "H-p") 'cc/open-line-above)
 (global-set-key (kbd "H-n") 'cc/open-line-below)
 (global-set-key (kbd "H-<return>") 'cc/open-line-here)
 (global-set-key (kbd "M-SPC") 'rectangle-mark-mode)
+(global-set-key (kbd "H-u") 'cc/copy-character-from-above)
+(global-set-key (kbd "H-b") 'cc/copy-character-from-below)
 (global-set-key (kbd "C-a") 'cc/smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
