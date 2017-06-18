@@ -625,3 +625,4 @@ options you can do it calling `(cc/shell-command-on-current-file
 
 ;; enable some "dangerous" commands
 (put 'narrow-to-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
