@@ -576,6 +576,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 (global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-line-or-region (- arg))))
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-c D") 'cc/delete-file-and-buffer)
+(global-set-key (kbd "C-x &") 'end-or-call-macro)
 
 ;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
