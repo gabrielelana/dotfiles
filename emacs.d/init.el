@@ -123,6 +123,7 @@
   :commands flycheck-mode
   :config
   (progn
+    (setq flycheck-check-syntax-automatically '(mode-enabled save))
     (setq flycheck-highlighting-mode 'symbols)
     (setq flycheck-indication-mode nil)
     (setq flycheck-mode-line
