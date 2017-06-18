@@ -227,6 +227,10 @@
     (projectile-global-mode)
     (helm-projectile-on)))
 
+(use-package string-inflection
+  :bind (("C-*" . string-inflection-all-cycle))
+  :ensure t)
+
 (use-package yaml-mode
   :ensure t)
 
