@@ -504,18 +504,34 @@ the beginning of the line."
     (indent-for-tab-command))
   (indent-for-tab-command))
 
-;; TODO: cc/rename-file-and-buffer
-(defun cc/delete-file-and-buffer ()
-  "Kill the current buffer and deletes the file it is visiting."
+(defun cc/rename-current-buffer-and-file ()
+  "Renames the file current buffer is visiting and visit it again."
+  (interactive)
+  (let* ((filename (buffer-file-name))
+         (new-filename (read-file-name "Rename to:" (file-name-directory filename) filename)))
+    (if (vc-backend filename)
+        (progn
+          (vc-state-refresh filename (vc-backend filename))
+          (vc-rename-file filename new-filename))
+      (progn
+        (rename-file filename new-filename)
+        (kill-buffer)
+        (find-file new-filename)))
+    (message "Renamed file %s to %s" filename new-filename)))
+
+(defun cc/delete-current-buffer-and-file ()
+  "Kills the current buffer and deletes the file it is visiting."
   (interactive)
   (let ((filename (buffer-file-name)))
     (when filename
       (if (vc-backend filename)
-          (vc-delete-file filename)
+          (progn
+            (vc-state-refresh filename (vc-backend filename))
+            (vc-delete-file filename))
         (progn
           (delete-file filename)
-          (message "Deleted file %s" filename)
-          (kill-buffer))))))
+          (kill-buffer)))
+      (message "Deleted file %s" filename))))
 
 (require 'ansi-color)
 (defun cc/colorize-compilation ()
@@ -575,7 +591,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (global-set-key (kbd "M-n") 'cc/duplicate-line-or-region)
 (global-set-key (kbd "M-p") (lambda (arg) (interactive "p") (cc/duplicate-line-or-region (- arg))))
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-c D") 'cc/delete-file-and-buffer)
+(global-set-key (kbd "C-c D") 'cc/delete-current-buffer-and-file)
+(global-set-key (kbd "C-c R") 'cc/rename-current-buffer-and-file)
 (global-set-key (kbd "C-x &") 'end-or-call-macro)
 
 ;; global hooks
