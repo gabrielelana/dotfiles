@@ -192,6 +192,8 @@
           helm-ff-skip-boring-files t)
     (when (custom-theme-enabled-p 'mustang)
       ;; helm customization for mustang theme
+      (set-face-attribute 'js2-function-param nil :foreground "#7e8aa2")
+      (set-face-attribute 'elixir-attribute-face nil :foreground "#ff9800")
       (set-face-attribute 'helm-selection nil :background "#3c414c" :foreground "#faf4c6")
       (set-face-attribute 'helm-source-header nil :background "#202020" :foreground "#e2e2e5")
       (set-face-attribute 'helm-candidate-number nil :background "#ff9800" :foreground "#202020")
