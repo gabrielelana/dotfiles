@@ -618,6 +618,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (customize-set-variable 'make-backup-files nil)
 ;; don't blink the cursor
 (customize-set-variable 'blink-cursor-mode nil)
+;; when scroll to the bottom/top then place the cursor to the very last/first line
+(customize-set-variable 'scroll-error-top-bottom t)
 ;; invoke commands that use minibuffers even while the minibuffer window is active
 (setq enable-recursive-minibuffers t)
 ;; highlight current line
