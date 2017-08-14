@@ -568,6 +568,18 @@ options you can do it calling `(cc/shell-command-on-current-file
       (setq character-to-copy (buffer-substring-no-properties (point) (1+ (point)))))
     (insert character-to-copy)))
 
+(defun cc/shell-import-variables-from-dot-env-file (&optional directory-path)
+  "Import in current process all environment defined in dot env file."
+  (interactive)
+  (setq directory-path (if (stringp directory-path) directory-path (projectile-project-root)))
+  (let ((dot-env-file-path (concat directory-path "/.env")) env-export-lines env-export)
+    (setq env-export-lines (with-temp-buffer
+                             (insert-file-contents dot-env-file-path)
+                             (split-string (buffer-string) "\n" t)))
+    (dolist (line env-export-lines)
+      (setq env-export (split-string line "[ =]" nil))
+      (setenv (cadr env-export) (car (cddr env-export))))))
+
 (defun cc/copy-character-from-above ()
   "Copy one character from previous non blank line starting above point."
   (interactive)
