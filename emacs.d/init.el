@@ -639,7 +639,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;; when scroll to the bottom/top then place the cursor to the very last/first line
 (customize-set-variable 'scroll-error-top-bottom t)
 ;; invoke commands that use minibuffers even while the minibuffer window is active
-(customize-set-value enable-recursive-minibuffers t)
+(setq enable-recursive-minibuffers t)
 ;; highlight current line
 (global-hl-line-mode +1)
 ;; replace region when you type something and a region is active
@@ -649,8 +649,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (column-number-mode t)
 
 ;; shell-script-mode default configurations
-(customize-set-varialbe sh-basic-offset 2)
-(customize-set-variable sh-indentation 2)
+(setq sh-basic-offset 2)
+(setq sh-indentation 2)
 
 ;; local configuration
 (cc/load-local-machine-configuration)
