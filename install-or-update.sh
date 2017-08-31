@@ -86,6 +86,7 @@ for file in $PWD/zshrc*; do
   ln -sf $file "~/.`basename $file`"
   if [[ $file =~ "localhost" ]]; then
     cp -f $file "~/.`basename $file`"
+  fi  
 done
 zsh ~/.zshrc
 zsh $ZSH/tools/upgrade.sh
