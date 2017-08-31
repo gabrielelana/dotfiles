@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+MONGODB_VERSION=`mongodb-version`
+MONGODB_HOME=$HOME/var/mongodb-$MONGODB_VERSION
+MONGODB_PORT=27017
+
+echo "stopping mongodb on port $MONGODB_PORT..."
+mongo --port $MONGODB_PORT admin --eval 'db.shutdownServer({force: true})' --quiet > /dev/null 2>&1
+
+if [ $? -gt 0 ]; then
+  echo "seems like something went wrong, look at $MONGODB_HOME/logs/mongodb.log"
+  tail -n 100 $MONGODB_HOME/logs/mongodb.log
+  exit 1
+fi
+
+echo "mongodb stopped"
+echo "mongodb was writing log files in $MONGODB_HOME/logs"
+echo "mongodb was writing data files in $MONGODB_HOME/data"
