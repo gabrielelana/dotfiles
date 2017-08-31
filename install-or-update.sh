@@ -87,10 +87,8 @@ for file in $PWD/zshrc*; do
   if [[ $file =~ "localhost" ]]; then
     cp -f $file "~/.`basename $file`"
 done
-if which zsh > /dev/null; then
-  zsh ~/.zshrc
-  zsh $ZSH/tools/upgrade.sh
-fi
+zsh ~/.zshrc
+zsh $ZSH/tools/upgrade.sh
 
 if [ ${flags[without-x]} -eq 0 ]; then
   echo "setup chunkly..."
