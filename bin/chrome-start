@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+if ! which google-chrome-stable > /dev/null; then
+  echo "google-chrome is not installed on this machine"
+  exit 1
+fi
+
+google-chrome-stable --force-device-scale-factor=1.8 &!
