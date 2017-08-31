@@ -80,15 +80,15 @@ echo "setup zsh..."
 if [ ! -d ~/.oh-my-zsh ]; then
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
-export ZSH=~/.oh-my-zsh
-cp -rfu $PWD/zsh/* ~/.oh-my-zsh/custom
+export ZSH=$HOME/.oh-my-zsh
+cp -rfu $PWD/zsh/* $HOME/.oh-my-zsh/custom
 for file in $PWD/zshrc*; do
-  ln -sf $file "~/.`basename $file`"
+  ln -sf $file "$HOME/.`basename $file`"
   if [[ $file =~ "localhost" ]]; then
-    cp -f $file "~/.`basename $file`"
+    cp -f $file "$HOME/.`basename $file`"
   fi  
 done
-zsh ~/.zshrc
+zsh $HOME/.zshrc
 zsh $ZSH/tools/upgrade.sh
 
 if [ ${flags[without-x]} -eq 0 ]; then
