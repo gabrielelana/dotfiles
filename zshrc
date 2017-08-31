@@ -75,6 +75,12 @@ export NVM_DIR="$HOME/.nvm"
   export PATH=$HOME/.cabal/bin:$CABAL_ROOT/bin:$HASKELL_ROOT/bin:$PATH
 }
 
+# ASDF configuration
+[[ -d "$HOME/.asdf" ]] && {
+  source $HOME/.asdf/asdf.sh
+  source $HOME/.asdf/completions/asdf.bash
+}
+
 # Heroku configuration
 [[ -d "/usr/local/heroku/bin" ]] && {
   export PATH=$PATH:/usr/local/heroku/bin
