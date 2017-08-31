@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+if ! which asdf > /dev/null 2>&1; then
+  echo "missing asdf, follow instructions at https://github.com/asdf-vm/asdf"
+  exit 1
+fi
+
+if ! asdf plugin-list | grep postgres > /dev/null 2>&1; then
+  echo "missing asdf postgres plugin, add it with"
+  echo "> asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git"
+  exit 1
+fi
+
+if ! asdf list postgres > /dev/null 2>&1; then
+  echo "missing asdf postgres installation, install it with"
+  POSTGRES_LATEST=`asdf list-all postgres | tail -1`
+  echo "> asdf install postgres $POSTGRES_LATEST"
+  echo "> asdf default postgres $POSTGRES_LATEST"
+  exit 1
+fi
+
+if ! asdf current postgres > /dev/null 2>&1; then
+  echo "missing asdf current version of postgres, set it with"
+  POSTGRES_LATEST=`asdf list postgres | tail -1`
+  echo "> asdf default postgres $POSTGRES_LATEST"
+  exit 1
+fi
