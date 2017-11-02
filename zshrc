@@ -109,16 +109,12 @@ fi
 
 # Load local configuration, aka configuration that is specific for the
 # current machine
+[[ -s "$HOME/.zshrc.localhost" ]] && {
+  source $HOME/.zshrc.localhost
+}
 
 # The following file is under version control so this is where you
 # will put configuration that is stable
-[[ -s "$HOME/.zshrc.`hostname -s`" ]] && {
-  source $HOME/.zshrc.`hostname -s`
-}
-
-# The following file is *not* under version control so this is where
-# you will put volatile configuration or configuration added by
-# external tools
-[[ -s "$HOME/.zshrc.localhost" ]] && {
-  source $HOME/.zshrc.localhost
+[[ -s "$HOME/.zshrc.`hostname -d`" ]] && {
+  source $HOME/.zshrc.`hostname -d`
 }
