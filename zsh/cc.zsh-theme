@@ -43,6 +43,10 @@ if echo $CC_HOSTNAME | grep onebip.com > /dev/null 2>&1 ; then
   CC_HOSTNAME='ONEBIP'
 fi
 
+if echo $CC_HOSTNAME | grep easywelfare.io > /dev/null 2>&1 ; then
+  CC_HOSTNAME='EASYWELFARE'
+fi
+
 if [ "$CC_HOSTNAME" = 'apollo' ]; then
   CC_HOSTNAME=$CC_SYMBOL_HOME
 fi
