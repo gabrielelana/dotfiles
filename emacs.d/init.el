@@ -233,6 +233,12 @@
   :bind (("C-*" . string-inflection-all-cycle))
   :ensure t)
 
+(use-package paredit
+  :ensure t
+  :diminish (paredit-mode . " (P)")
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
+
 (use-package yaml-mode
   :ensure t)
 
