@@ -1,1 +1,0 @@
-/root/.dotfiles/emacs.d
