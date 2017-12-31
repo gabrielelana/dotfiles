@@ -6,7 +6,8 @@
   (progn
     (unless package-archive-contents
       (package-refresh-contents))
-    (package-install 'use-package)))
+    (package-install 'use-package)
+    (package-install 'diminish)))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
