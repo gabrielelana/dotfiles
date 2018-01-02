@@ -601,6 +601,11 @@ options you can do it calling `(cc/shell-command-on-current-file
   (interactive)
   (cc/copy-character-from-around 1))
 
+(defmacro measure-time (&rest body)
+  "Measure the time it takes to evaluate BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (message "%.06fs" (float-time (time-since time)))))
 
 (global-set-key (kbd "H-p") 'cc/open-line-above)
 (global-set-key (kbd "H-n") 'cc/open-line-below)
