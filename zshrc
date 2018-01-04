@@ -1,3 +1,5 @@
+# -*- mode: Shell-script; sh-basic-offset: 2; -*-
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
