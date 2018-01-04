@@ -41,6 +41,12 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 unsetopt correct_all
 
+# ASDF configuration
+[[ -d "$HOME/.asdf" ]] && {
+  source $HOME/.asdf/asdf.sh
+  source $HOME/.asdf/completions/asdf.bash
+}
+
 # Ruby configuration
 [[ -d /usr/local/share/chruby/ ]] && {
   source /usr/local/share/chruby/chruby.sh
@@ -75,12 +81,6 @@ export NVM_DIR="$HOME/.nvm"
   CABAL_LATEST_VERSION=`ls /opt/cabal | sort -r | head -n1`
   CABAL_ROOT="/opt/cabal/$CABAL_LATEST_VERSION"
   export PATH=$HOME/.cabal/bin:$CABAL_ROOT/bin:$HASKELL_ROOT/bin:$PATH
-}
-
-# ASDF configuration
-[[ -d "$HOME/.asdf" ]] && {
-  source $HOME/.asdf/asdf.sh
-  source $HOME/.asdf/completions/asdf.bash
 }
 
 # Heroku configuration
