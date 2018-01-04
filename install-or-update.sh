@@ -107,3 +107,11 @@ if [ ${flags[without-x]} -eq 0 ] && [ -n "$DISPLAY" ]; then
   dconf reset -f "/org/gnome/terminal/"
   cat $PWD/gnome-terminal.ini | dconf load "/org/gnome/terminal/"
 fi
+
+echo "install utilities..."
+
+if [ ! -s $HOME/.mongorc.js ]; then
+  echo "● install mongodb-shell-extensions..."
+  curl -sL https://raw.github.com/gabrielelana/mongodb-shell-extensions/master/released/mongorc.js > ~/.mongorc.js
+fi
+
