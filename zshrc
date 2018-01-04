@@ -100,6 +100,9 @@ alias ".."="cd .."
 }
 
 alias mongo="mongo --quiet"
+
+alias npme='npm --registry http://registry.npmjs.eu'
+alias vim-pure='vim -u ~/.dotfiles/vimrc-sensible --noplugin'
 if `which ack-grep > /dev/null 2>&1`; then
   alias ack=ack-grep
 fi
