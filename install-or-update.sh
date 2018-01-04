@@ -86,10 +86,13 @@ for file in $PWD/zshrc*; do
   ln -sf $file "$HOME/.`basename $file`"
   if [[ $file =~ "localhost" ]]; then
     cp -f $file "$HOME/.`basename $file`"
-  fi  
+  fi
 done
 zsh $HOME/.zshrc
 zsh $ZSH/tools/upgrade.sh
+if [ ! -f $HOME/.zshrc.localhost ]; then
+  echo "# -*- mode: Shell-script; sh-basic-offset: 2; -*-" > $HOME/.zshrc.localhost
+fi
 
 if [ ${flags[without-x]} -eq 0 ]; then
   echo "setup chunkly..."
