@@ -1,5 +1,5 @@
 # fonts
-font pango:pragmatapro 10
+font pango:PragmataPro Mono Regular 10
 
 # borders
 new_window pixel 2
@@ -29,7 +29,7 @@ bindsym $mod+Return exec gnome-terminal --hide-menubar
 bindsym $mod+x kill
 
 # start program launcher
-bindsym $mod+o exec ~/bin/i3-launcher -i -b -nb \$gray1 -nf \$yellow -sb \$yellow -sf \$gray1 -fn "PragmataPro-14"
+bindsym $mod+o exec ~/bin/i3-launcher -i -b -nb \$gray1 -nf \$yellow -sb \$yellow -sf \$gray1 -fn "PragmataPro Mono:regular:size=14"
 
 # change focus
 bindsym $mod+h focus left
@@ -108,7 +108,7 @@ mode "resize" {
 
 bar {
   status_command ~/bin/i3-chunkly-status
-  font pango:pragmatapro ultra-condensed 24
+  font pango:PragmataPro Mono Regular 24
   tray_output none
   colors {
     background $gray1
