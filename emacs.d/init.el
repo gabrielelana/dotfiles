@@ -670,7 +670,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;; appearance
 (setq visible-bell nil)
 (setq inhibit-splash-screen t)
-(set-frame-font "PragmataPro 14")
+(set-frame-font "PragmataPro Mono 14")
 
 ;; enable some "dangerous" commands
 (put 'narrow-to-region 'disabled nil)
