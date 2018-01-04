@@ -53,6 +53,11 @@ compinit
   source $HOME/.asdf/completions/asdf.bash
 }
 
+# Rust configuration
+[[ -d "$HOME/.cargo/bin" ]] && {
+  export PATH=$PATH:$HOME/.cargo/bin
+}
+
 # Ruby configuration
 [[ -d /usr/local/share/chruby/ ]] && {
   source /usr/local/share/chruby/chruby.sh
@@ -73,11 +78,6 @@ export NVM_DIR="$HOME/.nvm"
 # Elixir configuration
 [[ -f "$HOME/.kiex/scripts/kiex" ]] && {
   source "$HOME/.kiex/scripts/kiex"
-}
-
-# Rust configuration
-[[ -d "$HOME/.cargo/bin" ]] && {
-  export PATH=$PATH:$HOME/.cargo/bin
 }
 
 # Haskell configuration
