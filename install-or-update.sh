@@ -82,6 +82,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
 fi
 export ZSH=$HOME/.oh-my-zsh
 cp -rfu $PWD/zsh/* $HOME/.oh-my-zsh/custom
+mkdir -p $HOME/.zsh_functions
 for file in $PWD/zshrc*; do
   ln -sf $file "$HOME/.`basename $file`"
   if [[ $file =~ "localhost" ]]; then

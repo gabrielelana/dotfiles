@@ -41,6 +41,12 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 unsetopt correct_all
 
+# Add local functions
+fpath+=~/.zsh_functions
+
+# Init autocompletion
+compinit
+
 # ASDF configuration
 [[ -d "$HOME/.asdf" ]] && {
   source $HOME/.asdf/asdf.sh
