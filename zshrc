@@ -104,7 +104,6 @@ export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/s
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export PYTHON="python2.7"
 
-
 alias "."="cd ."
 alias ".."="cd .."
 { local alias_from=".."
@@ -122,10 +121,18 @@ if `which ack-grep > /dev/null 2>&1`; then
   alias ack=ack-grep
 fi
 
-# Load local configuration, aka configuration that is specific for the current machine
-[[ -s "$HOME/.zshrc.localhost" ]] && {
-  source $HOME/.zshrc.localhost
-}
+# Load local configuration, aka configuration that is specific for the
+# current machine
+
+# The following file is under version control so this is where you
+# will put configuration that is stable
 [[ -s "$HOME/.zshrc.`hostname -s`" ]] && {
   source $HOME/.zshrc.`hostname -s`
+}
+
+# The following file is *not* under version control so this is where
+# you will put volatile configuration or configuration added by
+# external tools
+[[ -s "$HOME/.zshrc.localhost" ]] && {
+  source $HOME/.zshrc.localhost
 }
