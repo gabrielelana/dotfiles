@@ -115,3 +115,11 @@ if [ ! -s $HOME/.mongorc.js ]; then
   curl -sL https://raw.github.com/gabrielelana/mongodb-shell-extensions/master/released/mongorc.js > ~/.mongorc.js
 fi
 
+if [ ! -f $HOME/bin/pup ]; then
+  echo "● install pup..."
+  PUP_VERSION=0.4.0
+  wget -q https://github.com/ericchiang/pup/releases/download/v${PUP_VERSION}/pup_v${PUP_VERSION}_linux_amd64.zip
+  unzip pup_v${PUP_VERSION}_linux_amd64.zip
+  mv pup $HOME/bin
+  rm -rf pup_v${PUP_VERSION}_linux_amd64.zip
+fi
