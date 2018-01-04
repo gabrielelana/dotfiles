@@ -58,28 +58,6 @@ compinit
   export PATH=$PATH:$HOME/.cargo/bin
 }
 
-# Ruby configuration
-[[ -d /usr/local/share/chruby/ ]] && {
-  source /usr/local/share/chruby/chruby.sh
-  source /usr/local/share/chruby/auto.sh
-}
-
-# OCaml configuration
-[[ -s "$HOME/.opam/opam-init/init.zsh" ]] && {
-  source $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
-}
-
-# NVM configuration
-export NVM_DIR="$HOME/.nvm"
-[[ -d $NVM_DIR ]] && {
-  source $NVM_DIR/nvm.sh
-}
-
-# Elixir configuration
-[[ -f "$HOME/.kiex/scripts/kiex" ]] && {
-  source "$HOME/.kiex/scripts/kiex"
-}
-
 # Haskell configuration
 [[ -d "/opt/ghc" ]] && {
   HASKELL_LATEST_VERSION=`ls /opt/ghc | sort -r | head -n1`
