@@ -242,6 +242,9 @@
 (use-package yaml-mode
   :ensure t)
 
+(use-package csv-mode
+  :ensure t)
+
 (use-package feature-mode
   :ensure t
   :mode "\\.feature\\'")
