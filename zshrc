@@ -58,13 +58,11 @@ compinit
   export PATH=$PATH:$HOME/.cargo/bin
 }
 
-# Haskell configuration
-[[ -d "/opt/ghc" ]] && {
-  HASKELL_LATEST_VERSION=`ls /opt/ghc | sort -r | head -n1`
-  HASKELL_ROOT="/opt/ghc/$HASKELL_LATEST_VERSION"
-  CABAL_LATEST_VERSION=`ls /opt/cabal | sort -r | head -n1`
-  CABAL_ROOT="/opt/cabal/$CABAL_LATEST_VERSION"
-  export PATH=$HOME/.cabal/bin:$CABAL_ROOT/bin:$HASKELL_ROOT/bin:$PATH
+# Haskell (Stack) configuration
+command -v stack >/dev/null && {
+  eval "$(stack --bash-completion-script stack)"
+  alias ghci="stack exec -- ghci"
+  alias ghc="stack exec -- ghc"
 }
 
 # Heroku configuration
@@ -84,7 +82,7 @@ command -v direnv >/dev/null && {
 
 export TERM="xterm-256color"
 export EDITOR="emacs-client"
-export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export PYTHON="python2.7"
 

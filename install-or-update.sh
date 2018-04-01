@@ -70,6 +70,10 @@ cp -f $PWD/vimrc ~/.vimrc
 echo "setup emacs..."
 ln -sf $PWD/emacs.d ~/.emacs.d
 
+echo "setup haskell (stack)..."
+mkdir -p ~/.stack
+cp -rf $PWD/stack ~/.stack
+
 echo "setup zsh..."
 if [ ! -d ~/.oh-my-zsh ]; then
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
