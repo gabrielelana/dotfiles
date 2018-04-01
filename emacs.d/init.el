@@ -353,6 +353,22 @@
     ;; (add-hook 'rust-mode-hook #'yas-minor-mode)
 ;; (add-hook 'rust-mode-hook #'flyspell-prog-mode)))
 
+;; haskell
+;; TODO: take a look at https://github.com/bitemyapp/dotfiles/blob/master/.emacs.d/haskell/hs-lint.el
+(use-package haskell-mode
+  :ensure t)
+
+(use-package intero
+  :hook (haskell-mode . intero-mode)
+  :config (setq flycheck-check-syntax-automatically '(save mode-enabled)))
+
+(when (executable-find "hindent")
+  (use-package hindent
+    :diminish hindent-mode " ↹"
+    :hook (haskell-mode . hindent-mode)
+    :config
+    (setq hindent-reformat-buffer-on-save t)))
+
 ;; elm
 (use-package elm-mode
   :ensure t
