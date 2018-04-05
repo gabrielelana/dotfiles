@@ -6,3 +6,7 @@ if [ $# -eq 0 ]; then
 fi
 
 ssh -XYC -c aes128-gcm@openssh.com,aes256-gcm@openssh.com,arcfour $1 emacs > /dev/null 2>&1 &!
+
+if [ $? -eq 255 ]; then
+  echo 'NOTE: if you see someting like `emacs: standard input is not a tty` then install `xauth` on the target machine'
+fi
