@@ -671,6 +671,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (customize-set-variable 'scroll-error-top-bottom t)
 ;; invoke commands that use minibuffers even while the minibuffer window is active
 (setq enable-recursive-minibuffers t)
+;; do not wait to have fully rendered the buffer before accepting inputs
+(setq redisplay-dont-pause nil)
 ;; highlight current line
 (global-hl-line-mode +1)
 ;; replace region when you type something and a region is active
