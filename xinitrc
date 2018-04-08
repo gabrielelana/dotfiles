@@ -17,8 +17,13 @@ autocutsel -selection PRIMARY -fork &
 xsetroot -solid "#1c1c1c"
 
 # Start VirtualBox client to enable clipboard exchange with host and screen autoresize
-if ! pidof VBoxClient; then
+if command -v VBoxClient >/dev/null; then
    exec sudo VBoxClient --clipboard &
+fi
+
+# Start VMware client to enable clipboard exchange with host
+if command -v vmware-user-suid-wrapper; then
+   exec vmware-user-suid-wrapper &
 fi
 
 # Adjust DPIs
