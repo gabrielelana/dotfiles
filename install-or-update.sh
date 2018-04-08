@@ -58,7 +58,7 @@ if [ ${flags[without-identity]} -eq 0 ]; then
   mkdir -p ~/.ssh
   cp -f $PWD/.dependencies/dotfiles-secrets/ssh/* ~/.ssh
   cp -f $PWD/.dependencies/dotfiles-secrets/netrc ~/.netrc
-  chmod 0400 ~/.ssh/*
+  chmod 0600 ~/.ssh/*
   if [ ! -f ~/.npmrc ]; then
     cp -f $PWD/.dependencies/dotfiles-secrets/npmrc ~/.npmrc
   fi
