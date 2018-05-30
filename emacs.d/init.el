@@ -620,6 +620,13 @@ options you can do it calling `(cc/shell-command-on-current-file
   (interactive)
   (cc/copy-character-from-around 1))
 
+(defun cc/kill-current-file-name ()
+  "Put current buffer file name with extension in kill ring."
+  (interactive)
+  (let ((file-name (buffer-file-name)))
+    (when file-name
+      (kill-new (file-name-nondirectory file-name)))))
+
 (defmacro measure-time (&rest body)
   "Measure the time it takes to evaluate BODY."
   `(let ((time (current-time)))
