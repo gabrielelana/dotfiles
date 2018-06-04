@@ -85,7 +85,17 @@
     (drag-stuff-global-mode 1)))
 
 (use-package org
-  :bind (("C-M-<return>" . org-insert-todo-subheading)))
+  :bind (("C-M-<return>" . org-insert-todo-subheading))
+  :config
+  (setq org-edit-src-content-indentation 0
+        org-src-tab-acts-natively t
+        org-src-fontify-natively nil
+        org-confirm-babel-evaluate nil
+        org-support-shift-select 'always)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (haskell . t))))
 
 (use-package expand-region
   :ensure t
