@@ -84,6 +84,11 @@
     (drag-stuff-define-keys)
     (drag-stuff-global-mode 1)))
 
+;; org stuff
+
+(use-package ob-http
+  :ensure t)
+
 (use-package org
   :bind (("C-M-<return>" . org-insert-todo-subheading))
   :config
@@ -95,7 +100,8 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
-     (haskell . t))))
+     (haskell . t)
+     (http . t))))
 
 (use-package expand-region
   :ensure t
