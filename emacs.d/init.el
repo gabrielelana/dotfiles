@@ -329,7 +329,13 @@
 
 (use-package json-mode
   :ensure t
-  :mode "\\.json$")
+  :mode "\\.json$"
+  :config
+  (add-hook 'json-mode-hook
+            (lambda ()
+              (flycheck-mode +1)
+              (when (executable-find "jsonlint")
+                (flycheck-select-checker 'json-jsonlint)))))
 
 ;; rust --- TODO: racer, clippy, flycheck-rust: navigation between errors doesn't work
 (use-package rust-mode
