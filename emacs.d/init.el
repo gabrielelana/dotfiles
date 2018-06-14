@@ -378,7 +378,15 @@
 ;; haskell
 ;; TODO: take a look at https://github.com/bitemyapp/dotfiles/blob/master/.emacs.d/haskell/hs-lint.el
 (use-package haskell-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq haskell-process-type 'ghci)
+  ;; (setq haskell-process-path-stack "/usr/local/bin/stack")
+  ;; (setq haskell-process-args-stack-ghci "ghci")
+  (setq haskell-process-path-ghci "/usr/local/bin/stack")
+  (setq haskell-process-args-ghci '("ghci"))
+  (setq inferior-haskell-root-dir "/home/coder/tmp")
+  )
 
 (use-package intero
   :hook (haskell-mode . intero-mode)
@@ -729,7 +737,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;; appearance
 (setq visible-bell nil)
 (setq inhibit-splash-screen t)
-(set-frame-font "PragmataPro Mono 14")
+(set-frame-font "PragmataPro Mono 9")
 
 ;; enable some "dangerous" commands
 (put 'narrow-to-region 'disabled nil)
