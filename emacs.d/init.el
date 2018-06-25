@@ -101,7 +101,8 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (haskell . t)
-     (http . t))))
+     (http . t)
+     (sh . t))))
 
 (use-package expand-region
   :ensure t
