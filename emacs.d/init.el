@@ -729,6 +729,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;; diplay line and column number in modeline
 (line-number-mode t)
 (column-number-mode t)
+;; more room in the macro's kill ring
+(setq kmacro-ring-max 100)
 
 ;; shell-script-mode default configurations
 (setq sh-basic-offset 2)
