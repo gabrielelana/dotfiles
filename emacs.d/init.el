@@ -255,24 +255,27 @@
   :config
   (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
 
+; yaml
 (use-package yaml-mode
   :ensure t)
 
+;; csv
 (use-package csv-mode
   :ensure t)
 
+;; gerkin
 (use-package feature-mode
   :ensure t
   :mode "\\.feature\\'")
 
-;; language: Ruby
+;; ruby
 (use-package rspec-mode
   :ensure t
   :init
   (setq rspec-spec-command "rspec")
   (setq rspec-key-command-prefix (kbd "C-c t")))
 
-;; language: Elixir
+;; elixir
 (defun cc/alchemist-do-not-truncate-lines ()
   "Avoid truncate lines in alchemist buffers."
   (interactive)
