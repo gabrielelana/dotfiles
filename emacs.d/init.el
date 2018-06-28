@@ -690,7 +690,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-c D") 'cc/delete-current-buffer-and-file)
 (global-set-key (kbd "C-c R") 'cc/rename-current-buffer-and-file)
-(global-set-key (kbd "C-x &") 'end-or-call-macro)
+(global-set-key (kbd "C-x &") 'kmacro-call-macro)
 (global-set-key (kbd "C-c k f n") #'cc/kill-current-file-name)
 (global-set-key (kbd "C-c k f p") #'cc/kill-current-file-path)
 
