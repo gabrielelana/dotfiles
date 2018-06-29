@@ -192,7 +192,7 @@
      '(git-gutter:deleted-sign "\uf068")
      '(git-gutter:modified-sign "\uf054")
      '(git-gutter:hide-gutter nil))
-    (let ((git-gutter-default-fg "LightGray"))
+    (let ((git-gutter-default-fg "#d3d3d3"))
       (set-face-foreground 'git-gutter:added git-gutter-default-fg)
       (set-face-attribute 'git-gutter:added nil :height 80)
       (set-face-foreground 'git-gutter:deleted git-gutter-default-fg)
