@@ -142,7 +142,8 @@
   :commands flycheck-mode
   :config
   (progn
-    (setq flycheck-check-syntax-automatically '(mode-enabled save))
+    (setq flycheck-check-syntax-automatically '(mode-enabled idle-change save))
+    (setq flycheck-idle-change-delay 3.14)
     (setq flycheck-highlighting-mode 'symbols)
     (setq flycheck-indication-mode nil)
     (setq flycheck-mode-line
@@ -150,7 +151,7 @@
             (pcase flycheck-last-status-change
               (`not-checked " \uf00c")
               (`no-checker " \uf00c[-]")
-              (`errored (propertize " \uf00c[!]" 'face '(:foreground "red")))
+              (`errored (propertize " \uf00c[!]" 'face '(:foreground "#ff0000")))
               (`interrupted " \uf00c[?]")
               (`suspicious " \uf00c[?]")
               (`running " \uf00c[?]")
@@ -159,10 +160,10 @@
                       (n-errors (cdr (assq 'error error-counts)))
                       (n-warnings (cdr (assq 'warning error-counts))))
                  (if (or n-errors n-warnings)
-                     (propertize (format " \uf00c[%s/%s]" (or n-errors 0) (or n-warnings 0))
-                               'face '(:foreground "Tomato"))
-                   (propertize " \uf00c" 'face '(:foreground "LimeGreen"))))))))
-
+                     (propertize
+                      (format " \uf00c[%s/%s]" (or n-errors 0) (or n-warnings 0))
+                      'face '(:foreground "Tomato"))
+                   (propertize " \uf00c" 'face '(:foreground "#32cd32"))))))))
     (push '("*Flycheck errors*" :position bottom :height .4 :stick t) popwin:special-display-config)))
 
 (use-package magit
