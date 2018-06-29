@@ -485,7 +485,7 @@ The name of the loaded file is `<MACHINE-NAME>-configuration.el`
 and must be placed and can be found under
 `~/.emacs.d/local-packages` directory"
   (interactive)
-  (let* ((machine-name (or machine (system-name)))
+  (let* ((machine-name (or machine (string-trim (shell-command-to-string "hostname -f"))))
          (local-configuration-file (concat "~/.emacs.d/local-packages/" machine-name "-configuration.el")))
     (when (file-exists-p local-configuration-file)
       (load-file local-configuration-file))))
