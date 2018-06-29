@@ -86,7 +86,6 @@
     (drag-stuff-global-mode 1)))
 
 ;; org stuff
-
 (use-package ob-http
   :ensure t)
 
