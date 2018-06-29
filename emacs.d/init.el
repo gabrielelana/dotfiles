@@ -258,7 +258,8 @@
 
 ; yaml
 (use-package yaml-mode
-  :ensure t)
+  :ensure t
+  :mode "\\.yaml\\'" "\\.neon\\'")
 
 ;; csv
 (use-package csv-mode
