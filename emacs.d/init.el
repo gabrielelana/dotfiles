@@ -258,6 +258,17 @@
   (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
 
 ; yaml
+;; elisp
+(use-package eval-sexp-fu
+  :ensure t
+  :diminish t
+  :hook (emacs-lisp-mode . eval-sexp-fu-flash-mode)
+  :init
+  (use-package highlight :ensure t)
+  (setq eval-sexp-fu-flash-face 'widget-field)
+  (setq eval-sexp-fu-flash-error-face 'font-lock-warning-face)
+  (setq eval-sexp-fu-flash-duration 0.3))
+
 (use-package yaml-mode
   :ensure t
   :mode "\\.yaml\\'" "\\.neon\\'")
