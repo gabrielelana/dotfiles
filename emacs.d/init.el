@@ -89,6 +89,9 @@
 (use-package ob-http
   :ensure t)
 
+(use-package ob-mongo
+  :ensure t)
+
 (use-package org
   :bind (("C-M-<return>" . org-insert-todo-subheading))
   :config
@@ -102,6 +105,7 @@
    '((emacs-lisp . t)
      (haskell . t)
      (http . t)
+     (mongo . t)
      (sh . t))))
 
 (use-package expand-region
