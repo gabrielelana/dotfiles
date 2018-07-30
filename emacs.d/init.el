@@ -235,10 +235,11 @@
 (use-package projectile
   :ensure t
   :init
+  (setq projectile-keymap-prefix (kbd "C-c p"))
+  :config
   (progn
     (use-package helm-ag :ensure t)
     (use-package helm-projectile :ensure t))
-  :config
   (progn
     ;; TODO: find a better way to configure this
     ;; maybe use `(push directory projectile-globally-ignored-directories)` with a loop?
