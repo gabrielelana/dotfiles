@@ -726,6 +726,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (add-hook 'compilation-filter-hook 'cc/colorize-compilation)
 
 ;; global configuration
+(setq tramp-terminal-type "dumb")
+(setq tramp-default-method "ssh")
 ;; always indent after yank
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
