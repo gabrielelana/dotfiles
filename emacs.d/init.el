@@ -106,6 +106,7 @@
      (haskell . t)
      (http . t)
      (mongo . t)
+     (sql . t)
      (sh . t))))
 
 (use-package expand-region
