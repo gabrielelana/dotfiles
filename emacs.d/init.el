@@ -42,15 +42,16 @@
   :defer t
   :config
   (progn
-    ;; flycheck customization
+    ;; flycheck faces customization
     (set-face-attribute 'flycheck-error nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
     (set-face-attribute 'flycheck-warning nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
     (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
-    ;; mode-line customization
-    (set-face-attribute 'font-lock-warning-face nil :background "#202020" :foreground "#ff6523" )
+    ;; mode-line faces customization
     (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
     (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
-    (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")))
+    (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")
+    ;; standard faces customization
+    (set-face-attribute 'font-lock-warning-face nil :background "#202020" :foreground "#ff6523")))
 (use-package tango-plus-theme
   :ensure t
   :defer t
