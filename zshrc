@@ -40,6 +40,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 unsetopt correct_all
+setopt sh_word_split # split words according to IFS like bash
 
 # Add local functions
 fpath+=~/.zsh_functions
