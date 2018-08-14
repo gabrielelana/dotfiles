@@ -708,7 +708,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 (global-set-key (kbd "H-<return>") 'cc/open-line-here)
 (global-set-key (kbd "M-SPC") 'rectangle-mark-mode)
 (global-set-key (kbd "H-u") 'cc/copy-character-from-above)
-(global-set-key (kbd "H-b") 'cc/copy-character-from-below)
+(global-set-key (kbd "H-d") 'cc/copy-character-from-below)
 (global-set-key (kbd "C-a") 'cc/smarter-move-beginning-of-line)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-^") 'cc/join-with-next-line)
