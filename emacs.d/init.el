@@ -146,7 +146,7 @@
   :commands flycheck-mode
   :config
   (progn
-    (setq flycheck-check-syntax-automatically '(mode-enabled idle-change save))
+    (setq flycheck-check-syntax-automatically '(mode-enabled save))
     (setq flycheck-idle-change-delay 3.14)
     (setq flycheck-highlighting-mode 'symbols)
     (setq flycheck-indication-mode nil)
