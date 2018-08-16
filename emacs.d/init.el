@@ -772,6 +772,9 @@ options you can do it calling `(cc/shell-command-on-current-file
 (setq-default bidi-display-reordering nil)
 ;;; fully redraw the display before processing input
 (setq redisplay-dont-pause t)
+;;; alleviate bug of emacs-26 see https://github.com/emacs-helm/helm/issues/1976
+(when (eq emacs-major-version 26)
+  (setq x-wait-for-event-timeout nil))
 
 ;; shell-script-mode default configurations
 (setq sh-basic-offset 2)
