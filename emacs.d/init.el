@@ -223,9 +223,8 @@
       (set-face-attribute 'helm-source-header nil :background "#202020" :foreground "#e2e2e5")
       (set-face-attribute 'helm-candidate-number nil :background "#ff9800" :foreground "#202020")
       (set-face-attribute 'helm-header nil :background "#202020" :foreground "#808080"))
-    ;; makes helm and popwin play nice together
     (setq helm-split-window-preferred-function 'ignore)
-    (setq display-buffer-function 'popwin:display-buffer)
+    (setq display-buffer-function nil)
     (push '("^\*helm.+\*$" :regexp t :position bottom :height .3 :noselect t) popwin:special-display-config)
     (helm-mode))
   :bind
