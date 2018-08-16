@@ -768,6 +768,10 @@ options you can do it calling `(cc/shell-command-on-current-file
 (column-number-mode t)
 ;; more room in the macro's kill ring
 (setq kmacro-ring-max 100)
+;;; better performance sacrificing right-to-left languages
+(setq-default bidi-display-reordering nil)
+;;; fully redraw the display before processing input
+(setq redisplay-dont-pause t)
 
 ;; shell-script-mode default configurations
 (setq sh-basic-offset 2)
