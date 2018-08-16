@@ -276,7 +276,10 @@
   (use-package highlight :ensure t)
   (setq eval-sexp-fu-flash-face 'widget-field)
   (setq eval-sexp-fu-flash-error-face 'font-lock-warning-face)
-  (setq eval-sexp-fu-flash-duration 0.3))
+  (setq eval-sexp-fu-flash-duration 0.3)
+  :config
+  ;; in theory it should be called already, in practice it isn't
+  (esf-initialize))
 
 ;; yaml
 (use-package yaml-mode
