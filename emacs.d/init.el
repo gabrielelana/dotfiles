@@ -97,9 +97,11 @@
 (use-package org
   :bind (("C-M-<return>" . org-insert-todo-subheading))
   :ensure org-plus-contrib
+  :pin org
   :config
   (setq org-edit-src-content-indentation 0
         org-src-tab-acts-natively t
+        org-use-property-inheritance t
         org-src-fontify-natively nil
         org-confirm-babel-evaluate nil
         org-support-shift-select 'always)
