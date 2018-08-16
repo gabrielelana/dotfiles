@@ -110,7 +110,7 @@
      (http . t)
      (mongo . t)
      (sql . t)
-     (sh . t))))
+     (shell . t))))
 
 (use-package expand-region
   :ensure t
