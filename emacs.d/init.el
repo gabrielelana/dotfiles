@@ -1,5 +1,6 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -95,6 +96,7 @@
 
 (use-package org
   :bind (("C-M-<return>" . org-insert-todo-subheading))
+  :ensure org-plus-contrib
   :config
   (setq org-edit-src-content-indentation 0
         org-src-tab-acts-natively t
