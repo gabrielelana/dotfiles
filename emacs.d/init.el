@@ -99,7 +99,7 @@
 
 (use-package org
   :bind (("C-M-<return>" . org-insert-todo-subheading))
-  :ensure org-plus-contrib
+  :ensure t
   :pin org
   :config
   (setq org-edit-src-content-indentation 0
@@ -116,6 +116,20 @@
      (mongo . t)
      (sql . t)
      (shell . t))))
+
+(use-package org-drill
+  :ensure org-plus-contrib
+  :hook org-mode
+  :after org
+  :init
+  (require 'cl)                         ; avoid void-function copy-list error
+  :config
+  (add-to-list 'org-modules 'org-drill)
+  (setq org-drill-add-random-noise-to-intervals-p t)
+  (setq org-drill-hint-separator "||")
+  (setq org-drill-left-cloze-delimiter "<[")
+  (setq org-drill-right-cloze-delimiter "]>")
+  (setq org-drill-learn-fraction 0.25))
 
 (use-package expand-region
   :ensure t
