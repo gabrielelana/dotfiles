@@ -3,14 +3,17 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
+;;; install and configure use-package
 (unless (package-installed-p 'use-package)
   (progn
     (unless package-archive-contents
       (package-refresh-contents))
     (package-install 'use-package)
     (package-install 'diminish)))
-
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
 (setq use-package-always-ensure t)
 
 ;; put custom configurations aside
