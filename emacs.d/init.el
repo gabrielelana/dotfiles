@@ -3,6 +3,9 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
+;;; TODO: change top level comments with 3 semicolon
+;;; TODO: remove every ~:ensure t~ because useless
+
 ;;; install and configure use-package
 (unless (package-installed-p 'use-package)
   (progn
