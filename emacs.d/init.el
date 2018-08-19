@@ -78,6 +78,7 @@
   :config
   (progn
     (push '("*Occur*" :position bottom :height .3) popwin:special-display-config)
+    (push '("*Org Select*" :position bottom :height .3) popwin:special-display-config)
     (push '("*compilation*" :position right :width 80 :noselect t) popwin:special-display-config)
     (popwin-mode 1)))
 
@@ -101,6 +102,7 @@
   :bind (("C-M-<return>" . org-insert-todo-subheading))
   :ensure t
   :pin org
+  :bind (("C-c c" . org-capture))
   :config
   (setq org-edit-src-content-indentation 0
         org-src-tab-acts-natively t
@@ -115,6 +117,17 @@
                                    ("blocked" . ?b)
                                    ("jira" . ?j)
                                    ("trello" . ?l)))
+  ;; TODO: command to jump to org-capture-last-stored instead of "C-x r b bookmark <RET>"
+  ;; TODO: current-project-file+ask-headline function
+  ;; TODO: (function (current-project-file+ask-headline "drill.org"))
+  (setq org-capture-templates
+        '(("d" "Flash Cards")
+          ("ds" "Flash Card with Short Question and Single Answer"
+           entry (file+headline "~/.drill.org" "Unfiled")
+           "** %^{Question} :drill:\n*** Answer\n    %?")
+          ("dl" "Flash Card with Long Question and Single Answer"
+           entry (file+headline "~/.drill.org" "Unfiled")
+           "** %^{Title} :drill:\n%   ^{Question}\n*** Answer\n    %?")))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
