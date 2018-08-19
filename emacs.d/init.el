@@ -151,6 +151,7 @@
   (setq org-drill-right-cloze-delimiter "]>")
   (setq org-drill-learn-fraction 0.25))
 
+;;; general utility
 (use-package expand-region
   :ensure t
   :bind (("M-]" . er/expand-region)
