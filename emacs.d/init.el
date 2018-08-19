@@ -108,6 +108,13 @@
         org-src-fontify-natively nil
         org-confirm-babel-evaluate nil
         org-support-shift-select 'always)
+  (setq org-tag-persistent-alist '(("drill" . ?r)
+                                   ("doing" . ?d)
+                                   ("next" . ?n)
+                                   ("today" . ?t)
+                                   ("blocked" . ?b)
+                                   ("jira" . ?j)
+                                   ("trello" . ?l)))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
