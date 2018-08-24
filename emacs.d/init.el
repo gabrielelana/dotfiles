@@ -516,30 +516,46 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "pandoc --from markdown_github -t html5 -s"))
 
-;; php
-(defun --php-setup ()
-  (c-set-offset 'case-label '+)
-  (modify-syntax-entry ?$ "w" php-mode-syntax-table)
-  (local-set-key (kbd "C-c i") 'php-use-at-point)
-  (local-set-key (kbd "C-c s") 'php-normalize-use-region)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(mode-enabled save))
-  (let ((phpstan (executable-find "phpstan")))
-    (if (not phpstan)
-        (user-error "Unable to find phpstan executable, maybe it is not installed?")
-      (setq-local phpstan-level 'max)
-      (setq-local phpstan-executable phpstan)
-      (flycheck-select-checker 'phpstan))))
-
+;;; php
 (use-package php-mode
   :ensure t
   :mode "\\.php\\'"
   :init
-  (use-package psysh :ensure t)
-  (use-package phpunit :ensure t)
-  (use-package flycheck-phpstan :ensure t)
-  (use-package php-functions :ensure nil :load-path "local-packages/")
-  (add-hook 'php-mode-hook #'--php-setup))
+  (defun cc/php-setup-php-mode ()
+    (c-set-offset 'case-label '+)
+    (modify-syntax-entry ?$ "w" php-mode-syntax-table)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(mode-enabled save)))
+  (add-hook 'php-mode-hook #'cc/php-setup-php-mode))
+
+;;; TODO psysh
+;;; (use-package psysh :ensure t)
+
+(use-package phpunit
+  :after php-mode)
+
+(use-package phpactor
+  :after php-mode)
+
+(use-package flycheck-phpstan
+  :after php-mode
+  :init
+  (defun cc/php-setup-phpstan ()
+    (let ((phpstan (executable-find "phpstan")))
+      (when (not phpstan)
+        (user-error "Unable to find phpstan executable, maybe it is not installed?"))
+      (setq-local phpstan-level 'max)
+      (setq-local phpstan-executable phpstan)
+      (flycheck-select-checker 'phpstan)))
+  (add-hook 'php-mode-hook #'cc/php-setup-phpstan))
+
+(use-package php-functions
+  :load-path "local-packages/"
+  :ensure nil
+  :after php-mode
+  :bind (:map php-mode-map
+              ("C-c i" . 'php-use-at-point)
+              ("C-c s" . 'php-normalize-use-region)))
 
 ;; chunkly
 (use-package chunkly-mode
