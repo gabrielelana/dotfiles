@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# contributor : Gabriele Lana
+# name : Snippet
+# key: sn
+# uuid: 84ccce1e-9741-467b-8aa2-d4ca9c8b3c9c
+# --
+# contributor: Gabriele Lana
+# name : $1
+# key : $2
+# uuid: `(uuidgen-4)`
+# --
+$0
