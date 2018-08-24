@@ -3,7 +3,6 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-;;; TODO: change top level comments with 3 semicolon
 ;;; TODO: remove every ~:ensure t~ because useless
 
 ;;; install and configure use-package
@@ -19,25 +18,25 @@
 (require 'bind-key)
 (setq use-package-always-ensure t)
 
-;; put custom configurations aside
+;;; put custom configurations aside
 (setq custom-file "~/.emacs.d/custom.el")
 (when (not (file-exists-p custom-file))
   (write-region "" nil custom-file))
 (load custom-file)
 
-;; start the server if not already started
+;;; start the server if not already started
 (load "server")
 (unless (server-running-p) (server-start))
 
-;; libraries
+;;; libraries
 (use-package s :ensure t)
 (use-package f :ensure t)
 
-;; default configuration
+;;; default configuration
 (use-package better-defaults :ensure t)
 (use-package scratch :ensure t)
 
-;; themes
+;;; themes
 (use-package monokai-theme :ensure t :defer t)
 (use-package darkokai-theme :ensure t :defer t)
 (use-package solarized-theme :ensure t :defer t)
@@ -68,12 +67,12 @@
     (set-face-attribute 'flycheck-error nil :box t :underline nil)
     (set-face-attribute 'flycheck-warning nil :box t :underline nil)
     (set-face-attribute 'flycheck-info nil :box t :underline nil)))
-;; must load the theme before specific package customization will take place
+;;; must load the theme before specific package customization will take place
 (load-theme 'mustang t) ;; dark default theme *****
-;; (load-theme 'github t) ;; light theme *****
-;; (load-theme 'apropospriate-light t) ;; light theme ***
-;; (load-theme 'material-light t) ;; light theme ***
-;; (load-theme 'tango-plus t) ;; dark theme ****
+;;; (load-theme 'github t) ;; light theme *****
+;;; (load-theme 'apropospriate-light t) ;; light theme ***
+;;; (load-theme 'material-light t) ;; light theme ***
+;;; (load-theme 'tango-plus t) ;; dark theme ****
 
 (use-package popwin
   :ensure t
@@ -94,7 +93,7 @@
     (drag-stuff-define-keys)
     (drag-stuff-global-mode 1)))
 
-;; org stuff
+;;; org stuff
 (use-package ob-http
   :ensure t)
 
@@ -315,7 +314,7 @@
   :config
   (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
 
-;; elisp
+;;; elisp
 (use-package eval-sexp-fu
   :ensure t
   :diminish t
@@ -329,28 +328,28 @@
   ;; in theory it should be called already, in practice it isn't
   (esf-initialize))
 
-;; yaml
+;;; yaml
 (use-package yaml-mode
   :ensure t
   :mode "\\.yaml\\'" "\\.neon\\'")
 
-;; csv
+;;; csv
 (use-package csv-mode
   :ensure t)
 
-;; gerkin
+;;; gerkin
 (use-package feature-mode
   :ensure t
   :mode "\\.feature\\'")
 
-;; ruby
+;;; ruby
 (use-package rspec-mode
   :ensure t
   :init
   (setq rspec-spec-command "rspec")
   (setq rspec-key-command-prefix (kbd "C-c t")))
 
-;; elixir
+;;; elixir
 (defun cc/alchemist-do-not-truncate-lines ()
   "Avoid truncate lines in alchemist buffers."
   (interactive)
@@ -389,7 +388,7 @@
                                      (flycheck-mix-setup)))
     (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
 
-;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if eslint executable not found
+;;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if eslint executable not found
 (use-package js2-mode
   :ensure t
   :mode ("\\.js$" . js2-mode)
@@ -421,7 +420,7 @@
               (when (executable-find "jsonlint")
                 (flycheck-select-checker 'json-jsonlint)))))
 
-;; rust --- TODO: racer, clippy, flycheck-rust: navigation between errors doesn't work
+;;; rust --- TODO: racer, clippy, flycheck-rust: navigation between errors doesn't work
 (use-package rust-mode
   :ensure t
   :mode ("\\.rs$" . rust-mode)
@@ -451,10 +450,10 @@
     (add-hook 'rust-mode-hook #'flycheck-mode)
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
     ;; (add-hook 'rust-mode-hook #'yas-minor-mode)
-;; (add-hook 'rust-mode-hook #'flyspell-prog-mode)))
+;;; (add-hook 'rust-mode-hook #'flyspell-prog-mode)))
 
-;; haskell
-;; TODO: take a look at https://github.com/bitemyapp/dotfiles/blob/master/.emacs.d/haskell/hs-lint.el
+;;; haskell
+;;; TODO: take a look at https://github.com/bitemyapp/dotfiles/blob/master/.emacs.d/haskell/hs-lint.el
 (use-package haskell-mode
   :ensure t
   :config
@@ -477,7 +476,7 @@
     :config
     (setq hindent-reformat-buffer-on-save t)))
 
-;; elm
+;;; elm
 (use-package elm-mode
   :ensure t
   :mode ("\\.elm'" . elm-mode)
@@ -495,19 +494,19 @@
                              (setq flycheck-check-syntax-automatically '(mode-enabled save))
                              (flycheck-elm-setup))))
 
-;; clojure
+;;; clojure
 (use-package cider)
 
-;; toml
+;;; toml
 (use-package toml-mode
   :ensure t
   :mode ("\\.toml$" . toml-mode))
 
-;; dockerfile
+;;; dockerfile
 (use-package dockerfile-mode
   :ensure t)
 
-;; markdown
+;;; markdown
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -557,14 +556,14 @@
               ("C-c i" . 'php-use-at-point)
               ("C-c s" . 'php-normalize-use-region)))
 
-;; chunkly
+;;; chunkly
 (use-package chunkly-mode
   :ensure nil
   :commands (chunkly-mode)
   :load-path "local-packages/"
   :mode ("\\.chunkly/[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\.log\\'" . chunkly-mode))
 
-;; functions
+;;; functions
 (defun cc/load-local-machine-configuration (&optional machine)
   "Load configuration of the current machine or for MACHINE.
 
@@ -799,45 +798,45 @@ options you can do it calling `(cc/shell-command-on-current-file
 (global-set-key (kbd "C-c k f n") #'cc/kill-current-file-name)
 (global-set-key (kbd "C-c k f p") #'cc/kill-current-file-path)
 
-;; global hooks
+;;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'compilation-filter-hook 'cc/colorize-compilation)
 
-;; global configuration
+;;; global configuration
 (setq tramp-terminal-type "dumb")
 (setq tramp-default-method "ssh")
-;; always indent after yank
+;;; always indent after yank
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
            (and (not current-prefix-arg)
                 (not (member major-mode '()))
                 (let ((mark-even-if-inactive transient-mark-mode))
                   (indent-region (region-beginning) (region-end) nil))))))
-;; use UTF-8 everywhere
+;;; use UTF-8 everywhere
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-;; ask `y or n' rather than `yes or no'
+;;; ask `y or n' rather than `yes or no'
 (defalias 'yes-or-no-p 'y-or-n-p)
-;; don't backup files
+;;; don't backup files
 (customize-set-variable 'auto-save-default nil)
 (customize-set-variable 'make-backup-files nil)
-;; don't blink the cursor
+;;; don't blink the cursor
 (customize-set-variable 'blink-cursor-mode nil)
-;; when scroll to the bottom/top then place the cursor to the very last/first line
+;;; when scroll to the bottom/top then place the cursor to the very last/first line
 (customize-set-variable 'scroll-error-top-bottom t)
-;; invoke commands that use minibuffers even while the minibuffer window is active
+;;; invoke commands that use minibuffers even while the minibuffer window is active
 (setq enable-recursive-minibuffers t)
-;; do not wait to have fully rendered the buffer before accepting inputs
+;;; do not wait to have fully rendered the buffer before accepting inputs
 (setq redisplay-dont-pause nil)
-;; highlight current line
+;;; highlight current line
 (global-hl-line-mode +1)
-;; replace region when you type something and a region is active
+;;; replace region when you type something and a region is active
 (delete-selection-mode)
-;; diplay line and column number in modeline
+;;; diplay line and column number in modeline
 (line-number-mode t)
 (column-number-mode t)
-;; more room in the macro's kill ring
+;;; more room in the macro's kill ring
 (setq kmacro-ring-max 100)
 ;;; better performance sacrificing right-to-left languages
 (setq-default bidi-display-reordering nil)
@@ -847,19 +846,19 @@ options you can do it calling `(cc/shell-command-on-current-file
 (when (eq emacs-major-version 26)
   (setq x-wait-for-event-timeout nil))
 
-;; shell-script-mode default configurations
+;;; shell-script-mode default configurations
 (setq sh-basic-offset 2)
 (setq sh-indentation 2)
 
-;; local configuration
+;;; local configuration
 (cc/load-local-machine-configuration)
 
-;; appearance
+;;; appearance
 (setq visible-bell nil)
 (setq inhibit-splash-screen t)
 (set-frame-font "PragmataPro Mono 14")
 
-;; enable some "dangerous" commands
+;;; enable some "dangerous" commands
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
