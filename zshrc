@@ -117,3 +117,7 @@ fi
 [[ -s "$HOME/.zshrc.`hostname -d`" ]] && {
   source $HOME/.zshrc.`hostname -d`
 }
+
+if [ ! -z "$INSIDE_EMACS" ]; then
+  export PS1='$ '
+fi
