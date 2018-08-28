@@ -3,8 +3,6 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-;;; TODO: remove every ~:ensure t~ because useless
-
 ;;; install and configure use-package
 (unless (package-installed-p 'use-package)
   (progn
@@ -16,6 +14,8 @@
   (require 'use-package))
 (require 'diminish)
 (require 'bind-key)
+
+;;; configure use-package
 (setq use-package-always-ensure t)
 
 ;;; put custom configurations aside
@@ -29,22 +29,21 @@
 (unless (server-running-p) (server-start))
 
 ;;; libraries
-(use-package s :ensure t)
-(use-package f :ensure t)
+(use-package s)
+(use-package f)
 
 ;;; default configuration
-(use-package better-defaults :ensure t)
-(use-package scratch :ensure t)
+(use-package better-defaults)
+(use-package scratch)
 
 ;;; themes
-(use-package monokai-theme :ensure t :defer t)
-(use-package darkokai-theme :ensure t :defer t)
-(use-package solarized-theme :ensure t :defer t)
-(use-package material-theme :ensure t :defer t)
-(use-package apropospriate-theme :ensure t :defer t)
-(use-package github-theme :ensure t :defer t)
+(use-package monokai-theme :defer t)
+(use-package darkokai-theme :defer t)
+(use-package solarized-theme :defer t)
+(use-package material-theme :defer t)
+(use-package apropospriate-theme :defer t)
+(use-package github-theme :defer t)
 (use-package mustang-theme
-  :ensure t
   :defer t
   :config
   (progn
@@ -59,7 +58,6 @@
     ;; standard faces customization
     (set-face-attribute 'font-lock-warning-face nil :background "#202020" :foreground "#ff6523")))
 (use-package tango-plus-theme
-  :ensure t
   :defer t
   :config
   (progn
@@ -75,7 +73,6 @@
 ;;; (load-theme 'tango-plus t) ;; dark theme ****
 
 (use-package popwin
-  :ensure t
   :diminish popwin
   :config
   (progn
@@ -85,7 +82,6 @@
     (popwin-mode 1)))
 
 (use-package drag-stuff
-  :ensure t
   :diminish drag " ⇅"
   :config
   (progn
@@ -94,15 +90,12 @@
     (drag-stuff-global-mode 1)))
 
 ;;; org stuff
-(use-package ob-http
-  :ensure t)
+(use-package ob-http)
 
-(use-package ob-mongo
-  :ensure t)
+(use-package ob-mongo)
 
 (use-package org
   :bind (("C-M-<return>" . org-insert-todo-subheading))
-  :ensure t
   :pin org
   :bind (("C-c c" . org-capture))
   :config
@@ -155,12 +148,10 @@
 
 ;;; general utility
 (use-package expand-region
-  :ensure t
   :bind (("M-]" . er/expand-region)
          ("M-[" . er/contract-region)))
 
 (use-package multiple-cursors
-  :ensure t
   :bind (("C-c m n" . mc/mark-next-like-this)
          ("M-\\" . mc/mark-next-like-this)
          ("C-c m p" . mc/mark-previous-like-this)
@@ -170,24 +161,20 @@
   (setq mc/always-run-for-all t))
 
 (use-package visual-regexp
-  :ensure t
   :bind (("C-c v r" . vr/replace)
          ("C-c v q" . vr/query-replace)
          ("C-c v m" . vr/mc-mark)))
 
 (use-package rainbow-mode
-  :ensure t
   :diminish rainbow-mode)
 
 (use-package exec-path-from-shell
-  :ensure t
   :config
   (progn
     (exec-path-from-shell-initialize)
     (setq exec-path-from-shell-check-startup-files nil)))
 
 (use-package flycheck
-  :ensure t
   :commands flycheck-mode
   :config
   (progn
@@ -217,16 +204,13 @@
 
 (use-package magit
   :bind (("C-c g s" . magit-status)
-         ("H-s" . magit-status))
-  :ensure t)
+         ("H-s" . magit-status)))
 
 (use-package git-timemachine
   :bind (("C-c g t" . git-timemachine)
-         ("H-t" . git-timemachine))
-  :ensure t)
+         ("H-t" . git-timemachine)))
 
 (use-package git-gutter
-  :ensure t
   :diminish git-gutter-mode
   :bind (("C-c g n" . git-gutter:next-hunk)
          ("C-c g p" . git-gutter:previous-hunk)
@@ -250,7 +234,6 @@
       (set-face-attribute 'git-gutter:modified nil :height 80))))
 
 (use-package helm
-  :ensure t
   :diminish helm-mode
   :config
   (progn
@@ -277,13 +260,12 @@
    ("M-x" . helm-M-x)))
 
 (use-package projectile
-  :ensure t
   :init
   (setq projectile-keymap-prefix (kbd "C-c p"))
   :config
   (progn
-    (use-package helm-ag :ensure t)
-    (use-package helm-projectile :ensure t))
+    (use-package helm-ag)
+    (use-package helm-projectile))
   (progn
     ;; TODO: find a better way to configure this
     ;; maybe use `(push directory projectile-globally-ignored-directories)` with a loop?
@@ -298,29 +280,25 @@
     (helm-projectile-on)))
 
 (use-package string-inflection
-  :bind (("C-*" . string-inflection-all-cycle))
-  :ensure t)
+  :bind (("C-*" . string-inflection-all-cycle)))
 
 (use-package yasnippet
-  :ensure t
   :init
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   :config
   (yas-global-mode 1))
 
 (use-package paredit
-  :ensure t
   :diminish (paredit-mode . " (P)")
   :config
   (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode))
 
 ;;; elisp
 (use-package eval-sexp-fu
-  :ensure t
   :diminish t
   :hook (emacs-lisp-mode . eval-sexp-fu-flash-mode)
   :init
-  (use-package highlight :ensure t)
+  (use-package highlight)
   (setq eval-sexp-fu-flash-face 'widget-field)
   (setq eval-sexp-fu-flash-error-face 'font-lock-warning-face)
   (setq eval-sexp-fu-flash-duration 0.3)
@@ -330,21 +308,17 @@
 
 ;;; yaml
 (use-package yaml-mode
-  :ensure t
   :mode "\\.yaml\\'" "\\.neon\\'")
 
 ;;; csv
-(use-package csv-mode
-  :ensure t)
+(use-package csv-mode)
 
 ;;; gerkin
 (use-package feature-mode
-  :ensure t
   :mode "\\.feature\\'")
 
 ;;; ruby
 (use-package rspec-mode
-  :ensure t
   :init
   (setq rspec-spec-command "rspec")
   (setq rspec-key-command-prefix (kbd "C-c t")))
@@ -358,14 +332,11 @@
       (with-current-buffer buffer
         (setq-local truncate-lines nil)))))
 
-(use-package elixir-mode
-  :ensure t)
+(use-package elixir-mode)
 
-(use-package flycheck-mix
-  :ensure t)
+(use-package flycheck-mix)
 
 (use-package alchemist
-  :ensure t
   :diminish alchemist "Alchemist"
   :bind (("C-c a a" . cc/alchemist-do-not-truncate-lines))
   :init
@@ -390,7 +361,6 @@
 
 ;;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if eslint executable not found
 (use-package js2-mode
-  :ensure t
   :mode ("\\.js$" . js2-mode)
   :config
   (progn
@@ -411,7 +381,6 @@
           js2-use-font-lock-faces t)))
 
 (use-package json-mode
-  :ensure t
   :mode "\\.json$"
   :config
   (add-hook 'json-mode-hook
@@ -422,7 +391,6 @@
 
 ;;; rust --- TODO: racer, clippy, flycheck-rust: navigation between errors doesn't work
 (use-package rust-mode
-  :ensure t
   :mode ("\\.rs$" . rust-mode)
   :bind (("C-c <tab>" . rust-format-buffer))
   :config
@@ -430,7 +398,6 @@
     (setq rust-format-on-save t)))
 
 (use-package cargo
-  :ensure t
   :diminish cargo-minor-mode
   :commands cargo-minor-mode
   :init
@@ -444,7 +411,6 @@
     (add-hook 'rust-mode-hook #'cargo-minor-mode)))
 
 (use-package flycheck-rust
-  :ensure t
   :init
   (progn
     (add-hook 'rust-mode-hook #'flycheck-mode)
@@ -455,15 +421,13 @@
 ;;; haskell
 ;;; TODO: take a look at https://github.com/bitemyapp/dotfiles/blob/master/.emacs.d/haskell/hs-lint.el
 (use-package haskell-mode
-  :ensure t
   :config
   (setq haskell-process-type 'ghci)
   ;; (setq haskell-process-path-stack "/usr/local/bin/stack")
   ;; (setq haskell-process-args-stack-ghci "ghci")
   (setq haskell-process-path-ghci "/usr/local/bin/stack")
   (setq haskell-process-args-ghci '("ghci"))
-  (setq inferior-haskell-root-dir "/home/coder/tmp")
-  )
+  (setq inferior-haskell-root-dir "/home/coder/tmp"))
 
 (use-package intero
   :hook (haskell-mode . intero-mode)
@@ -478,7 +442,6 @@
 
 ;;; elm
 (use-package elm-mode
-  :ensure t
   :mode ("\\.elm'" . elm-mode)
   :config
   (progn
@@ -487,7 +450,6 @@
     (setq elm-format-on-save t)))
 
 (use-package flycheck-elm
-  :ensure t
   :init
   (add-hook 'elm-mode-hook (lambda ()
                              (flycheck-mode)
@@ -499,16 +461,13 @@
 
 ;;; toml
 (use-package toml-mode
-  :ensure t
   :mode ("\\.toml$" . toml-mode))
 
 ;;; dockerfile
-(use-package dockerfile-mode
-  :ensure t)
+(use-package dockerfile-mode)
 
 ;;; markdown
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -517,7 +476,6 @@
 
 ;;; php
 (use-package php-mode
-  :ensure t
   :mode "\\.php\\'"
   :init
   (defun cc/php-setup-php-mode ()
@@ -528,7 +486,7 @@
   (add-hook 'php-mode-hook #'cc/php-setup-php-mode))
 
 ;;; TODO psysh
-;;; (use-package psysh :ensure t)
+;;; (use-package psysh)
 
 (use-package phpunit
   :after php-mode)
