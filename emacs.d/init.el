@@ -31,6 +31,7 @@
 ;;; libraries
 (use-package s)
 (use-package f)
+(use-package uuidgen)
 
 ;;; default configuration
 (use-package better-defaults)
