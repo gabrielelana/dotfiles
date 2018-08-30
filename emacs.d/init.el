@@ -507,9 +507,9 @@
   (add-hook 'php-mode-hook #'cc/php-setup-phpstan))
 
 (use-package php-functions
-  :load-path "local-packages/"
   :ensure nil
   :after php-mode
+  :load-path "local-packages/"
   :bind (:map php-mode-map
               ("C-c i" . 'php-use-at-point)
               ("C-c s" . 'php-normalize-use-region)))
