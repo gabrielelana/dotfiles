@@ -735,6 +735,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (defalias 'atomp 'atom)
 (defalias 'file-name-without-extension 'file-name-sans-extension)
 (defalias 'file-name-without-directory 'file-name-nondirectory)
+(defalias 'buffer-basename 'buffer-base-name)
+(defalias 'buffer-filename 'buffer-file-name)
 
 (global-set-key (kbd "H-p") 'cc/open-line-above)
 (global-set-key (kbd "H-n") 'cc/open-line-below)
