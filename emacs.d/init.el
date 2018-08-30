@@ -135,7 +135,6 @@
 
 (use-package org-drill
   :ensure org-plus-contrib
-  :hook org-mode
   :after org
   :init
   (require 'cl)                         ; avoid void-function copy-list error
