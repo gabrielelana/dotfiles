@@ -761,6 +761,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (add-hook 'compilation-filter-hook 'cc/colorize-compilation)
 
 ;;; global configuration
+(setq user-full-name "Gabriele Lana")
+(setq user-mail-address "gabriele.lana@gmail.com")
 (setq tramp-terminal-type "dumb")
 (setq tramp-default-method "ssh")
 ;;; always indent after yank
