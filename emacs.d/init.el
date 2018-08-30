@@ -489,11 +489,9 @@
 
 ;;; TODO psysh
 ;;; (use-package psysh)
+;;; (use-package phpactor)
 
 (use-package phpunit
-  :after php-mode)
-
-(use-package phpactor
   :after php-mode)
 
 (use-package flycheck-phpstan
