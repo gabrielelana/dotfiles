@@ -105,6 +105,7 @@
         org-use-property-inheritance t
         org-src-fontify-natively nil
         org-confirm-babel-evaluate nil
+        org-tags-column -100
         org-support-shift-select 'always)
   (setq org-tag-persistent-alist '(("drill" . ?r)
                                    ("doing" . ?d)
