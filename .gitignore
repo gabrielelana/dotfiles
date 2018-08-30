@@ -6,6 +6,7 @@ emacs.d/elpa/
 emacs.d/projectile-bookmarks.eld
 emacs.d/projectile.cache
 emacs.d/custom.el
+emacs.d/flycheck_init.el
 emacs.d/history
 emacs.d/eshell/
 emacs.d/tramp
