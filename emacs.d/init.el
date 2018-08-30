@@ -730,6 +730,13 @@ options you can do it calling `(cc/shell-command-on-current-file
      ,@body
      (message "%.06fs" (float-time (time-since time)))))
 
+(defun buffer-base-name ()
+  "Current buffer file name without directory and suffix."
+  (->>
+   (buffer-file-name)
+   (file-name-without-extension)
+   (file-name-without-directory)))
+
 ;;; I can get crazy for inconsistencies so...
 (defalias 'nullp 'null)
 (defalias 'atomp 'atom)
