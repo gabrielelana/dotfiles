@@ -715,7 +715,7 @@ options you can do it calling `(cc/shell-command-on-current-file
   (interactive)
   (let ((file-name (buffer-file-name)))
     (when file-name
-      (kill-new (file-name-nondirectory file-name)))))
+      (kill-new (file-name-without-directory file-name)))))
 
 (defun cc/kill-current-file-path ()
   "Put current buffer file path in kill ring."
