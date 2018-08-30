@@ -136,6 +136,7 @@
 (use-package org-drill
   :ensure org-plus-contrib
   :after org
+  :commands org-drill
   :init
   (require 'cl)                         ; avoid void-function copy-list error
   :config
