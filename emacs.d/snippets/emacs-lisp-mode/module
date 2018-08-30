@@ -1,0 +1,41 @@
+# contributor: Gabriele Lana
+# name : module
+# key : module
+# expand-env: ((yas-wrap-around-region t))
+# uuid: 435548b4-790e-4877-84d5-289ad83126da
+# --
+;;; ${1:`(buffer-basename)`}.el --- ${2:summary} -*- lexical-binding: t -*-
+
+;; Author: ${3:`(user-full-name)`}
+;; Maintainer: ${4:`(user-full-name)`}
+;; Version: ${5:0.0.1}
+;; Package-Requires: (${6:_})
+;; Homepage: http://github.com/gabrielelana/${7:_}
+;; Keywords: ${8:_}
+
+;; This file is not part of GNU Emacs
+
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; For a full copy of the GNU General Public License
+;; see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; ${9:_}
+
+;;; Code:
+
+`yas-selected-text`$0
+
+(provide '$1)
+
+;;; $1.el ends here
