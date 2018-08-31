@@ -99,6 +99,7 @@
   :bind (("C-M-<return>" . org-insert-todo-subheading))
   :pin org
   :bind (("C-c c" . org-capture))
+  :load-path "local-packages/"
   :config
   (setq org-edit-src-content-indentation 0
         org-src-tab-acts-natively t
