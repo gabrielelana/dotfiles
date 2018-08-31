@@ -32,7 +32,6 @@
 ;;; TODO: (function (current-project-file+ask-drills-headline "drill.org"))
 ;;; TODO: (function (current-project-file+ask-user-story-headline ".project.org"))
 ;;; TODO: command to jump to org-capture-last-stored instead of "C-x r b bookmark <RET>"
-;;; TOOD: provide a template (Yas?) when project file is not found
 ;;; TODO: rename ask to choose
 
 ;;; TODO: turn into a macro???
@@ -47,7 +46,6 @@
 ;;          (headline (org-capture--ask-drill-headline file-path)))
 ;;     (org-capture--goto-location file-path headline)))
 
-;;; TODO: add optional yas template to expand to create file (&optional template)
 (defun org-capture--current-project-file (file-name)
   (let* ((project-path (projectile-project-root))
          (file-path (concat project-path file-name)))
