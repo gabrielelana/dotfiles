@@ -115,6 +115,7 @@
                                    ("jira" . ?j)
                                    ("trello" . ?l)))
   (require 'org-capture-functions)
+  (add-hook 'org-capture-before-finalize-hook #'org-align-all-tags)
   (setq org-capture-templates
         '(("d" "Flash Cards")
           ("ds" "Flash Card with Short Question and Single Answer"
