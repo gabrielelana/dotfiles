@@ -558,6 +558,13 @@ and must be placed and can be found under
     (error (message "Invalid expression")
            (insert (current-kill 0)))))
 
+(defun cc/duplicate-line-or-region-above (arg)
+  "Duplicates the current line or region above the original."
+  (interactive "p")
+  (cc/duplicate-line-or-region (- arg)))
+
+(defalias 'cc/duplicate-line-or-region-below #'cc/duplicate-line-or-region)
+
 (defun cc/duplicate-line-or-region (arg)
   "Duplicates the current line or region.
 
@@ -759,8 +766,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (bind-key "C-^" #'cc/join-with-next-line)
 (bind-key "C-;" #'cc/comment-or-uncomment-line-or-region)
 (bind-key "C-x e" #'cc/eval-and-replace)
-(bind-key "M-n" #'cc/duplicate-line-or-region)
-(bind-key "M-p" (lambda (arg) (interactive "p") (cc/duplicate-line-or-region (- arg))))
+(bind-key "M-p" #'cc/duplicate-line-or-region-above)
+(bind-key "M-n" #'cc/duplicate-line-or-region-below)
 (bind-key "M-o" #'other-window)
 (bind-key "C-c D" #'cc/delete-current-buffer-and-file)
 (bind-key "C-c R" #'cc/rename-current-buffer-and-file)
