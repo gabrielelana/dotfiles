@@ -142,11 +142,11 @@
   (require 'cl)                         ; avoid void-function copy-list error
   :config
   (add-to-list 'org-modules 'org-drill)
-  (setq org-drill-add-random-noise-to-intervals-p t)
-  (setq org-drill-hint-separator "||")
-  (setq org-drill-left-cloze-delimiter "<[")
-  (setq org-drill-right-cloze-delimiter "]>")
-  (setq org-drill-learn-fraction 0.25))
+  (setq org-drill-add-random-noise-to-intervals-p t
+        org-drill-hint-separator "||"
+        org-drill-left-cloze-delimiter "<["
+        org-drill-right-cloze-delimiter "]>"
+        org-drill-learn-fraction 0.25))
 
 ;;; general utility
 (use-package expand-region
