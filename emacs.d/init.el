@@ -98,7 +98,9 @@
 (use-package org
   :bind (("C-M-<return>" . org-insert-todo-subheading))
   :pin org
-  :bind (("C-c c" . org-capture))
+  :bind (("C-c c" . org-capture)
+         :map org-mode-map
+         ("C-x c s" . org-cut-subtree))
   :load-path "local-packages/"
   :config
   (setq org-edit-src-content-indentation 0
@@ -125,6 +127,7 @@
           ("dl" "Flash Card with Long Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
            "** %^{Title} :drill:\n%   ^{Question}\n*** Answer\n    %?")))
+  ;; TODO: add org-cut-subtree binding
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
