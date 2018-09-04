@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : constructor2
+# key : cn2
+# uuid: 2d6df107-0dc6-4808-a089-812293625fbd
+# --
+/**
+* @var $1 $2
+*/
+private $2;
+
+/**
+* @var $3 $4
+*/
+private $4;
+
+public function __construct(${1:_} ${2:_}, ${3:_} ${4:_}) {
+    $this->${2:$(string-trim yas-text "\\\$")} = $2;
+    $this->${4:$(string-trim yas-text "\\\$")} = $4;
+    $0
+}

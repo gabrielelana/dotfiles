@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : document_local_variable
+# key : @v
+# uuid: 0a6931a6-608c-4c16-946f-f5cc30496737
+# --
+/** @var ${1:ClassName} ${2:$variableName} */

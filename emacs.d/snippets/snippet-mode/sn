@@ -4,6 +4,7 @@
 # key: sn
 # uuid: 84ccce1e-9741-467b-8aa2-d4ca9c8b3c9c
 # --
+# -*- mode: snippet -*-
 # contributor: `(user-full-name)`
 # name : ${1:_}
 # key : ${2:_}
