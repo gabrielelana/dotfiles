@@ -126,8 +126,7 @@
            "** %^{Question} :drill:\n*** Answer\n    %?")
           ("dl" "Flash Card with Long Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
-           "** %^{Title} :drill:\n%   ^{Question}\n*** Answer\n    %?")))
-  ;; TODO: add org-cut-subtree binding
+           "** %^{Title} :drill:\n   %^{Question}\n*** Answer\n    %?")))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
