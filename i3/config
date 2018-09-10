@@ -6,12 +6,22 @@ new_window pixel 2
 hide_edge_borders both
 
 set $mod Mod3
-set $gray1 #444444
-set $gray2 #111111
-set $gray3 #DDDDDD
+
+# Colorscheme for mustang
+# set $gray1 #444444
+# set $gray2 #111111
+# set $gray3 #DDDDDD
+# set $black #000000
+# set $white #FFFFFF
+# set $yellow #FFFF00
+
+# Colorscheme for nord
+set $gray1 #2E3440
+set $gray2 #3B4252
+set $gray3 #D8DEE9
 set $black #000000
-set $white #FFFFFF
-set $yellow #FFFF00
+set $white #D8DEE9
+set $yellow #EBCB8B
 
 # colors <what border background text indicator>
 client.focused $gray1 $gray1 $white $black
