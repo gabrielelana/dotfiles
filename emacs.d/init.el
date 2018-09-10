@@ -39,8 +39,8 @@
 
 ;;; themes
 (use-package monokai-theme :defer t)
-(use-package darkokai-theme :defer t)
-(use-package solarized-theme :defer t)
+(use-package dracula-theme :defer t)
+(use-package nord-theme :defer t)
 (use-package material-theme :defer t)
 (use-package apropospriate-theme :defer t)
 (use-package github-theme :defer t)
@@ -67,11 +67,13 @@
     (set-face-attribute 'flycheck-warning nil :box t :underline nil)
     (set-face-attribute 'flycheck-info nil :box t :underline nil)))
 ;;; must load the theme before specific package customization will take place
-(load-theme 'mustang t) ;; dark default theme *****
-;;; (load-theme 'github t) ;; light theme *****
-;;; (load-theme 'apropospriate-light t) ;; light theme ***
-;;; (load-theme 'material-light t) ;; light theme ***
-;;; (load-theme 'tango-plus t) ;; dark theme ****
+(load-theme 'nord t) ;; dark theme
+;; (load-theme 'dracula t) ;; dark theme
+;; (load-theme 'mustang t) ;; dark default theme *****
+;; (load-theme 'github t) ;; light theme *****
+;; (load-theme 'apropospriate-light t) ;; light theme ***
+;; (load-theme 'material-light t) ;; light theme ***
+;; (load-theme 'tango-plus t) ;; dark theme ****
 
 (use-package popwin
   :diminish popwin
@@ -853,7 +855,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;;; appearance
 (setq visible-bell nil)
 (setq inhibit-splash-screen t)
-(set-frame-font "PragmataPro Mono 14")
+(set-frame-font "PragmataPro Mono 12")
 
 ;;; enable some "dangerous" commands
 (put 'narrow-to-region 'disabled nil)
