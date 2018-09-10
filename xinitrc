@@ -29,7 +29,7 @@ fi
 # Adjust DPIs
 # * xrandr needs a shell to do its work
 # * if we don't wait a little bit X is gonna crash
-exec bash -c 'sleep 5 && xrandr --output VGA-0 --dpi 168' &
+exec bash -c 'sleep 5 && xrandr --output Virtual1 --dpi 128' &
 
 # Start window manager
 exec i3 > ~/.i3/log 2>&1
