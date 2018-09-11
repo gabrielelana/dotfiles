@@ -24,9 +24,9 @@ set $white #D8DEE9
 set $yellow #EBCB8B
 
 # colors <what border background text indicator>
-client.focused $gray1 $gray1 $white $black
-client.unfocused $gray1 $gray1 $gray2 $black
-client.focused_inactive $gray1 $gray1 $gray2 $black
+client.focused $gray1 $gray2 $white $black
+client.unfocused $gray1 $gray2 $gray2 $black
+client.focused_inactive $gray $gray2 $gray2 $black
 client.background $gray1 $gray1
 
 # use Mouse+$mod to drag floating windows to their wanted position
