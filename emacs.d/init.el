@@ -51,25 +51,21 @@
 (use-package mustang-theme
   :defer t
   :config
-  (progn
-    ;; flycheck faces customization
-    (set-face-attribute 'flycheck-error nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-warning nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
-    ;; mode-line faces customization
-    (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
-    (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
-    (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")
-    ;; standard faces customization
-    (set-face-attribute 'font-lock-warning-face nil :background "#202020" :foreground "#ff6523")))
+  (set-face-attribute 'flycheck-error nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
+  (set-face-attribute 'flycheck-warning nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
+  (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
+  ;; mode-line faces customization
+  (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
+  (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
+  (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")
+  ;; standard faces customization
+  (set-face-attribute 'font-lock-warning-face nil :background "#202020" :foreground "#ff6523"))
 (use-package tango-plus-theme
   :defer t
   :config
-  (progn
-    ;; flycheck customization
-    (set-face-attribute 'flycheck-error nil :box t :underline nil)
-    (set-face-attribute 'flycheck-warning nil :box t :underline nil)
-    (set-face-attribute 'flycheck-info nil :box t :underline nil)))
+  (set-face-attribute 'flycheck-error nil :box t :underline nil)
+  (set-face-attribute 'flycheck-warning nil :box t :underline nil)
+  (set-face-attribute 'flycheck-info nil :box t :underline nil))
 ;;; must load the theme before specific package customization will take place
 (load-theme 'nord t) ;; dark theme
 ;; (load-theme 'dracula t) ;; dark theme
