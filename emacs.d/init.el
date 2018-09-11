@@ -41,7 +41,10 @@
 ;;; themes
 (use-package monokai-theme :defer t)
 (use-package dracula-theme :defer t)
-(use-package nord-theme :defer t)
+(use-package nord-theme
+  :defer t
+  :init
+  (setq nord-region-highlight "snowstorm"))
 (use-package material-theme :defer t)
 (use-package apropospriate-theme :defer t)
 (use-package github-theme :defer t)
