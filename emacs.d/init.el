@@ -32,6 +32,7 @@
 (use-package s)
 (use-package f)
 (use-package uuidgen)
+(use-package request)
 
 ;;; default configuration
 (use-package better-defaults)
