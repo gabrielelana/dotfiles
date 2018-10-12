@@ -241,51 +241,78 @@
       (set-face-foreground 'git-gutter:modified git-gutter-default-fg)
       (set-face-attribute 'git-gutter:modified nil :height 80))))
 
-(use-package helm
-  :diminish helm-mode
+;; ivy
+(use-package smex)
+
+(use-package ivy
+  :demand t
+  :diminish ivy-mode
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)
+         ("C-S-s" . swiper-all)
+         ("C-S-r" . swiper-all)
+         ("M-x" . counsel-M-x)
+         ("M-y" . counsel-yank-pop)
+         ("C-x b" . ivy-switch-buffer)
+         ("C-x C-b" . ivy-switch-buffer)
+         ("C-x C-f" . counsel-find-file)
+         ("C-h e l" . counsel-find-library)
+         ("C-h e f" . find-function)
+         ("C-h e v" . find-variable)
+         ("C-h e m" . lisp-find-map)
+         ("C-h e s" . counsel-info-lookup-symbol)
+         ("C-h e u" . counsel-unicode-char)
+         ("C-h e a v" . apropos-value)
+         ("C-h e a l" . apropos-library)
+         ("C-h v" . counsel-describe-variable)
+         ("C-h f" . counsel-describe-function)
+         ("C-c C-r" . ivy-resume)
+         :map ivy-minibuffer-map
+         ("C-s" . ivy-next-line)
+         ("C-r" . ivy-previous-line))
+  :init
+  (unbind-key "C-h e")
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) "
+        ivy-wrap t
+        ivy-fixed-height-minibuffer t)
   :config
-  (progn
-    (setq helm-candidate-number-limit 100
-          helm-idle-delay 0.0
-          helm-input-idle-delay 0.01
-          helm-quick-update t
-          helm-ff-skip-boring-files t)
-    (when (custom-theme-enabled-p 'mustang)
-      ;; customization for mustang theme
-      (set-face-attribute 'helm-selection nil :background "#3c414c" :foreground "#faf4c6")
-      (set-face-attribute 'helm-source-header nil :background "#202020" :foreground "#e2e2e5")
-      (set-face-attribute 'helm-candidate-number nil :background "#ff9800" :foreground "#202020")
-      (set-face-attribute 'helm-header nil :background "#202020" :foreground "#808080"))
-    (setq helm-split-window-preferred-function 'ignore)
-    (setq display-buffer-function nil)
-    (push '("^\*helm.+\*$" :regexp t :position bottom :height .3 :noselect t) popwin:special-display-config)
-    (helm-mode))
-  :bind
-  (("C-x C-f" . helm-find-files)
-   ("C-x C-b" . helm-buffers-list)
-   ("C-x b" . helm-buffers-list)
-   ("M-y" . helm-show-kill-ring)
-   ("M-x" . helm-M-x)))
+  (with-eval-after-load 'magit
+    (setq magit-completing-read-function 'ivy-completing-read))
+  (ivy-mode 1))
+
+(use-package counsel
+  :ensure counsel
+  :after (ivy)
+  :bind (:map counsel-find-file-map
+              ("C-l" . counsel-up-directory)))
+
+(use-package counsel-projectile
+  :after (ivy projectile)
+  :config
+  (counsel-projectile-mode 1))
+
+(use-package counsel-tramp
+  :after (ivy)
+  :bind (("C-x C-t" . counsel-tramp)
+         ("C-x t" . counsel-tramp)))
+
+;;; TOOD: ivy/counsel yasnippet
+;;; TOOD: ivy/counsel erts
+;;; TOOD: ivy/counsel colors
 
 (use-package projectile
   :init
-  (setq projectile-keymap-prefix (kbd "C-c p"))
+  (setq projectile-keymap-prefix (kbd "C-c p")
+        projectile-indexing-method 'turbo-alien
+        projectile-enable-caching t)
   :config
-  (progn
-    (use-package helm-ag)
-    (use-package helm-projectile))
-  (progn
-    ;; TODO: find a better way to configure this
-    ;; maybe use `(push directory projectile-globally-ignored-directories)` with a loop?
-    (add-to-list 'projectile-globally-ignored-directories "node_modules")
-    (add-to-list 'projectile-globally-ignored-directories "**/elm-stuff")
-    (add-to-list 'projectile-globally-ignored-directories "vendor")
-    (add-to-list 'projectile-globally-ignored-directories ".tmp")
-    (add-to-list 'projectile-globally-ignored-directories ".work")
-    (setq projectile-completion-system 'helm)
-    (setq projectile-switch-project-action 'helm-projectile-find-file)
-    (projectile-global-mode)
-    (helm-projectile-on)))
+  (add-to-list 'projectile-globally-ignored-directories "node_modules")
+  (add-to-list 'projectile-globally-ignored-directories "**/elm-stuff")
+  (add-to-list 'projectile-globally-ignored-directories "vendor")
+  (add-to-list 'projectile-globally-ignored-directories ".tmp")
+  (add-to-list 'projectile-globally-ignored-directories ".work")
+  (projectile-global-mode))
 
 (use-package string-inflection
   :bind (("C-*" . string-inflection-all-cycle)))
@@ -474,6 +501,7 @@
 
 ;;; dockerfile
 (use-package dockerfile-mode)
+(use-package docker-tramp)
 
 ;;; markdown
 (use-package markdown-mode
@@ -785,19 +813,11 @@ options you can do it calling `(cc/shell-command-on-current-file
 (bind-key "C-c e d" #'eval-defun emacs-lisp-mode-map)
 (bind-key "C-c e f" #'emacs-lisp-byte-compile-and-load emacs-lisp-mode-map)
 (bind-key "C-c e r" #'eval-region emacs-lisp-mode-map)
+(bind-key "C-c e =" #'cc/eval-and-replace)
 (bind-key "C-c e t" #'ert emacs-lisp-mode-map)
 (bind-key "C-c e e" #'toggle-debug-on-error)
 (bind-key "C-c e s" #'scratch)
-
-(unbind-key "C-h e")
-(bind-key "C-h e e" #'view-echo-area-messages)
-(bind-key "C-h e f" #'find-function)
-(bind-key "C-h e k" #'find-function-on-key)
-(bind-key "C-h e l" #'find-library)
-(bind-key "C-h e v" #'find-variable)
-(bind-key "C-h e m" #'lisp-find-map)
-(bind-key "C-h e a v" #'apropos-value)
-(bind-key "C-h e a l" #'apropos-library)
+(bind-key "C-c e m" #'view-echo-area-messages)
 
 ;;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -808,6 +828,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 (setq user-mail-address "gabriele.lana@gmail.com")
 (setq tramp-terminal-type "dumb")
 (setq tramp-default-method "ssh")
+(setq tramp-remote-shell "/bin/sh")
 ;;; always indent after yank
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
@@ -824,6 +845,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;;; don't backup files
 (customize-set-variable 'auto-save-default nil)
 (customize-set-variable 'make-backup-files nil)
+(customize-set-variable 'create-lockfiles nil)
 ;;; don't blink the cursor
 (customize-set-variable 'blink-cursor-mode nil)
 ;;; when scroll to the bottom/top then place the cursor to the very last/first line
