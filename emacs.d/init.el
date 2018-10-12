@@ -43,8 +43,12 @@
 (use-package dracula-theme :defer t)
 (use-package nord-theme
   :defer t
-  :init
-  (setq nord-region-highlight "snowstorm"))
+  :config
+  (setq nord-region-highlight "snowstorm")
+  (setq nord-comment-brightness 18)
+  (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
+  (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
+  (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "snowstorm" :style nil) :underline nil))
 (use-package material-theme :defer t)
 (use-package apropospriate-theme :defer t)
 (use-package github-theme :defer t)
