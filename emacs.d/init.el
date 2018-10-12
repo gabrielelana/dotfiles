@@ -371,7 +371,11 @@
       (with-current-buffer buffer
         (setq-local truncate-lines nil)))))
 
-(use-package elixir-mode)
+(use-package elixir-mode
+  :init
+  (defun cc/elixir--setup-mode ()
+    (add-hook 'before-save-hook 'elixir-format nil t))
+  (add-hook 'elixir-mode-hook #'cc/elixir--setup-mode))
 
 (use-package flycheck-mix)
 
