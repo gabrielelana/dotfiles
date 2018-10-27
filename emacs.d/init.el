@@ -40,7 +40,9 @@
 
 ;;; themes
 (use-package monokai-theme :defer t)
+(use-package doom-themes :defer t)
 (use-package dracula-theme :defer t)
+(use-package challenger-deep-theme :defer t)
 (use-package nord-theme
   :defer t
   :config
@@ -72,12 +74,10 @@
   (set-face-attribute 'flycheck-info nil :box t :underline nil))
 ;;; must load the theme before specific package customization will take place
 (load-theme 'nord t) ;; dark theme
+;; (load-theme 'doom-molokai t) ;; dark theme
 ;; (load-theme 'dracula t) ;; dark theme
 ;; (load-theme 'mustang t) ;; dark default theme *****
 ;; (load-theme 'github t) ;; light theme *****
-;; (load-theme 'apropospriate-light t) ;; light theme ***
-;; (load-theme 'material-light t) ;; light theme ***
-;; (load-theme 'tango-plus t) ;; dark theme ****
 
 (use-package popwin
   :diminish popwin
