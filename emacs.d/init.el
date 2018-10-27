@@ -307,7 +307,7 @@
 (use-package projectile
   :init
   (setq projectile-keymap-prefix (kbd "C-c p")
-        projectile-indexing-method 'turbo-alien
+        projectile-indexing-method 'alien
         projectile-enable-caching t)
   :config
   (add-to-list 'projectile-globally-ignored-directories "node_modules")
