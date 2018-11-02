@@ -494,10 +494,11 @@
 
 (use-package flycheck-elm
   :init
-  (add-hook 'elm-mode-hook (lambda ()
-                             (flycheck-mode)
-                             (setq flycheck-check-syntax-automatically '(mode-enabled save))
-                             (flycheck-elm-setup))))
+  (defun cc/setup-elm-mode ()
+    (flycheck-mode)
+    (setq flycheck-check-syntax-automatically '(mode-enabled save))
+    (flycheck-elm-setup))
+  (add-hook 'elm-mode-hook #'cc/setup-elm-mode))
 
 ;;; clojure
 (use-package cider)
@@ -521,12 +522,12 @@
 (use-package php-mode
   :mode "\\.php\\'"
   :init
-  (defun cc/php-setup-php-mode ()
+  (defun cc/setup-php-mode ()
     (c-set-offset 'case-label '+)
     (modify-syntax-entry ?$ "w" php-mode-syntax-table)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(mode-enabled save)))
-  (add-hook 'php-mode-hook #'cc/php-setup-php-mode))
+  (add-hook 'php-mode-hook #'cc/setup-php-mode))
 
 ;;; TODO psysh
 ;;; (use-package psysh)
