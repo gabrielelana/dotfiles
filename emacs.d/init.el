@@ -510,6 +510,9 @@
 ;;; dockerfile
 (use-package dockerfile-mode)
 (use-package docker-tramp)
+(use-package docker)
+  ;; :ensure t
+  ;; :bind ("C-c d" . docker))
 
 ;;; markdown
 (use-package markdown-mode
