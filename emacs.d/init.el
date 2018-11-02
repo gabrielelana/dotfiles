@@ -47,7 +47,7 @@
   :defer t
   :config
   (setq nord-region-highlight "snowstorm")
-  (setq nord-comment-brightness 18)
+  (setq nord-comment-brightness 20)
   (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
   (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
   (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "snowstorm" :style nil) :underline nil))
