@@ -99,7 +99,8 @@
     (goto-char (point-max))
     (unless (bolp) (insert "\n"))
     (insert "* " headline "\n")
-    (beginning-of-line 0)))
+    (beginning-of-line))
+  (org-end-of-subtree))
 
 (provide 'org-capture-functions)
 
