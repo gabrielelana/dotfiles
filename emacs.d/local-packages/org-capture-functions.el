@@ -40,11 +40,21 @@
          (headline (org-capture--ask-headline file-path)))
     (org-capture--goto-location file-path headline)))
 
-;;; TODO: turn into a macro???
-;; (defun current-project-file+ask-drill-headline (file-name)
-;;   (let* ((file-path (org-capture--current-project-file file-name))
-;;          (headline (org-capture--ask-drill-headline file-path)))
-;;     (org-capture--goto-location file-path headline)))
+(defun current-project-file+headline (file-name headline)
+  (let* ((file-path (org-capture--current-project-file file-name)))
+    (org-capture--goto-location file-path headline)))
+
+(defun cc/org-capture-link-to-captured-line ()
+  "Org file link to the line of the captured location.
+
+The search path of the file is based on the line number, the
+description contains the file path relative to the project path"
+  (let* ((capture-buffer (org-capture-get :original-buffer))
+         (capture-file-path (buffer-filename capture-buffer))
+         (capture-file-line (with-current-buffer capture-buffer (number-to-string (line-number-at-pos))))
+         (capture-file-relative-path (file-relative-name capture-file-path (projectile-project-root))))
+    (concat
+     "[[file://" capture-file-path "::" capture-file-line "][" capture-file-relative-path "::" capture-file-line "]]")))
 
 (defun org-capture--current-project-file (file-name)
   (let* ((project-path (projectile-project-root))

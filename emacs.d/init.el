@@ -45,9 +45,10 @@
 (use-package challenger-deep-theme :defer t)
 (use-package nord-theme
   :defer t
-  :config
+  :init
   (setq nord-region-highlight "snowstorm")
   (setq nord-comment-brightness 20)
+  :config
   (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
   (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
   (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "snowstorm" :style nil) :underline nil))
@@ -126,13 +127,19 @@
   (require 'org-capture-functions)
   (add-hook 'org-capture-before-finalize-hook #'org-align-all-tags)
   (setq org-capture-templates
-        '(("d" "Flash Cards")
+        '(("d" "Flash Card")
           ("ds" "Flash Card with Short Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
            "** %^{Question} :drill:\n*** Answer\n    %?")
           ("dl" "Flash Card with Long Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
-           "** %^{Title} :drill:\n   %^{Question}\n*** Answer\n    %?")))
+           "** %^{Title} :drill:\n   %^{Question}\n*** Answer\n    %?")
+          ("r" "Code Review")
+          ;; TODO: review of a region of code
+          ;; TODO: add hask of the current head commit?
+          ("rl" "Review of a line of code"
+           item (function (lambda () (current-project-file+headline ".project.org" "Code Reviews")))
+           "- %t %?\n  %(cc/org-capture-link-to-captured-line)")))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
@@ -374,7 +381,8 @@
 (use-package elixir-mode
   :init
   (defun cc/elixir--setup-mode ()
-    (add-hook 'before-save-hook 'elixir-format nil t))
+    ;; (add-hook 'before-save-hook 'elixir-format nil t)
+    t)
   (add-hook 'elixir-mode-hook #'cc/elixir--setup-mode))
 
 (use-package flycheck-mix)
