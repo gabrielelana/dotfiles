@@ -898,6 +898,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;;; alleviate bug of emacs-26 see https://github.com/emacs-helm/helm/issues/1976
 (when (eq emacs-major-version 26)
   (setq x-wait-for-event-timeout nil))
+;;; dired
+(setq dired-dwim-target t)
 
 ;;; shell-script-mode default configurations
 (setq sh-basic-offset 2)
