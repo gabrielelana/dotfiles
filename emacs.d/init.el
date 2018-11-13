@@ -110,6 +110,7 @@
          ("C-x c s" . org-cut-subtree))
   :load-path "local-packages/"
   :config
+  (org-indent-mode 1)
   (setq org-edit-src-content-indentation 0
         org-src-tab-acts-natively t
         org-use-property-inheritance t
