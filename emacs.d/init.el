@@ -134,9 +134,21 @@
           ("dl" "Flash Card with Long Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
            "** %^{Title} :drill:\n   %^{Question}\n*** Answer\n    %?")
+          ("t" "Tasks")
+          ("tt" "Task on current User Story"
+           checkitem (function (lambda () (current-project-file+current-user-story ".project.org")))
+           "- [ ] %?")
+          ("tu" "Unrelated Task"
+           checkitem (function (lambda () (current-project-file+headline ".project.org" "Unrelated")))
+           "- [ ] %?")
+          ("tr" "Refile Task"
+           checkitem (function (lambda () (current-project-file+headline ".project.org" "Refile")))
+           "- [ ] %?")
           ("r" "Code Review")
           ;; TODO: review of a region of code
-          ;; TODO: add hask of the current head commit?
+          ;; TODO: add hash of the current head commit?
+          ;; TODO: rename cc/org-capture-link-to-captured-line to cc/org-capture-link-to-current-line
+          ;; TODO: add cc/org-capture-link-to-current-line-or-region
           ("rl" "Review of a line of code"
            item (function (lambda () (current-project-file+headline ".project.org" "Code Reviews")))
            "- %t %?\n  %(cc/org-capture-link-to-captured-line)")))

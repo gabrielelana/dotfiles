@@ -44,6 +44,11 @@
   (let* ((file-path (org-capture--current-project-file file-name)))
     (org-capture--goto-location file-path headline)))
 
+(defun current-project-file+current-user-story (file-name)
+  (let* ((file-path (org-capture--current-project-file file-name))
+         (headline (org-capture--current-user-story-headline file-path)))
+    (org-capture--goto-location file-path headline)))
+
 (defun cc/org-capture-link-to-captured-line ()
   "Org file link to the line of the captured location.
 
@@ -67,6 +72,12 @@ description contains the file path relative to the project path"
   (org-capture--choose-headline
    (org-capture--headline-candidates
     (org-headlines-from file-path))))
+
+(defun org-capture--current-user-story-headline (file-path)
+  (let ((headlines (org-headlines-from file-path ":doing:")))
+    (if (nullp headlines)
+        (error "No current User Story headline found in " file-path)
+      (cdar headlines))))
 
 (defun org-capture--choose-headline (candidates)
   (string-trim
