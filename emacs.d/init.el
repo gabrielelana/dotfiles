@@ -110,13 +110,13 @@
          ("C-x c s" . org-cut-subtree))
   :load-path "local-packages/"
   :config
-  (org-indent-mode 1)
   (setq org-edit-src-content-indentation 0
         org-src-tab-acts-natively t
         org-use-property-inheritance t
         org-src-fontify-natively nil
         org-confirm-babel-evaluate nil
         org-tags-column -100
+        org-startup-indented t
         org-support-shift-select 'always)
   (setq org-tag-persistent-alist '(("drill" . ?r)
                                    ("doing" . ?d)
