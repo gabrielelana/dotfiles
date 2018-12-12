@@ -770,8 +770,8 @@ options you can do it calling `(cc/shell-command-on-current-file
                              (insert-file-contents dot-env-file-path)
                              (split-string (buffer-string) "\n" t)))
     (dolist (line env-export-lines)
-      (setq env-export (split-string line "[ =]" nil))
-      (setenv (cadr env-export) (car (cddr env-export))))))
+      (setq env-export (split-string line "[ =]+" nil))
+      (setenv (car env-export) (cadr env-export)))))
 
 (defun cc/copy-character-from-above ()
   "Copy one character from previous non blank line starting above point."
