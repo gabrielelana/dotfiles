@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : project-file
+# key : p
+# uuid: 0ed59cc5-4124-46ee-b0ff-7977423257e4
+# --
+#+TITLE: ${1:Title}
+$0
+* US-001 [0/3]
+Description of the user story
+
+- [ ] Something to do
+- [ ] Something to do
+- [ ] Something to do
+
+* Refile
+Tasks to be refiled in some other stories in this project
+
+- [ ] Something to do
+
+* Unrelated
+Tasks unrelated with this particular project
+
+- [ ] Something to do
