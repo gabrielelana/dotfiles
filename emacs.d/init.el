@@ -195,6 +195,8 @@
          ("C-c v q" . vr/query-replace)
          ("C-c v m" . vr/mc-mark)))
 
+(use-package hydra)
+
 (use-package rainbow-mode
   :diminish rainbow-mode)
 
