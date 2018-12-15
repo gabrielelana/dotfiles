@@ -276,6 +276,7 @@
          ("C-r" . swiper)
          ("C-S-s" . swiper-all)
          ("C-S-r" . swiper-all)
+         ("C-M-r" . ivy-resume)
          ("M-x" . counsel-M-x)
          ("M-y" . counsel-yank-pop)
          ("C-x b" . ivy-switch-buffer)
@@ -291,7 +292,6 @@
          ("C-h e a l" . apropos-library)
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)
-         ("C-c C-r" . ivy-resume)
          :map ivy-minibuffer-map
          ("C-s" . ivy-next-line)
          ("C-r" . ivy-previous-line))
@@ -321,6 +321,9 @@
   :after (ivy)
   :bind (("C-x C-t" . counsel-tramp)
          ("C-x t" . counsel-tramp)))
+
+(use-package ivy-hydra
+  :after (ivy hydra))
 
 ;;; TOOD: ivy/counsel yasnippet
 ;;; TOOD: ivy/counsel erts
