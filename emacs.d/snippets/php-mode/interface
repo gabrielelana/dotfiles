@@ -5,10 +5,8 @@
 # uuid: 2e110da5-b2b7-4d80-8e48-d6b86e881cee
 # --
 <?php
-
 namespace ${1:`(yas-php-current-namespace)`};
 
-interface ${2:`(yas-php-current-classname)`}
-{
+interface ${2:`(yas-php-current-classname)`} {
     $0
 }

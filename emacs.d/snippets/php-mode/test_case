@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : test_case
+# key : tc
+# uuid: 12a0e6a7-e861-4090-89f8-ad6beeddbaa7
+# --
+<?php
+namespace ${1:`(yas-php-current-namespace)`};
+
+use PHPUnit\Framework\TestCase;
+
+class ${2:`(yas-php-current-classname)`} extends TestCase {
+    $0
+}

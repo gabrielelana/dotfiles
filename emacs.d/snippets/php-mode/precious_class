@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : precious_class
+# key : pcls
+# uuid: 8a136e97-ea9f-4012-965b-d7538641fa71
+# --
+<?php
+namespace ${1:`(yas-php-current-namespace)`};
+
+use Precious\Precious;
+
+class ${2:`(yas-php-current-classname)`} extends Precious
+{
+    protected function init() : array
+    {
+        return [
+            $0
+        ];
+    }
+}

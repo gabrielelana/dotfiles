@@ -4,12 +4,11 @@
 # key : cn1
 # uuid: eccb4179-5c11-40a3-bd66-db92b9d04966
 # --
-/**
- * @var $1 $2
- */
+/** @var $1 */
 private $2;
 
 public function __construct(${1:_} ${2:_}) {
     $this->${2:$(string-trim yas-text "\\\\$")} = $2;
-    $0
 }
+
+$0
