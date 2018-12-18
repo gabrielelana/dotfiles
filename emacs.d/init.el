@@ -399,7 +399,7 @@
 (use-package elixir-mode
   :init
   (defun cc/elixir--setup-mode ()
-    ;; (add-hook 'before-save-hook 'elixir-format nil t)
+    (add-hook 'before-save-hook 'elixir-format nil t)
     t)
   (add-hook 'elixir-mode-hook #'cc/elixir--setup-mode))
 
