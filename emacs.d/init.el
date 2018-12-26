@@ -117,6 +117,8 @@
         org-confirm-babel-evaluate nil
         org-tags-column -100
         org-startup-indented t
+        org-return-follows-link t
+        org-link-frame-setup '((file . find-file))
         org-support-shift-select 'always)
   (setq org-tag-persistent-alist '(("drill" . ?r)
                                    ("doing" . ?d)
