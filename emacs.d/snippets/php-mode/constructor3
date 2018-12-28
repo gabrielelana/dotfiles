@@ -13,7 +13,8 @@ private $4;
 /** @var $5 */
 private $6;
 
-public function __construct(${1:_} ${2:_}, ${3:_} ${4:_}, ${5:_} ${6:_}) {
+public function __construct(${1:_} ${2:_}, ${3:_} ${4:_}, ${5:_} ${6:_})
+{
     $this->${2:$(string-trim yas-text "\\\\$")} = $2;
     $this->${4:$(string-trim yas-text "\\\\$")} = $4;
     $this->${6:$(string-trim yas-text "\\\\$")} = $6;

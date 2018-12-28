@@ -7,6 +7,7 @@
 <?php
 namespace ${1:`(yas-php-current-namespace)`};
 
-class ${2:`(yas-php-current-classname)`} {
+class ${2:`(yas-php-current-classname)`}
+{
     $0
 }

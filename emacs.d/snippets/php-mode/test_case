@@ -9,6 +9,7 @@ namespace ${1:`(yas-php-current-namespace)`};
 
 use PHPUnit\Framework\TestCase;
 
-class ${2:`(yas-php-current-classname)`} extends TestCase {
+class ${2:`(yas-php-current-classname)`} extends TestCase
+{
     $0
 }

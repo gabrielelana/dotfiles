@@ -9,7 +9,7 @@ namespace ${1:`(yas-php-current-namespace)`};
 
 use Precious\Precious;
 
-class ${2:`(yas-php-current-classname)`} extends Precious
+final class ${2:`(yas-php-current-classname)`} extends Precious
 {
     protected function init() : array
     {
