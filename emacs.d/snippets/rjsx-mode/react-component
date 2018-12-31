@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : rect-component
+# key : rc
+# uuid: 338cd3df-390e-4c6c-9cae-f4eed5bd11aa
+# --
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
+class ${1:`(buffer-basename)`} extends Component {
+  render() {
+    return $0
+  }
+}
+
+$1.propTypes = {};
+
+export default $1;
