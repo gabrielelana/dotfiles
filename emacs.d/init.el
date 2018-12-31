@@ -430,35 +430,56 @@
                                      (flycheck-mix-setup)))
     (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
 
-;;; javascript --- TODO: tern, configure indentation and linting, disable flycheck if eslint executable not found
-(use-package js2-mode
-  :mode ("\\.js$" . js2-mode)
+;;; javascript --- TODO: tern, tide and completion?
+(use-package rjsx-mode
+  :mode ("\\.jsx?\\'" . rjsx-mode)
+  :hook (rjsx-mode . cc/jsx--setup)
+  :init
+  (defun cc/jsx--setup ()
+    (when (executable-find "eslint")
+      (flycheck-mode +1)
+      (flycheck-select-checker 'javascript-eslint)))
   :config
-  (progn
-    (add-hook 'js-mode-hook (lambda () (setq mode-name "JS")))
-    (add-hook 'js2-mode-hook (lambda()
-                               (flycheck-mode +1)
-                               (when (executable-find "eslint")
-                                 (flycheck-select-checker 'javascript-eslint))))
-    (when (custom-theme-enabled-p 'mustang)
-      ;; customization for mustang theme
-      (set-face-attribute 'js2-function-param nil :foreground "#7e8aa2"))
-    (setq js-indent-level 2
-          js2-basic-offset 2
-          js2-strict-trailing-comma-warning nil
-          js2-mode-show-parse-errors nil
-          js2-mode-show-strict-warnings nil
-          js2-strict-missing-semi-warning nil
-          js2-use-font-lock-faces t)))
+  (setq standard-indent 2
+        tab-width 1
+        indent-tabs-mode nil
+        js-indent-level 2
+        js-switch-indent-offset t
+        js2-basic-offset 2
+        js2-jsx-mode 2
+        js2-highlight-level 3
+        js2-indent-level 2
+        js2-indent-switch-body t
+        js2-strict-semi-warning nil
+        js2-missing-semi-one-line-override nil
+        js2-mode-show-parse-errors nil
+        js2-mode-show-strict-warnings nil
+        js2-strict-trailing-comma-warning nil
+        sgml-basic-offset 2))
+
+(use-package add-node-modules-path
+  :after rjsx-mode
+  :hook (rjsx-mode . add-node-modules-path))
+
+(use-package prettier-js
+  :diminish hindent-mode " ☰"
+  :after (rjsx-mode add-node-modules-path)
+  :hook (rjsx-mode . prettier-js-mode)
+  :hook (json-mode . prettier-js-mode))
 
 (use-package json-mode
-  :mode "\\.json$"
+  :mode (("\\.json\\'"  . json-mode)
+         (".babelrc" . json-mode)
+         (".prettierrc" . json-mode)
+         (".eslintrc" . json-mode))
+  :hook (json-mode . cc/json--setup)
+  :init
+  (defun cc/json--setup ()
+    (when (executable-find "jsonlint")
+      (flycheck-mode +1)
+      (flycheck-select-checker 'json-jsonlint)))
   :config
-  (add-hook 'json-mode-hook
-            (lambda ()
-              (flycheck-mode +1)
-              (when (executable-find "jsonlint")
-                (flycheck-select-checker 'json-jsonlint)))))
+  (setq js-indent-level 2))
 
 ;;; rust --- TODO: racer, clippy, flycheck-rust: navigation between errors doesn't work
 (use-package rust-mode
