@@ -130,6 +130,7 @@
                                    ("blocked" . ?b)
                                    ("jira" . ?j)
                                    ("trello" . ?l)))
+  (require 'org-tempo)
   (require 'org-capture-functions)
   (add-hook 'org-capture-before-finalize-hook #'org-align-all-tags)
   (setq org-capture-templates
