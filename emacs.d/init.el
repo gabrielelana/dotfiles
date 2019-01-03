@@ -159,6 +159,14 @@
           ("rl" "Review of a line of code"
            item (function (lambda () (current-project-file+headline ".project.org" "Code Reviews")))
            "- %t %?\n  %(cc/org-capture-link-to-captured-line)")))
+  ;; keep only the heading title without statistics cookies
+  ;; ~something to be done [1/5]~ -> ~something to be done~
+  (setq org-clock-heading-function
+        (lambda ()
+          (let ((heading (nth 4 (org-heading-components))))
+            (if (string-match "^\\(?:\\(.*\\)\\s-+\\[[^]]+\\]\\)\\|\\(?:\\(.*\\)\\)$" heading)
+                (or (match-string 1 heading) (match-string 2 heading))
+              heading))))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
