@@ -45,13 +45,16 @@
 (use-package challenger-deep-theme :defer t)
 (use-package nord-theme
   :defer t
+  :after (flycheck flyspell)
   :init
   (setq nord-region-highlight "snowstorm")
   (setq nord-comment-brightness 20)
   :config
   (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
   (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
-  (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "snowstorm" :style nil) :underline nil))
+  (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
+  (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "steelblue2" :style line))
+  (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "steelblue2" :style line)))
 (use-package material-theme :defer t)
 (use-package apropospriate-theme :defer t)
 (use-package github-theme :defer t)
@@ -207,6 +210,11 @@
   (progn
     (exec-path-from-shell-initialize)
     (setq exec-path-from-shell-check-startup-files nil)))
+
+(use-package flyspell
+  :diminish (flyspell-mode . " (S)")
+  :hook ((text-mode . flyspell-mode)
+         (prog-mode . flyspell-prog-mode)))
 
 (use-package flycheck
   :commands flycheck-mode
