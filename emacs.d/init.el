@@ -247,7 +247,9 @@
 
 (use-package magit
   :bind (("C-c g s" . magit-status)
-         ("H-s" . magit-status)))
+         ("H-s" . magit-status))
+  :config
+  (setq magit-section-visibility-indicator nil))
 
 (use-package git-timemachine
   :bind (("C-c g t" . git-timemachine)
