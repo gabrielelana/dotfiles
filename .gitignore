@@ -4,6 +4,7 @@ emacs.d/bookmarks
 emacs.d/custom.el
 emacs.d/elpa/
 emacs.d/eshell/
+emacs.d/forge-database.sqlite
 emacs.d/flycheck_init.el
 emacs.d/history
 emacs.d/projectile-bookmarks.eld
