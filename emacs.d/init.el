@@ -251,6 +251,9 @@
   :config
   (setq magit-section-visibility-indicator nil))
 
+(use-package forge
+  :after magit)
+
 (use-package git-timemachine
   :bind (("C-c g t" . git-timemachine)
          ("H-t" . git-timemachine)))
