@@ -93,7 +93,7 @@
     (popwin-mode 1)))
 
 (use-package drag-stuff
-  :diminish drag " ⇅"
+  :diminish drag " "
   :config
   (progn
     (setq drag-stuff-except-modes '(org-mode))
@@ -967,3 +967,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;;; diminish things
+(diminish 'auto-revert-mode " ")
+(diminish 'eldoc-mode " ")
