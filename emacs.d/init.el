@@ -370,7 +370,7 @@
   :bind (("C-*" . string-inflection-all-cycle)))
 
 (use-package yasnippet
-  :diminish yasnippet
+  :diminish yas-minor-mode
   :init
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   (setq yas-new-snippet-default nil)
