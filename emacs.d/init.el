@@ -370,6 +370,7 @@
   :bind (("C-*" . string-inflection-all-cycle)))
 
 (use-package yasnippet
+  :diminish yasnippet
   :init
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   (setq yas-new-snippet-default nil)
@@ -969,5 +970,5 @@ options you can do it calling `(cc/shell-command-on-current-file
 (put 'downcase-region 'disabled nil)
 
 ;;; diminish things
-(diminish 'auto-revert-mode " ")
-(diminish 'eldoc-mode " ")
+(diminish 'auto-revert-mode)
+(diminish 'eldoc-mode)
