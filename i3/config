@@ -39,7 +39,7 @@ bindsym $mod+Return exec gnome-terminal --hide-menubar
 bindsym $mod+x kill
 
 # start program launcher
-bindsym $mod+o exec ~/bin/i3-launcher -i -b -nb \$gray1 -nf \$yellow -sb \$yellow -sf \$gray1 -fn "PragmataPro Mono:regular:size=14"
+bindsym $mod+o exec ~/bin/i3-launcher -i -b -nb \$gray1 -nf \$white -sb \$white -sf \$gray1 -fn "PragmataPro Mono:regular:size=14"
 
 # change focus
 bindsym $mod+h focus left
