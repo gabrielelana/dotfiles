@@ -26,6 +26,9 @@ if command -v vmware-user-suid-wrapper; then
    exec vmware-user-suid-wrapper &
 fi
 
+# Tell XOrg to consider this file as configuration
+xrdb ~/.xresources
+
 # Adjust DPIs
 # * xrandr needs a shell to do its work
 # * if we don't wait a little bit X is gonna crash
