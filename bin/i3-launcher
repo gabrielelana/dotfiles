@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source $HOME/.zshrc
+
 cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
 if [ -d "$cachedir" ]; then
     cache=$cachedir/i3-launcher
@@ -11,7 +13,7 @@ fi
 
 if [ ! -f $cache_from ] || [ $PATH != `cat $cache_from` ]; then
     echo $PATH > $cache_from
-    stest -flx `echo ${PATH//:/$'\n'}` | sort -u | tee "$cache" | dmenu_run "$@"
+    stest -flx `echo ${PATH//:/$'\n'}` | sort -u | tee "$cache" | dmenu "$@" | sudo -iu coder
 else
-    dmenu_run "$@" < "$cache"
+    cat "$cache" | dmenu "$@" | sudo -iu coder
 fi
