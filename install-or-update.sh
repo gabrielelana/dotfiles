@@ -24,7 +24,7 @@ if [ ${flags[without-x]} -eq 0 ]; then
   rm -rf ~/.i3 && cp -rf $PWD/i3 ~/.i3
   cp -f $PWD/dunstrc ~/.dunstrc
   cp -f $PWD/gtkrc-2.0 ~/.gtkrc-2.0
-  cp -f $PWD/xinitrc ~/.xsession
+  cp -f $PWD/xsession ~/.xsession
   cp -f $PWD/xmodmap ~/.xmodmap
   cp -f $PWD/xresources ~/.xresources
 fi
