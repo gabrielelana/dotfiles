@@ -223,7 +223,11 @@
 (use-package flyspell
   :diminish (flyspell-mode . " (S)")
   :hook ((text-mode . flyspell-mode)
-         (prog-mode . flyspell-prog-mode)))
+         (prog-mode . flyspell-prog-mode))
+  :config
+  (unbind-key "C-." flyspell-mode-map)
+  (unbind-key "C-," flyspell-mode-map)
+  (unbind-key "C-;" flyspell-mode-map))
 
 (use-package flycheck
   :commands flycheck-mode
