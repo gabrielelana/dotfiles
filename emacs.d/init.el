@@ -45,16 +45,17 @@
 (use-package challenger-deep-theme :defer t)
 (use-package nord-theme
   :defer t
-  :after (flycheck flyspell)
   :init
   (setq nord-region-highlight "snowstorm")
   (setq nord-comment-brightness 20)
   :config
-  (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
-  (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
-  (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
-  (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "steelblue2" :style line))
-  (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "steelblue2" :style line)))
+  (with-eval-after-load 'flycheck
+    (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
+    (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
+    (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil))
+  (with-eval-after-load 'flyspell
+    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "steelblue2" :style line))
+    (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "steelblue2" :style line))))
 (use-package material-theme :defer t)
 (use-package apropospriate-theme :defer t)
 (use-package github-theme :defer t)
@@ -76,6 +77,7 @@
   (set-face-attribute 'flycheck-error nil :box t :underline nil)
   (set-face-attribute 'flycheck-warning nil :box t :underline nil)
   (set-face-attribute 'flycheck-info nil :box t :underline nil))
+
 ;;; must load the theme before specific package customization will take place
 (load-theme 'nord t) ;; dark theme
 ;; (load-theme 'doom-molokai t) ;; dark theme
