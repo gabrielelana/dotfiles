@@ -14,7 +14,7 @@ autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
 
 # Background
-xsetroot -solid "#1c1c1c"
+xsetroot -solid "#2E3440"
 
 # Start VirtualBox client to enable clipboard exchange with host and screen autoresize
 if command -v VBoxClient >/dev/null; then
