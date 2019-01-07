@@ -117,14 +117,15 @@ mode "resize" {
 }
 
 bar {
-  status_command ~/bin/i3-chunkly-status
-  font pango:PragmataPro Mono Regular 10
-  tray_output none
-  colors {
-    background $gray1
-    statusline $gray3
-    active_workspace $gray3 $gray1 $gray3
-    focused_workspace $gray3 $gray1 $gray3
-    inactive_workspace $gray1 $gray1 $gray3
-  }
+    position top
+    status_command ~/bin/i3-chunkly-status
+    font pango:PragmataPro Mono Regular 10
+    tray_output none
+    colors {
+        background $gray1
+        statusline $gray3
+        active_workspace $gray3 $gray1 $gray3
+        focused_workspace $gray3 $gray1 $gray3
+        inactive_workspace $gray1 $gray1 $gray3
+    }
 }
