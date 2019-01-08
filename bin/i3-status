@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+while true; do
+  date --rfc-3339=seconds
+  sleep 1
+done

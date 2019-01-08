@@ -118,7 +118,7 @@ mode "resize" {
 
 bar {
     position top
-    status_command ~/bin/i3-chunkly-status
+    status_command ~/bin/i3-status
     font pango:PragmataPro Mono Regular 10
     tray_output none
     colors {
