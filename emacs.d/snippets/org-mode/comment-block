@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : comment-block
+# key : <c
+# expand-env: ((yas-indent-line 'fixed))
+# uuid: 6957e4ff-85c1-4192-bfdf-89b546d5d7e4
+# --
+#+BEGIN_COMMENT
+$0
+#+END_COMMENT

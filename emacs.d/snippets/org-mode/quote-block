@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : quote-block
+# key : <q
+# expand-env: ((yas-indent-line 'fixed))
+# uuid: 7d00812f-eebc-479c-a997-f60c8cc0bbc7
+# --
+#+BEGIN_QUOTE
+$0
+#+END_QUOTE

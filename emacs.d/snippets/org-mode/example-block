@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : example-block
+# key : <e
+# expand-env: ((yas-indent-line 'fixed))
+# uuid: f71e7805-6c16-415e-bfb5-49bc30b9126b
+# --
+#+BEGIN_EXAMPLE
+$0
+#+END_EXAMPLE
