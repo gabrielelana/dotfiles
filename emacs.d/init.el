@@ -491,10 +491,8 @@
   :hook (rjsx-mode . add-node-modules-path))
 
 (use-package prettier-js
-  :diminish hindent-mode " ☰"
-  :after (rjsx-mode add-node-modules-path)
-  :hook (rjsx-mode . prettier-js-mode)
-  :hook (json-mode . prettier-js-mode))
+  :diminish prettier-js-mode " ☰"
+  :hook ((rjsx-mode json-mode css-mode yaml-mode markdown-mode) prettier-js-mode))
 
 (use-package json-mode
   :mode (("\\.json\\'"  . json-mode)
