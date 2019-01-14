@@ -103,6 +103,10 @@
     (drag-stuff-define-keys)
     (drag-stuff-global-mode 1)))
 
+(use-package page-break-lines
+  :config
+  (global-page-break-lines-mode))
+
 ;;; org stuff
 (use-package ob-http)
 
