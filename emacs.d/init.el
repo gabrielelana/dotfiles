@@ -267,7 +267,28 @@
   :bind (("C-c g s" . magit-status)
          ("H-s" . magit-status))
   :config
-  (setq magit-section-visibility-indicator nil))
+  (defvar cc/first-commit-messages
+    '("This is where it all begins..."
+      "Ready, Set, Go!"
+      "A long time ago in a galaxy far, far away..."
+      "Here be dragons"
+      "In the beginning there was darkness"
+      "Reinventing the wheel. Again"
+      "Batman! (this commit has no parents)"
+      "First blood"
+      "Don’t ask"
+      "Look behind you!!!"
+      "Ship It!"
+      "A beginning is a very delicate time (Frank Herbert)")
+    "List of initial commit messages for a git repository.")
+  (defun cc/insert-commit-message ()
+    (let* ((current-commit (magit-git-string "rev-parse" "HEAD"))
+           (current-commit-parents (magit-commit-parents current-commit)))
+      (when (null current-commit-parents)
+        (insert (cc/pick-random cc/first-commit-messages)))))
+  (setq magit-section-visibility-indicator nil)
+  :init
+  (add-hook 'git-commit-setup-hook #'cc/insert-commit-message))
 
 (use-package forge
   :after magit)
@@ -372,6 +393,7 @@
   (add-to-list 'projectile-globally-ignored-directories "node_modules")
   (add-to-list 'projectile-globally-ignored-directories "**/elm-stuff")
   (add-to-list 'projectile-globally-ignored-directories "vendor")
+  (add-to-list 'projectile-globally-ignored-directories "build")
   (add-to-list 'projectile-globally-ignored-directories ".tmp")
   (add-to-list 'projectile-globally-ignored-directories ".work")
   (projectile-global-mode))
@@ -647,6 +669,10 @@
   :mode ("\\.chunkly/[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\.log\\'" . chunkly-mode))
 
 ;;; functions
+(defun cc/pick-random (l)
+  "Pick a random element from a list L."
+  (nth (random (length l)) l))
+
 (defun cc/load-local-machine-configuration (&optional machine)
   "Load configuration of the current machine or for MACHINE.
 
