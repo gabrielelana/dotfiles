@@ -104,6 +104,7 @@
     (drag-stuff-global-mode 1)))
 
 (use-package page-break-lines
+  :diminish page-break-lines-mode
   :config
   (global-page-break-lines-mode))
 
