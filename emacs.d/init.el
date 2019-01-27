@@ -114,8 +114,8 @@
 (use-package ob-mongo)
 
 (use-package org
-  :bind (("C-M-<return>" . org-insert-todo-subheading))
   :pin org
+  :bind (("C-M-<return>" . org-insert-todo-subheading))
   :bind (("C-c c" . org-capture)
          :map org-mode-map
          ("C-x c s" . org-cut-subtree))
@@ -138,6 +138,9 @@
                                    ("blocked" . ?b)
                                    ("jira" . ?j)
                                    ("trello" . ?l)))
+  (require 'org-functions)
+  (add-hook 'org-mode-hook #'cc/org-mode-buffer-setup)
+  (add-hook 'org-babel-after-execute-hook #'cc/org-mode-buffer-force-uppercase-keywords)
   (require 'org-capture-functions)
   (add-hook 'org-capture-before-finalize-hook #'org-align-all-tags)
   (setq org-capture-templates
