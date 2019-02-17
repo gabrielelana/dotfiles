@@ -32,6 +32,9 @@ client.background $gray1 $gray1
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# the following are pixels of the full retina display
+floating_maximum_size 2048 x 1536
+
 # start a terminal
 bindsym $mod+Return exec gnome-terminal --hide-menubar
 
