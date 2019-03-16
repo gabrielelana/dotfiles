@@ -204,6 +204,15 @@
         org-drill-right-cloze-delimiter "]>"
         org-drill-learn-fraction 0.25))
 
+(use-package org-tree-slide
+  :after org
+  :bind (("H-n" . org-tree-slide-move-next-tree)
+         ("H-p" . org-tree-slide-move-previous-tree)
+         :map org-mode-map
+         ("C-c s" . org-tree-slide-mode))
+  :config
+  (org-tree-slide-simple-profile))
+
 ;;; general utility
 (use-package expand-region
   :bind (("M-]" . er/expand-region)
