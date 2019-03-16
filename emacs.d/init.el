@@ -59,7 +59,11 @@
     (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style wave))))
 (use-package material-theme :defer t)
 (use-package apropospriate-theme :defer t)
-(use-package github-theme :defer t)
+(use-package github-theme :defer t
+  :config
+  (set-face-attribute 'flycheck-error nil :box '(:line-width 2 :color "black" :style nil) :underline nil)
+  (set-face-attribute 'flycheck-warning nil :box '(:line-width 2 :color "black" :style nil) :underline nil)
+  (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "black" :style nil) :underline nil))
 (use-package mustang-theme
   :defer t
   :config
