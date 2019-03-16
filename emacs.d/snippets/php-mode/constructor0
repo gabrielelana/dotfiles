@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : constructor0
+# key : cn0
+# uuid: aa707489-61d4-40ee-adfd-90c410a70e9c
+# --
+
+public function __construct()
+{
+    $0
+}
