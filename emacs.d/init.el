@@ -998,10 +998,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 (setq kmacro-ring-max 100)
 ;;; better performance sacrificing right-to-left languages
 (setq-default bidi-display-reordering nil)
-;;; alleviate bug of emacs-26 see https://github.com/emacs-helm/helm/issues/1976
-(when (eq emacs-major-version 26)
-  (setq x-wait-for-event-timeout nil))
-;;; dired
+;; dired
 (setq dired-dwim-target t)
 
 ;;; shell-script-mode default configurations
