@@ -675,8 +675,8 @@
   :after php-mode
   :load-path "local-packages/"
   :bind (:map php-mode-map
-              ("C-c i" . 'php-use-at-point)
-              ("C-c s" . 'php-normalize-use-region)))
+              ("C-c r i" . 'php-import-classname-at-point)
+              ("C-c r s" . 'php-normalize-use-region)))
 
 ;;; chunkly
 (use-package chunkly-mode
