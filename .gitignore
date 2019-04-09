@@ -4,8 +4,8 @@ emacs.d/bookmarks
 emacs.d/custom.el
 emacs.d/elpa/
 emacs.d/eshell/
-emacs.d/forge-database.sqlite
 emacs.d/flycheck_init.el
+emacs.d/forge-database.sqlite
 emacs.d/history
 emacs.d/projectile-bookmarks.eld
 emacs.d/projectile.cache
@@ -13,6 +13,7 @@ emacs.d/recentf
 emacs.d/request
 emacs.d/smex-items
 emacs.d/tramp
+emacs.d/transient
 emacs.d/url
 i3/log
 vim/.*
