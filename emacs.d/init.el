@@ -47,15 +47,15 @@
 (use-package nord-theme
   :defer t
   :init
-  (setq nord-region-highlight "snowstorm")
+  (setq nord-region-highlight "LightSteelBlue")
   (setq nord-comment-brightness 20)
   :config
   (with-eval-after-load 'flycheck
-    (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "snowstorm" :style nil) :underline nil))
+    (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
+    (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
+    (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil))
   (with-eval-after-load 'flyspell
-    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LigthSteelBlue" :style wave))
+    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LightSteelBlue" :style wave))
     (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style wave))))
 (use-package material-theme :defer t)
 (use-package apropospriate-theme :defer t)
