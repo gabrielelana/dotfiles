@@ -151,10 +151,10 @@
         '(("d" "Flash Card")
           ("ds" "Flash Card with Short Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
-           "** %^{Question} :drill:\n*** Answer\n    %?")
+           "** %^{Question} :drill:\n*** Answer\n%?")
           ("dl" "Flash Card with Long Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
-           "** %^{Title} :drill:\n   %^{Question}\n*** Answer\n    %?")
+           "** %^{Title} :drill:\n%^{Question}\n*** Answer\n%?")
           ("t" "Tasks")
           ("tt" "Task on current User Story"
            checkitem (function (lambda () (current-project-file+current-user-story ".project.org")))
@@ -172,9 +172,7 @@
           ;; TODO: add cc/org-capture-link-to-current-line-or-region
           ("rl" "Review of a line of code"
            item (function (lambda () (current-project-file+headline ".project.org" "Code Reviews")))
-           "- %t %?\n  %(cc/org-capture-link-to-captured-line)")))
-  ;; keep only the heading title without statistics cookies
-  ;; ~something to be done [1/5]~ -> ~something to be done~
+           "- %t %?\n%(cc/org-capture-link-to-captured-line)")))
   (setq org-clock-heading-function
         (lambda ()
           (let ((heading (nth 4 (org-heading-components))))

@@ -29,7 +29,6 @@
 ;;; Code:
 
 ;;; TODO: (function (current-project-file+current-user-story ".project.org"))
-;;; TODO: (function (current-project-file+ask-drills-headline "drill.org"))
 ;;; TODO: (function (current-project-file+ask-user-story-headline ".project.org"))
 ;;; TODO: command to jump to org-capture-last-stored instead of "C-x r b bookmark <RET>"
 ;;; TODO: rename ask to choose
@@ -87,7 +86,7 @@ description contains the file path relative to the project path"
     nil
     nil
     nil)
-   "* "))
+   "[* ]\+"))
 
 (defun org-capture--headline-candidates (headlines)
   (seq-map (lambda (headline)
@@ -120,8 +119,8 @@ description contains the file path relative to the project path"
     (goto-char (point-max))
     (unless (bolp) (insert "\n"))
     (insert "* " headline "\n")
-    (beginning-of-line))
-  (org-end-of-subtree))
+    (forward-line -1)
+    (beginning-of-line)))
 
 (provide 'org-capture-functions)
 
