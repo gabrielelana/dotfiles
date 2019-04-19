@@ -401,8 +401,7 @@
 
 (use-package projectile
   :init
-  (setq projectile-keymap-prefix (kbd "C-c p")
-        projectile-indexing-method 'alien
+  (setq projectile-indexing-method 'alien
         projectile-enable-caching t)
   :config
   (add-to-list 'projectile-globally-ignored-directories "node_modules")
@@ -411,6 +410,7 @@
   (add-to-list 'projectile-globally-ignored-directories "build")
   (add-to-list 'projectile-globally-ignored-directories ".tmp")
   (add-to-list 'projectile-globally-ignored-directories ".work")
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-global-mode))
 
 (use-package string-inflection
