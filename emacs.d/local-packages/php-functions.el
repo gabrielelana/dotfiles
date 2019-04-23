@@ -75,16 +75,21 @@ will be completed in the current namespace"
 (defun php-import-classname-at-point ()
   "Include the qualified name at point in use block keeping it sorted."
   (interactive)
-  (let ((classname (php-classname-at-point)) (known-classes (php-known-classes)))
-    ;; the classname is available in the current namespace
-    (if (php-classname-exists? (php-fully-qualified-classname-in-current-namespace classname) known-classes)
-        ;; TODO: better message, class <CLASSNAME> is already imported
-        (message "nothing to be done")
-      ;; the classname is available through one of the imported names
-      (if (php--classname-exists-in-imported-names? classname (php--imported-names) known-classes)
-          ;; TODO: better message, class <CLASSNAME> is already imported
-          (message "nothing to be done")
-        (php--import-classname classname)))))
+  (save-excursion
+   (let ((classname (php-classname-at-point))
+         (known-classes (php-known-classes)))
+     ;; the classname is available in the current namespace
+     (if (php-classname-exists? (php-fully-qualified-classname-in-current-namespace classname) known-classes)
+         ;; TODO: better message, class <CLASSNAME> is already imported
+         (message "nothing to be done")
+       ;; the classname is available through one of the imported names
+       (if (php--classname-exists-in-imported-names? classname (php--imported-names) known-classes)
+           ;; TODO: better message, class <CLASSNAME> is already imported
+           (message "nothing to be done")
+         (if (php-fully-qualified-classname? classname)
+             ;; (message (format "in-file: %s, to-import: %s, to-leave: %s" classname classname (php-classname-of classname)))
+             (php--import-classname (php-qualified-classname-of classname) (php-qualified-classname-of classname))
+           (php--import-classname classname (php--choose-fully-qualified-classname classname))))))))
 
 (defun php--classname-exists-in-imported-names? (classname imported-names &optional known-classes)
   "Check if CLASSNAME can be resolved in IMPORTED-NAMES."
@@ -110,14 +115,13 @@ will be completed in the current namespace"
            (-filter (lambda (s) (s-matches? use-statement-re s)))
            (-map (lambda (s) (replace-regexp-in-string use-statement-re "\\1" s)))))))
 
-(defun php--import-classname (classname)
-  (let* ((to-import (php--choose-fully-qualified-classname classname))
-         (to-leave (php-classname-of to-import)))
-    (save-excursion
-      (beginning-of-buffer)
-      (while (search-forward classname nil t)
-        (replace-match to-leave nil t))
-      (php--use-classname to-import))))
+(defun php--import-classname (in-file to-import)
+  (let ((to-leave (php-classname-of to-import)))
+    (beginning-of-buffer)
+    (message "in-file: %s, to-import: %s, to-leave: %s" in-file to-import to-leave)
+    (while (search-forward-regexp (format "\\(?:\\\\?\\|\\b\\)%s\\b" (regexp-quote in-file)) nil t)
+      (replace-match to-leave nil t))
+    (php--use-classname to-import)))
 
 (defun php--choose-fully-qualified-classname (classname)
   (let ((candidates (--filter (s-ends-with? classname it) (php-known-classes))))
@@ -132,24 +136,24 @@ will be completed in the current namespace"
 
 (defun php--use-classname (to-use)
   (message "(php--use-classname %S)" to-use)
-  (save-excursion
-    (-let (((start-at end-at) (php-locate-use-region)))
-      (goto-char end-at)
-      (newline)
-      (when (equal start-at end-at)
-        ;; there's no use region so let's space more
-        (newline))
-      (insert (format "use %s;" to-use))
-      (indent-for-tab-command)
-      (php--normalize-use-region)
-      (save-buffer))))
+  (-let (((start-at end-at) (php-locate-use-region)))
+    (goto-char end-at)
+    (newline)
+    (when (equal start-at end-at)
+      ;; there's no use region so let's space more
+      (newline))
+    (insert (format "use %s;" to-use))
+    (indent-for-tab-command)
+    (php-normalize-use-region)
+    (save-buffer)))
 
-(defun php--normalize-use-region ()
+(defun php-normalize-use-region ()
   "Normalize the block of code where ~use~ statements are."
   (interactive)
-  (php--sort-lines-in-use-region)
-  (php--remove-duplicated-lines-in-use-region)
-  (php--remove-empty-lines-in-use-region))
+  (save-excursion
+    (php--sort-lines-in-use-region)
+    (php--remove-duplicated-lines-in-use-region)
+    (php--remove-empty-lines-in-use-region)))
 
 (defun php--sort-lines-in-use-region ()
   (-let (((start-at end-at) (php-locate-use-region)))
@@ -164,11 +168,10 @@ will be completed in the current namespace"
     (delete-matching-lines "^\\s-*$" start-at end-at)))
 
 (defun php--current-namespace ()
-  (save-excursion
-    (let ((namespace-match (search-backward-regexp "^namespace[[:blank:]]\+\\(.*\\)[;{]$" nil t)))
-      (if namespace-match
-          (s-trim (match-string-no-properties 1))
-        "\\"))))
+  (let ((namespace-match (search-backward-regexp "^namespace[[:blank:]]\+\\(.*\\)[;{]$" nil t)))
+    (if namespace-match
+        (s-trim (match-string-no-properties 1))
+      "\\")))
 
 (defun php-locate-use-region ()
   "Returns (START-POSITION END-POSITION) of use region"
@@ -179,40 +182,36 @@ will be completed in the current namespace"
             (php--locate-open-tag))))
 
 (defun php--locate-use-region ()
-  (save-excursion
-    (end-of-buffer)
-    (while (search-backward-regexp "^\\s-*use\\s-\+.\+$" nil t))
-    (if (eobp)
-        nil
-      (let ((start-at (match-beginning 0)))
-        (while (search-forward-regexp "^\\s-*use\\s-\+.\+$" nil t))
-        (list start-at (match-end 0))))))
+  (end-of-buffer)
+  (while (search-backward-regexp "^\\s-*use\\s-\+.\+$" nil t))
+  (if (eobp)
+      nil
+    (let ((start-at (match-beginning 0)))
+      (while (search-forward-regexp "^\\s-*use\\s-\+.\+$" nil t))
+      (list start-at (match-end 0)))))
 
 (defun php--locate-namespace-declaration ()
-  (save-excursion
-    (beginning-of-buffer)
-    (let ((match (search-forward-regexp "^namespace\\s-\+.\+[;{]\\s-*$" nil t)))
-      (if match
-          (list (match-end 0) (match-end 0))
-        nil))))
+  (beginning-of-buffer)
+  (let ((match (search-forward-regexp "^namespace\\s-\+.\+[;{]\\s-*$" nil t)))
+    (if match
+        (list (match-end 0) (match-end 0))
+      nil)))
 
 (defun php--locate-open-tag ()
-  (save-excursion
-    (beginning-of-buffer)
-    (let ((match (search-forward-regexp "^<\\?php.*$")))
-      (if match
-          (list (match-end 0) (match-end 0))
-        nil))))
+  (beginning-of-buffer)
+  (let ((match (search-forward-regexp "^<\\?php.*$")))
+    (if match
+        (list (match-end 0) (match-end 0))
+      nil)))
 
 ;; TODO: check that the output is a valid fully qualified class name
 (defun php-classname-at-point ()
-  (save-excursion
-    (let (start-at end-at)
-      (skip-chars-backward "_\\\\a-zA-Z0-9")
-      (setq start-at (point))
-      (skip-chars-forward "_\\\\a-zA-Z0-9")
-      (setq end-at (point))
-      (buffer-substring-no-properties start-at end-at))))
+  (let (start-at end-at)
+    (skip-chars-backward "_\\\\a-zA-Z0-9")
+    (setq start-at (point))
+    (skip-chars-forward "_\\\\a-zA-Z0-9")
+    (setq end-at (point))
+    (buffer-substring-no-properties start-at end-at)))
 
 (defun php-unqualified-classname? (classname)
   (and (not (php-fully-qualified-classname? classname))
