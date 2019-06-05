@@ -93,11 +93,12 @@
   (set-face-attribute 'flycheck-info nil :box t :underline nil))
 
 ;;; must load the theme before specific package customization will take place
-(load-theme 'nord t) ;; dark theme
-;; (load-theme 'doom-molokai t) ;; dark theme
-;; (load-theme 'dracula t) ;; dark theme
-;; (load-theme 'mustang t) ;; dark default theme *****
-;; (load-theme 'github t) ;; light theme *****
+(load-theme 'doom-nord) ;; dark theme
+;; (load-theme 'nord t) ;; dark theme
+;; (load-theme 'doom-dracula) ;; dark theme
+;; (load-theme 'doom-molokai) ;; dark theme
+;; (load-theme 'github t) ;; light theme
+;; (load-theme 'doom-nord-light) ;; light theme
 
 (use-package popwin
   :diminish popwin
