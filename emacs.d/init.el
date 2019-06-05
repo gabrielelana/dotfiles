@@ -55,8 +55,8 @@
     (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
     (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil))
   (with-eval-after-load 'flyspell
-    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LightSteelBlue" :style wave))
-    (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style wave))))
+    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LightSteelBlue" :style line))
+    (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style line))))
 (use-package material-theme :defer t)
 (use-package apropospriate-theme :defer t)
 (use-package github-theme :defer t
