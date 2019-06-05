@@ -41,7 +41,16 @@
 
 ;;; themes
 (use-package monokai-theme :defer t)
-(use-package doom-themes :defer t)
+(use-package doom-themes :defer t
+  :config
+  ;; TODO: customize based on the loaded theme among the collection of themes
+  (with-eval-after-load 'flycheck
+    (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
+    (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
+    (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil))
+  (with-eval-after-load 'flyspell
+    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LightSteelBlue" :style line))
+    (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style line))))
 (use-package dracula-theme :defer t)
 (use-package challenger-deep-theme :defer t)
 (use-package nord-theme
