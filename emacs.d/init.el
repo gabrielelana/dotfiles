@@ -427,6 +427,8 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-global-mode))
 
+(use-package company)
+
 (use-package string-inflection
   :bind (("C-*" . string-inflection-all-cycle)))
 
@@ -656,16 +658,30 @@
 (use-package php-mode
   :mode "\\.php\\'"
   :init
-  (defun cc/setup-php-mode ()
+  (defun cc/php-setup ()
     (c-set-offset 'case-label '+)
     (modify-syntax-entry ?$ "w" php-mode-syntax-table)
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(mode-enabled save)))
-  (add-hook 'php-mode-hook #'cc/setup-php-mode))
+  (add-hook 'php-mode-hook #'cc/php-setup))
 
-;;; TODO psysh
 ;;; (use-package psysh)
-;;; (use-package phpactor)
+
+(use-package phpactor
+  :after php-mode
+  :config
+  (setq phpactor-executable "/root/code/phpactor/bin/phpactor")
+  :init
+  (defun cc/php-setup-phpactor ()
+    (company-mode)
+    ;; (set (make-local-variable 'eldoc-documentation-function) 'phpactor-hover)
+    (set (make-local-variable 'company-backends)
+         '(company-phpactor
+           company-files)))
+  (add-hook 'php-mode-hook #'cc/php-setup-phpactor))
+
+(use-package company-phpactor
+  :after php-mode)
 
 (use-package phpunit
   :after php-mode)
