@@ -151,10 +151,13 @@
         '(("d" "Flash Card")
           ("ds" "Flash Card with Short Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
-           "** %^{Question} :drill:\n*** Answer\n%?")
+           "** %^{Question} :drill:\n*** Answer\n%?\n")
           ("dl" "Flash Card with Long Question and Single Answer"
            entry (function (lambda () (current-project-file+ask-headline "drill.org")))
-           "** %^{Title} :drill:\n%^{Question}\n*** Answer\n%?")
+           "** %^{Title} :drill:\n{LONG_QUESTION}\n*** Answer\n%?\n")
+          ("de" "Flash Card with Sentence"
+           entry (function (lambda () (current-project-file+ask-headline "drill.org")))
+           "** Sentence :drill:\n%?\n")
           ("t" "Tasks")
           ("tt" "Task on current User Story"
            checkitem (function (lambda () (current-project-file+current-user-story ".project.org")))
