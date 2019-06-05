@@ -130,6 +130,7 @@
         org-use-property-inheritance t
         org-src-fontify-natively nil
         org-confirm-babel-evaluate nil
+        org-catch-invisible-edits 'error
         org-tags-column -100
         org-startup-indented t
         org-return-follows-link t
