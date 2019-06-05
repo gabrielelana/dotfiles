@@ -7,27 +7,18 @@ hide_edge_borders both
 
 set $mod Mod3
 
-# Colorscheme for mustang
-# set $gray1 #444444
-# set $gray2 #111111
-# set $gray3 #DDDDDD
-# set $black #000000
-# set $white #FFFFFF
-# set $yellow #FFFF00
-
 # Colorscheme for nord
-set $gray1 #2E3440
-set $gray2 #3B4252
-set $gray3 #D8DEE9
-set $black #000000
-set $white #D8DEE9
-set $yellow #EBCB8B
+set $bg1 @@BACKGROUND1@@
+set $bg2 @@BACKGROUND2@@
+set $bg3 @@BACKGROUND3@@
+set $bg4 @@BACKGROUND4@@
+set $fg @@FOREGROUND@@
 
 # colors <what border background text indicator>
-client.focused $gray1 $gray2 $white $black
-client.unfocused $gray1 $gray2 $gray2 $black
-client.focused_inactive $gray $gray2 $gray2 $black
-client.background $gray1 $gray1
+client.focused $bg2 $bg1 $fg $bg4
+client.unfocused $bg2 $bg1 $bg2 $bg4
+client.focused_inactive $b2 $bg1 $bg2 $bg4
+client.background $bg2 $bg1
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -42,7 +33,7 @@ bindsym $mod+Return exec gnome-terminal --hide-menubar
 bindsym $mod+x kill
 
 # start program launcher
-bindsym $mod+o exec ~/bin/i3-launcher -i -b -nb \$gray1 -nf \$white -sb \$white -sf \$gray1 -fn "PragmataPro Mono:regular:size=14"
+bindsym $mod+o exec ~/bin/i3-launcher -i -b -nb \$bg1 -nf \$fg -sb \$fg -sf \$bg1 -fn "PragmataPro Mono:regular:size=14"
 
 # change focus
 bindsym $mod+h focus left
@@ -122,13 +113,13 @@ mode "resize" {
 bar {
     position top
     status_command ~/bin/i3-status
-    font pango:PragmataPro Mono Regular 10
     tray_output none
     colors {
-        background $gray1
-        statusline $gray3
-        active_workspace $gray3 $gray1 $gray3
-        focused_workspace $gray3 $gray1 $gray3
-        inactive_workspace $gray1 $gray1 $gray3
+        background $bg1
+        statusline $fg
+        # <colorclass> <border> <background> <text>
+        active_workspace $fg $bg1 $fg
+        focused_workspace $fg $bg1 $fg
+        inactive_workspace $bg1 $bg1 $fg
     }
 }

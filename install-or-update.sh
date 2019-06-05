@@ -27,6 +27,8 @@ if [ ${flags[without-x]} -eq 0 ]; then
   cp -f $PWD/xsession ~/.xsession
   cp -f $PWD/xmodmap ~/.xmodmap
   cp -f $PWD/xresources ~/.xresources
+  # select desktop theme
+  ~/bin/switch-theme nord
   # select cursor theme
   [ -f /etc/X11/cursors/whiteglass.theme ] && \
     mkdir -p $PWD/.icons/default && \

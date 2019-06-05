@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+THEME_FILE=~/.dotfiles/theme/$1
+if ! [ -f $THEME_FILE ]; then
+  echo "Desktop theme $1 not found" >&2
+  exit 1
+fi
+source $THEME_FILE
+
+cat ~/.dotfiles/i3/config | perl -pe 's/@@([^@]+)@@/$ENV{$1}/' > ~/.i3/config
+cat ~/.dotfiles/xsession | perl -pe 's/@@([^@]+)@@/$ENV{$1}/' > ~/.xsession
