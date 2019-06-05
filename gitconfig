@@ -1,6 +1,6 @@
 [user]
   name = gabriele.lana
-  email = gabriele.lana@cleancode.it
+  email = gabriele.lana@gmail.com
 [core]
   filemode = true
   excludesfile = ~/.gitignore
