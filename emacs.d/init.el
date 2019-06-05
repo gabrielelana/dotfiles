@@ -395,9 +395,9 @@
 (use-package ivy-hydra
   :after (ivy hydra))
 
-;;; TOOD: ivy/counsel yasnippet
-;;; TOOD: ivy/counsel erts
-;;; TOOD: ivy/counsel colors
+;;; TODO: ivy/counsel yasnippet
+;;; TODO: ivy/counsel erts
+;;; TODO: ivy/counsel colors
 
 (use-package projectile
   :init
