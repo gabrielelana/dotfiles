@@ -583,17 +583,32 @@
   :config
   (setq js-indent-level 2))
 
-;;; rust --- TODO: racer, clippy, flycheck-rust: navigation between errors doesn't work
+;;; lsp
+(use-package lsp-mode
+  :commands lsp
+  :config (require 'lsp-clients))
+
+(use-package lsp-ui)
+
+;;; rust
 (use-package rust-mode
   :mode ("\\.rs$" . rust-mode)
   :bind (("C-c <tab>" . rust-format-buffer))
+  :hook (rust-mode . cc/rust--setup)
+  :init
+  (defun cc/rust--setup ()
+    (use-package flycheck-rust)
+    (lsp)
+    (flycheck-mode)
+    (flymake-mode -1)
+    (company-mode)
+    (flycheck-rust-setup))
   :config
-  (progn
-    (setq rust-format-on-save t)))
+  (setq rust-format-on-save t))
 
 (use-package cargo
   :diminish cargo-minor-mode
-  :commands cargo-minor-mode
+  :hook (rust-mode . cargo-minor-mode)
   :init
   (progn
     (push '("^\*Cargo.+\*$" :regexp t :position right :width 80 :noselect t) popwin:special-display-config)
@@ -601,16 +616,7 @@
               (lambda ()
                 (with-current-buffer (get-buffer "*Cargo Process*")
                   (setq-local truncate-lines nil)
-                  (text-scale-set -1))))
-    (add-hook 'rust-mode-hook #'cargo-minor-mode)))
-
-(use-package flycheck-rust
-  :init
-  (progn
-    (add-hook 'rust-mode-hook #'flycheck-mode)
-    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
-    ;; (add-hook 'rust-mode-hook #'yas-minor-mode)
-;;; (add-hook 'rust-mode-hook #'flyspell-prog-mode)))
+                  (text-scale-set -1))))))
 
 ;;; haskell
 ;;; TODO: take a look at https://github.com/bitemyapp/dotfiles/blob/master/.emacs.d/haskell/hs-lint.el
