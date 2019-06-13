@@ -41,6 +41,18 @@
 
 ;;; themes
 (use-package monokai-theme :defer t)
+(use-package subatomic-theme :defer t
+  :init
+  (setq subatomic-more-visible-comment-delimiters t)
+  :config
+  (set-face-attribute 'hl-line nil :background "#232533")
+  (with-eval-after-load 'flycheck
+    (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
+    (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
+    (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil))
+  (with-eval-after-load 'flyspell
+    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LightSteelBlue" :style line))
+    (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style line))))
 (use-package doom-themes :defer t
   :config
   ;; TODO: customize based on the loaded theme among the collection of themes
@@ -93,12 +105,13 @@
   (set-face-attribute 'flycheck-info nil :box t :underline nil))
 
 ;;; must load the theme before specific package customization will take place
-(load-theme 'doom-nord) ;; dark theme
+;; (load-theme 'doom-nord) ;; dark theme
 ;; (load-theme 'nord t) ;; dark theme
 ;; (load-theme 'doom-dracula) ;; dark theme
 ;; (load-theme 'doom-molokai) ;; dark theme
 ;; (load-theme 'github t) ;; light theme
 ;; (load-theme 'doom-nord-light) ;; light theme
+(load-theme 'subatomic) ;; dark theme
 
 (use-package popwin
   :diminish popwin
@@ -342,12 +355,17 @@
    '(git-gutter:modified-sign "\uf054")
    '(git-gutter:hide-gutter nil))
   ;; independent from the theme
-  (let ((git-gutter-default-fg "#d3d3d3"))
+
+  (let ((git-gutter-default-fg (face-attribute 'default :foreground))
+        (git-gutter-default-bg (face-attribute 'default :background)))
     (set-face-foreground 'git-gutter:added git-gutter-default-fg)
+    (set-face-background 'git-gutter:added git-gutter-default-bg)
     (set-face-attribute 'git-gutter:added nil :height 0.8)
     (set-face-foreground 'git-gutter:deleted git-gutter-default-fg)
+    (set-face-background 'git-gutter:deleted git-gutter-default-bg)
     (set-face-attribute 'git-gutter:deleted nil :height 0.8)
     (set-face-foreground 'git-gutter:modified git-gutter-default-fg)
+    (set-face-background 'git-gutter:modified git-gutter-default-bg)
     (set-face-attribute 'git-gutter:modified nil :height 0.8)))
 
 ;; ivy

@@ -7,7 +7,7 @@ hide_edge_borders both
 
 set $mod Mod3
 
-# Colorscheme for nord
+# Colorscheme
 set $bg1 @@BACKGROUND1@@
 set $bg2 @@BACKGROUND2@@
 set $bg3 @@BACKGROUND3@@
@@ -15,10 +15,10 @@ set $bg4 @@BACKGROUND4@@
 set $fg @@FOREGROUND@@
 
 # colors <what border background text indicator>
-client.focused $bg2 $bg1 $fg $bg4
-client.unfocused $bg2 $bg1 $bg2 $bg4
-client.focused_inactive $b2 $bg1 $bg2 $bg4
-client.background $bg2 $bg1
+client.focused $bg2 $bg2 $fg $bg2
+client.unfocused $bg2 $bg2 $fg $bg2
+client.focused_inactive $bg2 $bg2 $bg2 $bg2
+client.background $bg2 $bg2
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
