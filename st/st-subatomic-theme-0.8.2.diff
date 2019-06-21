@@ -1,0 +1,73 @@
+diff -ruN st-0.8.2-original/config.def.h st-0.8.2-subatomic-theme/config.def.h
+--- st-0.8.2-original/config.def.h	2019-06-21 18:54:24.720092241 +0200
++++ st-0.8.2-subatomic-theme/config.def.h	2019-06-21 18:58:49.529279416 +0200
+@@ -84,39 +84,36 @@
+
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
+-	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
+-
+-	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
+-
+-	[255] = 0,
+-
+-	/* more colors can be added after 255 to use with DefaultXX */
+-	"#cccccc",
+-	"#555555",
++    /* 8 normal colors */
++    [0] = "#2e3043", /* black */
++    [1] = "#ea8673", /* red */
++    [2] = "#f9b529", /* green */
++    [3] = "#81a257", /* yellow */
++    [4] = "#8aa6bc", /* blue */
++    [5] = "#9c71a5", /* magenta */
++    [6] = "#696e92", /* cyan */
++    [7] = "#e5e5e5", /* white */
++
++    /* 8 bright colors */
++    [8]  = "#232533", /* black */
++    [9]  = "#aa2222", /* red */
++    [10] = "#ffd700", /* green */
++    [11] = "#22aa22", /* yellow */
++    [12] = "#9dbbd3", /* blue */
++    [13] = "#feccd4", /* magenta */
++    [14] = "#cebca5", /* cyan */
++    [15] = "#ffffff", /* white */
++
++    /* more colors can be added after 255 to use with DefaultXX */
++    [256] = "#303347", /* background */
++    [257] = "#e5d5d5", /* foreground */
+ };
+
+-
+ /*
+  * Default colors (colorname index)
+  * foreground, background, cursor, reverse cursor
+  */
+-unsigned int defaultfg = 7;
+-unsigned int defaultbg = 0;
+-static unsigned int defaultcs = 256;
+-static unsigned int defaultrcs = 257;
++unsigned int defaultfg = 15;
++unsigned int defaultbg = 256;
++static unsigned int defaultcs = 15;
++static unsigned int defaultrcs = 256;
+
+ /*
+  * Default shape of cursor

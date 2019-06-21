@@ -2,10 +2,27 @@
 
 THEME_FILE=~/.dotfiles/theme/$1
 if ! [ -f $THEME_FILE ]; then
-  echo "Desktop theme $1 not found" >&2
+  echo "desktop theme $1 not found" >&2
   exit 1
 fi
-source $THEME_FILE
 
+ST_THEME_PATCH=~/.dotfiles/st/st-$1-theme-0.8.2.diff
+if ! [ -f $ST_THEME_PATCH ]; then
+  echo "suckless terminal theme $1 not found" >&2
+  exit 1
+fi
+
+source $THEME_FILE
 cat ~/.dotfiles/i3/config | perl -pe 's/@@([^@]+)@@/$ENV{$1}/' > ~/.i3/config
 cat ~/.dotfiles/xsession | perl -pe 's/@@([^@]+)@@/$ENV{$1}/' > ~/.xsession
+
+cd ~/.dotfiles/.dependencies/st
+tar -xzf st-0.8.2.tar.gz
+cd st-0.8.2
+patch < ~/.dotfiles/st/st-clipboard-0.8.2.diff
+patch < ~/.dotfiles/st/st-pragmata-0.8.2.diff
+patch < $ST_THEME_PATCH
+rm -rf config.h
+sudo make clean install
+
+sudo systemctl restart display-manager

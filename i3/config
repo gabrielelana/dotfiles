@@ -27,7 +27,7 @@ floating_modifier $mod
 floating_maximum_size 2048 x 1536
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal --hide-menubar
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+x kill
