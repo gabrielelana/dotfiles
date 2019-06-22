@@ -477,6 +477,8 @@
   ;; in theory it should be called already, in practice it isn't
   (esf-initialize))
 
+(add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
+
 ;;; yaml
 (use-package yaml-mode
   :mode "\\.yaml\\'" "\\.neon\\'")

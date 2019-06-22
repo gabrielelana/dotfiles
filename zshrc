@@ -59,6 +59,11 @@ compinit
   export PATH=$PATH:$HOME/.cargo/bin
 }
 
+# Cask configuration
+[[ -d "$HOME/.cask/bin" ]] && {
+  export PATH=$PATH:$HOME/.cask/bin
+}
+
 # Haskell (Stack) configuration
 command -v stack >/dev/null && {
   eval "$(stack --bash-completion-script stack)"
