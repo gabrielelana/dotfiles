@@ -69,6 +69,11 @@ compinit
   export PATH=$PATH:$HOME/.evm/bin
 }
 
+# Elixir configuration
+[[ -d "$HOME/.elixir-lsp" ]] && {
+  export PATH=$PATH:$HOME/.elixir-lsp
+}
+
 # Haskell (Stack) configuration
 command -v stack >/dev/null && {
   eval "$(stack --bash-completion-script stack)"
