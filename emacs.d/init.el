@@ -497,45 +497,42 @@
   (setq rspec-key-command-prefix (kbd "C-c t")))
 
 ;;; elixir
-(defun cc/alchemist-do-not-truncate-lines ()
-  "Avoid truncate lines in alchemist buffers."
-  (interactive)
-  (dolist (buffer (buffer-list))
-    (when (string-match-p "^*alchemist" (buffer-name buffer))
-      (with-current-buffer buffer
-        (setq-local truncate-lines nil)))))
-
 (use-package elixir-mode
+  :hook (elixir-mode . cc/elixir--setup)
   :init
-  (defun cc/elixir--setup-mode ()
-    (add-hook 'before-save-hook 'elixir-format nil t)
-    t)
-  (add-hook 'elixir-mode-hook #'cc/elixir--setup-mode))
+  (defun cc/elixir--setup ()
+    (add-hook 'before-save-hook 'elixir-format nil t)))
 
-(use-package flycheck-mix)
+(use-package flycheck-mix
+  :hook ((elixir-mode . flycheck-mode)
+         (elixir-mode . flycheck-mix-setup)))
 
 (use-package alchemist
   :diminish alchemist "Alchemist"
+  :hook (elixir-mode . alchemist-mode)
   :bind (("C-c a a" . cc/alchemist-do-not-truncate-lines))
   :init
-  (add-hook 'elixir-mode-hook #'alchemist-mode)
+  (defun cc/alchemist-do-not-truncate-lines ()
+    "Avoid truncate lines in alchemist buffers."
+    (interactive)
+    (dolist (buffer (buffer-list))
+      (when (string-match-p "^*alchemist" (buffer-name buffer))
+        (with-current-buffer buffer
+          (setq-local truncate-lines nil)))))
+  ;; (add-hook 'elixir-mode-hook #'alchemist-mode)
   :config
-  (progn
-    (setq alchemist-test-status-modeline nil)
-    (when (custom-theme-enabled-p 'mustang)
-      ;; customization for mustang theme
-      (set-face-attribute 'elixir-attribute-face nil :foreground "#ff9800"))
-    (push '("*alchemist test report*" :position right :width 60 :noselect t) popwin:special-display-config)
-    (push '("*alchemist help*" :position right :width 60 :noselect t) popwin:special-display-config)
-    (push '("*alchemist macroexpand*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-    (push '("*alchemist info mode*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-    (push '("*alchemist elixirc*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-    (push '("*alchemist elixir*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-    (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-    (add-hook 'alchemist-mode-hook (lambda()
-                                     (flycheck-mode)
-                                     (flycheck-mix-setup)))
-    (exec-path-from-shell-copy-env "MIX_ARCHIVES")))
+  (setq alchemist-test-status-modeline nil)
+  (when (custom-theme-enabled-p 'mustang)
+    ;; customization for mustang theme
+    (set-face-attribute 'elixir-attribute-face nil :foreground "#ff9800"))
+  (push '("*alchemist test report*" :position right :width 60 :noselect t) popwin:special-display-config)
+  (push '("*alchemist help*" :position right :width 60 :noselect t) popwin:special-display-config)
+  (push '("*alchemist macroexpand*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+  (push '("*alchemist info mode*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+  (push '("*alchemist elixirc*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+  (push '("*alchemist elixir*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+  (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
+  (exec-path-from-shell-copy-env "MIX_ARCHIVES"))
 
 ;;; javascript --- TODO: tern, tide and completion?
 (use-package rjsx-mode
