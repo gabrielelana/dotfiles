@@ -64,6 +64,11 @@ compinit
   export PATH=$PATH:$HOME/.cask/bin
 }
 
+# EVM configuration
+[[ -d "$HOME/.evm/bin" ]] && {
+  export PATH=$PATH:$HOME/.evm/bin
+}
+
 # Haskell (Stack) configuration
 command -v stack >/dev/null && {
   eval "$(stack --bash-completion-script stack)"
