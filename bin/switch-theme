@@ -16,11 +16,13 @@ source $THEME_FILE
 cat ~/.dotfiles/i3/config | perl -pe 's/@@([^@]+)@@/$ENV{$1}/' > ~/.i3/config
 cat ~/.dotfiles/xsession | perl -pe 's/@@([^@]+)@@/$ENV{$1}/' > ~/.xsession
 
+# TODO: duplicated from install-or-update.sh
 cd ~/.dotfiles/.dependencies/st
 rm -rf st-0.8.2
 tar -xzf st-0.8.2.tar.gz
 cd st-0.8.2
 patch < ~/.dotfiles/st/st-clipboard-0.8.2.diff
+patch < ~/.dotfiles/st/st-scrollback-0.8.2.diff
 patch < ~/.dotfiles/st/st-pragmata-0.8.2.diff
 patch < $ST_THEME_PATCH
 sudo make clean install

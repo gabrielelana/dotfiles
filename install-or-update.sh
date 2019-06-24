@@ -27,6 +27,7 @@ if ! [ -d $ROOT/.dependencies/st ]; then
   tar -xzf st-0.8.2.tar.gz
   cd st-0.8.2
   patch < $ROOT/st/st-clipboard-0.8.2.diff
+  patch < $ROOT/st/st-scrollback-0.8.2.diff
   patch < $ROOT/st/st-pragmata-0.8.2.diff
   sudo make clean install
   cd $ROOT
