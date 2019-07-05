@@ -81,6 +81,12 @@ command -v stack >/dev/null && {
   alias ghc="stack exec -- ghc"
 }
 
+# Go configuration
+[[ -d "$HOME/.go" ]] && {
+  export GOPATH=$HOME/.go
+  export PATH=$PATH:$HOME/.go/bin
+}
+
 # Heroku configuration
 [[ -d "/usr/local/heroku/bin" ]] && {
   export PATH=$PATH:/usr/local/heroku/bin
