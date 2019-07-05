@@ -1,8 +1,11 @@
-diff -ruN st-0.8.2-original/config.def.h st-0.8.2-subatomic-theme/config.def.h
---- st-0.8.2-original/config.def.h	2019-06-21 18:54:24.720092241 +0200
-+++ st-0.8.2-subatomic-theme/config.def.h	2019-06-21 18:58:49.529279416 +0200
-@@ -84,39 +84,36 @@
-
+diff -ruN code/st/st-0.8.2-original/config.def.h code/st/st-0.8.2-theme/config.def.h
+--- code/st/st-0.8.2-original/config.def.h	2019-02-09 12:50:41.000000000 +0100
++++ code/st/st-0.8.2-theme/config.def.h	2019-07-05 18:14:33.234861845 +0200
+@@ -82,44 +82,42 @@
+  */
+ unsigned int tabspaces = 8;
+ 
++
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
 -	/* 8 normal colors */
@@ -31,30 +34,30 @@ diff -ruN st-0.8.2-original/config.def.h st-0.8.2-subatomic-theme/config.def.h
 -	"#cccccc",
 -	"#555555",
 +    /* 8 normal colors */
-+    [0] = "#2e3043", /* black */
-+    [1] = "#ea8673", /* red */
-+    [2] = "#f9b529", /* green */
-+    [3] = "#81a257", /* yellow */
-+    [4] = "#8aa6bc", /* blue */
-+    [5] = "#9c71a5", /* magenta */
-+    [6] = "#696e92", /* cyan */
-+    [7] = "#e5e5e5", /* white */
++    [0] = "#303347",           /* BLACK, HOST */
++    [1] = "#f557a0",           /* RED, SYNTAX_STRING */
++    [2] = "#a9ee55",           /* GREEN, COMMAND */
++    [3] = "#f5a255",           /* YELLOW, COMMAND_COLOR2 */
++    [4] = "#5ea2ec",           /* BLUE, PATH */
++    [5] = "#a957ec",           /* MAGENTA, SYNTAX_VAR */
++    [6] = "#5eeea0",           /* CYAN, PROMPT */
++    [7] = "#918988",           /* WHITE */
 +
 +    /* 8 bright colors */
-+    [8]  = "#232533", /* black */
-+    [9]  = "#aa2222", /* red */
-+    [10] = "#ffd700", /* green */
-+    [11] = "#22aa22", /* yellow */
-+    [12] = "#9dbbd3", /* blue */
-+    [13] = "#feccd4", /* magenta */
-+    [14] = "#cebca5", /* cyan */
-+    [15] = "#ffffff", /* white */
++    [8] = "#918988",           /* BLACK, */
++    [9] = "#f579b2",           /* RED, COMMAND_ERROR */
++    [10] = "#bbee78",          /* GREEN, EXEC */
++    [11] = "#f5b378",          /* YELLOW, */
++    [12] = "#81b3ec",          /* BLUE, FOLDER */
++    [13] = "#bb79ec",          /* MAGENTA, */
++    [14] = "#81eeb2",          /* CYAN, */
++    [15] = "#f5eeec",          /* WHYTE, */
 +
 +    /* more colors can be added after 255 to use with DefaultXX */
 +    [256] = "#303347", /* background */
-+    [257] = "#e5d5d5", /* foreground */
++    [257] = "#f5eeec", /* foreground */
  };
-
+ 
 -
  /*
   * Default colors (colorname index)
@@ -64,10 +67,10 @@ diff -ruN st-0.8.2-original/config.def.h st-0.8.2-subatomic-theme/config.def.h
 -unsigned int defaultbg = 0;
 -static unsigned int defaultcs = 256;
 -static unsigned int defaultrcs = 257;
-+unsigned int defaultfg = 15;
++unsigned int defaultfg = 257;
 +unsigned int defaultbg = 256;
-+static unsigned int defaultcs = 15;
++static unsigned int defaultcs = 257;
 +static unsigned int defaultrcs = 256;
-
+ 
  /*
   * Default shape of cursor
