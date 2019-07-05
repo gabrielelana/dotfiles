@@ -8,7 +8,6 @@ CC_WRITE_IN_GREEN="%f%F{$CC_GREEN}"
 CC_WRITE_IN_GRAY="%f%F{$CC_GRAY}"
 CC_WRITE_ON_WHITE="%b%k%f%K{$CC_WHITE}%F{$CC_GRAY}"
 CC_WRITE_ON_WHITE_BOLD="%k%f%K{$CC_WHITE}%F{$CC_GRAY}%B"
-CC_WRITE_ON_GRAY="%k%f%K{$CC_GRAY}%F{$CC_WHITE}"
 CC_WRITE_ON_RED="%k%f%K{$CC_RED}%F{$CC_WHITE}"
 
 CC_DRAW_IN_GREEN_ON_GRAY="%k%f%K{$CC_GRAY}%F{$CC_GREEN}"
@@ -34,14 +33,6 @@ CC_CURRENT_PATH="%1~"
 CC_TIME_AND_DATE="%D{%H:%M:%S} $CC_SYMBOL_CALENDAR %D{%Y-%m-%d}"
 
 CC_HOSTNAME=`hostname -f`
-
-if echo $CC_HOSTNAME | grep conio.com > /dev/null 2>&1; then
-  CC_HOSTNAME=$CC_SYMBOL_BITCOINS
-fi
-
-if echo $CC_HOSTNAME | grep onebip.com > /dev/null 2>&1 ; then
-  CC_HOSTNAME='ONEBIP'
-fi
 
 if echo $CC_HOSTNAME | grep easywelfare.io > /dev/null 2>&1 ; then
   CC_HOSTNAME='EASYWELFARE'
