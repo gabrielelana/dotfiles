@@ -5,6 +5,7 @@
   (package-initialize))
 
 ;;; install and configure use-package
+(setq package-check-signature nil)
 (unless (package-installed-p 'use-package)
   (progn
     (unless package-archive-contents
