@@ -1040,6 +1040,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (setq enable-recursive-minibuffers t)
 ;;; do not wait to have fully rendered the buffer before accepting inputs
 (setq redisplay-dont-pause nil)
+;;; should improve re-display issues?
+(setq recenter-redisplay nil)
 ;;; highlight current line
 (global-hl-line-mode +1)
 ;;; replace region when you type something and a region is active
