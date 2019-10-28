@@ -731,7 +731,7 @@
               ("C-c r i" . 'php-import-classname-at-point)
               ("C-c r s" . 'php-normalize-use-region)))
 
-;;; chunkly
+;; chunkly
 (use-package chunkly-mode
   :ensure nil
   :commands (chunkly-mode)
