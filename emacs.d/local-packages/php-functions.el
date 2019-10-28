@@ -1,4 +1,5 @@
 (require 's)
+(require 'f)
 (require 'dash)
 
 ;;; TODO: what to do if spaceland is not installed?
@@ -12,6 +13,18 @@
 ;;; TODO: regular expressions as private constants
 ;;; TODO: php-remove-namespace-block
 ;;; TODO: php-rename-variable-in-scope
+
+(defun php-vendor-executable-find (executable-name)
+  (let* ((project-root (projectile-project-root))
+         (executable-path (f-join project-root "vendor/bin" executable-name)))
+    (when (and (file-exists-p executable-path) (file-executable-p executable-path))
+      executable-path)))
+
+(defun phpstan-get-configuration-file ()
+  (let* ((project-root (projectile-project-root))
+         (configuration-file (f-join project-root "phpstan.neon")))
+    (when (and (file-exists-p configuration-file) (file-readable-p configuration-file))
+      configuration-file)))
 
 ;;; TODO: check if php is available
 ;;; TODO: check if spaceland is available

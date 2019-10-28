@@ -715,11 +715,10 @@
   :after php-mode
   :init
   (defun cc/php-setup-phpstan ()
-    (let ((phpstan (executable-find "phpstan")))
-      (when (not phpstan)
-        (user-error "Unable to find phpstan executable, maybe it is not installed?"))
+    (when (phpstan-get-executable)
+      (when (not (phpstan-get-configuration-file))
+        (user-error "Unable to find ./phpstan.neon, without it flycheck-phpstan doesn't work"))
       (setq-local phpstan-level 'max)
-      (setq-local phpstan-executable phpstan)
       (flycheck-select-checker 'phpstan)))
   (add-hook 'php-mode-hook #'cc/php-setup-phpstan))
 
