@@ -1004,6 +1004,11 @@ options you can do it calling `(cc/shell-command-on-current-file
 (bind-key "C-c e s" #'scratch)
 (bind-key "C-c e m" #'view-echo-area-messages)
 
+;;; keybindings to insert symbols
+(global-set-key (kbd "C-c i l") "λ")
+(global-set-key (kbd "C-c i b") "⊥")
+(global-set-key (kbd "C-c i t") "⊤")
+
 ;;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'compilation-filter-hook 'cc/colorize-compilation)
