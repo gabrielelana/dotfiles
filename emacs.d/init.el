@@ -740,6 +740,10 @@
   "Pick a random element from a list L."
   (nth (random (length l)) l))
 
+(defun cc/recompile-packages ()
+  (interactive)
+  (byte-recompile-directory package-user-dir nil 'force))
+
 (defun cc/load-local-machine-configuration (&optional machine)
   "Load configuration of the current machine or for MACHINE.
 
