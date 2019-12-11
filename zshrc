@@ -87,6 +87,11 @@ command -v stack >/dev/null && {
   export PATH=$PATH:$HOME/.go/bin
 }
 
+# PHP configuration
+[[ -d "$HOME/.composer" ]] && {
+  export PATH=$PATH:$HOME/.composer/vendor/bin
+}
+
 # Heroku configuration
 [[ -d "/usr/local/heroku/bin" ]] && {
   export PATH=$PATH:/usr/local/heroku/bin
