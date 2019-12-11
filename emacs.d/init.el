@@ -286,22 +286,24 @@
     (setq flycheck-indication-mode nil)
     (setq flycheck-mode-line
           '(:eval
-            (pcase flycheck-last-status-change
-              (`not-checked " \uf00c")
-              (`no-checker " \uf00c[-]")
-              (`errored (propertize " \uf00c[!]" 'face '(:foreground "#ff0000")))
-              (`interrupted " \uf00c[?]")
-              (`suspicious " \uf00c[?]")
-              (`running " \uf00c[?]")
-              (`finished
-               (let* ((error-counts (flycheck-count-errors flycheck-current-errors))
-                      (n-errors (cdr (assq 'error error-counts)))
-                      (n-warnings (cdr (assq 'warning error-counts))))
-                 (if (or n-errors n-warnings)
-                     (propertize
-                      (format " \uf00c[%s/%s]" (or n-errors 0) (or n-warnings 0))
-                      'face '(:foreground "Tomato"))
-                   (propertize " \uf00c" 'face '(:foreground "#32cd32"))))))))
+            (let ((check-char "\uf33a")
+                  (error-char "\uf391"))
+              (pcase flycheck-last-status-change
+                (`not-checked (format " %s" check-char))
+                (`no-checker (format " %s[-]" check-char))
+                (`errored (propertize (format " %s[!]" check-char) 'face '(:foreground "#ff0000")))
+                (`interrupted (format " %s[?]" check-char))
+                (`suspicious (format " %s[?]" check-char))
+                (`running (format " %s[?]" check-char))
+                (`finished
+                 (let* ((error-counts (flycheck-count-errors flycheck-current-errors))
+                        (n-errors (cdr (assq 'error error-counts)))
+                        (n-warnings (cdr (assq 'warning error-counts))))
+                   (if (or n-errors n-warnings)
+                       (propertize
+                        (format " %s[%s/%s]" error-char (or n-errors 0) (or n-warnings 0))
+                        'face '(:foreground "Tomato"))
+                     (propertize (format " %s" check-char) 'face '(:foreground "#32cd32")))))))))
     (push '("*Flycheck errors*" :position bottom :height .4 :stick t) popwin:special-display-config)))
 
 (use-package magit
