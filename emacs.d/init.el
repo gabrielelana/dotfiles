@@ -220,8 +220,6 @@
   :ensure org-plus-contrib
   :after org
   :commands org-drill
-  :init
-  (require 'cl)                         ; avoid void-function copy-list error
   :config
   (add-to-list 'org-modules 'org-drill)
   (setq org-drill-add-random-noise-to-intervals-p t
