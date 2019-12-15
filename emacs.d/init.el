@@ -312,10 +312,12 @@
           flycheck-indication-mode nil)
     (cc/flycheck-setup-theme))
 
+;;; version control
 
 (use-package magit
   :bind (("C-c g s" . magit-status)
          ("H-s" . magit-status))
+  :hook (git-commit-setup . cc/insert-commit-message)
   :config
   (defvar cc/first-commit-messages
     '("This is where it all begins..."
@@ -337,9 +339,7 @@
       (when (null current-commit-parents)
         (insert (cc/pick-random cc/first-commit-messages)))))
   (setq magit-section-visibility-indicator nil
-        transient-display-buffer-action '(display-buffer-below-selected))
-  :init
-  (add-hook 'git-commit-setup-hook #'cc/insert-commit-message))
+        transient-display-buffer-action '(display-buffer-below-selected)))
 
 (use-package forge
   :after magit)
