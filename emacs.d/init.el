@@ -269,45 +269,49 @@
   :config
   (org-tree-slide-simple-profile))
 
+;;; check
 
 (use-package flyspell
   :diminish (flyspell-mode . " (S)")
   :hook ((text-mode . flyspell-mode)
-         (prog-mode . flyspell-prog-mode))
+         (prog-mode . flyspell-prog-mode)
+         (after-load-theme . cc/flycheck-setup-theme))
+  :init
+  (defun cc/flyspell-setup-theme ()
+    (set-face-attribute 'flyspell-incorrect nil
+                        :underline '(:color "red1" :style line))
+    (set-face-attribute 'flyspell-duplicate nil
+                        :underline '(:color "orange" :style line)))
   :config
   (unbind-key "C-." flyspell-mode-map)
   (unbind-key "C-," flyspell-mode-map)
-  (unbind-key "C-;" flyspell-mode-map))
+  (unbind-key "C-;" flyspell-mode-map)
+  (cc/flyspell-setup-theme))
 
 (use-package flycheck
   :commands flycheck-mode
+  :hook (after-load-theme . cc/flycheck-setup-theme)
+  :init
+  (defun cc/flycheck-setup-theme ()
+    "Setup flycheck in accordance to the current theme."
+    (let ((default-foreground (face-attribute 'default :foreground)))
+      (set-face-attribute 'flycheck-error nil
+                          :box `(:line-width 1 :color ,default-foreground :style nil)
+                          :underline nil)
+      (set-face-attribute 'flycheck-warning nil
+                          :box `(:line-width 1 :color ,default-foreground :style nil)
+                          :underline nil)
+      (set-face-attribute 'flycheck-info nil
+                          :box `(:line-width 1 :color ,default-foreground :style nil)
+                          :underline nil)))
   :config
-  (progn
-    (setq flycheck-check-syntax-automatically '(mode-enabled save))
-    (setq flycheck-idle-change-delay 3.14)
-    (setq flycheck-highlighting-mode 'symbols)
-    (setq flycheck-indication-mode nil)
-    (setq flycheck-mode-line
-          '(:eval
-            (let ((check-char "\uf33a")
-                  (error-char "\uf391"))
-              (pcase flycheck-last-status-change
-                (`not-checked (format " %s" check-char))
-                (`no-checker (format " %s[-]" check-char))
-                (`errored (propertize (format " %s[!]" check-char) 'face '(:foreground "#ff0000")))
-                (`interrupted (format " %s[?]" check-char))
-                (`suspicious (format " %s[?]" check-char))
-                (`running (format " %s[?]" check-char))
-                (`finished
-                 (let* ((error-counts (flycheck-count-errors flycheck-current-errors))
-                        (n-errors (cdr (assq 'error error-counts)))
-                        (n-warnings (cdr (assq 'warning error-counts))))
-                   (if (or n-errors n-warnings)
-                       (propertize
-                        (format " %s[%s/%s]" error-char (or n-errors 0) (or n-warnings 0))
-                        'face '(:foreground "Tomato"))
-                     (propertize (format " %s" check-char) 'face '(:foreground "#32cd32")))))))))
-    (push '("*Flycheck errors*" :position bottom :height .4 :stick t) popwin:special-display-config)))
+    ;; (push '("*Flycheck errors*" :position bottom :height .4 :stick t) popwin:special-display-config)
+    (setq flycheck-check-syntax-automatically '(mode-enabled save)
+          flycheck-idle-change-delay 3.14
+          flycheck-highlighting-mode 'symbols
+          flycheck-indication-mode nil)
+    (cc/flycheck-setup-theme))
+
 
 (use-package magit
   :bind (("C-c g s" . magit-status)
