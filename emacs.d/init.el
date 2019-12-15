@@ -603,6 +603,15 @@
 
 (use-package lsp-ui)
 
+(use-package lsp-ivy)
+
+(use-package company-lsp
+  :config
+  (push 'company-lsp company-backends)
+  (setq company-lsp-enable-snippet t
+        company-lsp-enable-recompletion t
+        company-lsp-async t))
+
 ;;; rust
 (use-package rust-mode
   :mode ("\\.rs$" . rust-mode)
