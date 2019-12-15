@@ -349,33 +349,38 @@
          ("H-t" . git-timemachine)))
 
 (use-package git-gutter
-  :diminish git-gutter-mode
   :bind (("C-c g n" . git-gutter:next-hunk)
          ("C-c g p" . git-gutter:previous-hunk)
          ("C-c g r" . git-gutter:revert-hunk)
          ("C-c g a" . git-gutter:stage-hunk)
          ("C-c g u" . git-gutter:update-all-windows))
+  :hook (after-load-theme . cc/git-gutter-setup-theme)
   :init
-  (global-git-gutter-mode t)
+  (defun cc/git-gutter-setup-theme ()
+    "Configure git gutter in accordance to the current theme."
+    (let ((default-fg (face-attribute 'default :foreground))
+          (default-bg (face-attribute 'default :background)))
+      (set-face-attribute 'git-gutter:added nil
+                          :foreground default-fg
+                          :background default-bg
+                          :height 0.8)
+      (set-face-attribute 'git-gutter:deleted nil
+                          :foreground default-fg
+                          :background default-bg
+                          :height 0.8)
+      (set-face-attribute 'git-gutter:modified nil
+                          :foreground default-fg
+                          :background default-bg
+                          :height 0.8)))
+  :config
   (custom-set-variables
    '(git-gutter:window-width 2)
    '(git-gutter:added-sign "\uf067")
    '(git-gutter:deleted-sign "\uf068")
    '(git-gutter:modified-sign "\uf054")
    '(git-gutter:hide-gutter nil))
-  ;; independent from the theme
-
-  (let ((git-gutter-default-fg (face-attribute 'default :foreground))
-        (git-gutter-default-bg (face-attribute 'default :background)))
-    (set-face-foreground 'git-gutter:added git-gutter-default-fg)
-    (set-face-background 'git-gutter:added git-gutter-default-bg)
-    (set-face-attribute 'git-gutter:added nil :height 0.8)
-    (set-face-foreground 'git-gutter:deleted git-gutter-default-fg)
-    (set-face-background 'git-gutter:deleted git-gutter-default-bg)
-    (set-face-attribute 'git-gutter:deleted nil :height 0.8)
-    (set-face-foreground 'git-gutter:modified git-gutter-default-fg)
-    (set-face-background 'git-gutter:modified git-gutter-default-bg)
-    (set-face-attribute 'git-gutter:modified nil :height 0.8)))
+  (cc/git-gutter-setup-theme)
+  (global-git-gutter-mode +1))
 
 ;; ivy
 (use-package smex)
