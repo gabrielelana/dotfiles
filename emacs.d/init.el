@@ -60,7 +60,7 @@
   :defer t
   :init
   (setq subatomic-more-visible-comment-delimiters t)
-  ;; (set-face-attribute 'hl-line nil :background "#25293a")
+  ;; (set-face-attribute 'hl-line nil :background "#4b5275")
   )
 (use-package doom-themes)
 (use-package nord-theme
@@ -76,11 +76,11 @@
                       :foreground "#ff6523"))
 
 ;;; light themes
-(load-theme 'dichromacy t)
+;; (load-theme 'dichromacy t)
 ;; (load-theme 'github t)
 
 ;;; dark themes
-;; (load-theme 'subatomic t)
+(load-theme 'subatomic t)
 ;; (load-theme 'doom-molokai)
 ;; (load-theme 'doom-dracula)
 ;; (load-theme 'doom-nord)
