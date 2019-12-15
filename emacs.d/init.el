@@ -41,65 +41,49 @@
 (use-package scratch)
 
 ;;; themes
-(use-package monokai-theme :defer t)
-(use-package subatomic-theme :defer t
+(use-package all-the-icons
+  :config
+  (setq all-the-icons-color-icons nil))
+
+(defvar after-load-theme-hook nil
+  "Hook run after a color theme is loaded using `load-theme'.")
+
+(defadvice load-theme (after run-after-load-theme-hook activate)
+  "Run `after-load-theme-hook'."
+  (run-hooks 'after-load-theme-hook))
+
+(use-package apropospriate-theme)
+(use-package github-theme)
+(use-package material-theme)
+(use-package monokai-theme)
+(use-package subatomic-theme
+  :defer t
   :init
   (setq subatomic-more-visible-comment-delimiters t)
-  :config
-  (set-face-attribute 'hl-line nil :background "#232533")
-  (with-eval-after-load 'flycheck
-    (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil))
-  (with-eval-after-load 'flyspell
-    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LightSteelBlue" :style line))
-    (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style line))))
-(use-package doom-themes :defer t
-  :config
-  ;; TODO: customize based on the loaded theme among the collection of themes
-  (with-eval-after-load 'flycheck
-    (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil))
-  (with-eval-after-load 'flyspell
-    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LightSteelBlue" :style line))
-    (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style line))))
-(use-package dracula-theme :defer t)
-(use-package challenger-deep-theme :defer t)
+  ;; (set-face-attribute 'hl-line nil :background "#25293a")
+  )
+(use-package doom-themes)
 (use-package nord-theme
-  :defer t
   :init
   (setq nord-region-highlight "LightSteelBlue")
-  (setq nord-comment-brightness 20)
-  :config
-  (with-eval-after-load 'flycheck
-    (set-face-attribute 'flycheck-error nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-warning nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil)
-    (set-face-attribute 'flycheck-info nil :box '(:line-width 1 :color "LightSteelBlue" :style nil) :underline nil))
-  (with-eval-after-load 'flyspell
-    (set-face-attribute 'flyspell-duplicate nil :box nil :underline '(:color "LightSteelBlue" :style line))
-    (set-face-attribute 'flyspell-incorrect nil :box nil :underline '(:color "LightSteelBlue" :style line))))
-(use-package material-theme :defer t)
-(use-package apropospriate-theme :defer t)
-(use-package github-theme :defer t
-  :config
-  (set-face-attribute 'flycheck-error nil :box '(:line-width 2 :color "black" :style nil) :underline nil)
-  (set-face-attribute 'flycheck-warning nil :box '(:line-width 2 :color "black" :style nil) :underline nil)
-  (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "black" :style nil) :underline nil))
+  (setq nord-comment-brightness 20))
 (use-package mustang-theme
-  :defer t
   :config
-  (set-face-attribute 'flycheck-error nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
-  (set-face-attribute 'flycheck-warning nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
-  (set-face-attribute 'flycheck-info nil :box '(:line-width 2 :color "white" :style nil) :underline nil)
-  ;; mode-line faces customization
-  (set-face-attribute 'mode-line nil :weight 'bold :background "#404040" :foreground "#eeeeec")
-  (set-face-attribute 'mode-line-inactive nil :background "#404040" :foreground "#404040")
-  (set-face-attribute 'mode-line-buffer-id nil :background "#404040" :foreground "#ff9800")
-  ;; standard faces customization
-  (set-face-attribute 'font-lock-warning-face nil :background "#202020" :foreground "#ff6523"))
-(use-package tango-plus-theme
-  :defer t
+  (set-face-attribute 'font-lock-warning-face nil
+                      :background "#202020"
+                      :foreground "#ff6523"))
+
+;;; light themes
+(load-theme 'dichromacy t)
+;; (load-theme 'github t)
+
+;;; dark themes
+;; (load-theme 'subatomic t)
+;; (load-theme 'doom-molokai)
+;; (load-theme 'doom-dracula)
+;; (load-theme 'doom-nord)
+;; (load-theme 'nord t)
+
   :config
   (set-face-attribute 'flycheck-error nil :box t :underline nil)
   (set-face-attribute 'flycheck-warning nil :box t :underline nil)
