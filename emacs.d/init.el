@@ -84,19 +84,37 @@
 ;; (load-theme 'doom-nord)
 ;; (load-theme 'nord t)
 
+;;; modeline
+(use-package doom-modeline
+  :hook ((after-init . doom-modeline-mode)
+         (after-load-theme . cc/doom-modeline-setup-theme)
+         (doom-modeline-mode . cc/doom-modeline-setup-custom-modeline))
+  :init
+  (defun cc/doom-modeline-setup-theme ()
+    (set-face-attribute 'doom-modeline-bar nil
+                        :background (face-attribute 'cursor :background)
+                        :inherit 'unspecified)
+    (set-face-attribute 'doom-modeline-project-dir nil
+                        :inherit 'doom-modeline-buffer-major-mode))
+  (defun cc/doom-modeline-setup-custom-modeline ()
+    (doom-modeline-set-modeline 'cc 'default))
   :config
-  (set-face-attribute 'flycheck-error nil :box t :underline nil)
-  (set-face-attribute 'flycheck-warning nil :box t :underline nil)
-  (set-face-attribute 'flycheck-info nil :box t :underline nil))
+  (setq inhibit-compacting-font-caches t
+        doom-modeline-bar-width 3
+        doom-modeline-buffer-file-name-style 'relative-from-project
+        doom-modeline-irc nil
+        doom-modeline-major-mode-color-icon nil
+        doom-modeline-modal-icon nil
+        doom-modeline-mu4e nil
+        doom-modeline-project-detection 'projectile)
+  (doom-modeline-def-segment pad
+    "Give more space"
+    (doom-modeline-spc))
+  (doom-modeline-def-modeline 'cc
+    '(bar workspace-name window-number modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
+    '(objed-state misc-info  grip debug lsp minor-modes indent-info buffer-encoding major-mode process checker vcs pad))
+  (cc/doom-modeline-setup-theme))
 
-;;; must load the theme before specific package customization will take place
-;; (load-theme 'doom-nord) ;; dark theme
-;; (load-theme 'nord t) ;; dark theme
-;; (load-theme 'doom-dracula) ;; dark theme
-;; (load-theme 'doom-molokai) ;; dark theme
-;; (load-theme 'github t) ;; light theme
-;; (load-theme 'doom-nord-light) ;; light theme
-(load-theme 'subatomic) ;; dark theme
 
 (use-package popwin
   :diminish popwin
