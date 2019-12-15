@@ -115,6 +115,7 @@
     '(objed-state misc-info  grip debug lsp minor-modes indent-info buffer-encoding major-mode process checker vcs pad))
   (cc/doom-modeline-setup-theme))
 
+;;; universal minor modes
 
 (use-package popwin
   :diminish popwin
@@ -138,7 +139,36 @@
   :config
   (global-page-break-lines-mode))
 
-;;; org stuff
+(use-package expand-region
+  :bind (("M-]" . er/expand-region)
+         ("M-[" . er/contract-region)))
+
+(use-package multiple-cursors
+  :bind (("C-c m n" . mc/mark-next-like-this)
+         ("M-\\" . mc/mark-next-like-this)
+         ("C-c m p" . mc/mark-previous-like-this)
+         ("C-c m a" . mc/mark-all-like-this-dwim)
+	 ("C-c m l" . mc/edit-lines))
+  :config
+  (setq mc/always-run-for-all t))
+
+(use-package visual-regexp
+  :bind (("C-c v r" . vr/replace)
+         ("C-c v q" . vr/query-replace)
+         ("C-c v m" . vr/mc-mark)))
+
+(use-package hydra)
+
+(use-package rainbow-mode
+  :diminish rainbow-mode)
+
+(use-package exec-path-from-shell
+  :config
+  (progn
+    (exec-path-from-shell-initialize)
+    (setq exec-path-from-shell-check-startup-files nil)))
+
+;;; org mode
 (use-package ob-http)
 
 (use-package ob-mongo)
@@ -239,35 +269,6 @@
   :config
   (org-tree-slide-simple-profile))
 
-;;; general utility
-(use-package expand-region
-  :bind (("M-]" . er/expand-region)
-         ("M-[" . er/contract-region)))
-
-(use-package multiple-cursors
-  :bind (("C-c m n" . mc/mark-next-like-this)
-         ("M-\\" . mc/mark-next-like-this)
-         ("C-c m p" . mc/mark-previous-like-this)
-         ("C-c m a" . mc/mark-all-like-this-dwim)
-	 ("C-c m l" . mc/edit-lines))
-  :config
-  (setq mc/always-run-for-all t))
-
-(use-package visual-regexp
-  :bind (("C-c v r" . vr/replace)
-         ("C-c v q" . vr/query-replace)
-         ("C-c v m" . vr/mc-mark)))
-
-(use-package hydra)
-
-(use-package rainbow-mode
-  :diminish rainbow-mode)
-
-(use-package exec-path-from-shell
-  :config
-  (progn
-    (exec-path-from-shell-initialize)
-    (setq exec-path-from-shell-check-startup-files nil)))
 
 (use-package flyspell
   :diminish (flyspell-mode . " (S)")
