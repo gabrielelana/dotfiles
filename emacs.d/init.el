@@ -64,10 +64,12 @@
   )
 (use-package doom-themes)
 (use-package nord-theme
+  :defer t
   :init
   (setq nord-region-highlight "LightSteelBlue")
   (setq nord-comment-brightness 20))
 (use-package mustang-theme
+  :defer t
   :config
   (set-face-attribute 'font-lock-warning-face nil
                       :background "#202020"
