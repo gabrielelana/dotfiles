@@ -547,7 +547,7 @@
   (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
   (exec-path-from-shell-copy-env "MIX_ARCHIVES"))
 
-;;; javascript --- TODO: tern, tide and completion?
+;;; javascript
 (use-package rjsx-mode
   :mode ("\\.jsx?\\'" . rjsx-mode)
   :hook (rjsx-mode . cc/jsx--setup)
