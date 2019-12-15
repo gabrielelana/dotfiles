@@ -119,6 +119,12 @@
 
 ;;; universal minor modes
 
+(use-package highlight-indent-guides
+  :hook ((yaml-mode . highlight-indent-guides-mode)
+         (json-mode . highlight-indent-guides-mode))
+  :config
+  (setq highlight-indent-guides-method 'character))
+
 (use-package popwin
   :diminish popwin
   :config
