@@ -1,5 +1,3 @@
-;;; TODO: git-gutter is not enabled by default ???
-
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
@@ -387,8 +385,7 @@
    '(git-gutter:deleted-sign "\uf068")
    '(git-gutter:modified-sign "\uf054")
    '(git-gutter:hide-gutter nil))
-  (cc/git-gutter-setup-theme)
-  (global-git-gutter-mode +1))
+  (cc/git-gutter-setup-theme))
 
 ;; ivy
 (use-package smex)
@@ -1081,6 +1078,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (setq recenter-redisplay nil)
 ;;; highlight current line
 (global-hl-line-mode +1)
+;;; highlight current line
+(global-git-gutter-mode +1)
 ;;; replace region when you type something and a region is active
 (delete-selection-mode)
 ;;; diplay line and column number in modeline
