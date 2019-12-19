@@ -798,6 +798,12 @@ and must be placed and can be found under
       (comment-or-uncomment-region (region-beginning) (region-end))
     (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
 
+(defun cc/remove-flyspell-errors (begin end _)
+  "Removes all flyspell overlays on region."
+  (flyspell-delete-region-overlays begin end))
+
+(advice-add #'uncomment-region :after #'cc/remove-flyspell-errors)
+
 (defun cc/eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)
