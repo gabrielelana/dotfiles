@@ -1018,6 +1018,21 @@ options you can do it calling `(cc/shell-command-on-current-file
    (file-name-without-extension)
    (file-name-without-directory)))
 
+;;; to make uuidgen functions work, consider using straight-el
+(defun math-fixnum (a)
+  (if (consp a)
+      (if (cdr a)
+	  (if (eq (car a) 'bigneg)
+	      (- (math-fixnum-big (cdr a)))
+	    (math-fixnum-big (cdr a)))
+	0)
+    a))
+
+(defun math-fixnum-big (a)
+  (if (cdr a)
+      (+ (car a) (* (math-fixnum-big (cdr a)) 1000))
+    (car a)))
+
 ;;; I can get crazy for inconsistencies so...
 (defalias 'nullp 'null)
 (defalias 'atomp 'atom)
