@@ -516,6 +516,9 @@
   (setq rspec-spec-command "rspec")
   (setq rspec-key-command-prefix (kbd "C-c t")))
 
+;;; erlang
+(use-package erlang)
+
 ;;; elixir
 (use-package elixir-mode
   :hook (elixir-mode . cc/elixir--setup)
