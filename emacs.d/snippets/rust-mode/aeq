@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : assert equal
+# key : aeq
+# uuid: 7e413a44-ef7b-4c99-ada6-0c000d1addae
+# --
+assert_eq!($1, $2);$0

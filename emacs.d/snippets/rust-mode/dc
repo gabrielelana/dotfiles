@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : allow dead code
+# key : dc
+# uuid: 2f481e6a-c0bf-4f93-bf13-ed1579f13810
+# --
+#[allow(dead_code)]

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributor: Gabriele Lana
+# name : println!(...) as debug
+# key : pd
+# uuid: eda1daf3-fb55-4b1a-a2e5-9977a8beff37
+# --
+println!("{:?}", ${2:`yas-selected-text`});$0
