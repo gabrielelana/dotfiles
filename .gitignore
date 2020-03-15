@@ -18,3 +18,4 @@ emacs.d/url
 i3/log
 vim/.*
 vim/bundle
+/emacs.d/places
