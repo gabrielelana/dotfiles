@@ -1115,6 +1115,11 @@ options you can do it calling `(cc/shell-command-on-current-file
 (setq-default bidi-display-reordering nil)
 ;; dired
 (setq dired-dwim-target t)
+;;; recently added to Emacs 27, improves performance
+(setq read-process-output-max (* 1024 1024))
+;;; underlining
+(setq underline-minimum-offset 2)
+(setq x-underline-at-descent-line t)
 
 ;;; shell-script-mode default configurations
 (setq sh-basic-offset 2)
