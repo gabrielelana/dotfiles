@@ -628,28 +628,26 @@
   :mode ("\\.rs$" . rust-mode)
   :bind (("C-c <tab>" . rust-format-buffer))
   :hook (rust-mode . cc/rust--setup)
+  :bind (:map rust-mode-map
+              ("TAB" . company-indent-or-complete-common))
   :init
   (defun cc/rust--setup ()
     (use-package flycheck-rust)
     (lsp)
+    (lsp-ui-mode)
     (flycheck-mode)
-    (flymake-mode -1)
     (company-mode)
+    (flymake-mode -1)
     (flycheck-rust-setup))
   :config
-  (setq rust-format-on-save t))
+  (setq rust-format-on-save t)
+  (setq lsp-rust-full-docs t)
+  (setq lsp-rust-build-on-save t))
 
 (use-package cargo
-  :diminish cargo-minor-mode
-  :hook (rust-mode . cargo-minor-mode)
-  :init
-  (progn
-    (push '("^\*Cargo.+\*$" :regexp t :position right :width 80 :noselect t) popwin:special-display-config)
-    (add-hook 'cargo-process-mode-hook
-              (lambda ()
-                (with-current-buffer (get-buffer "*Cargo Process*")
-                  (setq-local truncate-lines nil)
-                  (text-scale-set -1))))))
+  :hook (rust-mode . cargo-minor-mode))
+
+(use-package toml-mode)
 
 ;;; haskell
 ;;; TODO: take a look at https://github.com/bitemyapp/dotfiles/blob/master/.emacs.d/haskell/hs-lint.el
