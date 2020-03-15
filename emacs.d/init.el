@@ -650,26 +650,40 @@
 (use-package toml-mode)
 
 ;;; haskell
-;;; TODO: take a look at https://github.com/bitemyapp/dotfiles/blob/master/.emacs.d/haskell/hs-lint.el
 (use-package haskell-mode
+  :hook (haskell-mode . cc/haskell--setup)
+  :init
+  (defun cc/haskell--setup ()
+    (lsp)
+    (lsp-ui-mode)
+    (flycheck-mode)
+    (flymake-mode -1)
+    (company-mode)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (setq lsp-ui-doc-enable nil))
   :config
   (setq haskell-process-type 'ghci)
-  ;; (setq haskell-process-path-stack "/usr/local/bin/stack")
-  ;; (setq haskell-process-args-stack-ghci "ghci")
-  (setq haskell-process-path-ghci "/usr/local/bin/stack")
+  (setq haskell-process-path-ghci (executable-find "stack"))
   (setq haskell-process-args-ghci '("ghci"))
-  (setq inferior-haskell-root-dir "/home/coder/tmp"))
+  (setq inferior-haskell-root-dir "/tmp"))
 
-(use-package intero
-  :hook (haskell-mode . intero-mode)
-  :config (setq flycheck-check-syntax-automatically '(save mode-enabled)))
+(use-package lsp-haskell
+  :ensure t
+  :config
+  (setq lsp-haskell-process-path-hie (executable-find "ghcide"))
+  (setq lsp-haskell-process-args-hie '())
+  (setq lsp-log-io t))
 
-(when (executable-find "hindent")
-  (use-package hindent
-    :diminish hindent-mode " ↹"
-    :hook (haskell-mode . hindent-mode)
-    :config
-    (setq hindent-reformat-buffer-on-save t)))
+;; (use-package intero
+;;   :hook (haskell-mode . intero-mode)
+;;   :config (setq flycheck-check-syntax-automatically '(save mode-enabled)))
+
+;; (when (executable-find "hindent")
+;;   (use-package hindent
+;;     :diminish hindent-mode " ↹"
+;;     :hook (haskell-mode . hindent-mode)
+;;     :config
+;;     (setq hindent-reformat-buffer-on-save t)))
 
 ;;; elm
 (use-package elm-mode
