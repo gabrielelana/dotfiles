@@ -69,6 +69,11 @@ compinit
   export PATH=$PATH:$HOME/.evm/bin
 }
 
+# Emacs compiled version
+[[ -d "$HOME/opt/emacs" ]] && {
+  export PATH=$PATH:$HOME/opt/emacs/bin
+}
+
 # Elixir language server configuration
 [[ -d "$HOME/opt/elixir-ls" ]] && {
   # git clone https://github.com/elixir-lsp/elixir-ls ~/src/elixir-ls
