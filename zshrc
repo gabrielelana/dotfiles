@@ -69,9 +69,13 @@ compinit
   export PATH=$PATH:$HOME/.evm/bin
 }
 
-# Elixir configuration
-[[ -d "$HOME/.elixir-lsp" ]] && {
-  export PATH=$PATH:$HOME/.elixir-lsp
+# Elixir language server configuration
+[[ -d "$HOME/opt/elixir-ls" ]] && {
+  # git clone https://github.com/elixir-lsp/elixir-ls ~/src/elixir-ls
+  # cd ~/opt/elixir-ls
+  # mix deps.get
+  # MIX_ENV=prod mix elixir_ls.release -o ~/opt/elixir-ls
+  export PATH=$PATH:$HOME/opt/elixir-ls
 }
 
 # Haskell (Stack) configuration
