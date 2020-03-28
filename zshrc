@@ -56,22 +56,22 @@ compinit
 
 # Rust configuration
 [[ -d "$HOME/.cargo/bin" ]] && {
-  export PATH=$PATH:$HOME/.cargo/bin
+  export PATH=$HOME/.cargo/bin:$PATH
 }
 
 # Cask configuration
 [[ -d "$HOME/.cask/bin" ]] && {
-  export PATH=$PATH:$HOME/.cask/bin
+  export PATH=$HOME/.cask/bin:$PATH
 }
 
 # EVM (Emacs Version Manager) configuration
 [[ -d "$HOME/.evm/bin" ]] && {
-  export PATH=$PATH:$HOME/.evm/bin
+  export PATH=$HOME/.evm/bin:$PATH
 }
 
 # Emacs compiled version
 [[ -d "$HOME/opt/emacs" ]] && {
-  export PATH=$PATH:$HOME/opt/emacs/bin
+  export PATH=$HOME/opt/emacs/bin:$PATH
 }
 
 # Elixir language server configuration
@@ -80,7 +80,7 @@ compinit
   # cd ~/opt/elixir-ls
   # mix deps.get
   # MIX_ENV=prod mix elixir_ls.release -o ~/opt/elixir-ls
-  export PATH=$PATH:$HOME/opt/elixir-ls
+  export PATH=$HOME/opt/elixir-ls:$PATH
 }
 
 # Haskell (Stack) configuration
@@ -93,17 +93,17 @@ command -v stack >/dev/null && {
 # Go configuration
 [[ -d "$HOME/.go" ]] && {
   export GOPATH=$HOME/.go
-  export PATH=$PATH:$HOME/.go/bin
+  export PATH=$HOME/.go/bin:$PATH
 }
 
 # PHP configuration
 [[ -d "$HOME/.composer" ]] && {
-  export PATH=$PATH:$HOME/.composer/vendor/bin
+  export PATH=$HOME/.composer/vendor/bin:$PATH
 }
 
 # Heroku configuration
 [[ -d "/usr/local/heroku/bin" ]] && {
-  export PATH=$PATH:/usr/local/heroku/bin
+  export PATH=/usr/local/heroku/bin:$PATH
 }
 
 # Direnv configuration
@@ -113,7 +113,7 @@ command -v direnv >/dev/null && {
 
 # Machine specific executables
 [[ -d "$HOME/opt/bin" ]] && {
-  export PATH=$PATH:$HOME/opt/bin
+  export PATH=$HOME/opt/bin:$PATH
 }
 
 
@@ -123,7 +123,7 @@ command -v direnv >/dev/null && {
 
 export TERM="xterm-256color"
 export EDITOR="emacs-client"
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export PYTHON="python2.7"
 
