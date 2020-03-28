@@ -721,7 +721,10 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "pandoc --from markdown_github -t html5 -s"))
+  :custom-face (markdown-code-face ((t (:inherit nil))))
+  :init
+  (setq markdown-fontify-code-blocks-natively nil)
+  (setq markdown-command "pandoc --from markdown_github -t html5 -s"))
 
 ;;; php
 (use-package php-mode
