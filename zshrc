@@ -64,7 +64,7 @@ compinit
   export PATH=$PATH:$HOME/.cask/bin
 }
 
-# EVM configuration
+# EVM (Emacs Version Manager) configuration
 [[ -d "$HOME/.evm/bin" ]] && {
   export PATH=$PATH:$HOME/.evm/bin
 }
