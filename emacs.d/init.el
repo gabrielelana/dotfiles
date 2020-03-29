@@ -597,16 +597,18 @@
   (setq js-indent-level 2))
 
 ;;; lsp
+(setq lsp-keymap-prefix "H-l")
 (use-package lsp-mode
-  :commands lsp
-  :config
-  (require 'lsp-clients))
+  :commands lsp)
 
-(use-package lsp-ui)
+(use-package lsp-ui
+  :commands lsp-ui-mode)
 
-(use-package lsp-ivy)
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
 
 (use-package company-lsp
+  :commands company-lsp
   :config
   (push 'company-lsp company-backends)
   (setq company-lsp-enable-snippet t
@@ -703,8 +705,6 @@
 (use-package dockerfile-mode)
 (use-package docker-tramp)
 (use-package docker)
-  ;; :ensure t
-  ;; :bind ("C-c d" . docker))
 
 ;;; markdown
 (use-package markdown-mode
