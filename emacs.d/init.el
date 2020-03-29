@@ -1,24 +1,28 @@
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(when (version< emacs-version "27")
-  (package-initialize))
+;;; bootstrap `straight.el'
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;;; install and configure use-package
-(setq package-check-signature nil)
-(unless (package-installed-p 'use-package)
-  (progn
-    (unless package-archive-contents
-      (package-refresh-contents))
-    (package-install 'use-package)
-    (package-install 'diminish)))
-(eval-when-compile
-  (require 'use-package))
-(require 'diminish)
-(require 'bind-key)
+;;; download and set up use-package
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
-;;; configure use-package
-(setq use-package-always-ensure t)
+(use-package diminish :demand t)
+(use-package bind-key :demand t)
+(use-package s :demand t)
+(use-package f :demand t)
+(use-package uuidgen :demand t)
+(use-package dash :demand t)
+(use-package request :demand t)
 
 ;;; put custom configurations aside
 (setq custom-file "~/.emacs.d/custom.el")
@@ -29,12 +33,6 @@
 ;;; start the server if not already started
 (load "server")
 (unless (server-running-p) (server-start))
-
-;;; libraries
-(use-package s)
-(use-package f)
-(use-package uuidgen)
-(use-package request)
 
 ;;; default configuration
 (use-package better-defaults)
@@ -118,7 +116,6 @@
   (cc/doom-modeline-setup-theme))
 
 ;;; universal minor modes
-
 (use-package highlight-indent-guides
   :hook ((yaml-mode . highlight-indent-guides-mode)
          (json-mode . highlight-indent-guides-mode))
@@ -182,7 +179,7 @@
 (use-package ob-mongo)
 
 (use-package org
-  :pin org
+  :straight org-plus-contrib
   :bind (("C-M-<return>" . org-insert-todo-subheading))
   :bind (("C-c c" . org-capture)
          :map org-mode-map
@@ -257,7 +254,6 @@
      (shell . t))))
 
 (use-package org-drill
-  :ensure org-plus-contrib
   :after org
   :commands org-drill
   :config
@@ -278,7 +274,6 @@
   (org-tree-slide-simple-profile))
 
 ;;; check
-
 (use-package flyspell
   :diminish (flyspell-mode . " (S)")
   :hook ((text-mode . flyspell-mode)
@@ -321,7 +316,6 @@
     (cc/flycheck-setup-theme))
 
 ;;; version control
-
 (use-package magit
   :bind (("C-c g s" . magit-status)
          ("H-s" . magit-status))
@@ -345,7 +339,8 @@
     (let* ((current-commit (magit-git-string "rev-parse" "HEAD"))
            (current-commit-parents (magit-commit-parents current-commit)))
       (when (null current-commit-parents)
-        (insert (cc/pick-random cc/first-commit-messages)))))
+        (insert (cc/pick-random cc/first-commit-messages))
+        (save-buffer))))
   (setq magit-section-visibility-indicator nil
         transient-display-buffer-action '(display-buffer-below-selected)))
 
@@ -389,7 +384,7 @@
    '(git-gutter:hide-gutter nil))
   (cc/git-gutter-setup-theme))
 
-;; ivy
+;;; ivy
 (use-package smex)
 
 (use-package ivy
@@ -430,7 +425,7 @@
   (ivy-mode 1))
 
 (use-package counsel
-  :ensure counsel
+  ;; :ensure counsel
   :after (ivy)
   :bind (:map counsel-find-file-map
               ("C-l" . counsel-up-directory)))
@@ -662,7 +657,6 @@
   (setq inferior-haskell-root-dir "/tmp"))
 
 (use-package lsp-haskell
-  :ensure t
   :config
   (setq lsp-haskell-process-path-hie (executable-find "ghcide"))
   (setq lsp-haskell-process-args-hie '())
@@ -718,8 +712,6 @@
     (setq flycheck-check-syntax-automatically '(mode-enabled save)))
   (add-hook 'php-mode-hook #'cc/php-setup))
 
-;;; (use-package psysh)
-
 (use-package phpactor
   :after php-mode
   :config
@@ -742,28 +734,30 @@
 (use-package flycheck-phpstan
   :after php-mode
   :init
-  (defun cc/php-setup-phpstan ()
+  (defun cc/flycheck-phpstan--setup()
     (when (phpstan-get-executable)
       (when (not (phpstan-get-configuration-file))
         (user-error "Unable to find ./phpstan.neon, without it flycheck-phpstan doesn't work"))
       (setq-local phpstan-level 'max)
       (flycheck-select-checker 'phpstan)))
-  (add-hook 'php-mode-hook #'cc/php-setup-phpstan))
+  (add-hook 'php-mode-hook #'cc/flycheck-phpstan--setup))
 
-(use-package php-functions
-  :ensure nil
-  :after php-mode
-  :load-path "local-packages/"
-  :bind (:map php-mode-map
-              ("C-c r i" . 'php-import-classname-at-point)
-              ("C-c r s" . 'php-normalize-use-region)))
+;;; TODO: restore
+;; (use-package php-functions
+;;   ;; :ensure nil
+;;   :after php-mode
+;;   :load-path "local-packages/"
+;;   :bind (:map php-mode-map
+;;               ("C-c r i" . 'php-import-classname-at-point)
+;;               ("C-c r s" . 'php-normalize-use-region)))
 
-;; chunkly
-(use-package chunkly-mode
-  :ensure nil
-  :commands (chunkly-mode)
-  :load-path "local-packages/"
-  :mode ("\\.chunkly/[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\.log\\'" . chunkly-mode))
+;;; TODO: restore
+;; ;; chunkly
+;; (use-package chunkly-mode
+;;   ;; :ensure nil
+;;   :commands (chunkly-mode)
+;;   :load-path "local-packages/"
+;;   :mode ("\\.chunkly/[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\.log\\'" . chunkly-mode))
 
 ;;; functions
 (defun cc/pick-random (l)
@@ -1112,7 +1106,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 (setq kmacro-ring-max 100)
 ;;; better performance sacrificing right-to-left languages
 (setq-default bidi-display-reordering nil)
-;; dired
+;;; dired
 (setq dired-dwim-target t)
 ;;; recently added to Emacs 27, improves performance
 (setq read-process-output-max (* 1024 1024))
