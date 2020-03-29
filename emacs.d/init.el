@@ -12,6 +12,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;;; to update all packages run `straight-pull-package'
 ;;; download and set up use-package
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
