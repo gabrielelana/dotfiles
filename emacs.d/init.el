@@ -524,38 +524,28 @@
   :hook (elixir-mode . cc/elixir--setup)
   :init
   (defun cc/elixir--setup ()
-    (add-hook 'before-save-hook 'elixir-format nil t)))
+    (flycheck-mode)
+    (setq-local flycheck-checker 'lsp)
+    (flycheck-add-next-checker 'lsp 'elixir-mix)
+    (flycheck-add-next-checker 'elixir-mix 'elixir-credo)
+    (setq flycheck-elixir-credo-strict t)
+    (setq-local lsp-ui-doc-enable nil)
+    (setq-local lsp-ui-doc-use-childframe t)
+    (lsp)
+    (lsp-ui-mode)
+    (company-mode)
+    (add-hook 'before-save-hook 'elixir-format nil t)
+    ;; NOTE: one of the command above will reset the value of the
+    ;; following variable, therefore it must be kept at the end :-/
+    (setq-local flycheck-check-syntax-automatically '(save mode-enabled))))
 
 (use-package flycheck-mix
   :hook ((elixir-mode . flycheck-mode)
          (elixir-mode . flycheck-mix-setup)))
 
-(use-package alchemist
-  :diminish alchemist "Alchemist"
-  :hook (elixir-mode . alchemist-mode)
-  :bind (("C-c a a" . cc/alchemist-do-not-truncate-lines))
-  :init
-  (defun cc/alchemist-do-not-truncate-lines ()
-    "Avoid truncate lines in alchemist buffers."
-    (interactive)
-    (dolist (buffer (buffer-list))
-      (when (string-match-p "^*alchemist" (buffer-name buffer))
-        (with-current-buffer buffer
-          (setq-local truncate-lines nil)))))
-  ;; (add-hook 'elixir-mode-hook #'alchemist-mode)
-  :config
-  (setq alchemist-test-status-modeline nil)
-  (when (custom-theme-enabled-p 'mustang)
-    ;; customization for mustang theme
-    (set-face-attribute 'elixir-attribute-face nil :foreground "#ff9800"))
-  (push '("*alchemist test report*" :position right :width 60 :noselect t) popwin:special-display-config)
-  (push '("*alchemist help*" :position right :width 60 :noselect t) popwin:special-display-config)
-  (push '("*alchemist macroexpand*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-  (push '("*alchemist info mode*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-  (push '("*alchemist elixirc*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-  (push '("*alchemist elixir*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-  (push '("*alchemist mix*" :position bottom :width .4 :noselect t) popwin:special-display-config)
-  (exec-path-from-shell-copy-env "MIX_ARCHIVES"))
+;;; TODO
+;; (use-package elixir-mix
+;;   :straight (:host github :repo "gabrielelana/emacs-elixir-mix"))
 
 ;;; javascript
 (use-package rjsx-mode
