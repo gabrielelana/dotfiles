@@ -666,18 +666,7 @@
   :config
   (setq lsp-haskell-process-path-hie (executable-find "ghcide"))
   (setq lsp-haskell-process-args-hie '())
-  (setq lsp-log-io t))
-
-;; (use-package intero
-;;   :hook (haskell-mode . intero-mode)
-;;   :config (setq flycheck-check-syntax-automatically '(save mode-enabled)))
-
-;; (when (executable-find "hindent")
-;;   (use-package hindent
-;;     :diminish hindent-mode " ↹"
-;;     :hook (haskell-mode . hindent-mode)
-;;     :config
-;;     (setq hindent-reformat-buffer-on-save t)))
+  (setq lsp-log-io nil))
 
 ;;; elm
 (use-package elm-mode
