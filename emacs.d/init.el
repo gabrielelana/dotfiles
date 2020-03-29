@@ -466,7 +466,9 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-global-mode))
 
-(use-package company)
+(use-package company
+  :bind (:map company-mode-map
+              ("C-<tab>" . company-complete)))
 
 (use-package string-inflection
   :bind (("C-*" . string-inflection-all-cycle)))
