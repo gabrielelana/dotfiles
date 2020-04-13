@@ -34,6 +34,8 @@ echo "Setup system..."
 # After this script ran the you need to logout and at the next login
 # you must choose instead of Ubuntu the XSession to read the
 # ~/.xsession file and therefore to be able to run i3wm
+#
+# Then you run ~/.dotfiles/install-or-update.sh
 
 echo "Update package repositories..."
 sudo apt update
