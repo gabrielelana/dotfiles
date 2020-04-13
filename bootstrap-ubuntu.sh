@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# TODO: report changes to ~/.xsession file
-# TODO: report changes to ~/.xresources file
 # TODO: add ~/.i3/compton.conf file
 # TODO: fix install-or-update.sh (creates ~/.stack/stack/<files> instead of ~/.stack/<files>)
 # TODO: make install-or-update.sh run with bash
@@ -10,6 +8,8 @@
 # TODO: remove things that are not used anymore (zsh configuration)
 # TODO: polish switch-theme && add light theme that works
 # TODO: how to have non intrusive notifications in i3?
+# TODO: Firefox minimal theme?
+# TODO: Firefox theme customization with the same colors in switch-theme?
 
 echo "Setup system..."
 # To run the current script you need to have
