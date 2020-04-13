@@ -13,8 +13,8 @@ fi
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
 
-# Background
-xsetroot -solid "@@BACKGROUND1@@"
+# Background (xsetroot doesn't work with compositors like compton)
+hsetroot -solid "@@BACKGROUND1@@"
 
 # Start VirtualBox client to enable clipboard exchange with host and screen autoresize
 if command -v VBoxClient >/dev/null; then
@@ -26,16 +26,16 @@ if command -v vmware-user-suid-wrapper; then
    exec vmware-user-suid-wrapper &
 fi
 
-# Tell XOrg to consider this file as configuration
-xrdb ~/.xresources
-
 # Adjust DPIs
 # * xrandr needs a shell to do its work
 # * if we don't wait a little bit X is gonna crash
-exec bash -c 'sleep 1 && xrandr --output Virtual1 --dpi 192' &
+exec bash -c 'sleep 1 && xrandr --output Virtual1 --scale 1x1 --dpi 96 && sleep 2' &
 
-# Wait for xrandr to do its job
-sleep 2
+# Start Compton
+exec compton --config ~/.i3/compton.conf &
+
+# Tell Xorg to consider this file as configuration
+xrdb ~/.xresources
 
 # Start window manager
 exec i3 > ~/.i3/log 2>&1
