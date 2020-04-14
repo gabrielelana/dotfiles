@@ -41,6 +41,7 @@
 
 ;;; themes
 (use-package all-the-icons
+  :straight t
   :config
   (setq all-the-icons-color-icons nil))
 
