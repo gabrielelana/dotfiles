@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: add ~/.i3/compton.conf file
 # TODO: fix install-or-update.sh (creates ~/.stack/stack/<files> instead of ~/.stack/<files>)
 # TODO: make install-or-update.sh run with bash
 # TODO: port everything in ~/.zshrc to ~/.bashrc (or .profile???)
