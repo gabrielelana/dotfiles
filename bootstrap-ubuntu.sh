@@ -134,6 +134,21 @@ cp shellcheck-stable/shellcheck ~/bin/shellcheck
 rm -rf shellcheck-stable
 rm -f shellcheck-stable.linux.x86_64.tar.xz
 
+echo "Install pup..."
+if [ ! -f ~/bin/pup ]; then
+  cd ~/tmp
+  PUP_VERSION=0.4.0
+  wget -q https://github.com/ericchiang/pup/releases/download/v${PUP_VERSION}/pup_v${PUP_VERSION}_linux_amd64.zip
+  unzip pup_v${PUP_VERSION}_linux_amd64.zip
+  mv pup ~/bin
+  rm -rf pup_v${PUP_VERSION}_linux_amd64.zip
+fi
+
+echo "Install MongoDB shell extensions..."
+if [ ! -s ~/.mongorc.js ]; then
+  curl -sL https://raw.github.com/gabrielelana/mongodb-shell-extensions/master/released/mongorc.js > ~/.mongorc.js
+fi
+
 echo "Install ASDF and related plugins..."
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd -
