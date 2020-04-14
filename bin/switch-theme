@@ -28,30 +28,32 @@ shift $((OPTIND -1))
 echo "Switch current theme to $THEME_NAME"
 
 THEME_FILE=~/.dotfiles/theme/$THEME_NAME
-if ! [ -f $THEME_FILE ]; then
+if ! [ -f "$THEME_FILE" ]; then
   echo "ERROR: desktop theme $THEME_NAME not found" >&2
   exit 1
 fi
 
-THEME_ST_PATCH=~/.dotfiles/st/st-$THEME_NAME-theme-0.8.2.diff
-if ! [ -f $THEME_ST_PATCH ]; then
+ST_RELEASE="0.8.2"
+ST_THEME_PATCH=~/.dotfiles/st/st-$THEME_NAME-theme-$ST_RELEASE.diff
+if ! [ -f "$ST_THEME_PATCH" ]; then
   echo "ERROR: suckless terminal theme $THEME_NAME not found" >&2
   exit 1
 fi
 
-source $THEME_FILE
-cat ~/.dotfiles/i3/config | perl -pe 's/@@([^@]+)@@/$ENV{$1}/' > ~/.i3/config
-cat ~/.dotfiles/xsession | perl -pe 's/@@([^@]+)@@/$ENV{$1}/' > ~/.xsession
+# shellcheck source=/home/coder/.dotfiles/theme/subatomic
+source "$THEME_FILE"
+perl -pe 's/@@([^@]+)@@/$ENV{$1}/' < ~/.dotfiles/i3/config > ~/.i3/config
+perl -pe 's/@@([^@]+)@@/$ENV{$1}/' < ~/.dotfiles/xsession > ~/.xsession
 
-# TODO: duplicated from install-or-update.sh
-cd ~/.dotfiles/.dependencies/st
-rm -rf st-0.8.2
-tar -xzf st-0.8.2.tar.gz
-cd st-0.8.2
-patch < ~/.dotfiles/st/st-clipboard-0.8.2.diff
-patch < ~/.dotfiles/st/st-scrollback-0.8.2.diff
-patch < ~/.dotfiles/st/st-pragmata-0.8.2.diff
-patch < $THEME_ST_PATCH
+mkdir -p ~tmp/st-build && cd ~/tmp/st-build || exit 1
+if [ ! -f st-$ST_RELEASE.tar.gz ]; then
+  wget --quiet https://dl.suckless.org/st/st-$ST_RELEASE.tar.gz
+fi
+rm -rf st-$ST_RELEASE && tar -xzf st-$ST_RELEASE.tar.gz && cd st-$ST_RELEASE || exit 1
+patch < ~/.dotfiles/st/st-clipboard-$ST_RELEASE.diff
+patch < ~/.dotfiles/st/st-scrollback-$ST_RELEASE.diff
+patch < ~/.dotfiles/st/st-pragmata-$ST_RELEASE.diff
+patch < "$ST_THEME_PATCH"
 sudo make clean install
 
 if $RESTART; then
