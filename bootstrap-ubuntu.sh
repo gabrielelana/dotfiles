@@ -103,17 +103,6 @@ sudo apt install -y \
      xsltproc \
      zsh
 
-echo "Add an XSession entry for GDM3..."
-sudo cat <<EOF | sudo tee /usr/share/xsessions/xsession.desktop
-[Desktop Entry]
-Name=XSession
-Comment=This session uses the custom xsession file
-Exec=/etc/X11/Xsession
-Type=Application
-DesktopNames=GNOME-Flashback;GNOME;
-X-Ubuntu-Gettext-Domain=gnome-flashback
-EOF
-
 echo "Cloning Emacs repository, be patient..."
 mkdir -p ~/tmp && cd ~/tmp || exit 1
 git clone git://git.sv.gnu.org/emacs.git emacs-build && cd emacs-build || exit 1
