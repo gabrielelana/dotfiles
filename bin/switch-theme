@@ -1,14 +1,41 @@
-#!/bin/zsh
+#!/bin/bash
 
-THEME_FILE=~/.dotfiles/theme/$1
+RESTART=true
+while getopts ":ct:" opt; do
+  case ${opt} in
+    c )
+      RESTART=false
+      ;;
+    t )
+      THEME_NAME=$OPTARG
+      ;;
+    \? )
+      echo "ERROR: invalid option -$OPTARG" 1>&2
+      exit 1
+      ;;
+    : )
+      echo "ERROR: option -$OPTARG requires an argument" 1>&2
+      exit 1
+      ;;
+  esac
+done
+if [ -z "$THEME_NAME" ]; then
+  echo "ERROR: option -t is mandatory" 1>&2
+  exit 1
+fi
+shift $((OPTIND -1))
+
+echo "Switch current theme to $THEME_NAME"
+
+THEME_FILE=~/.dotfiles/theme/$THEME_NAME
 if ! [ -f $THEME_FILE ]; then
-  echo "desktop theme $1 not found" >&2
+  echo "ERROR: desktop theme $THEME_NAME not found" >&2
   exit 1
 fi
 
-ST_THEME_PATCH=~/.dotfiles/st/st-$1-theme-0.8.2.diff
-if ! [ -f $ST_THEME_PATCH ]; then
-  echo "suckless terminal theme $1 not found" >&2
+THEME_ST_PATCH=~/.dotfiles/st/st-$THEME_NAME-theme-0.8.2.diff
+if ! [ -f $THEME_ST_PATCH ]; then
+  echo "ERROR: suckless terminal theme $THEME_NAME not found" >&2
   exit 1
 fi
 
@@ -24,7 +51,9 @@ cd st-0.8.2
 patch < ~/.dotfiles/st/st-clipboard-0.8.2.diff
 patch < ~/.dotfiles/st/st-scrollback-0.8.2.diff
 patch < ~/.dotfiles/st/st-pragmata-0.8.2.diff
-patch < $ST_THEME_PATCH
+patch < $THEME_ST_PATCH
 sudo make clean install
 
-sudo systemctl restart display-manager
+if $RESTART; then
+  sudo systemctl restart display-manager
+fi
