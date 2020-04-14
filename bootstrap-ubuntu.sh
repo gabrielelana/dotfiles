@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # TODO: rename install-or-update.sh to bootstrap-profile.sh
-# TODO: port everything in ~/.zshrc to ~/.bashrc (or .profile???)
 # TODO: choose and configure a nice prompt for bash
 # TODO: remove things that are not used anymore (zsh configuration)
 # TODO: add to switch-theme a light theme that works
@@ -9,6 +8,9 @@
 # TODO: Firefox minimal theme?
 # TODO: Firefox theme customization with the same colors in switch-theme?
 # TODO: how to share custom dictionary in Emacs
+# TODO: remove zsh things and references
+# TODO: remove chunkly things and references
+# TODO: remove slim things and references
 
 echo "Setup system..."
 # To run the current script you need to have
@@ -34,7 +36,7 @@ echo "Setup system..."
 # you must choose instead of Ubuntu the XSession to read the
 # ~/.xsession file and therefore to be able to run i3wm
 #
-# Then you run ~/.dotfiles/install-or-update.sh
+# Then you run ~/.dotfiles/bootstrap-profile.sh
 
 echo "Update package repositories..."
 sudo apt update
