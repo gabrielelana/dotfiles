@@ -104,7 +104,7 @@ sudo apt install -y \
      zsh
 
 echo "Add an XSession entry for GDM3..."
-sudo cat <<EOF > /usr/share/xsessions/xsession.desktop
+sudo cat <<EOF | sudo tee /usr/share/xsessions/xsession.desktop
 [Desktop Entry]
 Name=XSession
 Comment=This session uses the custom xsession file
@@ -115,8 +115,8 @@ X-Ubuntu-Gettext-Domain=gnome-flashback
 EOF
 
 echo "Cloning Emacs repository, be patient..."
-mkdir -p ~/tmp && cd ~/tmp
-git clone git://git.sv.gnu.org/emacs.git emacs-build && cd emacs-build
+mkdir -p ~/tmp && cd ~/tmp || exit 1
+git clone git://git.sv.gnu.org/emacs.git emacs-build && cd emacs-build || exit 1
 EMACS_RELEASE=$(git describe --abbrev=0 --tags)
 echo "Compile and install Emacs $EMACS_RELEASE be patient..."
 git checkout "$EMACS_RELEASE"
@@ -127,17 +127,17 @@ git checkout "$EMACS_RELEASE"
               --with-x-toolkit=gtk3 \
               --with-xwidgets \
               --without-dbus && \
-  make -j$(nproc) && \
+  make -j"$(nproc)" && \
   make install
 # Cask
 curl -fsSkL https://raw.github.com/cask/cask/master/go | python
 # EVM
 sudo mkdir /usr/local/evm
-sudo chown $USER: /usr/local/evm
+sudo chown "$USER": /usr/local/evm
 curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
 
 echo "Install ShellCheck..."
-mkdir -p ~/tmp && cd ~/tmp
+mkdir -p ~/tmp && cd ~/tmp || exit 1
 wget --quiet "https://storage.googleapis.com/shellcheck/shellcheck-stable.linux.x86_64.tar.xz"
 tar --xz -xvf shellcheck-stable.linux.x86_64.tar.xz
 cp shellcheck-stable/shellcheck ~/bin/shellcheck
@@ -146,7 +146,7 @@ rm -f shellcheck-stable.linux.x86_64.tar.xz
 
 echo "Install pup..."
 if [ ! -f ~/bin/pup ]; then
-  cd ~/tmp
+  cd ~/tmp || exit 1
   PUP_VERSION=0.4.0
   wget -q https://github.com/ericchiang/pup/releases/download/v${PUP_VERSION}/pup_v${PUP_VERSION}_linux_amd64.zip
   unzip pup_v${PUP_VERSION}_linux_amd64.zip
@@ -161,7 +161,7 @@ fi
 
 echo "Install ASDF and related plugins..."
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd -
+cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd - || exit 1
 ~/.asdf/bin/asdf plugin-add mongodb
 ~/.asdf/bin/asdf plugin-add postgres
 ~/.asdf/bin/asdf plugin-add erlang
