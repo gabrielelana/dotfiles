@@ -127,12 +127,12 @@ sudo chown $USER: /usr/local/evm
 curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
 
 echo "Install ShellCheck..."
-mkdir -p ~/tmp && cp ~/tmp
+mkdir -p ~/tmp && cd ~/tmp
 wget --quiet "https://storage.googleapis.com/shellcheck/shellcheck-stable.linux.x86_64.tar.xz"
-tar --xz -xvf shellcheck-"${RELEASE}".linux.x86_64.tar.xz
-cp shellcheck-"${RELEASE}"/shellcheck ~/bin/shellcheck
-rm -rf shellcheck-"${RELEASE}"
-rm -f shellcheck-"${RELEASE}".linux.x86_64.tar.xz
+tar --xz -xvf shellcheck-stable.linux.x86_64.tar.xz
+cp shellcheck-stable/shellcheck ~/bin/shellcheck
+rm -rf shellcheck-stable
+rm -f shellcheck-stable.linux.x86_64.tar.xz
 
 echo "Install ASDF and related plugins..."
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
