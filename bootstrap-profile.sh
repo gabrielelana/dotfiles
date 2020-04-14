@@ -22,7 +22,7 @@ cp -f "$ROOT"/ackrc ~/.ackrc
 cp -f "$ROOT"/rvmrc ~/.rvmrc
 cp -f "$ROOT"/gitignore ~/.gitignore
 cp -f "$ROOT"/gitconfig ~/.gitconfig
-rm -rf ~/.i3 && cp -rf "$ROOT"/i3 ~/.i3
+cp -rf "$ROOT"/i3 ~/.i3
 cp -f "$ROOT"/dunstrc ~/.dunstrc
 cp -f "$ROOT"/gtkrc-2.0 ~/.gtkrc-2.0
 cp -f "$ROOT"/xsession ~/.xsession
