@@ -12,6 +12,7 @@ git pull
 
 echo "Install executables..."
 mkdir -p ~/bin
+mkdir -p ~/.local/bin
 for file in "$ROOT"/bin/*; do
   ln -sf "$file" ~/bin/"$(basename "$file")"
 done
@@ -27,6 +28,14 @@ cp -f "$ROOT"/gtkrc-2.0 ~/.gtkrc-2.0
 cp -f "$ROOT"/xsession ~/.xsession
 cp -f "$ROOT"/xmodmap ~/.xmodmap
 cp -f "$ROOT"/xresources ~/.xresources
+
+echo "Configure shell..."
+ln -sf "$ROOT"/profile ~/.profile
+ln -sf "$ROOT"/bashrc ~/.bashrc
+for file in "$ROOT"/bashrc.*; do
+  ln -sf "$file" "$HOME/.$(basename "$file")"
+done
+
 
 echo "Update dependencies..."
 for project in dotfiles-secrets awesome-terminal-fonts; do
@@ -66,32 +75,6 @@ ln -sf "$ROOT"/emacs.d ~/.emacs.d
 
 echo "Setup Haskell (stack)..."
 ln -sf "$ROOT"/stack ~/.stack
-
-# echo "setup zsh..."
-# if [ ! -d ~/.oh-my-zsh ]; then
-#   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-# fi
-# export ZSH=~/.oh-my-zsh
-# cp -rfu "$ROOT"/zsh/* ~/.oh-my-zsh/custom
-# mkdir -p ~/.zsh_functions
-# for file in "$ROOT"/zshrc*; do
-#   ln -sf "$file" "$HOME/.$(basename "$file")"
-#   if [[ $file =~ "localhost" ]]; then
-#     cp -f "$file" "$HOME/.$(basename "$file")"
-#   fi
-# done
-# zsh ~/.zshrc
-# zsh $ZSH/tools/upgrade.sh
-# if [ ! -f ~/.zshrc.localhost ]; then
-#   echo "# -*- mode: shell-script; sh-basic-offset: 2; -*-" > ~/.zshrc.localhost
-# fi
-
-# if [ ${flags[without-x]} -eq 0 ]; then
-#   echo "setup chunkly..."
-#   mkdir -p ~/.chunkly
-#   cp -f "$ROOT"/chunkly.vimrc ~/.chunkly/.vimrc
-#   rsync -r "$ROOT"/.dependencies/dotfiles-secrets/chunkly/ ~/.chunkly
-# fi
 
 echo "Configure gnome terminal..."
 if [ -x "$(command -v dconf)" ]; then
