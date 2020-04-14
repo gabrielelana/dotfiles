@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# TODO: fix install-or-update.sh (creates ~/.stack/stack/<files> instead of ~/.stack/<files>)
-# TODO: make install-or-update.sh run with bash
+# TODO: rename install-or-update.sh to bootstrap-profile.sh
 # TODO: port everything in ~/.zshrc to ~/.bashrc (or .profile???)
 # TODO: choose and configure a nice prompt for bash
 # TODO: remove things that are not used anymore (zsh configuration)
-# TODO: polish switch-theme && add light theme that works
+# TODO: add to switch-theme a light theme that works
 # TODO: how to have non intrusive notifications in i3?
 # TODO: Firefox minimal theme?
 # TODO: Firefox theme customization with the same colors in switch-theme?
+# TODO: how to share custom dictionary in Emacs
 
 echo "Setup system..."
 # To run the current script you need to have
