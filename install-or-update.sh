@@ -32,10 +32,9 @@ cp -f "$ROOT"/xresources ~/.xresources
 echo "Configure shell..."
 ln -sf "$ROOT"/profile ~/.profile
 ln -sf "$ROOT"/bashrc ~/.bashrc
-for file in "$ROOT"/bashrc.*; do
-  ln -sf "$file" "$HOME/.$(basename "$file")"
-done
-
+if [ ! -f ~/.bashrc.localhost ]; then
+  echo "#!/bin/bash" > ~/.bashrc.localhost
+fi
 
 echo "Update dependencies..."
 for project in dotfiles-secrets awesome-terminal-fonts; do
