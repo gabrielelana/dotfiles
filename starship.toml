@@ -23,7 +23,7 @@ prompt_order = [
     # "java",
     # "julia",
     "nodejs",
-    # "php",
+    "php",
     # "python",
     # "ruby",
     "rust",
@@ -87,3 +87,30 @@ deleted = "  "
 show_sync_count = true
 prefix = "·"
 suffix = " "
+
+[elixir]
+symbol = "瞧 "
+
+[haskell]
+symbol = "益 "
+
+[rust]
+symbol = "謹 "
+
+[docker_context]
+symbol = "滛 "
+
+[kubernetes]
+symbol = "窱 "
+
+[nodejs]
+symbol = "者 "
+
+[ruby]
+symbol = "諭 "
+
+[python]
+symbol = "諸 "
+
+[php]
+symbol = "襁 "
