@@ -112,7 +112,7 @@ export PYTHON="python2.7"
 
 alias l='ls -CF'
 alias la='ls -A'
-alias ll='ls -alF'
+alias ll='ls -la --color'
 alias mongo="mongo --quiet"
 
 # Load local configuration, aka configuration that is specific for the
