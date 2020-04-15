@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# TODO: install latest version of language && language server && utilities for: Haskell
+# TODO: install latest version of language && language server && utilities for: Elixir
+# TODO: install latest version of language && language server && utilities for: Rust
+# TODO: install latest version of language && language server && utilities for: JS/TS
 # TODO: add to switch-theme a light theme that works
 # TODO: Firefox minimal theme?
 # TODO: Firefox theme customization with the same colors in switch-theme?
