@@ -35,6 +35,8 @@ ln -sf "$ROOT"/bashrc ~/.bashrc
 if [ ! -f ~/.bashrc.localhost ]; then
   echo "#!/bin/bash" > ~/.bashrc.localhost
 fi
+mkdir -p ~/.config
+ln -sf "$ROOT"/starship.toml ~/.config/starship.toml
 
 echo "Update dependencies..."
 for project in dotfiles-secrets awesome-terminal-fonts; do

@@ -67,6 +67,11 @@ command -v stack >/dev/null && {
   alias ghc="stack exec -- ghc"
 }
 
+# Prompt starship configuration
+command -v starship >/dev/null && {
+  eval "$(starship init bash)"
+}
+
 export TERM="xterm-256color"
 export EDITOR="emacs-client"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH

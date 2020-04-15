@@ -176,3 +176,6 @@ curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
 
 echo "Install Haskell..."
 curl -sSL https://get.haskellstack.org/ | sh -s - -f
+
+echo "Install Starship..."
+curl -fsSL https://starship.rs/install.sh | bash
