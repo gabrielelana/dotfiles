@@ -45,7 +45,7 @@ source "$THEME_FILE"
 perl -pe 's/@@([^@]+)@@/$ENV{$1}/' < ~/.dotfiles/i3/config > ~/.i3/config
 perl -pe 's/@@([^@]+)@@/$ENV{$1}/' < ~/.dotfiles/xsession > ~/.xsession
 
-mkdir -p ~tmp/st-build && cd ~/tmp/st-build || exit 1
+mkdir -p ~/tmp/st-build && cd ~/tmp/st-build || exit 1
 if [ ! -f st-$ST_RELEASE.tar.gz ]; then
   wget --quiet https://dl.suckless.org/st/st-$ST_RELEASE.tar.gz
 fi
