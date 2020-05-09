@@ -151,20 +151,44 @@
          ("M-[" . er/contract-region)))
 
 (use-package multiple-cursors
-  :bind (("C-c m n" . mc/mark-next-like-this)
-         ("M-\\" . mc/mark-next-like-this)
-         ("C-c m p" . mc/mark-previous-like-this)
-         ("C-c m a" . mc/mark-all-like-this-dwim)
-	 ("C-c m l" . mc/edit-lines))
+  :bind (("M-\\" . mc/mark-next-like-this))
   :config
-  (setq mc/always-run-for-all t))
+  (setq mc/always-run-for-all nil))
 
 (use-package visual-regexp
   :bind (("C-c v r" . vr/replace)
          ("C-c v q" . vr/query-replace)
          ("C-c v m" . vr/mc-mark)))
 
-(use-package hydra)
+(use-package hydra
+  :straight t
+  :after multiple-cursors
+  :config
+  (global-set-key
+   (kbd "C-c m")
+   (defhydra hydra-multiple-cursors (:hint nil)
+     "
+ ^multiple-cursors
+ ^Up^             ^Down^           ^Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
+------------------------------------------------------------------
+ [_p_]   Prev     [_n_]   Next     [_l_] Edit lines  [_i_] Insert numbers
+ [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_b_] Insert letters
+ [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search      [_q_] Quit"
+     ("l" mc/edit-lines :exit t)
+     ("a" mc/mark-all-like-this :exit t)
+     ("n" mc/mark-next-like-this)
+     ("N" mc/skip-to-next-like-this)
+     ("M-n" mc/unmark-next-like-this)
+     ("p" mc/mark-previous-like-this)
+     ("P" mc/skip-to-previous-like-this)
+     ("M-p" mc/unmark-previous-like-this)
+     ("s" mc/mark-all-in-region-regexp :exit t)
+     ("i" mc/insert-numbers :exit t)
+     ("b" mc/insert-letters :exit t)
+     ("<mouse-1>" ignore)
+     ("<down-mouse-1>" ignore)
+     ("<drag-mouse-1>" ignore)
+     ("q" nil))))
 
 (use-package rainbow-mode
   :diminish rainbow-mode)
