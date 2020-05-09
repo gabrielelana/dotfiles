@@ -84,6 +84,7 @@ sudo apt install -y \
      libncurses5-dev \
      libpng-dev \
      libreadline-dev \
+     libssh-dev \
      libssl-dev \
      libtiff-dev \
      libtiff5-dev \
@@ -95,6 +96,7 @@ sudo apt install -y \
      libxml2-dev \
      libxpm-dev \
      libxt-dev \
+     m4 \
      make \
      silversearcher-ag \
      slim \
