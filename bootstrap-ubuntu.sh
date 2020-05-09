@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: install latest version of language && language server && utilities for: Haskell
 # TODO: install latest version of language && language server && utilities for: Elixir
 # TODO: install latest version of language && language server && utilities for: Rust
 # TODO: install latest version of language && language server && utilities for: JS/TS
@@ -75,11 +74,13 @@ sudo apt install -y \
      libgmp-dev \
      libgnutls28-dev \
      libgtk-3-dev \
+     libicu-dev \
      libjansson-dev \
      libjansson4 \
      libjpeg-dev \
      libmpc-dev \
      libmpfr-dev \
+     libncurses-dev \
      libncurses5-dev \
      libpng-dev \
      libreadline-dev \
@@ -175,8 +176,13 @@ cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd - || exit 1
 echo "Install Rust..."
 curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
 
-echo "Install Haskell..."
+echo "Install Haskell Stack..."
 curl -sSL https://get.haskellstack.org/ | sh -s - -f
+# To install ghcide follow the following instructions (https://github.com/digital-asset/ghcide)
+# (better to do manually because it doesn't look stable enough to automate)
+# $ git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules
+# $ cd haskell-ide-engine
+# $ stack ./install.hs hie
 
 echo "Install Starship..."
 curl -fsSL https://starship.rs/install.sh | bash
