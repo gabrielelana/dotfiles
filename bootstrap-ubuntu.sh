@@ -185,6 +185,8 @@ curl -sSL https://get.haskellstack.org/ | sh -s - -f
 # $ git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules
 # $ cd haskell-ide-engine
 # $ stack ./install.hs hie
+# Install hlint
+# $ stack install hlint
 
 echo "Install Starship..."
 curl -fsSL https://starship.rs/install.sh | bash
