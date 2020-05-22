@@ -197,3 +197,14 @@ echo "Install NodeJS..."
 ~/.asdf/bin/asdf install nodejs latest
 ~/.asdf/bin/asdf global nodejs "$(~/.asdf/bin/asdf list nodejs | tail -1 | tr -d ' ')"
 npm install -g prettier eslint typescript
+
+echo "Install Dhall..."
+mkdir -p ~/tmp/download-dhall && (cd ~/tmp/download-dhall || exit 1)
+for f in $(curl --silent 'https://api.github.com/repos/dhall-lang/dhall-haskell/releases/latest' | jq '.assets[].browser_download_url' | grep linux | tr -d '"'); do
+  echo "> download $f..."
+  wget --quiet "$f"
+  echo "> extract $f..."
+  tar --extract --bzip2 --file "$(basename "$f")"
+  rm -rf "$(basename "$f")"
+done
+cp ./bin/* ~/.local/bin && cd ~ && rm -rf ~/tmp/download-dhall
