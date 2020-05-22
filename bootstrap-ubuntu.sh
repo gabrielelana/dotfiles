@@ -190,3 +190,9 @@ curl -sSL https://get.haskellstack.org/ | sh -s - -f
 
 echo "Install Starship..."
 curl -fsSL https://starship.rs/install.sh | bash
+
+echo "Install NodeJS..."
+~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+~/.asdf/bin/asdf install nodejs latest
+~/.asdf/bin/asdf global nodejs $(~/.asdf/bin/asdf list nodejs | tail -1 | tr -d ' ')
+npm install -g prettier eslint typescript
