@@ -76,7 +76,7 @@ shopt -s globstar
 
 # Direnv configuration
 command -v direnv >/dev/null && {
-  eval "$(direnv hook zsh)"
+  eval "$(direnv hook bash)"
 }
 
 # Rust configuration

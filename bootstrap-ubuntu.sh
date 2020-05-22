@@ -53,6 +53,7 @@ sudo apt install -y \
      coreutils \
      curl \
      dbus-x11 \
+     direnv \
      docker \
      dunst \
      entr \
