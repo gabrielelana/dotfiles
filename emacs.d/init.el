@@ -124,6 +124,11 @@
   :config
   (setq highlight-indent-guides-method 'character))
 
+(use-package direnv
+  :straight t
+  :config
+  (direnv-mode))
+
 (use-package popwin
   :diminish popwin
   :config
