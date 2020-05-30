@@ -372,8 +372,12 @@
 ;;; version control
 (use-package magit
   :bind (("C-c g s" . magit-status)
+         ("C-c g f" . cc/git-add-with-force-current-buffer)
          ("H-s" . magit-status))
   :hook (git-commit-setup . cc/insert-commit-message)
+  :custom
+  (magit-section-visibility-indicator nil)
+  (transient-display-buffer-action '(display-buffer-below-selected))
   :config
   (defvar cc/first-commit-messages
     '("This is where it all begins..."
@@ -395,8 +399,10 @@
       (when (null current-commit-parents)
         (insert (cc/pick-random cc/first-commit-messages))
         (save-buffer))))
-  (setq magit-section-visibility-indicator nil
-        transient-display-buffer-action '(display-buffer-below-selected)))
+  (defun cc/git-add-with-force-current-buffer ()
+    "Adds (with force) the file from the current buffer."
+    (interactive)
+    (shell-command (concat "git add -f " (shell-quote-argument buffer-file-name)))))
 
 (use-package forge
   :after magit)
