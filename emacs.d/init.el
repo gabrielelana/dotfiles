@@ -176,7 +176,9 @@
          ("M-[" . er/contract-region)))
 
 (use-package multiple-cursors
-  :bind (("M-\\" . mc/mark-next-like-this))
+  :bind (("M-\\" . mc/mark-next-like-this)
+         :map mc/keymap
+         ("C-'" . mc-hide-unmatched-lines-mode))
   :config
   (setq mc/always-run-for-all nil))
 
@@ -187,7 +189,7 @@
 
 (use-package hydra
   :straight t
-  :after multiple-cursors
+  ;; :after multiple-cursors
   :config
   (global-set-key
    (kbd "C-c m")
