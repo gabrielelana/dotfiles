@@ -7,10 +7,19 @@
         cc/smarter-move-beginning-of-line
         org-delete-char
         org-self-insert-command
+        paredit-doublequote
+        paredit-forward-delete
+        paredit-forward-kill-word
+        paredit-forward-slurp-sexp
+        paredit-meta-doublequote
+        paredit-splice-sexp
+        paredit-wrap-round
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        cc/duplicate-line-or-region-above
+        counsel-M-x
         hydra-multiple-cursors/mc/edit-lines-and-exit
         hydra-multiple-cursors/mc/insert-letters-and-exit
         hydra-multiple-cursors/mc/insert-numbers-and-exit
@@ -18,11 +27,11 @@
         hydra-multiple-cursors/mc/mark-all-like-this-and-exit
         hydra-multiple-cursors/mc/mark-next-like-this
         hydra-multiple-cursors/mc/mark-previous-like-this
+        hydra-multiple-cursors/mc/nil
         hydra-multiple-cursors/mc/skip-to-next-like-this
         hydra-multiple-cursors/mc/skip-to-previous-like-this
         hydra-multiple-cursors/mc/unmark-next-like-this
         hydra-multiple-cursors/mc/unmark-previous-like-this
-        hydra-multiple-cursors/mc/nil
         org-cycle
         swiper
         ))
