@@ -233,10 +233,11 @@
 
 (use-package org
   :straight org-plus-contrib
-  :bind (("C-M-<return>" . org-insert-todo-subheading))
   :bind (("C-c c" . org-capture)
+         ("C-M-<return>" . org-insert-todo-subheading)
          :map org-mode-map
-         ("C-x c s" . org-cut-subtree))
+         ("C-x c s" . org-cut-subtree)
+         ("C-c C-x C-i" . org-clock-in))
   :load-path "local-packages/"
   :config
   (setq org-edit-src-content-indentation 0
