@@ -776,22 +776,6 @@
     (setq flycheck-check-syntax-automatically '(mode-enabled save)))
   (add-hook 'php-mode-hook #'cc/php-setup))
 
-(use-package phpactor
-  :after php-mode
-  :config
-  (setq phpactor-executable "/root/code/phpactor/bin/phpactor")
-  :init
-  (defun cc/php-setup-phpactor ()
-    (company-mode)
-    ;; (set (make-local-variable 'eldoc-documentation-function) 'phpactor-hover)
-    (set (make-local-variable 'company-backends)
-         '(company-phpactor
-           company-files)))
-  (add-hook 'php-mode-hook #'cc/php-setup-phpactor))
-
-(use-package company-phpactor
-  :after php-mode)
-
 (use-package phpunit
   :after php-mode)
 
