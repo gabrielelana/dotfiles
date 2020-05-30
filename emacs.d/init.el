@@ -746,6 +746,10 @@
 (use-package toml-mode
   :mode ("\\.toml$" . toml-mode))
 
+;;; graphql
+(use-package graphql-mode
+  :straight t)
+
 ;;; dockerfile
 (use-package dockerfile-mode)
 (use-package docker-tramp)
