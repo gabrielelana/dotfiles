@@ -192,6 +192,11 @@ curl -sSL https://get.haskellstack.org/ | sh -s - -f
 # $ stack install HSpec
 # $ stack install ...
 
+echo "Install Go..."
+~/.asdf/bin/asdf install golang latest
+~/.asdf/bin/asdf global golang "$(~/.asdf/bin/asdf list golang | tail -1 | tr -d ' ')"
+go get -u golang.org/x/tools/...
+
 echo "Install Starship..."
 curl -fsSL https://starship.rs/install.sh | bash
 
