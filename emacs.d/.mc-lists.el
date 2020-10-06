@@ -5,12 +5,17 @@
       '(
         cc/copy-character-from-above
         cc/smarter-move-beginning-of-line
+        forward-sexp
+        haskell-indentation-common-electric-command
+        kill-sexp
         org-delete-char
+        org-end-of-line
         org-self-insert-command
         paredit-doublequote
         paredit-forward-delete
         paredit-forward-kill-word
         paredit-forward-slurp-sexp
+        paredit-kill
         paredit-meta-doublequote
         paredit-splice-sexp
         paredit-wrap-round
