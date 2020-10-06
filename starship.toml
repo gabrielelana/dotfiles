@@ -18,7 +18,7 @@ prompt_order = [
     # "dotnet",
     "elixir",
     # "elm",
-    # "golang",
+    "golang",
     "haskell",
     # "java",
     # "julia",
@@ -114,3 +114,6 @@ symbol = "諸 "
 
 [php]
 symbol = "襁 "
+
+[golang]
+symbol = "瘝 "
