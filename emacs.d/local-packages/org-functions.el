@@ -29,6 +29,7 @@
 ;;; Code:
 
 (defun cc/org-mode-buffer-setup ()
+  (advice-add 'org-babel-execute-src-block :after #'cc/org-babel-execute-src-block-pulse-momentary)
   (add-hook 'before-save-hook #'cc/org-mode-buffer-format nil t))
 
 (defun cc/org-mode-buffer-format ()
@@ -43,6 +44,17 @@
     (let ((case-fold-search nil))
       (while (re-search-forward "\\(?1:#\\+[a-z_]+\\(?:_[[:alpha:]]+\\)*\\)\\(?:[ :=~’”]\\|$\\)" nil :noerror)
         (replace-match (upcase (match-string-no-properties 1)) :fixedcase nil nil 1)))))
+
+(defun cc/org-babel-execute-src-block-pulse-momentary (&rest args)
+  (let ((element (org-element-at-point))
+        (original-pulse-delay pulse-delay))
+    (when (eq (org-element-type element) 'src-block)
+      (setq pulse-delay 0.05)
+      (let* ((area (org-src--contents-area element))
+             (starts-at (nth 0 area))
+             (ends-at (nth 1 area)))
+        (pulse-momentary-highlight-region starts-at ends-at))
+      (setq pulse-delay original-pulse-delay))))
 
 (provide 'org-functions)
 
