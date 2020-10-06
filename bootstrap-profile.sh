@@ -28,6 +28,7 @@ cp -f "$ROOT"/gtkrc-2.0 ~/.gtkrc-2.0
 cp -f "$ROOT"/xsession ~/.xsession
 cp -f "$ROOT"/xmodmap ~/.xmodmap
 cp -f "$ROOT"/xresources ~/.xresources
+ln -sf "$ROOT"/docker ~/.docker
 
 echo "Configure shell..."
 ln -sf "$ROOT"/profile ~/.profile
