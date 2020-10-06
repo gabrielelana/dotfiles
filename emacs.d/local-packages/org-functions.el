@@ -30,6 +30,7 @@
 
 (defun cc/org-mode-buffer-setup ()
   (advice-add 'org-babel-execute-src-block :after #'cc/org-babel-execute-src-block-pulse-momentary)
+  (advice-add 'org-babel-execute:haskell :filter-return #'cc/org-babel-execute-haskell-filter-output)
   (add-hook 'before-save-hook #'cc/org-mode-buffer-format nil t))
 
 (defun cc/org-mode-buffer-format ()
@@ -55,6 +56,10 @@
              (ends-at (nth 1 area)))
         (pulse-momentary-highlight-region starts-at ends-at))
       (setq pulse-delay original-pulse-delay))))
+
+(defun cc/org-babel-execute-haskell-filter-output (output)
+  (when output
+    (org-trim output t)))
 
 (provide 'org-functions)
 
