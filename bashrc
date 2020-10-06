@@ -50,12 +50,12 @@ shopt -s globstar
 }
 
 # Elixir language server configuration
-[[ -d "$HOME/opt/elixir-ls" ]] && {
-  # git clone https://github.com/elixir-lsp/elixir-ls ~/src/elixir-ls
+[[ -d "$HOME/.local/bin/elixir-ls" ]] && {
+  # git clone https://github.com/elixir-lsp/elixir-ls ~/opt/elixir-ls
   # cd ~/opt/elixir-ls
   # mix deps.get
-  # MIX_ENV=prod mix elixir_ls.release -o ~/opt/elixir-ls
-  export PATH=$HOME/opt/elixir-ls:$PATH
+  # MIX_ENV=prod mix elixir_ls.release -o ~/.local/bin/elixir-ls
+  export PATH=$HOME/.local/bin/elixir-ls:$PATH
 }
 
 # Go configuration
