@@ -49,6 +49,7 @@ sudo apt install -y \
      binutils \
      bison \
      build-essential \
+     cmake \
      compton \
      coreutils \
      curl \
@@ -89,7 +90,9 @@ sudo apt install -y \
      libssl-dev \
      libtiff-dev \
      libtiff5-dev \
+     libtinfo-dev \
      libtinfo5 \
+     libtool \
      libwebkit2gtk-4.0-dev \
      libwxgtk3.0-dev \
      libxaw7-dev \
@@ -108,6 +111,7 @@ sudo apt install -y \
      unzip \
      vim \
      xsltproc \
+     zlib1g-dev \
      zsh
 
 echo "Cloning Emacs repository, be patient..."
