@@ -58,12 +58,6 @@ shopt -s globstar
   export PATH=$HOME/.local/bin/elixir-ls:$PATH
 }
 
-# Go configuration
-[[ -d "$HOME/.go" ]] && {
-  export GOPATH=$HOME/.go
-  export PATH=$HOME/.go/bin:$PATH
-}
-
 # PHP configuration
 [[ -d "$HOME/.composer" ]] && {
   export PATH=$HOME/.composer/vendor/bin:$PATH
