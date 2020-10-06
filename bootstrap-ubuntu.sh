@@ -185,13 +185,12 @@ curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
 
 echo "Install Haskell Stack..."
 curl -sSL https://get.haskellstack.org/ | sh -s - -f
-# To install ghcide follow the following instructions (https://github.com/digital-asset/ghcide)
-# (better to do manually because it doesn't look stable enough to automate)
-# $ git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules
-# $ cd haskell-ide-engine
-# $ stack ./install.hs hie
-# Install hlint
+# To install haskell language server clone # https://github.com/haskell/haskell-language-server and follow README # instructions for stack projects
+# Then install utilities and libraries
 # $ stack install hlint
+# $ stack install QuickCheck
+# $ stack install HSpec
+# $ stack install ...
 
 echo "Install Starship..."
 curl -fsSL https://starship.rs/install.sh | bash
