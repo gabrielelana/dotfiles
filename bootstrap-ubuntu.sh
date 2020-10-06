@@ -211,3 +211,10 @@ for f in $(curl --silent 'https://api.github.com/repos/dhall-lang/dhall-haskell/
   rm -rf "$(basename "$f")"
 done
 cp ./bin/* ~/.local/bin && cd ~ && rm -rf ~/tmp/download-dhall
+
+echo "Configure Docker..."
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+sudo systemctl restart docker
+docker run hello-world || echo "! failed to install Docker"
