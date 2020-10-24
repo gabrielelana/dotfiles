@@ -139,7 +139,7 @@ echo "Install ShellCheck..."
 mkdir -p ~/bin
 if [ ! -f ~/bin/pup ]; then
   mkdir -p ~/tmp && cd ~/tmp || exit 1
-  wget --quiet "https://storage.googleapis.com/shellcheck/shellcheck-stable.linux.x86_64.tar.xz"
+  wget --quiet "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz"
   tar --xz -xvf shellcheck-stable.linux.x86_64.tar.xz
   cp shellcheck-stable/shellcheck ~/bin/shellcheck
   rm -rf shellcheck-stable
