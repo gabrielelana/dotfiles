@@ -7,6 +7,7 @@
         cc/smarter-move-beginning-of-line
         forward-sexp
         haskell-indentation-common-electric-command
+        indent-for-tab-command
         kill-sexp
         org-delete-char
         org-end-of-line
@@ -18,7 +19,9 @@
         paredit-kill
         paredit-meta-doublequote
         paredit-splice-sexp
+        paredit-splice-sexp-killing-backward
         paredit-wrap-round
+        rjsx-delete-creates-full-tag
         ))
 
 (setq mc/cmds-to-run-once
