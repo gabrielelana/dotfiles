@@ -584,27 +584,43 @@
 
 ;;; elixir
 (use-package elixir-mode
-  :hook (elixir-mode . cc/elixir--setup)
+  :hook ((elixir-mode . cc/elixir--setup)
+         (lsp-after-initialize . cc/elixir--lsp-setup))
   :init
+  (defun cc/elixir--lsp-setup ()
+    (let ((lsp-elixir--config-options (make-hash-table)))
+      (puthash "dialyzerEnabled" :json-false lsp-elixir--config-options)
+      (lsp--set-configuration `(:elixirLS ,lsp-elixir--config-options))))
+
   (defun cc/elixir--setup ()
-    (flycheck-mode)
-    (setq-local flycheck-checker 'lsp)
-    (flycheck-add-next-checker 'lsp 'elixir-mix)
-    (flycheck-add-next-checker 'elixir-mix 'elixir-credo)
-    (setq flycheck-elixir-credo-strict t)
-    (setq-local lsp-ui-doc-enable nil)
-    (setq-local lsp-ui-doc-use-childframe t)
     (lsp)
     (lsp-ui-mode)
-    (company-mode)
-    (add-hook 'before-save-hook 'elixir-format nil t)
-    ;; NOTE: one of the command above will reset the value of the
-    ;; following variable, therefore it must be kept at the end :-/
-    (setq-local flycheck-check-syntax-automatically '(save mode-enabled))))
+    (company-mode)    (flycheck-mode)
+    (setq-local flycheck-checker 'lsp)
+    (flycheck-add-next-checker 'lsp 'elixir-credo)
+    ;; (flycheck-add-next-checker 'lsp-ui 'elixir-credo)
+    (setq-local flycheck-elixir-credo-strict t)
+    (setq-local lsp-ui-doc-enable t)
+    (setq-local lsp-ui-doc-use-childframe t)
+    (setq-local lsp-log-io t)
+   (add-hook 'before-save-hook 'elixir-format nil t)
+    ))
 
-(use-package flycheck-mix
-  :hook ((elixir-mode . flycheck-mode)
-         (elixir-mode . flycheck-mix-setup)))
+(use-package mix
+  :straight t
+  :bind (:map mix-minor-mode-map
+              ("C-c a t t" . mix-test)
+              ("C-c a m t t" . mix-test)
+              ("C-c a t b" . mix-test-current-buffer)
+              ("C-c a m t b" . mix-test-current-buffer)
+              ("C-c a t f" . mix-test-curret-test)
+              ("C-c a m t f" . mix-test-current-test))
+  :hook (elixir-mode . mix-minor-mode))
+
+;; (use-package flycheck-mix
+;;   :straight t
+;;   :hook ((elixir-mode . flycheck-mode)
+;;          (elixir-mode . flycheck-mix-setup)))
 
 ;;; TODO
 ;; (use-package elixir-mix
