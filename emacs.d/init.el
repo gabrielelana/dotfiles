@@ -801,6 +801,40 @@
     (flycheck-elm-setup))
   (add-hook 'elm-mode-hook #'cc/setup-elm-mode))
 
+;;; golang
+(use-package go-mode
+  :straight t
+  :ensure lsp-mode
+  :hook ((go-mode . lsp-deferred)
+         (go-mode . cc/golang-setup))
+  :config
+  (lsp-register-custom-settings
+   '(("gopls.completeUnimported" t t)
+     ("gopls.staticcheck" t t)))
+  (defun cc/golang-setup ()
+    "Setup go-mode."
+    (setq-local company-idle-delay 0)
+    (setq-local company-minimum-prefix-length 0)
+    (setq-local tab-width 4)
+    (setq-local lsp-ui-doc-enable t)
+    (setq-local lsp-ui-doc-use-childframe t)
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t)))
+
+(use-package gotest
+  :straight t
+  :ensure go-mode
+  :bind (:map go-mode-map
+              ("C-c t a" . 'go-test-current-project)
+              ("C-c t b" . 'go-test-current-file)
+              ("C-c t f" . 'go-test-current-file)
+              ("C-c t t" . 'go-test-current-test)
+              ("C-c t ." . 'go-test-current-test)
+              ("C-c b" . 'go-run)))
+
+;;; TODO: checkout https://github.com/antifuchs/gotest-ui-mode
+;;; TODO: checkout https://github.com/dougm/go-projectile
+
 ;;; clojure
 (use-package cider)
 
