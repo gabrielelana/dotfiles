@@ -659,7 +659,7 @@
 
 (use-package prettier-js
   :diminish prettier-js-mode " ☰"
-  :hook ((rjsx-mode json-mode css-mode yaml-mode markdown-mode) . prettier-js-mode))
+  :hook ((rjsx-mode json-mode css-mode yaml-mode markdown-mode js-mode typescript-mode) . prettier-js-mode))
 
 (use-package json-mode
   :mode (("\\.json\\'"  . json-mode)
