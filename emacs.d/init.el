@@ -678,23 +678,58 @@
   (setq js-indent-level 2))
 
 ;;; lsp
-(setq lsp-keymap-prefix "H-l")
 (use-package lsp-mode
-  :commands lsp)
+  :straight t
+  :commands (lsp lsp-deferred)
+  :bind (:map lsp-mode-map
+              ("M-RET" . lsp-execute-code-action))
+  :hook (lsp-mode . cc/lsp--setup)
+  :init
+  (setq lsp-keymap-prefix "H-l")
+  (defun cc/lsp--setup ()
+    (make-local-variable 'read-process-output-max)
+    (setq read-process-output-max 1048576))
+  :config
+  (setq lsp-keymap-prefix "H-l"
+        lsp-auto-guess-root t
+        lsp-prefer-capf t
+        lsp-idle-delay 0
+        lsp-enable-file-watchers nil
+        lsp-print-io nil
+        lsp-keep-workspace-alive nil))
 
 (use-package lsp-ui
-  :commands lsp-ui-mode)
+  :straight t
+  :commands lsp-ui-mode
+  :bind (:map lsp-mode-map
+              ("H-l h d" . lsp-ui-doc-show)
+              ("H-l h D" . lsp-ui-doc-hide)
+              ("H-d" . lsp-describe-thing-at-point))
+  :custom
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-doc-use-childframe t)
+  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-alignment 'window)
+  (lsp-ui-doc-use-webkit nil)
+  (lsp-ui-doc-max-width 80)
+  ;; lsp-ui-doc-delay Number of seconds before showing the doc
+  ;; (lsp-ui-doc-delay 0)
+  (lsp-ui-doc-header nil)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-sideline-enable t)
+  (lsp-ui-sideline-ignore-duplicate t)
+  (lsp-ui-sideline-show-code-actions t)
+  ;; lsp-ui-doc-position Where to display the doc
+  ;; lsp-ui-doc-enable enable lsp-ui-doc
+  ;; (setq lsp-ui-doc-enable t
+  ;;       lsp-ui-doc-position 'top
+  ;;       lsp-ui-doc-delay 3)
+  )
 
 (use-package lsp-ivy
+  :straight t
+  :bind (("H-l y" . lsp-ivy-workspace-symbol))
   :commands lsp-ivy-workspace-symbol)
-
-(use-package company-lsp
-  :commands company-lsp
-  :config
-  (push 'company-lsp company-backends)
-  (setq company-lsp-enable-snippet t
-        company-lsp-enable-recompletion t
-        company-lsp-async t))
 
 ;;; rust
 (use-package rust-mode
@@ -732,9 +767,12 @@
     (flycheck-mode)
     (flymake-mode -1)
     (company-mode)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (setq lsp-ui-doc-enable nil))
+    (setq-local lsp-ui-doc-enable nil)
+    (setq-local lsp-ui-doc-use-childframe t)
+    (setq-local lsp-flycheck-live-reporting nil)
+    (setq-local flycheck-check-syntax-automatically '(save mode-enabled)))
   :config
+  (setq haskell-prompt-regexp "^\\([>|] \\)+")
   (setq haskell-process-type 'ghci)
   (setq haskell-process-path-ghci (executable-find "stack"))
   (setq haskell-process-args-ghci '("ghci"))
