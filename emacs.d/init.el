@@ -1,6 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 (setq-default lexical-binding t)
 
+;;; TODO: make "starred buffers" to be ranked low in ivy
+
 ;;; handle garbage collection
 (defun cc/defer-garbage-collection ()
   (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
