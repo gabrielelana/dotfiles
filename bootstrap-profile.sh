@@ -29,6 +29,7 @@ cp -f "$ROOT"/xsession ~/.xsession
 cp -f "$ROOT"/xmodmap ~/.xmodmap
 cp -f "$ROOT"/xresources ~/.xresources
 ln -sf "$ROOT"/docker ~/.docker
+mkdir -p ~/.config/direnv && ln -sf $"ROOT"/direnvrc ~/.config/direnv/direnvrc
 
 echo "Configure shell..."
 ln -sf "$ROOT"/profile ~/.profile

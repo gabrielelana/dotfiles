@@ -54,7 +54,6 @@ sudo apt install -y \
      coreutils \
      curl \
      dbus-x11 \
-     direnv \
      docker \
      dunst \
      entr \
@@ -179,6 +178,10 @@ cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd - || exit 1
 ~/.asdf/bin/asdf plugin-add java
 ~/.asdf/bin/asdf plugin-add sbt
 ~/.asdf/bin/asdf plugin-add scala
+~/.asdf/bin/asdf plugin-add direnv
+echo "Install ASDF direnv Plugin..."
+~/.asdf/bin/asdf install direnv latest
+~/.asdf/bin/asdf global direnv "$(~/.asdf/bin/asdf list direnv | tail -1 | tr -d ' ')"
 
 echo "Install Rust..."
 curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y

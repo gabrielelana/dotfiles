@@ -69,8 +69,14 @@ shopt -s globstar
 }
 
 # Direnv configuration
-command -v direnv >/dev/null && {
-  eval "$(direnv hook bash)"
+command -v direnv >/dev/null && command -v asdf >/dev/null && {
+  # Hook direnv into your shell.
+  eval "$(asdf exec direnv hook bash)"
+
+  # A shortcut for asdf managed direnv.
+  # direnv() { asdf exec direnv "$@"; }
+}
+
 }
 
 # Rust configuration

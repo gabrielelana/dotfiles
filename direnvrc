@@ -1,0 +1,2 @@
+# File: ~/.config/direnv/direnvrc
+source "$(asdf direnv hook asdf)"
