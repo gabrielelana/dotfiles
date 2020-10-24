@@ -523,7 +523,13 @@
 
 (use-package company
   :bind (:map company-mode-map
-              ("C-<tab>" . company-complete)))
+              ("C-<tab>" . company-complete))
+  :custom
+  (company-show-numbers t)
+  (company-idle-delay 0.1)
+  (company-tooltip-flip-when-above t)
+  (company-tooltip-align-annotations t)
+  (company-minimum-prefix-length 1))
 
 (use-package string-inflection
   :bind (("C-*" . string-inflection-all-cycle)))
