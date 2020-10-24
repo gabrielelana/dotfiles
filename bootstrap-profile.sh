@@ -37,8 +37,7 @@ ln -sf "$ROOT"/bashrc ~/.bashrc
 if [ ! -f ~/.bashrc.localhost ]; then
   echo "#!/bin/bash" > ~/.bashrc.localhost
 fi
-mkdir -p ~/.config
-ln -sf "$ROOT"/starship.toml ~/.config/starship.toml
+mkdir -p ~/.config && ln -sf "$ROOT"/starship.toml ~/.config/starship.toml
 
 echo "Update dependencies..."
 for project in dotfiles-secrets awesome-terminal-fonts; do
@@ -56,9 +55,10 @@ echo "Setup fonts..."
 mkdir -p ~/.fonts
 cp -f "$ROOT"/.dependencies/awesome-terminal-fonts/build/* ~/.fonts
 cp -f "$ROOT"/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
-mkdir -p ~/.config/fontconfig/conf.d
-cp -f "$ROOT"/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
-cp -f "$ROOT"/fonts.conf ~/.config/fontconfig/fonts.conf
+mkdir -p ~/.config/fontconfig/conf.d && \
+  cp -f "$ROOT"/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
+mkdir -p ~/.config/fontconfig && \
+  cp -f "$ROOT"/fonts.conf ~/.config/fontconfig/fonts.conf
 fc-cache -fv ~/.fonts
 
 echo "Setup identity..."
