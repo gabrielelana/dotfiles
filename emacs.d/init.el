@@ -1205,15 +1205,15 @@ options you can do it calling `(cc/shell-command-on-current-file
 (bind-key "C-c e m" #'view-echo-area-messages)
 
 ;;; keybindings to insert symbols
-(global-set-key (kbd "C-c i l") "λ")
-(global-set-key (kbd "C-c i a") "∧")
-(global-set-key (kbd "C-c i o") "∨")
-(global-set-key (kbd "C-c i >") "→")
-(global-set-key (kbd "C-c i <") "←")
-(global-set-key (kbd "C-c i =") "≡")
-(global-set-key (kbd "C-c i b") "⊥")
-(global-set-key (kbd "C-c i f") "∀")
-(global-set-key (kbd "C-c i t") "⊤")
+(global-set-key (kbd "C-c u l") "λ")
+(global-set-key (kbd "C-c u a") "∧")
+(global-set-key (kbd "C-c u o") "∨")
+(global-set-key (kbd "C-c u >") "→")
+(global-set-key (kbd "C-c u <") "←")
+(global-set-key (kbd "C-c u =") "≡")
+(global-set-key (kbd "C-c u b") "⊥")
+(global-set-key (kbd "C-c u f") "∀")
+(global-set-key (kbd "C-c u t") "⊤")
 
 ;;; global hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
