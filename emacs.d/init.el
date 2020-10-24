@@ -847,7 +847,11 @@
   :straight t)
 
 ;;; dockerfile
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :straight t
+  :ensure lsp-mode
+  :hook (dockerfile-mode . lsp-deferred))
+
 (use-package docker-tramp)
 (use-package docker)
 
