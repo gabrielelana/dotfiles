@@ -222,7 +222,9 @@ echo "Install NodeJS..."
 ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 ~/.asdf/bin/asdf install nodejs latest
 ~/.asdf/bin/asdf global nodejs "$(~/.asdf/bin/asdf list nodejs | tail -1 | tr -d ' ')"
-npm install -g prettier eslint typescript
+npm install -g yarn prettier eslint typescript ts-node typescript-formatter dockerfile-language-server-nodejs tern tide http-server
+[[ (! -f /usr/bin/python) && (-f /usr/bin/python3) ]] sudo ln -s /usr/bin/python3 /usr/bin/python
+npm install -g import-js --unsafe-per
 
 echo "Install Dhall..."
 mkdir -p ~/tmp/download-dhall && (cd ~/tmp/download-dhall || exit 1)
