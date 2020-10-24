@@ -179,6 +179,10 @@ cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd - || exit 1
 ~/.asdf/bin/asdf plugin-add sbt
 ~/.asdf/bin/asdf plugin-add scala
 ~/.asdf/bin/asdf plugin-add direnv
+~/.asdf/bin/asdf plugin-add kubectl
+~/.asdf/bin/asdf plugin-add kubectx
+~/.asdf/bin/asdf plugin-add kustomize
+
 echo "Install ASDF direnv Plugin..."
 ~/.asdf/bin/asdf install direnv latest
 ~/.asdf/bin/asdf global direnv "$(~/.asdf/bin/asdf list direnv | tail -1 | tr -d ' ')"
@@ -203,6 +207,14 @@ go get -u github.com/rogpeppe/godef
 
 echo "Install Starship..."
 curl -fsSL https://starship.rs/install.sh | bash
+
+echo "Install K8s Stuffs..."
+~/.asdf/bin/asdf install kubectl latest
+~/.asdf/bin/asdf global kubectl "$(~/.asdf/bin/asdf list kubectl | tail -1 | tr -d ' ')"
+~/.asdf/bin/asdf install kubectx latest
+~/.asdf/bin/asdf global kubectx "$(~/.asdf/bin/asdf list kubectx | tail -1 | tr -d ' ')"
+~/.asdf/bin/asdf install kustomize latest
+~/.asdf/bin/asdf global kustomize "$(~/.asdf/bin/asdf list kustomize | tail -1 | tr -d ' ')"
 
 echo "Install NodeJS..."
 ~/.asdf/plugins/nodejs/bin/import-release-team-keyring

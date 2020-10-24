@@ -77,6 +77,11 @@ command -v direnv >/dev/null && command -v asdf >/dev/null && {
   # direnv() { asdf exec direnv "$@"; }
 }
 
+# K8s configuration
+command -v kubectl >/dev/null && {
+  source <(kubectl completion bash)
+  complete -F __start_kubectl k
+  alias k=kubectl
 }
 
 # Rust configuration
@@ -114,6 +119,10 @@ alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -la --color'
 alias mongo="mongo --quiet"
+alias d="docker"
+alias dc="docker-compose"
+alias kn="kubens"
+alias k="kubectl"
 
 # Load local configuration, aka configuration that is specific for the
 # current machine
