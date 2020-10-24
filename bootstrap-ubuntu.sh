@@ -203,7 +203,9 @@ echo "Install Go..."
 ~/.asdf/bin/asdf install golang latest
 ~/.asdf/bin/asdf global golang "$(~/.asdf/bin/asdf list golang | tail -1 | tr -d ' ')"
 go get -u golang.org/x/tools/...
+go get -u golang.org/x/lint/golint
 go get -u github.com/rogpeppe/godef
+go get -u github.com/zmb3/gogetdoc
 
 echo "Install Starship..."
 curl -fsSL https://starship.rs/install.sh | bash
