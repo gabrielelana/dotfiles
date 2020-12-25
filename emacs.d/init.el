@@ -896,10 +896,20 @@ current interactive session."
     (haskell-process-load-file)
     (switch-to-buffer-other-window buffer))
   (add-hook 'after-save-hook 'haskell-process-reload nil t))
+
+;;; dhall
+(use-package dhall-mode
+  :straight t
+  :mode "\\.dhall\\'"
+  :hook (dhall-mode . cc/dhall--setup)
+  ;; :custom
+  ;; (dhall-format-arguments '("--ascii"))
   :config
-  (setq lsp-haskell-process-path-hie (executable-find "ghcide"))
-  (setq lsp-haskell-process-args-hie '())
-  (setq lsp-log-io nil))
+  (defun cc/dhall--setup ()
+    (lsp)
+    (lsp-ui-mode)
+    (flycheck-mode)
+    (company-mode)))
 
 ;;; elm
 (use-package elm-mode
