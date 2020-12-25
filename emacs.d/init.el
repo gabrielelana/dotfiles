@@ -660,9 +660,8 @@
     (setq-local flycheck-elixir-credo-strict t)
     (setq-local lsp-ui-doc-enable t)
     (setq-local lsp-ui-doc-use-childframe t)
-    (setq-local lsp-log-io t)
-   (add-hook 'before-save-hook 'elixir-format nil t)
-    ))
+    (setq-local lsp-log-io nil)
+   (add-hook 'before-save-hook 'elixir-format nil t)))
 
 (use-package mix
   :straight t
