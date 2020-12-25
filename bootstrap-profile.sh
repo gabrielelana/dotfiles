@@ -65,10 +65,10 @@ echo "Setup identity..."
 mkdir -p ~/.ssh
 cp -f "$ROOT"/.dependencies/dotfiles-secrets/ssh/* ~/.ssh
 cp -f "$ROOT"/.dependencies/dotfiles-secrets/netrc ~/.netrc
+cp -f "$ROOT"/.dependencies/dotfiles-secrets/npmrc ~/.npmrc
 chmod 0400 ~/.ssh/*
-if [ ! -f ~/.npmrc ]; then
-  cp -f "$ROOT"/.dependencies/dotfiles-secrets/npmrc ~/.npmrc
-fi
+chmod 0400 ~/.netrc
+chmod 0400 ~/.npmrc
 
 echo "Setup Vim..."
 cp -f "$ROOT"/vimrc ~/.vimrc
