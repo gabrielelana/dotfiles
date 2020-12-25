@@ -1294,6 +1294,13 @@ options you can do it calling `(cc/shell-command-on-current-file
 (defalias 'buffer-basename 'buffer-base-name)
 (defalias 'buffer-filename 'buffer-file-name)
 
+;;; advices
+(defadvice kill-region (around kill-word-or-kill-region activate)
+  "Kill the active region or kill the previous word."
+  (if (and (called-interactively-p "interactive") (not (region-active-p)))
+      (backward-kill-word 1)
+    ad-do-it))
+
 ;;; global bindings
 (bind-key "H-p" #'cc/open-line-above)
 (bind-key "H-n" #'cc/open-line-below)
