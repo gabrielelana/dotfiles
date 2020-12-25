@@ -454,6 +454,9 @@
 (use-package forge
   :after magit)
 
+(use-package gist
+  :straight t)
+
 (use-package git-timemachine
   :bind (("C-c g t" . git-timemachine)
          ("H-t" . git-timemachine)))
