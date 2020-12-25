@@ -20,3 +20,4 @@ vim/.*
 vim/bundle
 /emacs.d/places
 /emacs.d/straight/
+/emacs.d/var/
