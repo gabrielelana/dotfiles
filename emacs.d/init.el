@@ -940,8 +940,8 @@ current interactive session."
      ("gopls.staticcheck" t t)))
   (defun cc/golang-setup ()
     "Setup go-mode."
-    (setq-local company-idle-delay 0)
-    (setq-local company-minimum-prefix-length 0)
+    (setq-local company-idle-delay 0.5)
+    (setq-local company-minimum-prefix-length 1)
     (setq-local tab-width 4)
     (setq-local lsp-ui-doc-enable t)
     (setq-local lsp-ui-doc-use-childframe t)
