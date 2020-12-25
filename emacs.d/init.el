@@ -675,13 +675,16 @@
 
 ;;; javascript
 (use-package rjsx-mode
-  :mode ("\\.jsx?\\'" . rjsx-mode)
+  :mode (("\\.jsx?\\'" . rjsx-mode))
   :hook (rjsx-mode . cc/jsx--setup)
   :init
   (defun cc/jsx--setup ()
-    (when (executable-find "eslint")
-      (flycheck-mode +1)
-      (flycheck-select-checker 'javascript-eslint)))
+    (let ((current-buffer-filename-extension (file-name-extension buffer-file-name)))
+     (when (or (string-equal "js" current-buffer-filename-extension)
+               (string-equal "jsx" current-buffer-filename-extension))
+       (when (executable-find "eslint")
+         (flycheck-mode +1)
+         (flycheck-select-checker 'javascript-eslint)))))
   :config
   (setq standard-indent 2
         tab-width 1
@@ -721,6 +724,47 @@
       (flycheck-select-checker 'json-jsonlint)))
   :config
   (setq js-indent-level 2))
+
+(use-package typescript-mode
+  :straight t
+  :config
+  (setq typescript-indent-level 4)
+  (add-hook 'typescript-mode #'subword-mode))
+
+(use-package tide
+  :straight t
+  :hook ((typescript-mode . cc/tide--setup)
+         (typescript-mode . tide-hl-identifier-mode))
+  :init
+  (defun cc/tide--setup ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    (company-mode +1)))
+
+(use-package web-mode
+  :straight t
+  :mode (("\\.tsx\\'" . web-mode)
+         ("\\.ejs\\'" . web-mode)
+	 ("\\.html\\'" . web-mode))
+  ;; :after (tide)
+  :hook ((web-mode . cc/web--setup))
+  :init
+  (defun cc/web--setup ()
+    (when (string-equal "tsx" (file-name-extension buffer-file-name))
+      (cc/tide--setup)))
+  :config
+  (add-to-list 'web-mode-comment-formats '("jsx" . "//" ))
+  (add-to-list 'web-mode-comment-formats '("tsx" . "//" ))
+  (setq web-mode-enable-current-element-highlight nil)
+  (setq web-mode-code-indent-offset 4)
+  (setq web-mode-css-indent-offset 4)
+  (setq web-mode-markup-indent-offset 4)
+  (setq web-mode-enable-auto-quoting nil)
+  (setq web-mode-attr-indent-offset nil))
 
 ;;; lsp
 (use-package lsp-mode
