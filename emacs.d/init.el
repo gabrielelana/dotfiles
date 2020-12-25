@@ -1301,6 +1301,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (bind-key "M-SPC" #'rectangle-mark-mode)
 (bind-key "H-u" #'cc/copy-character-from-above)
 (bind-key "H-d" #'cc/copy-character-from-below)
+(bind-key "H-<up>" #'text-scale-increase)
+(bind-key "H-<down>" #'text-scale-decrease)
 (bind-key "C-a" #'cc/smarter-move-beginning-of-line)
 (bind-key "C-c l" #'org-store-link)
 (bind-key "C-^" #'cc/join-with-next-line)
