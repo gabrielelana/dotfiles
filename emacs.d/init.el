@@ -860,6 +860,7 @@
 (use-package haskell-mode
   :hook (haskell-mode . cc/haskell--setup)
   :init
+  (setq haskell-prompt-regexp "^\\([>|] *\\)+")
   (defun cc/haskell--setup ()
     (lsp)
     (lsp-ui-mode)
@@ -871,13 +872,30 @@
     (setq-local lsp-flycheck-live-reporting nil)
     (setq-local flycheck-check-syntax-automatically '(save mode-enabled)))
   :config
-  (setq haskell-prompt-regexp "^\\([>|] \\)+")
   (setq haskell-process-type 'ghci)
   (setq haskell-process-path-ghci (executable-find "stack"))
   (setq haskell-process-args-ghci '("ghci"))
   (setq inferior-haskell-root-dir "/tmp"))
 
 (use-package lsp-haskell
+  :custom
+  (lsp-log-io nil))
+
+(defun cc/haskell-interactive-start ()
+  "Start an interactive session loading current buffer.
+
+Whenever the buffer is saved it will be also reloaded in the
+current interactive session."
+  (interactive)
+  ;; TODO: is there another way to save current point and window and
+  ;; restore it when you invoke functions that select other windows to
+  ;; operate?
+  (let ((buffer (current-buffer)))
+    (save-excursion
+      (haskell-interactive-bring))
+    (haskell-process-load-file)
+    (switch-to-buffer-other-window buffer))
+  (add-hook 'after-save-hook 'haskell-process-reload nil t))
   :config
   (setq lsp-haskell-process-path-hie (executable-find "ghcide"))
   (setq lsp-haskell-process-args-hie '())
