@@ -97,6 +97,7 @@ sudo apt install -y \
      libxaw7-dev \
      libxft-dev \
      libxml2-dev \
+     libxml2-utils \
      libxpm-dev \
      libxt-dev \
      m4 \
