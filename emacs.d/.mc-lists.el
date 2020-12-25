@@ -9,6 +9,7 @@
         haskell-indentation-common-electric-command
         indent-for-tab-command
         kill-sexp
+        markdown-outdent-or-delete
         org-delete-char
         org-end-of-line
         org-self-insert-command
@@ -22,10 +23,12 @@
         paredit-splice-sexp-killing-backward
         paredit-wrap-round
         rjsx-delete-creates-full-tag
+        string-inflection-all-cycle
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        beginning-of-buffer
         cc/duplicate-line-or-region-above
         counsel-M-x
         hydra-multiple-cursors/mc/edit-lines-and-exit
@@ -40,6 +43,7 @@
         hydra-multiple-cursors/mc/skip-to-previous-like-this
         hydra-multiple-cursors/mc/unmark-next-like-this
         hydra-multiple-cursors/mc/unmark-previous-like-this
+        hydra-multiple-cursors/nil
         org-cycle
         swiper
         ))
