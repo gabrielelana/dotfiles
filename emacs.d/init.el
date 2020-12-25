@@ -612,6 +612,14 @@
 
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
+;;; makefile
+(use-package makefile-executor
+  ;; TODO: check if C-c C-c is already but or not, if not and there's
+  ;;       a Makefile in the project then bind C-c C-c to
+  ;;       makefile-executor-execute-last
+  :straight t
+  :hook (makefile-mode . makefile-executor-mode))
+
 ;;; yaml
 (use-package yaml-mode
   :mode "\\.yaml\\'" "\\.neon\\'")
