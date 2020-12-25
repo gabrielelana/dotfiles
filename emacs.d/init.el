@@ -576,10 +576,10 @@
               ("C-<tab>" . company-complete))
   :custom
   (company-show-numbers t)
-  (company-idle-delay 0.1)
+  (company-idle-delay 0.5)
   (company-tooltip-flip-when-above t)
   (company-tooltip-align-annotations t)
-  (company-minimum-prefix-length 1))
+  (company-minimum-prefix-length 2))
 
 (use-package string-inflection
   :bind (("C-*" . string-inflection-all-cycle)))
