@@ -270,10 +270,6 @@
     (setq exec-path-from-shell-check-startup-files nil)))
 
 ;;; org mode
-(use-package ob-http)
-
-(use-package ob-mongo)
-
 (use-package org
   :straight org-plus-contrib
   :bind (("C-c c" . org-capture)
@@ -348,10 +344,18 @@
      (http . t)
      (mongo . t)
      (sql . t)
+     (js . t)
      (shell . t))))
 
+(use-package ob-http
+  :straight t)
+
+(use-package ob-mongo
+  :straight t)
+
 (use-package org-drill
-  :after org
+  :straight t
+  :requires org
   :commands org-drill
   :config
   (add-to-list 'org-modules 'org-drill)
@@ -362,7 +366,7 @@
         org-drill-learn-fraction 0.25))
 
 (use-package org-tree-slide
-  :after org
+  :requires org
   :bind (("H-n" . org-tree-slide-move-next-tree)
          ("H-p" . org-tree-slide-move-previous-tree)
          :map org-mode-map
