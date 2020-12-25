@@ -1392,6 +1392,8 @@ options you can do it calling `(cc/shell-command-on-current-file
 (column-number-mode t)
 ;;; more room in the macro's kill ring
 (setq kmacro-ring-max 100)
+;;; more room for echo area, up to 75% of the current window
+(setq max-mini-window-height 0.75)
 ;;; better performance sacrificing right-to-left languages
 (setq-default bidi-display-reordering nil)
 ;;; dired
