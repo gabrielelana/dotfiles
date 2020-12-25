@@ -114,6 +114,7 @@ export EDITOR="emacs-client"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:$HOME/.local/lib:$LD_LIBRARY_PATH
 export PYTHON="python2.7"
+export GPG_TTY=$(tty)
 
 alias l='ls -CF'
 alias la='ls -A'

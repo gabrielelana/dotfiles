@@ -1430,3 +1430,6 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;;; diminish things
 (diminish 'auto-revert-mode)
 (diminish 'eldoc-mode)
+
+;;; do not use an external pin entry program for GnuPG
+(setenv "GPG_AGENT_INFO" nil)
