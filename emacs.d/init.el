@@ -187,6 +187,12 @@
   :config
   (setq highlight-indent-guides-method 'character))
 
+(use-package hydra
+  :straight t)
+
+(use-package use-package-hydra
+  :straight t)
+
 (use-package direnv
   :straight t
   :config
@@ -219,46 +225,40 @@
          ("M-[" . er/contract-region)))
 
 (use-package multiple-cursors
+  :after hydra
+  :straight t
   :bind (("M-\\" . mc/mark-next-like-this)
+         ("C-c m" . hydra-multiple-cursors/body)
          :map mc/keymap
          ("C-'" . mc-hide-unmatched-lines-mode))
-  :config
-  (setq mc/always-run-for-all nil))
-
-(use-package visual-regexp
-  :bind (("C-c v r" . vr/replace)
-         ("C-c v q" . vr/query-replace)
-         ("C-c v m" . vr/mc-mark)))
-
-(use-package hydra
-  :straight t
-  ;; :after multiple-cursors
-  :config
-  (global-set-key
-   (kbd "C-c m")
-   (defhydra hydra-multiple-cursors (:hint nil)
-     "
+  :hydra (hydra-multiple-cursors (:hint nil)
+                                 "
  ^multiple-cursors
  ^Up^             ^Down^           ^Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
 ------------------------------------------------------------------
  [_p_]   Prev     [_n_]   Next     [_l_] Edit lines  [_i_] Insert numbers
  [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_b_] Insert letters
  [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search      [_q_] Quit"
-     ("l" mc/edit-lines :exit t)
-     ("a" mc/mark-all-like-this :exit t)
-     ("n" mc/mark-next-like-this)
-     ("N" mc/skip-to-next-like-this)
-     ("M-n" mc/unmark-next-like-this)
-     ("p" mc/mark-previous-like-this)
-     ("P" mc/skip-to-previous-like-this)
-     ("M-p" mc/unmark-previous-like-this)
-     ("s" mc/mark-all-in-region-regexp :exit t)
-     ("i" mc/insert-numbers :exit t)
-     ("b" mc/insert-letters :exit t)
-     ("<mouse-1>" ignore)
-     ("<down-mouse-1>" ignore)
-     ("<drag-mouse-1>" ignore)
-     ("q" nil))))
+                                 ("l" mc/edit-lines :exit t)
+                                 ("a" mc/mark-all-like-this :exit t)
+                                 ("n" mc/mark-next-like-this)
+                                 ("N" mc/skip-to-next-like-this)
+                                 ("M-n" mc/unmark-next-like-this)
+                                 ("p" mc/mark-previous-like-this)
+                                 ("P" mc/skip-to-previous-like-this)
+                                 ("M-p" mc/unmark-previous-like-this)
+                                 ("s" mc/mark-all-in-region-regexp :exit t)
+                                 ("i" mc/insert-numbers :exit t)
+                                 ("b" mc/insert-letters :exit t)
+                                 ("<mouse-1>" ignore)
+                                 ("<down-mouse-1>" ignore)
+                                 ("<drag-mouse-1>" ignore)
+                                 ("q" nil)))
+
+(use-package visual-regexp
+  :bind (("C-c v r" . vr/replace)
+         ("C-c v q" . vr/query-replace)
+         ("C-c v m" . vr/mc-mark)))
 
 (use-package rainbow-mode
   :diminish rainbow-mode)
