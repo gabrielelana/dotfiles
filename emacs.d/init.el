@@ -1,7 +1,48 @@
 ;;; -*- lexical-binding: t -*-
 (setq-default lexical-binding t)
 
+;;; remove "Package cl is deprecated" warning
+(setq byte-compile-warnings '(cl-functions))
+
+;;; TODO: all the packages with that I depend on that have
+;;; `(require 'cl)` that is deprecated, should be
+;;; `(require 'cl-lib)` in emacs 27 or later
+
+;; https://code.orgmode.org/bzg/org-mode.git
+;; https://github.com/defunkt/gist.el.git
+;; https://github.com/emacsmirror/highlight.git
+;; https://github.com/emacs-php/php-mode.git
+;; https://github.com/emacs-straight/queue.git
+;; https://github.com/emacs-straight/spinner.git
+;; https://github.com/emacs-typescript/typescript.el.git
+;; https://github.com/erlang/otp.git
+;; https://github.com/eschulte/jump.el.git
+;; https://github.com/flycheck/flycheck.git
+;; https://github.com/gongo/json-reformat.git
+;; https://github.com/hchbaw/eval-sexp-fu.el.git
+;; https://github.com/ieure/scratch-el.git
+;; https://github.com/joaotavora/yasnippet.git
+;; https://github.com/jwiegley/emacs-async.git
+;; https://github.com/jwiegley/use-package.git
+;; https://github.com/magnars/dash.el.git
+;; https://github.com/magnars/multiple-cursors.el.git
+;; https://github.com/magnars/s.el.git
+;; https://github.com/michaelklishin/cucumber.el.git
+;; https://github.com/nlamirault/gotest.el.git
+;; https://github.com/nlamirault/phpunit.el.git
+;; https://github.com/rejeep/drag-stuff.el.git
+;; https://github.com/sigma/gh.el.git
+;; https://github.com/sigma/logito.git
+;; https://github.com/sigma/pcache.git
+;; https://github.com/tkf/sphinx-eldomain.git
+;; https://github.com/vspinu/sesman.git
+;; https://gitlab.com/to1ne/use-package-hydra.git
+
 ;;; TODO: make "starred buffers" to be ranked low in ivy
+
+;;; add package archive for org
+(require 'package)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 
 ;;; handle garbage collection
 (defun cc/defer-garbage-collection ()
