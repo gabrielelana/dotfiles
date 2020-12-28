@@ -1,17 +1,12 @@
-keycode 37  = Control_L
-keycode 133 = Control_L
-keycode 134 = Control_R
+keycode 64 = Alt_L Alt_L
+keycode 108 = Alt_R Alt_R
 
-keycode 87 = Hyper_L
-keycode 88 = Hyper_R
+keycode 37  = Control_L Control_L Control_L Control_L
+keycode 105  = Control_R Control_R Control_R Control_R
 
-keycode 89 = Super_L
-keycode 83 = Super_R
+keycode 133 = Hyper_L Hyper_L Hyper_L Hyper_L
+keycode 134 = Super_L Super_L Super_L Super_L
 
-keycode 84 = nobreakspace
-keycode 85 = nobreakspace
-
-! keycode 108 = Alt_R
 keycode 104 = Insert
 
 clear Mod1
@@ -26,6 +21,4 @@ add Control = Control_R
 add Mod1 = Alt_L
 add Mod1 = Alt_R
 add Mod2 = Hyper_L
-add Mod2 = Hyper_R
 add Mod3 = Super_L
-add Mod3 = Super_R
