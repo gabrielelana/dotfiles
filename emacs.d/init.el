@@ -786,6 +786,7 @@
   :init
   (setq lsp-keymap-prefix "H-l")
   (defun cc/lsp--setup ()
+    (lsp-headerline-breadcrumb-mode -1)
     (make-local-variable 'read-process-output-max)
     (setq read-process-output-max 1048576))
   :config
