@@ -33,7 +33,7 @@ bindsym $mod+Return exec st
 bindsym $mod+x kill
 
 # start program launcher
-bindsym $mod+o exec ~/bin/i3-launcher -i -b -nb \$bg1 -nf \$fg -sb \$fg -sf \$bg1 -fn "PragmataPro Mono:regular:size=14"
+bindsym $mod+o exec ~/.local/bin/i3-launcher -i -b -nb \$bg1 -nf \$fg -sb \$fg -sf \$bg1 -fn "PragmataPro Mono:regular:size=14"
 
 # change focus
 bindsym $mod+h focus left
