@@ -8,7 +8,19 @@ echo "Prepare..."
 mkdir -p "$ROOT"/.dependencies
 
 echo "Update dotfiles..."
-git pull
+git pull --rebase
+
+echo "Update dependencies..."
+for project in dotfiles-secrets awesome-terminal-fonts; do
+  echo "Update ${project}..."
+  if [ ! -d "$ROOT"/.dependencies/$project ]; then
+    git clone git@github.com:gabrielelana/$project.git "$ROOT"/.dependencies/"$project"
+  else
+    cd "$ROOT"/.dependencies/$project || exit 1
+    git pull --rebase
+    cd "$ROOT" || exit 1
+  fi
+done
 
 echo "Install executables..."
 mkdir -p ~/bin
@@ -38,18 +50,6 @@ if [ ! -f ~/.bashrc.localhost ]; then
   echo "#!/bin/bash" > ~/.bashrc.localhost
 fi
 mkdir -p ~/.config && ln -sf "$ROOT"/starship.toml ~/.config/starship.toml
-
-echo "Update dependencies..."
-for project in dotfiles-secrets awesome-terminal-fonts; do
-  echo "Update ${project}..."
-  if [ ! -d "$ROOT"/.dependencies/$project ]; then
-    git clone git@github.com:gabrielelana/$project.git "$ROOT"/.dependencies/"$project"
-  else
-    cd "$ROOT"/.dependencies/$project || exit 1
-    git pull
-    cd "$ROOT" || exit 1
-  fi
-done
 
 echo "Setup fonts..."
 mkdir -p ~/.fonts
