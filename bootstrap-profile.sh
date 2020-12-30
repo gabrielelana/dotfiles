@@ -78,6 +78,7 @@ ln -sf "$ROOT"/emacs.d ~/.emacs.d
 
 echo "Setup Haskell (stack)..."
 cp -rf "$ROOT"/stack ~/.stack
+cp -rf "$ROOT"/ghc ~/.ghc
 
 echo "Configure gnome terminal..."
 if [ -x "$(command -v dconf)" ]; then
