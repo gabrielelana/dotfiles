@@ -795,6 +795,7 @@
         lsp-prefer-capf t
         lsp-idle-delay 0
         lsp-enable-file-watchers nil
+        lsp-headerline-breadcrumb-enable nil
         lsp-print-io nil
         lsp-keep-workspace-alive nil))
 
