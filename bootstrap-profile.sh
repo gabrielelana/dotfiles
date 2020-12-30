@@ -41,6 +41,8 @@ cp -f "$ROOT"/xsession ~/.xsession
 cp -f "$ROOT"/xmodmap ~/.xmodmap
 cp -f "$ROOT"/xresources ~/.xresources
 ln -sf "$ROOT"/docker ~/.docker
+ln -sf "$ROOT"/aspell.en.prepl ~/.aspell.en.prepl
+ln -sf "$ROOT"/aspell.en.pws ~/.aspell.en.pws
 mkdir -p ~/.config/direnv && ln -sf $"ROOT"/direnvrc ~/.config/direnv/direnvrc
 
 echo "Configure shell..."
