@@ -31,7 +31,8 @@
 (defun cc/org-mode-buffer-setup ()
   (advice-add 'org-babel-execute-src-block :after #'cc/org-babel-execute-src-block-pulse-momentary)
   (advice-add 'org-babel-execute:haskell :filter-return #'cc/org-babel-execute-haskell-filter-output)
-  (add-hook 'before-save-hook #'cc/org-mode-buffer-format nil t))
+  (add-hook 'before-save-hook #'cc/org-mode-buffer-format nil t)
+  (electric-indent-mode -1))
 
 (defun cc/org-mode-buffer-format ()
   (cc/org-mode-buffer-force-uppercase-keywords))
