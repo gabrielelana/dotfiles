@@ -1,14 +1,13 @@
 #!/bin/bash
 
-CACHE_DIR=${XDG_CACHE_HOME:-"$HOME/.cache"}
-CACHE_PATH=$CACHE_DIR/i3-launcher-path
-CACHE_PATHS=$CACHE_DIR/i3-launcher
+# NOTE: for this to work you must add the following line to `/etc/sudoers`
+#
+# Defaults        env_keep += "PATH"
 
-# NOTE: if it gets outdated launch from command line the following command
-# $ echo $PATH > ~/.cache/i3-launcher-path && rm -rf ~/.cache/i3-launcher
+SELECTION=$(dmenu_path | dmenu "$@")
 
-[ ! -d "$CACHE_DIR" ] && mkdir "$CACHE_DIR"
-[ ! -f "$CACHE_PATH" ] && source "$HOME/.bashrc" && echo "$PATH" > "$CACHE_PATH"
-[ ! -f "$CACHE_PATHS" ] && stest -flx $(sed 's/:/\n/g' "$CACHE_PATH") | sort -u > "$CACHE_PATHS"
-
-cat "$CACHE_PATHS" | dmenu "$@" | sudo -iu coder
+if command -v $SELECTION; then
+  sudo --preserve-env=PATH -iu coder -- $SELECTION > ~/.i3/dmenu-last-run.log 2>&1
+else
+  echo "Error: cannot run $SELECTION, command not found" > ~/.i3/dmenu-last-run.log
+fi
