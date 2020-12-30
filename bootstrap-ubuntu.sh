@@ -194,6 +194,7 @@ cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd - || exit 1
 ~/.asdf/bin/asdf plugin-add kubectl
 ~/.asdf/bin/asdf plugin-add kubectx
 ~/.asdf/bin/asdf plugin-add kustomize
+~/.asdf/bin/asdf plugin-add kind
 
 export PATH="~/.asdf/bin:$PATH"
 
@@ -216,6 +217,8 @@ echo "Install K8s Stuffs..."
 ~/.asdf/bin/asdf global kubectx "$(~/.asdf/bin/asdf list kubectx | tail -1 | tr -d ' ')"
 ~/.asdf/bin/asdf install kustomize latest
 ~/.asdf/bin/asdf global kustomize "$(~/.asdf/bin/asdf list kustomize | tail -1 | tr -d ' ')"
+~/.asdf/bin/asdf install kind latest
+~/.asdf/bin/asdf global kind "$(~/.asdf/bin/asdf list kind | tail -1 | tr -d ' ')"
 
 echo "Install NodeJS..."
 ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
