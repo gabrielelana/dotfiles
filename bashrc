@@ -1,11 +1,5 @@
 # -*- mode: Shell-script[bash]; sh-basic-offset: 2; -*-
 
-# If not running interactively, don't do anything
-case $- in
-  *i*) ;;
-  *) return;;
-esac
-
 # Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
