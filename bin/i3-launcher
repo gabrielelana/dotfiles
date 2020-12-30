@@ -1,19 +1,14 @@
-#!/bin/zsh
+#!/bin/bash
 
-source $HOME/.zshrc
+CACHE_DIR=${XDG_CACHE_HOME:-"$HOME/.cache"}
+CACHE_PATH=$CACHE_DIR/i3-launcher-path
+CACHE_PATHS=$CACHE_DIR/i3-launcher
 
-cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
-if [ -d "$cachedir" ]; then
-    cache=$cachedir/i3-launcher
-    cache_from=$cachedir/i3-launcher-path
-else
-    cache=$HOME/.i3-launcher
-    cache_from=$HOME/.i3-launcher-path
-fi
+# NOTE: if it gets outdated launch from command line the following command
+# $ echo $PATH > ~/.cache/i3-launcher-path && rm -rf ~/.cache/i3-launcher
 
-if [ ! -f $cache_from ] || [ $PATH != `cat $cache_from` ]; then
-    echo $PATH > $cache_from
-    stest -flx `echo ${PATH//:/$'\n'}` | sort -u | tee "$cache" | dmenu "$@" | sudo -iu coder
-else
-    cat "$cache" | dmenu "$@" | sudo -iu coder
-fi
+[ ! -d "$CACHE_DIR" ] && mkdir "$CACHE_DIR"
+[ ! -f "$CACHE_PATH" ] && source "$HOME/.bashrc" && echo "$PATH" > "$CACHE_PATH"
+[ ! -f "$CACHE_PATHS" ] && stest -flx $(sed 's/:/\n/g' "$CACHE_PATH") | sort -u > "$CACHE_PATHS"
+
+cat "$CACHE_PATHS" | dmenu "$@" | sudo -iu coder
