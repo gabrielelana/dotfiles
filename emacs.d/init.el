@@ -216,7 +216,8 @@
     (cc/expose-global-binding-in-term (kbd "C-x"))))
 
 ;;; modern terminal
-(use-package vterm)
+(use-package vterm
+    :bind (("H-v" . vterm-other-window)))
 
 ;;; universal minor modes
 (use-package highlight-indent-guides

@@ -103,6 +103,14 @@ for map in ~/.fonts/*.sh; do
   source "$map"
 done
 
+# Configuration related to VT inside of Emacs
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+  function clear(){
+    vterm_printf "51;Evterm-clear-scrollback";
+    tput clear;
+  }
+fi
+
 export TERM="xterm-256color"
 export EDITOR="emacs-client"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
