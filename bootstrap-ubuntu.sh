@@ -75,6 +75,7 @@ sudo apt install -y \
      iitalian \
      jq \
      libcanberra-gtk3-module \
+     libgccjit-10-dev \
      libgif-dev \
      libgl1-mesa-dev \
      libgl1-mesa-glx \
@@ -86,11 +87,16 @@ sudo apt install -y \
      libjansson-dev \
      libjansson4 \
      libjpeg-dev \
+     libmagic-dev \
+     libmagickcore-dev \
+     libmagickwand-dev \
      libmpc-dev \
      libmpfr-dev \
      libncurses-dev \
      libncurses5-dev \
      libpng-dev \
+     libpoppler-glib-dev \
+     libpoppler-private-dev \
      libreadline-dev \
      libssh-dev \
      libssl-dev \
