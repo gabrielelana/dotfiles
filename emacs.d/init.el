@@ -46,20 +46,20 @@
 
 ;;; handle garbage collection
 (defun cc/defer-garbage-collection ()
-  (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
+  (setq gc-cons-threshold most-positive-fixnum
         gc-cons-percentage 0.6))
 
 (defun cc/restore-garbage-collection ()
-  (setq gc-cons-threshold 134217728     ; 128 mega bytes
+  (setq gc-cons-threshold 16777216
         gc-cons-percentage 0.1))
 
 ;;; disable garbage collection at startup
 (cc/defer-garbage-collection)
 (add-hook 'emacs-startup-hook #'cc/restore-garbage-collection)
 
-;;; disable garbage collection in minibuffer
-(add-hook 'minibuffer-setup-hook #'cc/defer-garbage-collection)
-(add-hook 'minibuffer-exit-hook (lambda () (run-at-time 1 nil #'cc/restore-garbage-collection)))
+;; ;;; disable garbage collection in minibuffer
+;; (add-hook 'minibuffer-setup-hook #'cc/defer-garbage-collection)
+;; (add-hook 'minibuffer-exit-hook (lambda () (run-at-time 1 nil #'cc/restore-garbage-collection)))
 
 ;;; bootstrap `straight.el'
 (defvar bootstrap-version)
