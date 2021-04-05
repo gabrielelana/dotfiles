@@ -121,10 +121,18 @@
 (use-package monokai-theme)
 (use-package subatomic-theme
   :defer t
-  :init
-  (setq subatomic-more-visible-comment-delimiters t)
-  ;; (set-face-attribute 'hl-line nil :background "#4b5275")
-  )
+  :config
+  (custom-set-faces
+   `(term-color-black ((t (:foreground "#2e3043" :background "#2e3043"))))
+   `(term-color-red ((t (:foreground "#ea8673" :background "#ea8673"))))
+   `(term-color-green ((t (:foreground "#a9dc69" :background "#a9dc69"))))
+   `(term-color-yellow ((t (:foreground "#ffd700" :background "#ffd700"))))
+   `(term-color-blue ((t (:foreground "#8aa6bc" :background "#8aa6bc"))))
+   `(term-color-magenta ((t (:foreground "#feccd4" :background "#feccd4"))))
+   `(term-color-cyan ((t (:foreground "#9c71a5" :background "#9c71a5"))))
+   `(term-color-white ((t (:foreground "#e5e5e5" :background "#e5e5e5")))))
+  :custom
+  subatomic-more-visible-comment-delimiters t)
 (use-package doom-themes)
 (use-package nord-theme
   :defer t
