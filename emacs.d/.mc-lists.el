@@ -5,13 +5,16 @@
       '(
         cc/copy-character-from-above
         cc/smarter-move-beginning-of-line
+        dired-maybe-insert-subdir
         forward-sexp
         haskell-indentation-common-electric-command
         indent-for-tab-command
         kill-sexp
+        markdown-cycle
         markdown-outdent-or-delete
         org-delete-char
         org-end-of-line
+        org-kill-line
         org-self-insert-command
         paredit-doublequote
         paredit-forward-delete
@@ -19,11 +22,13 @@
         paredit-forward-slurp-sexp
         paredit-kill
         paredit-meta-doublequote
+        paredit-open-round
         paredit-splice-sexp
         paredit-splice-sexp-killing-backward
         paredit-wrap-round
         rjsx-delete-creates-full-tag
         string-inflection-all-cycle
+        undefined
         ))
 
 (setq mc/cmds-to-run-once
