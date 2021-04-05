@@ -188,6 +188,14 @@
     '(objed-state misc-info  grip debug lsp minor-modes indent-info buffer-encoding major-mode process checker vcs pad))
   (cc/doom-modeline-setup-theme))
 
+;;; built-in modes
+(use-package dired
+  :straight (:type built-in)
+  :bind (("C-x C-j" . dired-jump))
+  :custom
+  (dired-listing-switches "-aGFhlv --color --group-directories-first --time-style=long-iso")
+  (dired-dwim-target t))
+
 (use-package term
   ;; NOTE: sometimes doom-modeline breaks with terms, in term.el
   ;; change `(select-window win)` to `(select-window win t)`
@@ -1435,8 +1443,6 @@ options you can do it calling `(cc/shell-command-on-current-file
 (setq max-mini-window-height 0.75)
 ;;; better performance sacrificing right-to-left languages
 (setq-default bidi-display-reordering nil)
-;;; dired
-(setq dired-dwim-target t)
 ;;; recently added to Emacs 27, improves performance
 (setq read-process-output-max (* 1024 1024))
 ;;; underlining
