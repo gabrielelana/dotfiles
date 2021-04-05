@@ -264,3 +264,11 @@ sudo usermod -aG docker $USER
 newgrp docker
 sudo systemctl restart docker
 docker run hello-world || echo "! failed to install Docker"
+# Shell testing harness
+echo "Install bats..." && (
+  cd ~/tmp
+  git clone https://github.com/sstephenson/bats.git
+  cd bats
+  chmod +x ./install.sh
+  sudo ./install.sh /usr/local
+)
