@@ -241,10 +241,13 @@ echo "Install Haskell Stack..."
 curl -sSL https://get.haskellstack.org/ | sh -s - -f -d ~/.local/bin/
 # To install haskell language server clone # https://github.com/haskell/haskell-language-server and follow README # instructions for stack projects
 # Then install utilities and libraries
+# NOTE: consider to add `--library-profiling` as option to `stack-install`
 # $ stack install hlint
 # $ stack install QuickCheck
 # $ stack install HSpec
-# $ stack install ...
+# $ stack install random
+# $ stack install checkers
+
 
 echo "Install Starship..."
 curl -fsSL https://starship.rs/install.sh | bash
