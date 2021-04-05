@@ -81,6 +81,8 @@ ln -sf "$ROOT"/emacs.d ~/.emacs.d
 echo "Setup Haskell (stack)..."
 cp -rf "$ROOT"/stack ~/.stack
 cp -rf "$ROOT"/ghc ~/.ghc
+chmod 755 ~/.stack
+chmod 755 ~/.ghc
 
 echo "Configure gnome terminal..."
 if [ -x "$(command -v dconf)" ]; then
@@ -99,5 +101,7 @@ DesktopNames=GNOME-Flashback;GNOME;
 X-Ubuntu-Gettext-Domain=gnome-flashback
 EOF
 
+# TODO: use the following color schemes and m4 instead of patching st
+# https://github.com/lemnos/theme.sh/blob/master/theme.sh
 echo "Install default theme and restart..."
 ~/bin/switch-theme -t subatomic
