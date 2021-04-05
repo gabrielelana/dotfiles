@@ -188,6 +188,28 @@
     '(objed-state misc-info  grip debug lsp minor-modes indent-info buffer-encoding major-mode process checker vcs pad))
   (cc/doom-modeline-setup-theme))
 
+(use-package term
+  ;; NOTE: sometimes doom-modeline breaks with terms, in term.el
+  ;; change `(select-window win)` to `(select-window win t)`
+  :straight (:type built-in)
+  :hook (term-mode . cc/term-setup)
+  :init
+  ;; TODO: how to bypass the question about the shell?
+  ;; TODO: defun term-in-current-directory
+  (defun cc/expose-global-binding-in-term (binding)
+    (define-key term-raw-map binding
+      (lookup-key (current-global-map) binding)))
+  ;; NOTE: need to use the hook because some bindings can be set after
+  ;; the term package is loaded
+  (defun cc/term-setup ()
+    ;; NOTE: C-c C-j -> switch to line mode
+    ;; NOTE: C-c C-k -> switch to char mode
+    (cc/expose-global-binding-in-term (kbd "M-o"))
+    (cc/expose-global-binding-in-term (kbd "C-x"))))
+
+;;; modern terminal
+(use-package vterm)
+
 ;;; universal minor modes
 (use-package highlight-indent-guides
   :hook ((yaml-mode . highlight-indent-guides-mode)
