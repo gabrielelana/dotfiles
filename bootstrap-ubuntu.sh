@@ -138,6 +138,8 @@ git checkout "$EMACS_RELEASE"
 ./autogen.sh && \
   ./configure --prefix=/home/coder/opt/emacs --bindir=/home/coder/opt/emacs/bin \
               --with-modules \
+              --with-cairo \
+              --with-imagemagick \
               --with-x=yes \
               --with-x-toolkit=gtk3 \
               --with-xwidgets \
