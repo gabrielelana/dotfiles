@@ -112,7 +112,7 @@ mode "resize" {
 
 bar {
     position top
-    status_command ~/bin/i3-status
+    status_command ~/.local/bin/i3-status
     tray_output none
     colors {
         background $bg1
