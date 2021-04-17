@@ -26,6 +26,9 @@ floating_modifier $mod
 # the following are pixels of the full retina display
 floating_maximum_size 2048 x 1536
 
+# always put the floating windows in a position so that they can be seen
+for_window [floating] move position 10 10
+
 # start a terminal
 bindsym $mod+Return exec st
 
