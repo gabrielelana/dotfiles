@@ -1,8 +1,9 @@
-personal_ws-1.1 en 214 
+personal_ws-1.1 en 223 
 AST
 Abelian
 Ack
 Algozino
+Ansible
 Anticipay
 Applicative
 Applicatives
@@ -80,6 +81,7 @@ Referentially
 Refutability
 Rollout
 SIGHUP
+SIGINT
 STDIN
 STDOUT
 Samuele
@@ -91,6 +93,8 @@ Sánchez
 TBD
 TLDR
 TODO
+TODOs
+Terraform
 Tokenization
 Tranformers
 Trello
@@ -122,6 +126,7 @@ codepoints
 combinator
 combinators
 composable
+concretize
 config
 datatatype
 datatypes
@@ -144,6 +149,7 @@ frontends
 functorial
 ghci
 ghcide
+golang
 haskell
 homomorphism
 http
@@ -153,6 +159,7 @@ iex
 iframe
 incrementing
 inspectable
+interruptible
 isearch
 kata
 kinded
@@ -187,7 +194,9 @@ postgres
 postgresql
 pre
 prometheus
+provisioners
 referentially
+runtime
 scalability
 scalable
 schemas
