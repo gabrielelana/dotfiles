@@ -7,8 +7,8 @@ diff -ruN st-0.8.2-original/config.def.h st-0.8.2-font/config.def.h
   */
 -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 -static int borderpx = 2;
-+static char *font = "PragmataPro Mono:regular:pixelsize=40:antialias=true:autohint=true";
++static char *font = "PragmataPro Mono:regular:pixelsize=30:antialias=true:autohint=true";
 +static int borderpx = 0;
- 
+
  /*
   * What program is execed by st depends of these precedence rules:
