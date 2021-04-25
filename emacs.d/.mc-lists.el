@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        cc/comment-or-uncomment-line-or-region
         cc/copy-character-from-above
         cc/smarter-move-beginning-of-line
         dired-maybe-insert-subdir
