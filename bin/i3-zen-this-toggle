@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DISPLAY_WIDTH=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -f1 -dx)
+ZEN_WINDOW_WIDTH=$((DISPLAY_WIDTH * 4 / 5))
+CURRENT_WINDOW_ID=$(i3-get -r n)
+LEFT_WINDOW_MARK="leftzen-$CURRENT_WINDOW_ID"
+RIGHT_WINDOW_MARK="rightzen-$CURRENT_WINDOW_ID"
+
+if [[ -z $(i3-get -m "$LEFT_WINDOW_MARK") && -z $(i3-get -m "$RIGHT_WINDOW_MARK") ]]; then
+  i3-ghost-window "$LEFT_WINDOW_MARK"
+  i3-ghost-window "$RIGHT_WINDOW_MARK"
+  sleep 0.5
+
+  i3-msg "[con_mark=$LEFT_WINDOW_MARK] move left"
+  i3-msg "[con_id=$CURRENT_WINDOW_ID] resize set width ${ZEN_WINDOW_WIDTH}, border pixel, focus"
+else
+  i3-msg "[con_mark=$LEFT_WINDOW_MARK] kill"
+  i3-msg "[con_mark=$RIGHT_WINDOW_MARK] kill"
+fi

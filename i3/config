@@ -1,5 +1,5 @@
 # fonts
-font pango:PragmataPro Mono Regular 10
+font pango:PragmataPro Mono Regular 12
 
 # borders
 new_window pixel 2
@@ -36,7 +36,10 @@ bindsym $mod+Return exec st
 bindsym $mod+x kill
 
 # start program launcher
-bindsym $mod+o exec ~/.local/bin/i3-launcher -i -b -nb \$bg1 -nf \$fg -sb \$fg -sf \$bg1 -fn "PragmataPro Mono:regular:size=12"
+bindsym $mod+o exec ~/.local/bin/i3-launcher -i -b -nb \$bg1 -nf \$fg -sb \$fg -sf \$bg1 -fn "PragmataPro Mono:regular:size=16"
+
+# toggle center current window with padding on left and right
+bindsym $mod+z exec ~/.local/bin/i3-zen-this-toggle
 
 # change focus
 bindsym $mod+h focus left
