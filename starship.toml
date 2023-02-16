@@ -7,13 +7,13 @@ format = """\
     $git_commit\
     $git_state\
     $git_status\
+    $package\
     $time\
     $elixir\
-    $golang\
-    $haskell\
     $nodejs\
-    $php\
     $rust\
+    $kotlin\
+    $java\
     $cmd_duration\
     $line_break\
     $character\
@@ -29,19 +29,16 @@ format = "%Y-%m-%d %H:%M:%S"
 [cmd_duration]
 min_time = 500
 format = "took [$duration]($style) "
-enabled = false
 
 [directory]
 style = "bright-white"
 
 [character]
-symbol = "❯"
-style_success = "bold white"
-style_failure = "bold bright-red"
-use_symbol_for_status = false
+success_symbol = "[❯](bold bright-green)"
+error_symbol = "[❯](bold bright-red)"
 
 [git_branch]
-symbol = " "
+symbol = "  "
 style = "bold bright-green"
 
 [git_state]
@@ -60,11 +57,14 @@ renamed = "  "
 deleted = "  "
 format = "([·$all_status$ahead_behind]($style) )"
 
+[package]
+symbol = " "
+
 [elixir]
 symbol = "瞧 "
 
-[haskell]
-symbol = "益 "
+# [haskell]
+# symbol = "益 "
 
 [rust]
 symbol = "謹 "
@@ -84,8 +84,8 @@ symbol = "諭 "
 [python]
 symbol = "諸 "
 
-[php]
-symbol = "襁 "
+[kotlin]
+symbol = "磌 "
 
-[golang]
-symbol = "瘝 "
+[java]
+symbol = "直 "

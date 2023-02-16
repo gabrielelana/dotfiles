@@ -84,6 +84,7 @@
 (use-package bind-key :demand t)
 (use-package s :demand t)
 (use-package f :demand t)
+(use-package ht :demand t)
 (use-package uuidgen :demand t)
 (use-package dash :demand t)
 (use-package request :demand t)
@@ -147,11 +148,11 @@
                       :foreground "#ff6523"))
 
 ;;; light themes
-;; (load-theme 'dichromacy t)
+(load-theme 'dichromacy t)
 ;; (load-theme 'github t)
 
 ;;; dark themes
-(load-theme 'subatomic t)
+;; (load-theme 'subatomic t)
 ;; (load-theme 'doom-molokai)
 ;; (load-theme 'doom-dracula)
 ;; (load-theme 'doom-nord)
@@ -173,6 +174,7 @@
     (doom-modeline-set-modeline 'cc 'default))
   :config
   (setq inhibit-compacting-font-caches t
+        doom-modeline-height 40
         doom-modeline-bar-width 3
         doom-modeline-buffer-file-name-style 'relative-from-project
         doom-modeline-irc nil
@@ -184,8 +186,30 @@
     "Give more space"
     (doom-modeline-spc))
   (doom-modeline-def-modeline 'cc
-    '(bar workspace-name window-number modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
-    '(objed-state misc-info  grip debug lsp minor-modes indent-info buffer-encoding major-mode process checker vcs pad))
+    '(bar
+      workspace-name
+      window-number
+      modals
+      matches
+      buffer-info
+      remote-host
+      buffer-position
+      word-count
+      parrot
+      selection-info)
+    '(objed-state
+      misc-info
+      grip
+      debug
+      lsp
+      minor-modes
+      indent-info
+      buffer-encoding
+      major-mode
+      process
+      checker
+      vcs
+      pad))
   (cc/doom-modeline-setup-theme))
 
 ;;; built-in modes
@@ -217,7 +241,16 @@
 
 ;;; modern terminal
 (use-package vterm
-    :bind (("H-v" . vterm-other-window)))
+  :bind (("H-v" . vterm-other-window)))
+
+;;; PDF
+(use-package pdf-tools
+  :straight t
+  :config
+  (pdf-tools-install)
+  :custom
+  (pdf-view-use-scaling nil)
+  (pdf-view-use-unicode-ligther nil))
 
 ;;; universal minor modes
 (use-package highlight-indent-guides
@@ -319,9 +352,10 @@
   :load-path "local-packages/"
   :config
   (setq org-edit-src-content-indentation 0
+        org-src-preserve-indentation nil
         org-src-tab-acts-natively t
-        org-use-property-inheritance t
         org-src-fontify-natively nil
+        org-use-property-inheritance t
         org-confirm-babel-evaluate nil
         org-catch-invisible-edits 'error
         org-tags-column -100
@@ -425,6 +459,8 @@
                         :underline '(:color "red1" :style line))
     (set-face-attribute 'flyspell-duplicate nil
                         :underline '(:color "orange" :style line)))
+  :custom
+  (flyspell-issue-message-flag nil)
   :config
   (unbind-key "C-." flyspell-mode-map)
   (unbind-key "C-," flyspell-mode-map)
@@ -598,7 +634,7 @@
 
 (use-package projectile
   :init
-  (setq projectile-indexing-method 'alien
+  (setq projectile-indexing-method 'native
         projectile-enable-caching t)
   :config
   (add-to-list 'projectile-globally-ignored-directories "node_modules")
@@ -732,6 +768,7 @@
      (when (or (string-equal "js" current-buffer-filename-extension)
                (string-equal "jsx" current-buffer-filename-extension))
        (when (executable-find "eslint")
+         (cc/tide--setup)
          (flycheck-mode +1)
          (flycheck-select-checker 'javascript-eslint)))))
   :config
@@ -777,7 +814,7 @@
 (use-package typescript-mode
   :straight t
   :config
-  (setq typescript-indent-level 4)
+  (setq typescript-indent-level 2)
   (add-hook 'typescript-mode #'subword-mode))
 
 (use-package tide
@@ -798,7 +835,7 @@
   :straight t
   :mode (("\\.tsx\\'" . web-mode)
          ("\\.ejs\\'" . web-mode)
-	 ("\\.html\\'" . web-mode))
+         ("\\.html\\'" . web-mode))
   ;; :after (tide)
   :hook ((web-mode . cc/web--setup))
   :init
@@ -871,6 +908,9 @@
   :bind (("H-l y" . lsp-ivy-workspace-symbol))
   :commands lsp-ivy-workspace-symbol)
 
+(use-package avy
+  :straight t)
+
 ;;; rust
 (use-package rust-mode
   :mode ("\\.rs$" . rust-mode)
@@ -901,7 +941,6 @@
 (use-package haskell-mode
   :hook (haskell-mode . cc/haskell--setup)
   :init
-  (setq haskell-prompt-regexp "^\\([>|] *\\)+")
   (defun cc/haskell--setup ()
     (lsp)
     (lsp-ui-mode)
@@ -916,6 +955,7 @@
   (setq haskell-process-type 'ghci)
   (setq haskell-process-path-ghci (executable-find "stack"))
   (setq haskell-process-args-ghci '("ghci"))
+  (setq haskell-prompt-regexp "^\\([>|] *\\)+")
   (setq inferior-haskell-root-dir "/tmp"))
 
 (use-package lsp-haskell
@@ -984,6 +1024,8 @@ current interactive session."
     (setq-local company-idle-delay 0.5)
     (setq-local company-minimum-prefix-length 1)
     (setq-local tab-width 4)
+    (setq-local lsp-enable-snippet nil)
+    (setq-local lsp-lens-enable t)
     (setq-local lsp-ui-doc-enable t)
     (setq-local lsp-ui-doc-use-childframe t)
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -1316,10 +1358,10 @@ options you can do it calling `(cc/shell-command-on-current-file
 (defun math-fixnum (a)
   (if (consp a)
       (if (cdr a)
-	  (if (eq (car a) 'bigneg)
-	      (- (math-fixnum-big (cdr a)))
-	    (math-fixnum-big (cdr a)))
-	0)
+          (if (eq (car a) 'bigneg)
+              (- (math-fixnum-big (cdr a)))
+            (math-fixnum-big (cdr a)))
+        0)
     a))
 
 (defun math-fixnum-big (a)
@@ -1349,8 +1391,12 @@ options you can do it calling `(cc/shell-command-on-current-file
 (bind-key "M-SPC" #'rectangle-mark-mode)
 (bind-key "H-u" #'cc/copy-character-from-above)
 (bind-key "H-d" #'cc/copy-character-from-below)
-(bind-key "H-<up>" #'text-scale-increase)
-(bind-key "H-<down>" #'text-scale-decrease)
+(bind-key "H-<right>" #'windmove-swap-states-right)
+(bind-key "H-<left>" #'windmove-swap-states-left)
+(bind-key "H-<up>" #'windmove-swap-states-up)
+(bind-key "H-<down>" #'windmove-swap-states-down)
+(bind-key "H-+" #'text-scale-increase)
+(bind-key "H--" #'text-scale-decrease)
 (bind-key "C-a" #'cc/smarter-move-beginning-of-line)
 (bind-key "C-c l" #'org-store-link)
 (bind-key "C-^" #'cc/join-with-next-line)
@@ -1459,7 +1505,7 @@ options you can do it calling `(cc/shell-command-on-current-file
 ;;; appearance
 (setq visible-bell nil)
 (setq inhibit-splash-screen t)
-(set-frame-font "PragmataPro Mono 16")
+(set-frame-font "PragmataPro Mono 26")
 
 ;;; enable some "dangerous" commands
 (put 'narrow-to-region 'disabled nil)

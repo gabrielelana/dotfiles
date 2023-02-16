@@ -5,7 +5,9 @@
       '(
         cc/comment-or-uncomment-line-or-region
         cc/copy-character-from-above
+        cc/join-with-next-line
         cc/smarter-move-beginning-of-line
+        default-indent-new-line
         dired-maybe-insert-subdir
         forward-sexp
         haskell-indentation-common-electric-command
@@ -17,6 +19,7 @@
         org-end-of-line
         org-kill-line
         org-self-insert-command
+        paredit-backslash
         paredit-doublequote
         paredit-forward-delete
         paredit-forward-kill-word
@@ -28,6 +31,7 @@
         paredit-splice-sexp-killing-backward
         paredit-wrap-round
         rjsx-delete-creates-full-tag
+        rjsx-electric-gt
         string-inflection-all-cycle
         undefined
         ))

@@ -21,3 +21,4 @@ vim/bundle
 /emacs.d/places
 /emacs.d/straight/
 /emacs.d/var/
+/emacs.d/eln-cache/

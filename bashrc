@@ -49,7 +49,8 @@ shopt -s globstar
   # cd ~/opt/elixir-ls
   # mix deps.get
   # MIX_ENV=prod mix elixir_ls.release -o ~/.local/bin/elixir-ls
-  export PATH=$HOME/.local/bin/elixir-ls:$PATH
+  export ELS_INSTALL_PREFIX=$HOME/.local/bin/elixir-ls
+  export PATH=$ELS_INSTALL_PREFIX:$PATH
 }
 
 # PHP configuration
@@ -68,7 +69,7 @@ command -v direnv >/dev/null && command -v asdf >/dev/null && {
   eval "$(asdf exec direnv hook bash)"
 
   # A shortcut for asdf managed direnv.
-  # direnv() { asdf exec direnv "$@"; }
+  direnv() { asdf exec direnv "$@"; }
 }
 
 # K8s configuration
@@ -115,8 +116,10 @@ export TERM="xterm-256color"
 export EDITOR="emacs-client"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:$HOME/.local/lib:$LD_LIBRARY_PATH
-export PYTHON="python2.7"
+# TODO: why????
+# export PYTHON="python2.7"
 export GPG_TTY=$(tty)
+export GITLAB_ACCESS_TOKEN=glpat-QbbVwkzuPGPHm31VYWRM
 
 alias l='ls -CF'
 alias la='ls -A'
@@ -152,3 +155,5 @@ fi
 if [ -n "$INSIDE_EMACS" ]; then
   export PS1='$ '
 fi
+
+[ -f "/home/coder/.ghcup/env" ] && source "/home/coder/.ghcup/env" # ghcup-env

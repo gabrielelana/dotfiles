@@ -15,6 +15,7 @@
 # TODO: remove chunkly things and references
 # TODO: remove slim things and references
 # TODO: how to have non intrusive notifications in i3?
+# TODO: emoji https://dev.to/darksmile92/get-emojis-working-on-arch-linux-with-noto-fonts-emoji-2a9
 
 echo "Setup system..."
 # To run the current script you need to have
@@ -75,6 +76,8 @@ sudo apt install -y \
      iitalian \
      jq \
      libcanberra-gtk3-module \
+     libfixposix-dev \
+     libfixposix3 \
      libgccjit-10-dev \
      libgif-dev \
      libgl1-mesa-dev \
@@ -94,6 +97,7 @@ sudo apt install -y \
      libmpfr-dev \
      libncurses-dev \
      libncurses5-dev \
+     libnss3-tools \
      libpng-dev \
      libpoppler-glib-dev \
      libpoppler-private-dev \
@@ -115,6 +119,9 @@ sudo apt install -y \
      libxt-dev \
      m4 \
      make \
+     pandoc \
+     ripgrep \
+     rlwrap \
      silversearcher-ag \
      slim \
      software-properties-common \
@@ -124,6 +131,7 @@ sudo apt install -y \
      unixodbc-dev \
      unzip \
      vim \
+     xclip \
      xsltproc \
      zlib1g-dev \
      zsh
@@ -185,24 +193,26 @@ fi
 echo "Install ASDF and related plugins..."
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd - || exit 1
-~/.asdf/bin/asdf plugin-add mongodb
-~/.asdf/bin/asdf plugin-add postgres
-~/.asdf/bin/asdf plugin-add erlang
-~/.asdf/bin/asdf plugin-add elixir
-~/.asdf/bin/asdf plugin-add ocaml
-~/.asdf/bin/asdf plugin-add opam
-~/.asdf/bin/asdf plugin-add ruby
-~/.asdf/bin/asdf plugin-add php
-~/.asdf/bin/asdf plugin-add nodejs
-~/.asdf/bin/asdf plugin-add golang
-~/.asdf/bin/asdf plugin-add java
-~/.asdf/bin/asdf plugin-add sbt
-~/.asdf/bin/asdf plugin-add scala
-~/.asdf/bin/asdf plugin-add direnv
-~/.asdf/bin/asdf plugin-add kubectl
-~/.asdf/bin/asdf plugin-add kubectx
-~/.asdf/bin/asdf plugin-add kustomize
-~/.asdf/bin/asdf plugin-add kind
+~/.asdf/bin/asdf plugin add mongodb
+~/.asdf/bin/asdf plugin add postgres
+~/.asdf/bin/asdf plugin add erlang
+~/.asdf/bin/asdf plugin add elixir
+~/.asdf/bin/asdf plugin add ocaml
+~/.asdf/bin/asdf plugin add opam
+~/.asdf/bin/asdf plugin add ruby
+~/.asdf/bin/asdf plugin add php
+~/.asdf/bin/asdf plugin add nodejs
+~/.asdf/bin/asdf plugin add golang
+~/.asdf/bin/asdf plugin add java
+~/.asdf/bin/asdf plugin add sbt
+~/.asdf/bin/asdf plugin add scala
+~/.asdf/bin/asdf plugin add direnv
+~/.asdf/bin/asdf plugin add kubectl
+~/.asdf/bin/asdf plugin add kubectx
+~/.asdf/bin/asdf plugin add kustomize
+~/.asdf/bin/asdf plugin add kind
+~/.asdf/bin/asdf plugin add mkcert
+~/.asdf/bin/asdf plugin add emsdk https://github.com/RobLoach/asdf-emsdk.git
 
 export PATH="~/.asdf/bin:$PATH"
 
@@ -232,7 +242,7 @@ echo "Install NodeJS..."
 ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 ~/.asdf/bin/asdf install nodejs latest
 ~/.asdf/bin/asdf global nodejs "$(~/.asdf/bin/asdf list nodejs | tail -1 | tr -d ' ')"
-npm install -g yarn prettier eslint typescript ts-node typescript-formatter dockerfile-language-server-nodejs tern tide http-server
+npm install -g yarn prettier jsonlint eslint typescript ts-node typescript-formatter dockerfile-language-server-nodejs http-server
 [[ (! -f /usr/bin/python) && (-f /usr/bin/python3) ]] && sudo ln -s /usr/bin/python3 /usr/bin/python
 npm install -g import-js --unsafe-per
 
@@ -288,3 +298,6 @@ echo "Install bats..." && (
   chmod +x ./install.sh
   sudo ./install.sh /usr/local
 )
+
+# Install clangd
+# wget -O - https://apt.llvm.org/llvm.sh > ~/tmp/install-clangd.sh
