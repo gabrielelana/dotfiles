@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# TODO: break the following sections in single executables
+# - bootstrap-ubuntu.sh
+# - setup-starship.sh
+# - setup-docker.sh
+# - setup-haskell.sh
+# - setup-elixir.sh
+# - setup-rust.sh
+# - setup-nodejs.sh
+# - setup-emacs.sh
+# - setup-shellcheck.sh
+# - setup-c.sh
+
 # TODO: install latest version of language && language server && utilities for
 # - Elixir
 # - JavaScript/TypeScript
