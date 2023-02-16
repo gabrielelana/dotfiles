@@ -1,13 +1,17 @@
 # contributor: Gabriele Lana
-# name : module
-# key : module
+# name : package
+# key : package
 # expand-env: ((yas-wrap-around-region t))
-# uuid: 435548b4-790e-4877-84d5-289ad83126da
+# uuid: 1e8211dc-6a23-439d-b8a7-9daddd47f604
 # --
 ;;; ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}.el --- ${2:summary} -*- lexical-binding: t -*-
 
 ;; Author: ${3:`(format "%s <%s>" user-full-name user-mail-address)`}
 ;; Maintainer: ${4:`(format "%s <%s>" user-full-name user-mail-address)`}
+;; Version: ${5:0.0.1}
+;; Package-Requires: (${6:_})
+;; Homepage: http://github.com/gabrielelana/${7:_}
+;; Keywords: ${8:_}
 
 ;; This file is not part of GNU Emacs
 
@@ -26,7 +30,7 @@
 
 ;;; Commentary:
 
-;; $2
+;; ${9:_}
 
 ;;; Code:
 

@@ -3,57 +3,69 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-up-list
         cc/comment-or-uncomment-line-or-region
         cc/copy-character-from-above
+        cc/eval-and-replace
         cc/join-with-next-line
         cc/smarter-move-beginning-of-line
+        comment-dwim
+        consult-yank-pop
         default-indent-new-line
-        dired-maybe-insert-subdir
+        drag-stuff-down
+        electric-newline-and-maybe-indent
+        eval-buffer
+        forward-sentence
         forward-sexp
-        haskell-indentation-common-electric-command
+        hydra-multiple-cursors/body
         indent-for-tab-command
+        kill-rectangle
+        kill-region
         kill-sexp
-        markdown-cycle
-        markdown-outdent-or-delete
+        org-ctrl-c-ctrl-c
+        org-cycle
         org-delete-char
         org-end-of-line
         org-kill-line
         org-self-insert-command
-        paredit-backslash
+        org-yank
+        paredit-backward
+        paredit-close-square
         paredit-doublequote
+        paredit-forward
         paredit-forward-delete
         paredit-forward-kill-word
         paredit-forward-slurp-sexp
         paredit-kill
         paredit-meta-doublequote
+        paredit-newline
         paredit-open-round
-        paredit-splice-sexp
-        paredit-splice-sexp-killing-backward
+        paredit-open-square
+        paredit-semicolon
         paredit-wrap-round
-        rjsx-delete-creates-full-tag
-        rjsx-electric-gt
         string-inflection-all-cycle
-        undefined
+        string-inflection-lower-camelcase
+        vterm-beginning-of-line
+        vterm-end-of-line
+        yaml-electric-backspace
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        beginning-of-buffer
-        cc/duplicate-line-or-region-above
-        counsel-M-x
         hydra-multiple-cursors/mc/edit-lines-and-exit
         hydra-multiple-cursors/mc/insert-letters-and-exit
         hydra-multiple-cursors/mc/insert-numbers-and-exit
-        hydra-multiple-cursors/mc/mark-all-in-region-regexp-and-exit
         hydra-multiple-cursors/mc/mark-all-like-this-and-exit
         hydra-multiple-cursors/mc/mark-next-like-this
         hydra-multiple-cursors/mc/mark-previous-like-this
-        hydra-multiple-cursors/mc/nil
         hydra-multiple-cursors/mc/skip-to-next-like-this
         hydra-multiple-cursors/mc/skip-to-previous-like-this
         hydra-multiple-cursors/mc/unmark-next-like-this
         hydra-multiple-cursors/mc/unmark-previous-like-this
         hydra-multiple-cursors/nil
-        org-cycle
-        swiper
+        lsp-ui-doc--handle-mouse-movement
+        markdown-outdent-or-delete
+        paredit-newline
+        projectile-find-file
+        wdired--self-insert
         ))

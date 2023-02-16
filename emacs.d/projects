@@ -1,0 +1,8 @@
+;;; -*- lisp-data -*-
+(("~/code/Doorbell/doorbell/")
+ ("~/code/Facile/purple-knife/")
+ ("~/code/FirstAdvisory/fa-api-node-skeleton/")
+ ("~/code/Casavo/worms/")
+ ("~/code/Doorbell/doorkeeper/")
+ ("~/code/Casavo/offer-engine/")
+ ("~/code/retro.el/"))

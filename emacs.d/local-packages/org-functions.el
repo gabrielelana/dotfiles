@@ -29,12 +29,14 @@
 ;;; Code:
 
 (defun cc/org-mode-buffer-setup ()
+  "Setup 'org-mode buffer."
   (advice-add 'org-babel-execute-src-block :after #'cc/org-babel-execute-src-block-pulse-momentary)
   (advice-add 'org-babel-execute:haskell :filter-return #'cc/org-babel-execute-haskell-filter-output)
   (add-hook 'before-save-hook #'cc/org-mode-buffer-format nil t)
   (electric-indent-mode -1))
 
 (defun cc/org-mode-buffer-format ()
+  "Format 'org-mode buffer."
   (cc/org-mode-buffer-force-uppercase-keywords))
 
 (defun cc/org-mode-buffer-force-uppercase-keywords ()
@@ -48,10 +50,12 @@
         (replace-match (upcase (match-string-no-properties 1)) :fixedcase nil nil 1)))))
 
 (defun cc/org-babel-execute-src-block-pulse-momentary (&rest args)
+  "Pulse 'org-mode source block when evaluate."
+  (require 'pulse)
   (let ((element (org-element-at-point))
-        (original-pulse-delay pulse-delay))
+        (original-pulse-delay (and (boundp 'pulse-delay) pulse-delay)))
     (when (eq (org-element-type element) 'src-block)
-      (setq pulse-delay 0.05)
+      (setq pulse-delay 0.1)
       (let* ((area (org-src--contents-area element))
              (starts-at (nth 0 area))
              (ends-at (nth 1 area)))
@@ -59,8 +63,11 @@
       (setq pulse-delay original-pulse-delay))))
 
 (defun cc/org-babel-execute-haskell-filter-output (output)
-  (when output
-    (org-trim output t)))
+  "Filter OUTPUT after org source block execution."
+  (message output)
+  (if (and output (stringp output))
+      (replace-regexp-in-string haskell-prompt-regexp "" (org-trim output t))
+    output))
 
 (provide 'org-functions)
 
