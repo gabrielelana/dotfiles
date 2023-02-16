@@ -30,17 +30,14 @@ for file in "$ROOT"/bin/*; do
 done
 
 echo "Install configuration files..."
-cp -f "$ROOT"/ackrc ~/.ackrc
-cp -f "$ROOT"/rvmrc ~/.rvmrc
 cp -f "$ROOT"/gitignore ~/.gitignore
 cp -f "$ROOT"/.dependencies/dotfiles-secrets/gitconfig ~/.gitconfig
+cp -f "$ROOT"/.dependencies/dotfiles-secrets/docker ~/.docker
 cp -f "$ROOT"/i3 ~/.i3
 cp -f "$ROOT"/dunstrc ~/.dunstrc
-cp -f "$ROOT"/gtkrc-2.0 ~/.gtkrc-2.0
 cp -f "$ROOT"/xsession ~/.xsession
 cp -f "$ROOT"/xmodmap ~/.xmodmap
 cp -f "$ROOT"/xresources ~/.xresources
-ln -sf "$ROOT"/docker ~/.docker
 ln -sf "$ROOT"/aspell.en.prepl ~/.aspell.en.prepl
 ln -sf "$ROOT"/aspell.en.pws ~/.aspell.en.pws
 mkdir -p ~/.config/direnv && ln -sf $"ROOT"/direnvrc ~/.config/direnv/direnvrc
@@ -77,18 +74,6 @@ cp -f "$ROOT"/vimrc ~/.vimrc
 
 echo "Setup Emacs..."
 ln -sf "$ROOT"/emacs.d ~/.emacs.d
-
-echo "Setup Haskell (stack)..."
-cp -rf "$ROOT"/stack ~/.stack
-cp -rf "$ROOT"/ghc ~/.ghc
-chmod 755 ~/.stack
-chmod 755 ~/.ghc
-
-echo "Configure gnome terminal..."
-if [ -x "$(command -v dconf)" ]; then
-  dconf reset -f "/org/gnome/terminal/"
-  dconf load "/org/gnome/terminal/" < "$ROOT"/gnome-terminal.ini
-fi
 
 echo "Add an XSession entry for GDM3..."
 sudo cat <<EOF | sudo tee /usr/share/xsessions/xsession.desktop

@@ -1,8 +1,0 @@
-# -*- mode: Shell-script; sh-basic-offset: 2; -*-
-
-source "/etc/profile.d/application_env.sh"
-source "/etc/profile.d/onebip_global.sh"
-source "/etc/profile.d/demetra_global.sh"
-source "/etc/profile.d/onebip_ultimate_global.sh"
-source "/etc/profile.d/clojure_boot.sh"
-source "/etc/profile.d/clojure_leiningen.sh"
