@@ -156,4 +156,7 @@ if [ -n "$INSIDE_EMACS" ]; then
   export PS1='$ '
 fi
 
+#[ -f "/home/coder/.ghcup/env" ] && source "/home/coder/.ghcup/env" # ghcup-env
+
+#[ -f "/home/coder/.ghcup/env" ] && source "/home/coder/.ghcup/env" # ghcup-env
 [ -f "/home/coder/.ghcup/env" ] && source "/home/coder/.ghcup/env" # ghcup-env
