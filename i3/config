@@ -14,6 +14,12 @@ set $bg3 @@BACKGROUND3@@
 set $bg4 @@BACKGROUND4@@
 set $fg @@FOREGROUND@@
 
+# set background color
+exec --no-startup-id "hsetroot -solid '$bg1'"
+
+# start vmware clipboard sharing service
+exec --no-startup-id "vmware-user-suid-wrapper"
+
 # colors <what border background text indicator>
 client.focused $bg2 $bg2 $fg $bg2
 client.unfocused $bg2 $bg2 $fg $bg2
@@ -30,7 +36,7 @@ floating_maximum_size 2048 x 1536
 for_window [floating] move position 10 10
 
 # start a terminal
-bindsym $mod+Return exec st
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+x kill
