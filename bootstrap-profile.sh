@@ -23,10 +23,9 @@ for project in dotfiles-secrets awesome-terminal-fonts; do
 done
 
 echo "Install executables..."
-mkdir -p ~/bin
 mkdir -p ~/.local/bin
 for file in "$ROOT"/bin/*; do
-  ln -sf "$file" ~/bin/"$(basename "$file")"
+  ln -sf "$file" ~/.local/bin/"$(basename "$file")"
 done
 
 echo "Install configuration files..."
@@ -40,7 +39,16 @@ cp -f "$ROOT"/xmodmap ~/.xmodmap
 cp -f "$ROOT"/xresources ~/.xresources
 ln -sf "$ROOT"/aspell.en.prepl ~/.aspell.en.prepl
 ln -sf "$ROOT"/aspell.en.pws ~/.aspell.en.pws
-mkdir -p ~/.config/direnv && ln -sf $"ROOT"/direnvrc ~/.config/direnv/direnvrc
+mkdir -p ~/.config/direnv && ln -sf "$ROOT"/direnvrc ~/.config/direnv/direnvrc
+
+echo "Configure Docker..."
+mkdir -p ~/.docker
+if [ -f ~/.docker/config.json ]; then
+    cat ~/.docker/config.json "$ROOT"/docker-config.json | jq -s add > ~/.docker/config.merged
+    mv ~/.docker/config.merged ~/.docker/config.json
+else
+    cp "$ROOT"/docker-config.json ~/.docker/config.json
+fi
 
 echo "Configure shell..."
 ln -sf "$ROOT"/profile ~/.profile
