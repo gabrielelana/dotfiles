@@ -123,8 +123,10 @@ sudo apt install -y \
      libxml2-utils \
      libxpm-dev \
      libxt-dev \
+     libzstd-dev \
      m4 \
      make \
+     pandoc \
      pandoc \
      ripgrep \
      rlwrap \
@@ -137,9 +139,12 @@ sudo apt install -y \
      unzip \
      vim \
      xclip \
+     xclip \
      xsltproc \
      zlib1g-dev \
-     zsh
+     zsh \
+     zstd \
+     || true
 
 echo "Cloning Emacs repository, be patient..."
 mkdir -p ~/src && cd ~/src || exit 1
@@ -204,27 +209,33 @@ cd emacs-build || exit 1
 echo "Install ASDF and related plugins..."
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)" && cd - || exit 1
-~/.asdf/bin/asdf plugin add erlang
-~/.asdf/bin/asdf plugin add elixir
-~/.asdf/bin/asdf plugin add ocaml
-~/.asdf/bin/asdf plugin add opam
-~/.asdf/bin/asdf plugin add ruby
-~/.asdf/bin/asdf plugin add php
-~/.asdf/bin/asdf plugin add nodejs
-~/.asdf/bin/asdf plugin add java
-~/.asdf/bin/asdf plugin add sbt
-~/.asdf/bin/asdf plugin add scala
-~/.asdf/bin/asdf plugin add direnv
-~/.asdf/bin/asdf plugin add kubectl
-~/.asdf/bin/asdf plugin add kubectx
-~/.asdf/bin/asdf plugin add kustomize
-~/.asdf/bin/asdf plugin add kind
-~/.asdf/bin/asdf plugin add mkcert
-export PATH="~/.asdf/bin:$PATH"
+~/.asdf/bin/asdf plugin-add direnv
+~/.asdf/bin/asdf plugin-add elixir
+~/.asdf/bin/asdf plugin-add erlang
+~/.asdf/bin/asdf plugin-add java
+~/.asdf/bin/asdf plugin-add hadolint
+~/.asdf/bin/asdf plugin-add kind
+~/.asdf/bin/asdf plugin-add kubectl
+~/.asdf/bin/asdf plugin-add kubectx
+~/.asdf/bin/asdf plugin-add kustomize
+~/.asdf/bin/asdf plugin-add mkcert
+~/.asdf/bin/asdf plugin-add nodejs
+~/.asdf/bin/asdf plugin-add ocaml
+~/.asdf/bin/asdf plugin-add opam
+~/.asdf/bin/asdf plugin-add php
+~/.asdf/bin/asdf plugin-add python
+~/.asdf/bin/asdf plugin-add ruby
+~/.asdf/bin/asdf plugin-add sbcl
+~/.asdf/bin/asdf plugin-add sbt
+~/.asdf/bin/asdf plugin-add scala
+~/.asdf/bin/asdf plugin-add shellcheck
+export PATH="$HOME/.asdf/bin:$PATH"
 
 echo "Install ASDF direnv Plugin..."
 ~/.asdf/bin/asdf install direnv latest
 ~/.asdf/bin/asdf global direnv "$(~/.asdf/bin/asdf list direnv | tail -1 | tr -d ' ')"
+
+# TODO: install asdf stuff with plugins
 
 # echo "Install K8s Stuffs..."
 # ~/.asdf/bin/asdf install kubectl latest
