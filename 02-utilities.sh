@@ -87,17 +87,21 @@ echo "Install ASDF direnv Plugin..."
 
 echo "Install K8s Stuffs..."
 ~/.asdf/bin/asdf install kubectl latest
-~/.asdf/bin/asdf install kubectx latest
-~/.asdf/bin/asdf install kustomize latest
-~/.asdf/bin/asdf install kind latest
 ~/.asdf/bin/asdf global kubectl latest
+~/.asdf/bin/asdf install kubectx latest
 ~/.asdf/bin/asdf global kubectx latest
+~/.asdf/bin/asdf install kustomize latest
 ~/.asdf/bin/asdf global kustomize latest
+~/.asdf/bin/asdf install kind latest
 ~/.asdf/bin/asdf global kind latest
 
-# echo "Intall shellcheck..."
-# ~/.asdf/bin/asdf install shellcheck latest
-# ~/.asdf/bin/asdf global shellcheck latest
+echo "Install NodeJS..."
+~/.asdf/bin/asdf install nodejs latest
+~/.asdf/bin/asdf global nodejs latest
+
+echo "Intall shellcheck..."
+~/.asdf/bin/asdf install shellcheck latest
+~/.asdf/bin/asdf global shellcheck latest
 
 echo "Install Starship..."
 curl -sS https://starship.rs/install.sh | sh

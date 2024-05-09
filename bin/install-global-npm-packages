@@ -1,0 +1,12 @@
+#!/bin/bash
+
+npm install -g \
+    prettier \
+    jsonlint \
+    eslint \
+    typescript \
+    typescript-language-server \
+    vscode-json-languageserver \
+    yaml-language-server \
+    pnpm \
+    ts-node
