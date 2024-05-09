@@ -82,15 +82,12 @@ command -v kubectl >/dev/null && {
 # Rust configuration
 [[ -d "$HOME/.cargo/bin" ]] && {
   export PATH=$HOME/.cargo/bin:$PATH
-  # shellcheck source=/home/coder/.cargo/env
   source "$HOME/.cargo/env"
 }
 
-# Haskell (Stack) configuration
-command -v stack >/dev/null && {
-  eval "$(stack --bash-completion-script stack)"
-  alias ghci="stack exec -- ghci"
-  alias ghc="stack exec -- ghc"
+# Haskell configuration
+[ -f "$HOME/.ghcup/env" ] && {
+  source "/home/coder/.ghcup/env"
 }
 
 # Prompt starship configuration
@@ -104,41 +101,36 @@ for map in ~/.fonts/*.sh; do
   source "$map"
 done
 
-# Configuration related to VT inside of Emacs
-if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
-  function clear(){
-    vterm_printf "51;Evterm-clear-scrollback";
-    tput clear;
-  }
-fi
+# Make emacs available
+[ -d "$HOME/opt/emacs-29.3/bin" ] && {
+  export PATH=$HOME/opt/emacs-29.3/bin:$PATH
+}
 
 export TERM="xterm-256color"
 export EDITOR="emacs-client"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:$HOME/.local/lib:$LD_LIBRARY_PATH
-# TODO: why????
-# export PYTHON="python2.7"
 export GPG_TTY=$(tty)
-export GITLAB_ACCESS_TOKEN=glpat-QbbVwkzuPGPHm31VYWRM
 
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -la --color'
 alias mongo="mongo --quiet"
 alias d="docker"
-alias dc="docker-compose"
+alias dc="docker compose"
+alias python="python3"
 alias kn="kubens"
 alias k="kubectl"
 
-# Load local configuration, aka configuration that is specific for the
-# current machine
+# Load local configuration, aka configuration that is specific for the current
+# machine
 [[ -s "$HOME/.bashrc.localhost" ]] && {
   # shellcheck source=/home/coder/.bashrc.localhost
   source "$HOME/.bashrc.localhost"
 }
 
-# The following file is under version control so this is where you
-# will put configuration that is stable
+# The following file is under version control so this is where you will put
+# configuration that is stable
 [[ -s "$HOME/.bashrc.$(hostname -d)" ]] && {
   # shellcheck source=/home/coder/.bashrc.localhost
   source "$HOME/.bashrc.$(hostname -d)"
@@ -151,12 +143,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-if [ -n "$INSIDE_EMACS" ]; then
-  export PS1='$ '
-fi
-
-#[ -f "/home/coder/.ghcup/env" ] && source "/home/coder/.ghcup/env" # ghcup-env
-
-#[ -f "/home/coder/.ghcup/env" ] && source "/home/coder/.ghcup/env" # ghcup-env
-[ -f "/home/coder/.ghcup/env" ] && source "/home/coder/.ghcup/env" # ghcup-env
