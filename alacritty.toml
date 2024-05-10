@@ -1,0 +1,55 @@
+[font]
+size = 20
+
+[font.normal]
+family = "PragmataPro"
+style = "Regular"
+
+[font.bold]
+family = "PragmataPro"
+style = "Bold"
+
+[font.italic]
+family = "PragmataPro"
+style = "Italic"
+
+[font.bold_italic]
+family = "PragmataPro"
+style = "Bold Italic"
+
+[scrolling]
+history = 100000
+
+[colors.primary]
+foreground = "#f5eeec"
+background = "#303347"
+
+[colors.normal]
+black = "#303347"
+red = "#f557a0"
+green = "#a9ee55"
+yellow = "#f5a255"
+blue = "#5ea2ec"
+magenta = "#a957ec"
+cyan = "#5eeea0"
+white = "#918988"
+
+[colors.bright]
+black = "#918988"
+red = "#f579b2"
+green = "#bbee78"
+yellow = "#f5b378"
+blue = "#81b3ec"
+magenta = "#bb79ec"
+cyan = "#81eeb2"
+white = "#f5eeec"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "["
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "["
+mods = "Alt"
