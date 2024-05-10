@@ -31,6 +31,9 @@ sudo apt install -y \
      libssh-dev \
      libssl-dev
 
+echo "Cloning Emacs configuration repository..."
+git clone git@github.com:gabrielelana/emacs.d ~/.emacs.d
+
 echo "Cloning Emacs repository, be patient..."
 mkdir -p ~/src && cd ~/src || exit 1
 [ ! -d emacs ] && git clone git://git.sv.gnu.org/emacs.git emacs
@@ -41,8 +44,8 @@ echo "Compile Emacs ${EMACS_RELEASE}..."
 git checkout $EMACS_RELEASE
 make clean && git clean -xfd
 ./autogen.sh
-./configure --prefix=/home/coder/opt/$EMACS_RELEASE \
-            --bindir=/home/coder/opt/$EMACS_RELEASE/bin \
+./configure --prefix=~/opt/$EMACS_RELEASE \
+            --bindir=~/opt/$EMACS_RELEASE/bin \
             --with-json \
             --with-tree-sitter \
             --with-imagemagick \
@@ -59,8 +62,8 @@ echo "Compile Emacs latest..."
 git checkout master
 make clean && git clean -xfd
 ./autogen.sh
-./configure --prefix=/home/coder/opt/emacs-latest \
-            --bindir=/home/coder/opt/emacs-latest/bin \
+./configure --prefix=~/opt/emacs-latest \
+            --bindir=~/opt/emacs-latest/bin \
             --with-tree-sitter \
             --with-imagemagick \
             --with-x \
