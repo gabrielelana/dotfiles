@@ -14,12 +14,7 @@ autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
 
 # Background (xsetroot doesn't work with compositors like compton)
-hsetroot -solid "@@BACKGROUND1@@"
-
-# Start VirtualBox client to enable clipboard exchange with host and screen autoresize
-if command -v VBoxClient >/dev/null; then
-   exec sudo VBoxClient --clipboard &
-fi
+hsetroot -solid "#303347"
 
 # Start VMware client to enable clipboard exchange with host
 if command -v vmware-user-suid-wrapper; then
