@@ -98,6 +98,9 @@ echo "Install K8s Stuffs..."
 echo "Install NodeJS..."
 ~/.asdf/bin/asdf install nodejs latest
 ~/.asdf/bin/asdf global nodejs latest
+npm config set init-author-name "Gabriele Lana"
+npm config set init-author-email "gabriele.lana@gmail.com"
+npm config set init-author-url "http://github.com/gabrielelana"
 
 echo "Intall shellcheck..."
 ~/.asdf/bin/asdf install shellcheck latest
