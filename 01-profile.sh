@@ -79,3 +79,15 @@ chmod 0400 ~/.npmrc
 
 echo "Setup Vim..."
 cp -f "$ROOT"/vimrc ~/.vimrc
+
+echo "Consider ~/.xsession file with GDM3..."
+# Otherwise the Gnome login manager will not consider the ~/.xsession file
+sudo cat <<EOF | sudo tee /usr/share/xsessions/xsession.desktop
+[Desktop Entry]
+Name=XSession
+Comment=This session uses the custom xsession file
+Exec=/etc/X11/Xsession
+Type=Application
+DesktopNames=GNOME-Flashback;GNOME;
+X-Ubuntu-Gettext-Domain=gnome-flashback
+EOF
