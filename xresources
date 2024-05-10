@@ -5,3 +5,28 @@ Xft.hintstyle:	hintslight
 Xft.rgba:	rgb
 Xcursor.size:	48
 Xcursor.theme:	Yaru
+
+! Black + Bright Black
+*color0:  #232533
+*color8:  #303347
+! Red + Bright Red
+*color1:  #f557a0
+*color9:  #f579b2
+! Green + Bright Green
+*color2:  #a9ee55
+*color10: #bbee78
+! Yellow + Bright Yellow
+*color3:  #f5a255
+*color11: #f5b378
+! Blue + Bright Blue
+*color4:  #5ea2ec
+*color12: #81b3ec
+! Magenta + Bright Magenta
+*color5:  #a957ec
+*color13: #bb79ec
+! Cyan + Bright Cyan
+*color6:  #5eeea0
+*color14: #81eeb2
+! White + Bright White
+*color7:  #918988
+*color15: #f5eeec
