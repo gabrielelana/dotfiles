@@ -64,8 +64,6 @@ cp -f "$ROOT"/.dependencies/awesome-terminal-fonts/build/* ~/.fonts
 cp -f "$ROOT"/.dependencies/dotfiles-secrets/fonts/*.ttf ~/.fonts
 mkdir -p ~/.config/fontconfig/conf.d && \
   cp -f "$ROOT"/.dependencies/awesome-terminal-fonts/config/* ~/.config/fontconfig/conf.d
-mkdir -p ~/.config/fontconfig && \
-  cp -f "$ROOT"/fonts.conf ~/.config/fontconfig/fonts.conf
 fc-cache -fv ~/.fonts
 
 echo "Setup identity..."
