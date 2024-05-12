@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-postgres-check
-
-pg_ctl stop
