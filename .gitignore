@@ -16,6 +16,7 @@ emacs.d/tramp
 emacs.d/transient
 emacs.d/url
 i3/log
+i3/*.log
 vim/.*
 vim/bundle
 /emacs.d/places
