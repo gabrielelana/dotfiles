@@ -52,7 +52,7 @@ make clean && git clean -xfd
             --with-x \
             --with-x-toolkit=gtk3 \
             --with-xwidgets \
-            --without-dbus \
+            --with-dbus \
             --with-native-compilation=aot \
             --with-wide-int \
             --with-mailutils
