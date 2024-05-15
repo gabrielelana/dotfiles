@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# contributor: Gabriele Lana
-# name : assert_global
-# key : ag
-# uuid: 8b8ac2dc-87ed-4e92-89f0-6c8d9abe843f
-# --
-assert(isset(${1:$globalVariable}) and ($1 instanceof ${2:ClassName}));

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# contributor: Gabriele Lana
-# name : title-property
-# key : +t
-# uuid: ca63b2c7-6bc6-448d-a8ed-0beeae96827b
-# --
-#+TITLE: $0
