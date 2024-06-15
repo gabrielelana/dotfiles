@@ -6,7 +6,7 @@ npm install -g \
     eslint \
     typescript \
     typescript-language-server \
-    vscode-json-languageserver \
+    vscode-langservers-extracted \
     yaml-language-server \
     pnpm \
     ts-node
