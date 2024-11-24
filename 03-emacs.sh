@@ -39,38 +39,38 @@ mkdir -p ~/src && cd ~/src || exit 1
 [ ! -d emacs ] && git clone git://git.sv.gnu.org/emacs.git emacs
 cd emacs || exit 1
 
-EMACS_RELEASE=$(git describe --abbrev=0 --tags)
-echo "Compile Emacs ${EMACS_RELEASE}..."
-git checkout $EMACS_RELEASE
-make clean && git clean -xfd
-./autogen.sh
-./configure --prefix=~/opt/$EMACS_RELEASE \
-            --bindir=~/opt/$EMACS_RELEASE/bin \
-            --with-json \
-            --with-tree-sitter \
-            --with-imagemagick \
-            --with-x \
-            --with-x-toolkit=gtk3 \
-            --with-xwidgets \
-            --with-dbus \
-            --with-native-compilation=aot \
-            --with-wide-int \
-            --with-mailutils
-make -j"$(nproc)" && make install
+# EMACS_RELEASE=$(git describe --abbrev=0 --tags)
+# echo "Compile Emacs ${EMACS_RELEASE}..."
+# git checkout $EMACS_RELEASE
+# make clean && git clean -xfd
+# ./autogen.sh
+# ./configure --prefix=~/opt/$EMACS_RELEASE \
+#             --bindir=~/opt/$EMACS_RELEASE/bin \
+#             --with-json \
+#             --with-tree-sitter \
+#             --with-imagemagick \
+#             --with-x \
+#             --with-x-toolkit=gtk3 \
+#             --with-xwidgets \
+#             --with-dbus \
+#             --with-native-compilation=aot \
+#             --with-wide-int \
+#             --with-mailutils
+# make -j"$(nproc)" && make install
 
-echo "Compile Emacs latest..."
-git checkout master
-make clean && git clean -xfd
-./autogen.sh
-./configure --prefix=~/opt/emacs-latest \
-            --bindir=~/opt/emacs-latest/bin \
-            --with-tree-sitter \
-            --with-imagemagick \
-            --with-x \
-            --with-x-toolkit=gtk3 \
-            --with-xwidgets \
-            --without-dbus \
-            --with-native-compilation=aot \
-            --with-wide-int \
-            --with-mailutils
-make -j"$(nproc)" && make install
+# echo "Compile Emacs latest..."
+# git checkout master
+# make clean && git clean -xfd
+# ./autogen.sh
+# ./configure --prefix=~/opt/emacs-latest \
+#             --bindir=~/opt/emacs-latest/bin \
+#             --with-tree-sitter \
+#             --with-imagemagick \
+#             --with-x \
+#             --with-x-toolkit=gtk3 \
+#             --with-xwidgets \
+#             --without-dbus \
+#             --with-native-compilation=aot \
+#             --with-wide-int \
+#             --with-mailutils
+# make -j"$(nproc)" && make install
