@@ -119,16 +119,21 @@ alias k="kubectl"
 alias tf="terraform"
 alias tg="terragrunt"
 
+# Load environment variables that should not be committed
+[[ -f "$HOME/.env" ]] && {
+  source "$HOME/.env"
+}
+
 # Load local configuration, aka configuration that is specific for the current
 # machine
-[[ -s "$HOME/.bashrc.localhost" ]] && {
+[[ -f "$HOME/.bashrc.localhost" ]] && {
   # shellcheck source=/home/coder/.bashrc.localhost
   source "$HOME/.bashrc.localhost"
 }
 
 # The following file is under version control so this is where you will put
 # configuration that is stable
-[[ -s "$HOME/.bashrc.$(hostname -d)" ]] && {
+[[ -f "$HOME/.bashrc.$(hostname -d)" ]] && {
   # shellcheck source=/home/coder/.bashrc.localhost
   source "$HOME/.bashrc.$(hostname -d)"
 }
@@ -140,3 +145,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
