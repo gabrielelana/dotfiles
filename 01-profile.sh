@@ -34,10 +34,7 @@ ln -sf "$ROOT"/xsession ~/.xsession
 ln -sf "$ROOT"/xmodmap ~/.xmodmap
 ln -sf "$ROOT"/xresources ~/.xresources
 ln -sf "$ROOT"/asdfrc ~/.asdfrc
-# TODO: check if still needed
-# ln -sf "$ROOT"/aspell.en.prepl ~/.aspell.en.prepl
-# ln -sf "$ROOT"/aspell.en.pws ~/.aspell.en.pws
-mkdir -p ~/.config/direnv && ln -sf "$ROOT"/direnvrc ~/.config/direnv/direnvrc
+ln -sf "$ROOT"/biome.json ~/biome.json
 
 echo "Configure Docker..."
 mkdir -p ~/.docker
