@@ -33,15 +33,13 @@ shopt -s globstar
   export PATH=$HOME/.cask/bin:$PATH
 }
 
-# EVM (Emacs Version Manager) configuration
-[[ -d "$HOME/.evm/bin" ]] && {
-  export PATH=$HOME/.evm/bin:$PATH
+# Make emacs available
+[ -d "$HOME/opt/emacs-30.0.92/bin" ] && {
+  export PATH=$HOME/opt/emacs-30.0.92/bin:$PATH
 }
-
-# Emacs compiled version
-[[ -d "$HOME/opt/emacs" ]] && {
-  export PATH=$HOME/opt/emacs/bin:$PATH
-}
+# [ -d "$HOME/opt/emacs-latest/bin" ] && {
+#   export PATH=$HOME/opt/emacs-latest/bin:$PATH
+# }
 
 # Elixir language server configuration
 [[ -d "$HOME/.local/bin/elixir-ls" ]] && {
@@ -101,15 +99,12 @@ for map in ~/.fonts/*.sh; do
   source "$map"
 done
 
-# Make emacs available
-[ -d "$HOME/opt/emacs-29.3/bin" ] && {
-  export PATH=$HOME/opt/emacs-29.3/bin:$PATH
-}
-
 export TERM="xterm-256color"
 export EDITOR="emacs-client"
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:$HOME/.local/lib:$LD_LIBRARY_PATH
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+export AWS_DEFAULT_PROFILE=default
 export GPG_TTY=$(tty)
 
 alias l='ls -CF'
