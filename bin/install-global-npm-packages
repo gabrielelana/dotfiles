@@ -8,5 +8,7 @@ npm install -g \
     typescript-language-server \
     vscode-langservers-extracted \
     yaml-language-server \
+    @biomejs/biome \
+    @mermaid-js/mermaid-cli \
     pnpm \
     ts-node
