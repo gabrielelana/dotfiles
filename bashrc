@@ -116,6 +116,8 @@ alias dc="docker compose"
 alias python="python3"
 alias kn="kubens"
 alias k="kubectl"
+alias tf="terraform"
+alias tg="terragrunt"
 
 # Load local configuration, aka configuration that is specific for the current
 # machine
