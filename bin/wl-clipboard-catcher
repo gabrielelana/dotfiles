@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# TODO: take port from as argument with default 9999
+PORT=9999
+
+LOGFILE=/tmp/wl-clipboard-catcher.log
+
+# Check for log file if it's too big then rotate
+if [ -f $LOGFILE ]; then
+    MAX_SIZE=$((1024*16))
+    CURRENT_SIZE=$(du -k $LOGFILE | cut -f1)
+    if [ "$CURRENT_SIZE" -ge "$MAX_SIZE" ]; then
+        NOW=$(date '+%Y%m%d')
+        ROTATE_TO="$(dirname $LOGFILE)/$(basename $LOGFILE .log)-$NOW.log"
+        echo "[INFO] ROTATE FILE TO $ROTATE_TO" >> $LOGFILE
+        cp $LOGFILE "$ROTATE_TO"
+        truncate -s 0 $LOGFILE
+    fi
+fi
+
+# Check if there's a process listening on the same port and kill it
+MAYBE_LISTENING=$(lsof -ti tcp:$PORT || true)
+if [ -n "$MAYBE_LISTENING" ]; then
+    # There's a process listening, is it us?
+    PID=$MAYBE_LISTENING
+    NAME=$(ps -p "$PID" -o comm=)
+    if [ "$NAME" == "nc" ]; then
+        echo "[WARNING] ANOTHER OF MYSELF WITH PID: $PID" >> $LOGFILE
+        kill -s SIGKILL "$PID" || {
+            echo "[ERROR] FAILED TO KILL PID: $PID" >> $LOGFILE
+            exit 1
+        };
+        echo "[INFO] KILLED" >> $LOGFILE
+    fi
+fi
+
+while true; do
+    nc -l -p $PORT | tee -a $LOGFILE | wl-copy
+    echo "<<< $(date)" >> $LOGFILE
+done
