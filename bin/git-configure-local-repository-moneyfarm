@@ -1,0 +1,11 @@
+#!/bin/bash
+
+git config --replace-all user.name gabriele.lana
+git config --replace-all user.email gabriele.lana@moneyfarm.com
+git config --replace-all user.signingkey 73A2988890182128E428A7ED8053444B251B36AF
+git config --replace-all commit.gpgsign true
+git config --replace-all tag.gpgsign true
+
+git config -l | grep '^github.' | sed 's/^\([^=]\+\).*/\1/' | while read -r NAME
+  do git config --unset-all "$NAME"
+done
