@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source ~/.profile
+
+dmenu_path
+
+exit 0
